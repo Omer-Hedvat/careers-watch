@@ -1,0 +1,271 @@
+# big_companies.yml
+# Manually maintained list of large established companies.
+# careers_url + ats + ats_params must be verified by hand before activating an entry.
+# Fields are merged into companies.json by refresh_companies.py.
+# These entries are NEVER auto-scraped or auto-discovered - edit this file directly.
+#
+# To add a new company: fill all required fields, verify the ATS params work
+# (e.g. uv run ats/greenhouse.py <board_token>), then run refresh_companies.py.
+#
+# Schema:
+#   name            required - display name
+#   website         required - company homepage
+#   careers_url     required - manually verified ATS or careers page URL
+#   ats             required - greenhouse | comeet | lever | workday | smartrecruiters | ashby | other
+#   ats_params      required - dict of params the ATS puller needs (empty dict {} if ats=other or TODO)
+#   category        required - cyber | fraud | fintech | security | general
+#   location_filter optional - substring filter applied to job location field (case-insensitive)
+#   notes           optional - free text
+
+# ─── Cyber / Security ────────────────────────────────────────────────────────
+
+- name: Wiz
+  website: https://wiz.io
+  careers_url: https://job-boards.greenhouse.io/wizinc
+  ats: greenhouse
+  ats_params:
+    board_token: wizinc
+  category: cyber
+  location_filter: tel aviv  # Wiz uses "Tel Aviv" (not "Israel") in location strings
+
+- name: CyberArk
+  website: https://www.cyberark.com
+  careers_url: https://www.cyberark.com/careers/all-job-openings/
+  ats: other
+  ats_params: {}  # TODO: uses SAP SuccessFactors (job_id format 744000124414169) - no public API
+  category: cyber
+  location_filter: israel
+  notes: "TODO: SAP SuccessFactors - no standard public API. Example: https://www.cyberark.com/careers/all-job-openings/job-post/?job_id=744000124414169"
+
+- name: SentinelOne
+  website: https://www.sentinelone.com
+  careers_url: https://boards.greenhouse.io/sentinellabs
+  ats: greenhouse
+  ats_params:
+    board_token: sentinellabs
+  category: cyber
+  location_filter: israel
+
+- name: Armis
+  website: https://www.armis.com
+  careers_url: https://boards.greenhouse.io/armissecurity
+  ats: greenhouse
+  ats_params:
+    board_token: armissecurity
+  category: cyber
+  location_filter: israel
+
+- name: Snyk
+  website: https://snyk.io
+  careers_url: https://snyk.wd103.myworkdayjobs.com/External
+  ats: workday
+  ats_params:
+    tenant: snyk
+    wd_instance: wd103
+    job_site: External
+  category: cyber
+  location_filter: israel
+
+- name: JFrog
+  website: https://jfrog.com
+  careers_url: https://boards.greenhouse.io/jfrog
+  ats: greenhouse
+  ats_params:
+    board_token: jfrog
+  category: security
+  location_filter: israel
+  notes: Israel HQ (Netanya), strong DS/ML signal
+
+- name: Varonis
+  website: https://www.varonis.com
+  careers_url: https://careers.varonis.com/  # TODO: careers.varonis.com - ATS behind this not detected via HTTP
+  ats: other
+  ats_params: {}  # TODO: verify ATS - site resolves but no ATS signature found without JS rendering
+  category: cyber
+  location_filter: israel
+  notes: "TODO: careers at careers.varonis.com - verify ATS (could be Greenhouse with custom domain)"
+
+- name: Palo Alto Networks
+  website: https://www.paloaltonetworks.com
+  careers_url: https://www.paloaltonetworks.com/company/careers  # TODO: find Workday feed URL
+  ats: workday
+  ats_params: {}  # TODO: determine Workday tenant/job-site params (expected: paloaltonetworks.wd*.myworkdayjobs.com)
+  category: cyber
+  location_filter: israel
+  notes: "TODO: uses Workday - need to find tenant subdomain and external site name"
+
+- name: Check Point
+  website: https://www.checkpoint.com
+  careers_url: https://checkpoint.wd5.myworkdayjobs.com/CheckPointCareers  # TODO: verify
+  ats: workday
+  ats_params: {}  # TODO: verify Workday params
+  category: cyber
+  location_filter: israel
+  notes: "TODO: Israel HQ - verify exact Workday tenant URL"
+
+- name: Akamai
+  website: https://www.akamai.com
+  careers_url: https://akamai.wd1.myworkdayjobs.com/en-US/AkamaiCareers  # TODO: verify
+  ats: workday
+  ats_params: {}  # TODO: verify Workday params
+  category: security
+  location_filter: israel
+  notes: "TODO: uses Workday - verify tenant URL"
+
+- name: Cato Networks
+  website: https://www.catonetworks.com
+  careers_url: https://boards.greenhouse.io/catonetworks
+  ats: greenhouse
+  ats_params:
+    board_token: catonetworks
+  category: cyber
+  location_filter: israel
+
+- name: Salt Security
+  website: https://salt.security
+  careers_url: https://boards.greenhouse.io/saltsecurity
+  ats: greenhouse
+  ats_params:
+    board_token: saltsecurity
+  category: cyber
+  location_filter: israel
+
+- name: Aqua Security
+  website: https://www.aquasec.com
+  careers_url: https://www.aquasec.com/about-us/careers/
+  ats: comeet
+  ats_params:
+    company_uid: "91.001"
+    token: 191644966966644E194B3191644644
+  category: cyber
+  location_filter: israel
+
+- name: Radware
+  website: https://www.radware.com
+  careers_url: https://www.radware.com/company/careers/  # TODO: verify ATS
+  ats: other
+  ats_params: {}  # TODO: determine ATS (may use SmartRecruiters or own system)
+  category: security
+  location_filter: israel
+  notes: "TODO: Israeli company - verify ATS type"
+
+- name: Imperva
+  website: https://www.imperva.com
+  careers_url: https://careers.thalesgroup.com/global/en/search-results
+  ats: other
+  ats_params: {}  # TODO: Thales uses PhenomPeople (tenant TGPTGWGLOBAL) - no public REST API; requires session auth
+  category: cyber
+  location_filter: israel
+  notes: "TODO: acquired by Thales 2023. Careers now at careers.thalesgroup.com via PhenomPeople (tenant TGPTGWGLOBAL). No queryable public API found."
+
+- name: Claroty
+  website: https://claroty.com
+  careers_url: https://jobs.ashbyhq.com/claroty
+  ats: other
+  ats_params: {}  # TODO: uses Ashby - no puller yet. Add ats/ashby.py to unlock.
+  category: cyber
+  location_filter: israel
+  notes: "TODO: Ashby ATS (jobs.ashbyhq.com/claroty). OT/ICS/IoT security, strong Israeli R&D team."
+
+# ─── Fraud / Fintech ─────────────────────────────────────────────────────────
+
+- name: Riskified
+  website: https://www.riskified.com
+  careers_url: https://www.riskified.com/careers/  # TODO: detect ATS - check if Comeet or Greenhouse
+  ats: comeet
+  ats_params: {}  # TODO: verify ATS and extract params
+  category: fraud
+  location_filter: israel
+  notes: "TODO: Israeli fraud company - verify ATS (could be Comeet or Greenhouse)"
+
+- name: Forter
+  website: https://www.forter.com
+  careers_url: https://boards.greenhouse.io/forter
+  ats: greenhouse
+  ats_params:
+    board_token: forter
+  category: fraud
+  location_filter: israel
+
+- name: Pagaya
+  website: https://www.pagaya.com
+  careers_url: https://boards.greenhouse.io/pagaya
+  ats: greenhouse
+  ats_params:
+    board_token: pagaya
+  category: fintech
+  location_filter: israel  # Currently no open Israel positions but slug is verified
+
+- name: Melio
+  website: https://www.meliopayments.com
+  careers_url: https://boards.greenhouse.io/melio
+  ats: greenhouse
+  ats_params:
+    board_token: melio
+  category: fintech
+  location_filter: tel aviv  # Melio uses "Tel Aviv" (not "Israel") in location strings
+
+- name: Tipalti
+  website: https://tipalti.com
+  careers_url: https://tipalti.com/careers/  # TODO: verify ATS
+  ats: other
+  ats_params: {}  # TODO: determine ATS type and params
+  category: fintech
+  location_filter: israel
+  notes: "TODO: verify ATS - may use Greenhouse or their own system"
+
+- name: Intuit Israel
+  website: https://careers.intuit.com
+  careers_url: https://careers.intuit.com/  # TODO: verify Israel-specific URL
+  ats: other
+  ats_params: {}  # TODO: Intuit uses its own careers platform - no standard API
+  category: fintech
+  location_filter: israel
+  notes: "TODO: Intuit has its own careers system - no public ATS API available"
+
+- name: PayPal Israel
+  website: https://www.paypal.com
+  careers_url: https://paypal.eightfold.ai/careers  # TODO: verify - PayPal uses Eightfold AI platform
+  ats: other
+  ats_params: {}  # TODO: PayPal uses Eightfold AI - no standard ATS puller
+  category: fintech
+  location_filter: israel
+  notes: "TODO: PayPal uses Eightfold AI careers platform - need custom puller"
+
+# ─── Big Tech (Israel offices) ───────────────────────────────────────────────
+
+- name: Microsoft Israel
+  website: https://www.microsoft.com/en-il
+  careers_url: https://jobs.careers.microsoft.com/global/en/search?lc=Israel  # TODO: verify
+  ats: other
+  ats_params: {}  # TODO: Microsoft uses its own careers system - no public ATS API
+  category: general
+  location_filter: israel
+  notes: "TODO: Microsoft uses a proprietary careers system - no standard ATS puller"
+
+- name: Google Israel
+  website: https://careers.google.com
+  careers_url: https://careers.google.com/locations/tel-aviv/  # TODO: verify
+  ats: other
+  ats_params: {}  # TODO: Google uses its own careers system - no public ATS API
+  category: general
+  location_filter: israel
+  notes: "TODO: Google uses a proprietary careers system - no standard ATS puller"
+
+- name: AWS Israel
+  website: https://aws.amazon.com
+  careers_url: https://www.amazon.jobs/en/locations/israel  # TODO: verify
+  ats: other
+  ats_params: {}  # TODO: Amazon/AWS uses its own careers system - no public ATS API
+  category: general
+  location_filter: israel
+  notes: "TODO: Amazon/AWS uses a proprietary careers system - no standard ATS puller"
+
+- name: Meta Israel
+  website: https://www.metacareers.com
+  careers_url: https://www.metacareers.com/  # TODO: filter by Israel location
+  ats: other
+  ats_params: {}  # TODO: Meta uses its own careers system - no public ATS API
+  category: general
+  location_filter: israel
+  notes: "TODO: Meta uses a proprietary careers system - no standard ATS puller"

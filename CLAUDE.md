@@ -1,0 +1,194 @@
+# CLAUDE.md
+
+This file gives you (Claude Code) the context you need to work productively in this repo. Read it at the start of every session. It is not user-facing documentation - that's the README.
+
+## What this project is
+
+Personal job-search automation for Omer Hedvat - Israeli senior data scientist, ~8 years experience, deep specialization in fintech fraud and cloud security ML, currently targeting Team Lead / Lead DS / Applied ML roles in cyber and fraud companies. Israel-based, commutes from home up to 75 minutes max (Netanya south to south Tel Aviv area).
+
+The system scrapes Israeli cyber/fintech VC portfolios plus a curated list of large security companies, pulls open jobs from each company's ATS, scores each job with Gemini against the candidate profile, and outputs a ranked markdown digest.
+
+## Always read these two files first
+
+- `profile.md` - Omer's filter intent (what he wants, what to skip, scoring rubric)
+- `cv.md` - Omer's CV (capability ground truth)
+
+These are the source of truth for matching. When in doubt about whether something is a fit, re-read these rather than guessing from session memory.
+
+## Architecture
+
+Three scripts, three cadences. They must remain independently runnable.
+
+```
+refresh_companies.py  (weekly)
+  └─ scrapes VC portfolio pages (auto-discovered)
+  └─ merges big_companies.yml (manually maintained, never auto-discovered)
+  └─ for new VC companies: discovers careers URL + detects ATS
+  └─ for stale VC entries (30d+ since last_verified_at, or consecutive_failures >= 3): re-verifies
+  └─ big_companies.yml entries are NEVER re-verified automatically - edit the YAML to update
+  └─ writes to companies.json (merge, never overwrite)
+
+collect_jobs.py  (daily)
+  └─ reads companies.json
+  └─ hits each ATS API directly using cached careers_url + ats_params
+  └─ if location_filter is set: drops jobs whose location doesn't contain the filter string
+  └─ writes new_jobs.json
+  └─ NEVER does careers discovery - that's refresh's job
+  └─ on failure: increment consecutive_failures, continue with next company
+
+score.py  (daily, after collect_jobs.py)
+  └─ reads new_jobs.json + profile.md + cv.md
+  └─ sends each job to Gemini 2.5 Flash
+  └─ writes digest.md grouped by score tier (9-10, 7-8, 5-6)
+```
+
+## Two sources of companies
+
+**VC portfolios** (automated): One file per VC under `vcs/`. Playwright scrapes portfolio pages. For each company found, `ats/detect.py` auto-discovers the careers URL and ATS. Stale entries get re-verified on every weekly run.
+
+**`big_companies.yml`** (manual): Large established companies whose portfolio is not scraped. All fields (`careers_url`, `ats`, `ats_params`) must be verified by hand. `refresh_companies.py` merges this file into `companies.json` on every run but never auto-discovers or re-verifies these entries - edit the YAML to update.
+
+**Rule: never try to scrape or auto-discover big_companies.yml entries.** The whole point of the manual list is that these companies don't come from a VC portfolio and their ATS params are known upfront.
+
+### big_companies.yml schema
+
+```yaml
+- name: Wiz                          # required - display name
+  website: https://wiz.io            # required - company homepage
+  careers_url: https://...           # required - manually verified ATS/careers URL
+  ats: greenhouse                    # required - greenhouse|comeet|lever|workday|smartrecruiters|ashby|other
+  ats_params:                        # required - params the ATS puller needs (empty dict {} if not yet configured)
+    board_token: wiz                 #   Greenhouse: board_token
+                                     #   Comeet: company_uid + token
+  category: cyber                    # required - cyber|fraud|fintech|security|general
+  location_filter: israel            # optional - substring filter on job location (case-insensitive)
+  notes: "free text"                 # optional
+```
+
+### Adding a new big company
+
+1. Add an entry to `big_companies.yml` with all required fields
+2. If `ats: greenhouse`: verify `board_token` by checking `https://boards.greenhouse.io/<board_token>` loads jobs
+3. If `ats: comeet`: visit the careers page, extract `company_uid` and `token` (see Common gotchas below)
+4. Set `location_filter: israel` to drop non-Israel jobs before scoring
+5. Run `uv run python refresh_companies.py` - the entry appears in `companies.json`
+6. Run `uv run python collect_jobs.py` - confirm jobs appear in `new_jobs.json`
+
+### TODO entries in big_companies.yml
+
+Entries with `ats_params: {}` are skipped by `collect_jobs.py` (no params = nothing to pull). They appear in `companies.json` as placeholders. To activate one: fill in `ats_params` in the YAML, then re-run `refresh_companies.py`.
+
+## companies.json schema
+
+This is a persistent cache, not a throwaway. Treat it as the project's state of the world.
+
+```json
+{
+  "name": "Acme Security",
+  "website": "https://acme.io",
+  "source_vc": "YL Ventures",
+  "vc_tier": 1,
+  "careers_url": "https://acme.comeet.co/jobs",
+  "ats": "comeet",
+  "ats_token": "acme_xyz123",
+  "discovered_at": "2026-05-04T07:00:00Z",
+  "last_verified_at": "2026-05-04T07:00:00Z",
+  "last_jobs_pulled_at": "2026-05-04T07:00:00Z",
+  "consecutive_failures": 0
+}
+```
+
+## Conventions
+
+- Python 3.11+, `uv` for dependency and venv management
+- One file per VC under `vcs/` (e.g. `vcs/yl_ventures.py`) - per-VC adapters, not a generic scraper
+- One file per ATS under `ats/` (e.g. `ats/comeet.py`) - per-ATS pullers, not a generic puller; shared utilities in `ats/utils.py`
+- `ats/__init__.py` owns the `ATS_PULLERS` dispatch dict - `collect_jobs.py` imports from there
+- Each adapter/puller fails per-company; orchestrators never crash on a single company error
+- Print clear progress at every stage so manual runs are inspectable
+- LLM calls only happen inside `matcher/`. Anywhere else calling an LLM is a code smell.
+- Hyphens, not em-dashes, in any user-facing output (Omer's preference)
+
+## Dependencies (intentionally minimal)
+
+- `playwright` - JS-rendered VC portfolio pages
+- `httpx` - ATS APIs and any other HTTP
+- `google-genai` - the new unified Gemini SDK. NOT `google-generativeai` (the old package)
+- `python-dotenv` - loading `.env`
+
+If you need something else, ask first. The simpler this dependency tree stays, the easier this project is to maintain a year from now.
+
+## Secrets
+
+- `.env` in repo root, gitignored
+- `GEMINI_API_KEY=...`
+- Never commit, never log, never include in error messages
+
+## What NOT to build (yet)
+
+These are intentionally out of scope for the current iteration. Do not add them unless explicitly asked:
+
+- SQLite or any database (companies.json is sufficient state)
+- GitHub Actions or scheduling (manual runs are fine for now)
+- Email, Slack, or Telegram delivery (Omer reads `digest.md` directly)
+- A generic scraping framework or plugin system (per-X adapters are the right choice here)
+- VCs not already implemented (add one at a time, end-to-end, with verification)
+- ATSes not already implemented (same)
+- Any "auto-apply" functionality (out of scope)
+- Resume tailoring per-job (out of scope)
+
+If a user request would add any of these, confirm explicitly before building.
+
+## Israeli context that matters
+
+- Comeet is the dominant ATS for Israeli startups. Prioritize Comeet support over Greenhouse/Lever. Many YC-style global ATSes are also present (Greenhouse, Lever, Workday, Ashby) but Comeet covers the long tail of Israeli companies.
+- Hebrew may appear in job titles and descriptions. Do NOT translate before sending to Gemini - the model handles Hebrew well and translation loses signal.
+- Location parsing matters. Omer's commute radius is max 75 minutes from home. Anywhere from Netanya south through Herzliya, Ra'anana, Petach Tikva, Tel Aviv, Ramat Gan, Bnei Brak, Holon, Bat Yam is in range. Haifa, Beer Sheva, and Jerusalem are out of range without remote flexibility.
+- VC tiering for the matcher's `vc_tier` field:
+  - Tier 1 (cyber-pure): YL Ventures, Team8, Glilot, Cyberstarts, Hyperwise, Merlin, JVP
+  - Tier 2 (generalist with strong cyber/fintech): Viola, Pitango, TLV Partners, Vertex Israel, Bessemer, Insight, 83North, Grove
+  - Tier 3 (adjacent, lower signal): NFX, Firstime, FinTLV, Champel
+
+## Common gotchas
+
+- **Comeet token discovery:** the careers page HTML embeds a per-company token in the embed script URL. Extract via regex on the page source, don't rely on a public directory API.
+- **Lazy-loaded portfolios:** some VC pages load portfolio entries on scroll. Playwright needs to scroll to bottom and wait for network idle before extracting.
+- **ATS redirects:** company "Careers" links sometimes go through one or two redirects before landing on the actual ATS URL. Follow redirects in `ats/detect.py` and detect from the final URL.
+- **Gemini JSON wrapping:** Gemini Flash sometimes returns JSON wrapped in markdown code fences (```json ... ```). Strip these before `json.loads()`. Robust parser, not strict.
+- **Hebrew filenames or content:** make sure all file I/O is UTF-8. Default on modern Python but worth being explicit.
+
+## Debugging workflow
+
+When something breaks, in this order:
+
+1. **Issue with a specific company?** Check that company's entry in `companies.json` for `last_verified_at` and `consecutive_failures`. If failures are high, the careers URL is probably stale.
+2. **Issue with a VC scrape?** Run the adapter directly: `uv run vcs/yl_ventures.py`. Each adapter should have a `__main__` block that prints results.
+3. **Issue with an ATS pull?** Run the puller directly with a known token: `uv run ats/comeet.py <token>`.
+4. **Issue with scoring?** Use `score.py --dry-run` to see the exact prompt being sent to Gemini without burning quota.
+
+## Adding a new VC
+
+1. Create `vcs/<vc_name>.py` modeled on `vcs/yl_ventures.py`
+2. Export a function that returns `list[{"name": str, "website": str}]`
+3. Register it in `refresh_companies.py`'s VC list
+4. Run `refresh_companies.py` and verify new entries appear correctly in `companies.json`
+
+## Adding a new ATS
+
+1. Create `ats/<ats_name>.py` modeled on `ats/comeet.py`
+2. Export a function `fetch_positions(*args) -> list[dict]` returning normalized `{title, location, description, apply_url}` dicts
+3. Add a lambda to `ATS_PULLERS` in `ats/__init__.py` mapping the ATS name to the right call signature
+4. Update `ats/detect.py` to identify it from URL pattern or HTML signature
+5. Test against a known company that uses this ATS
+
+Use `ats/utils.py` for the shared `HEADERS` and `strip_html` - don't redefine them per module.
+
+## Scope discipline
+
+This is plumbing - scrape, score, surface. The mission is not to expand into a full job-application platform. Specific anti-patterns:
+
+- Building "smart" features that add LLM calls to non-matcher code (e.g. LLM-based careers page discovery). Cheaper deterministic methods exist for almost everything except scoring.
+- Building abstractions before there are 3+ concrete cases. Per-adapter approach is correct - don't refactor to a generic scraper after only two VCs are done.
+- Adding state beyond what's strictly needed. companies.json + new_jobs.json + digest.md are the only persistent files. Resist the urge to add caches, indexes, or audit logs.
+
+If a request feels like mission expansion, surface that to Omer before implementing.
