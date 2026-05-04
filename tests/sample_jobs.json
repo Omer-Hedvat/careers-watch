@@ -1,0 +1,32 @@
+[
+  {
+    "company": "PayShield Security",
+    "title": "Lead Data Scientist - Fraud Detection",
+    "location": "Tel Aviv",
+    "description": "PayShield Security (Series B, $45M raised) is looking for a Lead Data Scientist to own our fraud detection ML platform end-to-end. You will set technical direction, mentor 2 junior data scientists, and drive the roadmap for our transaction risk scoring systems. Requirements: 5+ years in production ML, deep experience with XGBoost and supervised/unsupervised hybrid pipelines, hands-on experience shipping fraud models. Bonus: experience with anomaly detection, behavioral profiling, or fintech fraud. Stack: Python, XGBoost, AWS SageMaker, Kafka. Location: Tel Aviv (hybrid, 3 days onsite).",
+    "apply_url": "https://payshield.example.com/careers/lead-ds-fraud",
+    "source_vc": "YL Ventures",
+    "vc_tier": "tier1",
+    "ats": "comeet"
+  },
+  {
+    "company": "ShopStream",
+    "title": "Senior ML Engineer - Recommendations",
+    "location": "Tel Aviv",
+    "description": "ShopStream is a consumer e-commerce platform with 5M active users. We're looking for a Senior ML Engineer to build and improve our product recommendation engine. You will develop collaborative filtering and content-based models, A/B test ranking algorithms, and optimize click-through rates. Stack: Python, TensorFlow, BigQuery, GCP. Location: Tel Aviv (hybrid).",
+    "apply_url": "https://shopstream.example.com/careers/senior-ml-recs",
+    "source_vc": "YL Ventures",
+    "vc_tier": "tier1",
+    "ats": "comeet"
+  },
+  {
+    "company": "VisionAI Labs",
+    "title": "Senior Data Scientist - Computer Vision",
+    "location": "London, UK (relocation required)",
+    "description": "VisionAI Labs is building the next generation of visual inspection systems for manufacturing. We are hiring a Senior Data Scientist specializing in computer vision to join our London headquarters. Responsibilities include developing CNN-based defect detection models, optimizing inference pipelines for edge devices, and publishing research. Relocation to London is required. Remote work is not available for this role.",
+    "apply_url": "https://visionai.example.com/careers/senior-ds-cv",
+    "source_vc": "YL Ventures",
+    "vc_tier": "tier1",
+    "ats": "comeet"
+  }
+]
