@@ -1,0 +1,41 @@
+[
+  {
+    "company": "Native",
+    "title": "AI/ML Engineer – AI Foundations Group",
+    "location": "Tel Aviv",
+    "apply_url": "https://www.comeet.com/jobs/native/5A.00A/aiml-engineer--ai-foundations-group/86.468",
+    "source_vc": "YL Ventures",
+    "score": 9,
+    "reasoning": "The role perfectly aligns with your cloud security and adversarial ML expertise, applied AI for product, E2E ownership, and is at a Tier 1 cyber company within your preferred location, though the title doesn't explicitly mention team leadership.",
+    "flags": [
+      "lead-path-implied",
+      "title-laundering"
+    ],
+    "scored_at": "2026-05-05"
+  },
+  {
+    "company": "Native",
+    "title": "Senior Security Researcher",
+    "location": "Tel Aviv",
+    "apply_url": "https://www.comeet.com/jobs/native/5A.00A/senior-security-researcher/FF.26C",
+    "source_vc": "YL Ventures",
+    "score": 9,
+    "reasoning": "This role is an excellent fit, aligning perfectly with the candidate's cloud security expertise, production-first approach, and technical leadership aspirations at a Tier 1 cyber security company in a preferred location.",
+    "flags": [],
+    "scored_at": "2026-05-05"
+  },
+  {
+    "company": "Grip Security",
+    "title": "R&D Team Lead",
+    "location": "Tel Aviv, Israel",
+    "apply_url": "https://www.comeet.com/jobs/grip/A8.001/rd-team-lead/2B.E5C",
+    "source_vc": "YL Ventures",
+    "score": 7,
+    "reasoning": "The job is a lead role in a highly relevant cyber security domain with an excellent location and VC, but the team led consists of full-stack software engineers, not data scientists, creating a discipline mismatch despite strong technical and military leadership experience.",
+    "flags": [
+      "management-gap",
+      "wrong-discipline"
+    ],
+    "scored_at": "2026-05-05"
+  }
+]
