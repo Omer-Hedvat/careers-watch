@@ -14,6 +14,12 @@ from vcs.grove import fetch_portfolio as grove_fetch
 from vcs.nfx import fetch_portfolio as nfx_fetch
 from vcs.firstime import fetch_portfolio as firstime_fetch
 from vcs.fintlv import fetch_portfolio as fintlv_fetch
+from vcs.accel import fetch_portfolio as accel_fetch
+from vcs.bessemer import fetch_portfolio as bessemer_fetch
+from vcs.boldstart import fetch_portfolio as boldstart_fetch
+from vcs.bain_capital import fetch_portfolio as bain_capital_fetch
+from vcs.a16z import fetch_portfolio as a16z_fetch
+from vcs.abstract import fetch_portfolio as abstract_fetch
 
 VC_REGISTRY = {
     # Tier 1: Cyber-pure
@@ -31,8 +37,14 @@ VC_REGISTRY = {
     "Vertex Israel": {"tier": 2, "fetch": vertex_israel_fetch},
     "83North": {"tier": 2, "fetch": north83_fetch},
     "Grove": {"tier": 2, "fetch": grove_fetch},
+    "Bessemer": {"tier": 2, "fetch": bessemer_fetch},
+    "Boldstart": {"tier": 2, "fetch": boldstart_fetch},
+    "a16z": {"tier": 2, "fetch": a16z_fetch},
     # Tier 3: Adjacent / lower signal
     "NFX": {"tier": 3, "fetch": nfx_fetch},
     "Firstime": {"tier": 3, "fetch": firstime_fetch},
     "FinTLV": {"tier": 3, "fetch": fintlv_fetch},
+    "Accel": {"tier": 3, "fetch": accel_fetch},
+    "Bain Capital Ventures": {"tier": 3, "fetch": bain_capital_fetch},
+    "Abstract Ventures": {"tier": 3, "fetch": abstract_fetch},
 }
