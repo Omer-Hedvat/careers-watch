@@ -17,6 +17,61 @@
 #   location_filter optional - substring filter applied to job location field (case-insensitive)
 #   notes           optional - free text
 
+# ─── VC Job Boards ───────────────────────────────────────────────────────────
+# These entries pull from centralized portfolio job boards (Getro, Consider).
+# Getro boards return ~20 most-recent jobs (SSR limitation - full API is paywalled).
+# Consider boards return all jobs via a public POST API.
+
+- name: "Viola Portfolio (Getro)"
+  website: https://www.viola-group.com
+  careers_url: https://careers.viola-group.com
+  ats: getro
+  ats_params:
+    board_host: careers.viola-group.com
+  category: cyber
+  location_filter: israel
+  notes: "Getro board - ~20 most recent SSR jobs. Full portfolio also covered by vcs/viola.py."
+
+- name: "TLV Partners Portfolio (Getro)"
+  website: https://www.tlv.partners
+  careers_url: https://jobs.tlv.partners
+  ats: getro
+  ats_params:
+    board_host: jobs.tlv.partners
+  category: cyber
+  location_filter: israel
+  notes: "Getro board - ~20 most recent SSR jobs. Full portfolio also covered by vcs/tlv_partners.py."
+
+- name: "Vertex Israel Portfolio (Getro)"
+  website: https://www.vertexventures.co.il
+  careers_url: https://jobs.vertexventures.co.il
+  ats: getro
+  ats_params:
+    board_host: jobs.vertexventures.co.il
+  category: cyber
+  location_filter: israel
+  notes: "Getro board - ~20 most recent SSR jobs. Full portfolio also covered by vcs/vertex_israel.py."
+
+- name: "Grove Ventures Portfolio (Getro)"
+  website: https://www.grovevc.com
+  careers_url: https://careers.grovevc.com
+  ats: getro
+  ats_params:
+    board_host: careers.grovevc.com
+  category: cyber
+  location_filter: israel
+  notes: "Getro board - ~20 most recent SSR jobs. Full portfolio also covered by vcs/grove.py."
+
+- name: "JVP Portfolio (Consider)"
+  website: https://jvpvc.com
+  careers_url: https://jobs.jvpvc.com
+  ats: consider
+  ats_params:
+    board_id: jvp
+  category: cyber
+  location_filter: israel
+  notes: "Consider platform - returns all portfolio jobs. JVP is a top-tier Israeli cyber VC."
+
 # ─── Cyber / Security ────────────────────────────────────────────────────────
 
 - name: Wiz
@@ -78,12 +133,12 @@
 
 - name: Varonis
   website: https://www.varonis.com
-  careers_url: https://careers.varonis.com/  # TODO: careers.varonis.com - ATS behind this not detected via HTTP
+  careers_url: https://jobs.jobvite.com/varonis
   ats: other
-  ats_params: {}  # TODO: verify ATS - site resolves but no ATS signature found without JS rendering
+  ats_params: {}  # Jobvite - no puller implemented yet. careers.varonis.com is a custom Angular app backed by Jobvite (confirmed via main.js: careerSiteUri="varonis", frame-src *.jobvite.com). The URL pattern ?p=job/shortcode seen on the site is the custom Angular router, not Workable.
   category: cyber
   location_filter: israel
-  notes: "TODO: careers at careers.varonis.com - verify ATS (could be Greenhouse with custom domain)"
+  notes: "ATS is Jobvite (jobs.jobvite.com/varonis). Needs a Jobvite puller to activate."
 
 - name: Palo Alto Networks
   website: https://www.paloaltonetworks.com
@@ -160,23 +215,32 @@
 
 - name: Claroty
   website: https://claroty.com
-  careers_url: https://jobs.ashbyhq.com/claroty
+  careers_url: https://claroty.teamme.link/careers
   ats: other
-  ats_params: {}  # TODO: uses Ashby - no puller yet. Add ats/ashby.py to unlock.
+  ats_params: {}  # TODO: uses TeamMe (claroty.teamme.link) - no standard puller
   category: cyber
   location_filter: israel
-  notes: "TODO: Ashby ATS (jobs.ashbyhq.com/claroty). OT/ICS/IoT security, strong Israeli R&D team."
+  notes: "OT/ICS/IoT security, strong Israeli R&D team. TODO: TeamMe ATS - no puller yet."
+
+- name: Orion Security
+  website: https://www.orionsec.io
+  careers_url: https://www.orionsec.io/careers
+  ats: other
+  ats_params: {}  # Custom Webstudio site - no ATS API; jobs at /careers/<slug>
+  category: cyber
+  location_filter: israel
+  notes: "Israeli cyber startup. Custom careers page (Webstudio) - no queryable ATS."
 
 # ─── Fraud / Fintech ─────────────────────────────────────────────────────────
 
 - name: Riskified
   website: https://www.riskified.com
-  careers_url: https://www.riskified.com/careers/  # TODO: detect ATS - check if Comeet or Greenhouse
-  ats: comeet
-  ats_params: {}  # TODO: verify ATS and extract params
+  careers_url: https://boards.greenhouse.io/riskified
+  ats: greenhouse
+  ats_params:
+    board_token: riskified
   category: fraud
   location_filter: israel
-  notes: "TODO: Israeli fraud company - verify ATS (could be Comeet or Greenhouse)"
 
 - name: Forter
   website: https://www.forter.com
@@ -207,12 +271,12 @@
 
 - name: Tipalti
   website: https://tipalti.com
-  careers_url: https://tipalti.com/careers/  # TODO: verify ATS
-  ats: other
-  ats_params: {}  # TODO: determine ATS type and params
+  careers_url: https://boards.greenhouse.io/tipaltisolutions
+  ats: greenhouse
+  ats_params:
+    board_token: tipaltisolutions
   category: fintech
   location_filter: israel
-  notes: "TODO: verify ATS - may use Greenhouse or their own system"
 
 - name: Intuit Israel
   website: https://careers.intuit.com
