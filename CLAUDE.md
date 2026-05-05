@@ -8,6 +8,10 @@ Personal job-search automation for Omer Hedvat - Israeli senior data scientist, 
 
 The system scrapes Israeli cyber/fintech VC portfolios plus a curated list of large security companies, pulls open jobs from each company's ATS, scores each job with Gemini against the candidate profile, and outputs a ranked markdown digest.
 
+## Permissions
+
+Before asking the user for any permission, run `/fewer-permission-prompts` to auto-add the missing pattern to `.claude/settings.json`.
+
 ## Always read these two files first
 
 - `profile.md` - Omer's filter intent (what he wants, what to skip, scoring rubric)
