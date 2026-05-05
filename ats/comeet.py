@@ -41,11 +41,11 @@ def fetch_positions(company_uid: str, token: str) -> list[dict]:
         description = ""
         for detail in pos.get("details") or []:
             if detail.get("name", "").lower() == "description":
-                description = _strip_html(detail.get("value", ""))
+                description = _strip_html(detail.get("value") or "")
                 break
         if not description:
             # Fall back: concat all details
-            parts = [_strip_html(d.get("value", "")) for d in (pos.get("details") or [])]
+            parts = [_strip_html(d.get("value") or "") for d in (pos.get("details") or [])]
             description = " ".join(p for p in parts if p)
 
         results.append(

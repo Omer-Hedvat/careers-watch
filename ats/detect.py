@@ -28,6 +28,19 @@ COMEET_API = re.compile(
     re.IGNORECASE,
 )
 
+# Ashby hosted job boards: jobs.ashbyhq.com/<org_name>
+ASHBY_JOBS = re.compile(r"jobs\.ashbyhq\.com/([a-zA-Z0-9_.-]+)", re.IGNORECASE)
+
+# Workable: apply.workable.com/<slug> in URL or page HTML
+WORKABLE_RE = re.compile(r"apply\.workable\.com/([a-zA-Z0-9_-]+)", re.IGNORECASE)
+
+# Lever: jobs.lever.co/<company_slug>
+LEVER_JOBS = re.compile(r"jobs\.lever\.co/([a-zA-Z0-9_.-]+)", re.IGNORECASE)
+
+# Getro VC job boards: custom domains (careers.viola-group.com) and getro.com subdomains
+# The WAF anti-bot response also contains "getro.com", so this catches both cases
+GETRO_RE = re.compile(r"getro\.com", re.IGNORECASE)
+
 # Greenhouse embed/boards patterns — check JOBBOARDS and EMBED before BOARDS (BOARDS is more general)
 GREENHOUSE_JOBBOARDS = re.compile(r"job-boards\.greenhouse\.io/([a-zA-Z0-9_-]+)", re.IGNORECASE)
 GREENHOUSE_EMBED = re.compile(r"greenhouse\.io/embed/job_board[?&]for=([a-zA-Z0-9_-]+)", re.IGNORECASE)
@@ -143,5 +156,35 @@ def detect_ats(careers_url: str) -> tuple[str, dict]:
     # gh_jid= in page links — company embeds Greenhouse directly, slug not in static HTML
     if re.search(r"[?&]gh_jid=\d+", html):
         return "greenhouse", {"company_slug": ""}
+
+    # Check for Lever signature in careers URL, final URL, or page HTML
+    for text in (careers_url, final_url, html):
+        m = LEVER_JOBS.search(text)
+        if m:
+            return "lever", {"company_slug": m.group(1)}
+
+    # Check for Ashby signature in careers URL, final URL, or page HTML
+    for text in (careers_url, final_url, html):
+        m = ASHBY_JOBS.search(text)
+        if m:
+            return "ashby", {"org_name": m.group(1)}
+
+    # Check for Workable signature in careers URL, final URL, or page HTML
+    # Covers both apply.workable.com/<slug> direct URLs and custom-domain sites that embed Workable
+    for text in (careers_url, final_url, html):
+        m = WORKABLE_RE.search(text)
+        if m:
+            slug = m.group(1)
+            # Skip generic Workable paths that are not company slugs
+            if slug not in ("api", "j", "static", "assets", "cdn"):
+                return "workable", {"company_slug": slug}
+
+    # Check for Getro signature in URL or page source (the WAF anti-bot response also contains "getro.com")
+    for text in (careers_url, final_url, html):
+        if GETRO_RE.search(text):
+            parsed = urlparse(final_url or careers_url)
+            board_host = parsed.netloc or urlparse(careers_url).netloc
+            if board_host:
+                return "getro", {"board_host": board_host}
 
     return "unknown", {}
