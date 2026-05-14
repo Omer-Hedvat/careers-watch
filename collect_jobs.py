@@ -100,6 +100,21 @@ def collect():
 
     save_companies(companies)
 
+    before = len(all_jobs)
+    seen_urls: set[str] = set()
+    deduped = []
+    for job in all_jobs:
+        url = (job.get("apply_url") or "").strip()
+        if not url:
+            deduped.append(job)
+            continue
+        if url not in seen_urls:
+            seen_urls.add(url)
+            deduped.append(job)
+    all_jobs = deduped
+    if len(all_jobs) < before:
+        print(f"Dedup: {before} → {len(all_jobs)} jobs ({before - len(all_jobs)} duplicates removed)")
+
     with JOBS_FILE.open("w", encoding="utf-8") as f:
         json.dump(all_jobs, f, ensure_ascii=False, indent=2)
 
