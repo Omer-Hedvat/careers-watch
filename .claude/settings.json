@@ -11,6 +11,10 @@
       "Bash(du -sh *)",
       "Bash(which *)",
       "Bash(curl -s -o /dev/null -w*)",
+      "Bash(curl -s *)",
+      "Bash(curl -sL *)",
+      "Bash(curl -sI *)",
+      "Bash(curl -sv *)",
       "Bash(ls -t *)",
       "Bash(ls -la *)",
       "Bash(ls -l *)",
@@ -35,7 +39,8 @@
       "Bash(uv run python3 -m pytest*)",
       "Bash(uv add *)",
       "Bash(uv sync*)",
-      "Bash(python3 -c *)"
+      "Bash(python3 -c *)",
+      "Bash(jq *)"
     ]
   }
 }

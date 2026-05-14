@@ -196,3 +196,57 @@ This is plumbing - scrape, score, surface. The mission is not to expand into a f
 - Adding state beyond what's strictly needed. companies.json + new_jobs.json + digest.md are the only persistent files. Resist the urge to add caches, indexes, or audit logs.
 
 If a request feels like mission expansion, surface that to Omer before implementing.
+
+## Task management
+
+This project uses a lightweight task system modeled on the PowerME project. Read before filing or starting any task.
+
+### Tracker files
+
+- `ROADMAP.md` — active features and epics
+- `ROADMAP_ARCHIVE.md` — wrapped features (history)
+- `bugs_to_fix/BUG_TRACKER.md` — active bugs
+- `bugs_to_fix/ARCHIVE.md` — wrapped bugs (history)
+
+### Slash commands (in `.claude/commands/`)
+
+| Command | Purpose |
+|---|---|
+| `/file_task` | File a new bug or feature |
+| `/start_task <slug>` | Begin implementation of a task |
+| `/qa_task <slug>` | Run QA tiers before wrapping |
+| `/wrap_task <slug>` | Archive a completed+QA'd task |
+| `/orchestrate_epic <slug>` | Execute all children of an epic in waves |
+| `/tasks_status` | Print a dashboard of all active work |
+
+### Task lifecycle
+
+```
+not-started → in-progress (/start_task)
+            → completed   (exit gate passes)
+            → wrapped     (/qa_task + /wrap_task)
+```
+
+### Exit gate (required before marking completed)
+
+```bash
+uv run python3 -m pytest tests/ -v
+uv run python score.py --dry-run
+```
+
+Both must pass with no errors.
+
+### Domain → Spec routing
+
+When you touch these files, update the corresponding spec:
+
+| Files touched | Spec to update |
+|---|---|
+| `score.py` | `CLAUDE.md` architecture section |
+| `matcher/gemini_scorer.py` | `CLAUDE.md` architecture section |
+| `collect_jobs.py` | `CLAUDE.md` architecture section |
+| `refresh_companies.py` | `CLAUDE.md` architecture section |
+| `ats/*.py` | `CLAUDE.md` Adding a new ATS section |
+| `vcs/*.py` | `CLAUDE.md` Adding a new VC section |
+| `profiles/*/score_config.json` | `CLAUDE.md` score_config schema |
+| `WEBAPP_SPEC.md` | Update in place |

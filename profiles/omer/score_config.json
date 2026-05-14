@@ -1,0 +1,46 @@
+{
+  "cv_lead": "/Users/omerhedvat/Documents/Omer_Hedvat_CV_TL.docx",
+  "cv_default": "/Users/omerhedvat/Documents/Omer_Hedvat_CV_SIC.docx",
+  "lead_title_terms": ["team lead", "team leader", "tech lead", "group lead", "lead data", "principal"],
+  "skip_companies": [
+    "KoBold Metals"
+  ],
+  "skip_title_terms": [
+    "sales engineer", "solutions engineer", "sales development",
+    "account executive", "account manager", "business development",
+    "marketing manager", "marketing director", "content marketing",
+    "brand designer", "graphic designer", "ux designer", "ui designer",
+    "product designer", "web designer",
+    "talent acquisition", "recruiter", "hr business", "human resources",
+    "legal counsel", "general counsel", "corporate counsel",
+    "finance manager", "financial analyst", "controller", "accountant",
+    "customer success", "customer support", "technical support",
+    "office manager", "executive assistant", "administrative",
+    "copywriter", "content writer", "technical writer",
+    "devops engineer", "site reliability", " sre ", "platform engineer",
+    "it manager", "it support", "network engineer",
+    "partnerships manager", "channel partner",
+    "analyst", "data engineer", "security engineer",
+    "bi developer", "bi engineer", "business intelligence",
+    "c++ engineer", "frontend engineer", "windows kernel", "mechanical",
+    "software engineer", "solutions architect", "product manager",
+    "forward deployed", "devops team lead", "support team lead",
+    "sales team lead", "marketing team lead", "crm team lead",
+    "gtm team lead", "embedded software", "full stack engineering",
+    "infrastructure", "(india)",
+    "backend", "frontend",
+    "software", "alt-pnt"
+  ],
+  "keep_title_terms": [
+    "data scientist", "data science",
+    "machine learning", "ml engineer", "mlops",
+    "ai engineer", "ai researcher", "ai research", "artificial intelligence",
+    "applied scientist", "applied ml",
+    "security researcher", "security research",
+    "threat", "detection", "fraud", "risk",
+    "anomaly", "offensive security", "application security",
+    "research scientist", "research engineer",
+    "r&d", "team lead", "team leader",
+    "scientist"
+  ]
+}

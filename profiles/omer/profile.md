@@ -8,15 +8,15 @@ Senior Data Scientist with ~8 years of production ML experience, with deep speci
 
 ## What I'm looking for, in priority order
 
-1. **Team Lead / Lead Data Scientist / Tech Lead DS** in cyber security or fraud/risk companies. Roles where I lead a small team (2-6) on technical direction and have real management responsibility, even if it is "lead" rather than formal "manager" titled. This is my primary target.
+1. **Team Lead / Lead Data Scientist / Tech Lead DS** — any domain with production ML. Roles where I lead a small team (2-6) on technical direction and have real management responsibility, even if it is "lead" rather than formal "manager" titled. This is my primary target regardless of domain.
 
-2. **Senior Data Scientist with a clear lead path** at companies where the next promotion is into a lead role, ideally within 12 months, and the company is honest about that path.
+2. **Senior Data Scientist / Lead DS** with strong production ML ownership — end-to-end responsibility, technical influence, and a clear lead path. Domain is secondary; what matters is that the work involves real ML systems shipped to production.
 
-3. **Applied ML / Applied AI roles in security, fraud, risk, or trust & safety** where my domain expertise is the moat and LLMs are a tool in the stack rather than the entire product.
+3. **Applied ML / Applied AI Engineer** roles where the LLMs or models are a tool in service of the product, not the product itself. Any domain is acceptable as long as the craft is production ML.
 
-4. **Founding DS / Head of Data Science at seed to Series A cyber companies** where the role is "build the function from one to a team." Small enough that the lack of a formal "Manager" title on my CV is irrelevant.
+4. **Founding DS / Head of Data Science at seed to Series A companies** where the role is "build the function from scratch." Small enough that the lack of a formal "Manager" title on my CV is irrelevant.
 
-5. **Senior DS / Lead DS / Applied AI roles at large established companies** - Google, Microsoft, AWS, Meta, Palo Alto Networks, Check Point, CyberArk, Akamai, Wiz, SentinelOne, and similar. Slower process, more stable role, strong comp and brand. Worth applying even when titled "Senior" if the team scope and security/fraud relevance are strong.
+5. **Senior DS / Applied AI at large established companies** - Google, Microsoft, AWS, Meta, Palo Alto Networks, Check Point, CyberArk, Akamai, Wiz, SentinelOne, and similar. Worth applying even when titled "Senior" if the team scope is large and the ML work is meaningful.
 
 ## Location
 
@@ -24,26 +24,23 @@ I am based in Israel and need to commute. Acceptable company locations are anywh
 
 ## Strong fit signals (boost the score)
 
-- "Lead", "Team Lead", "Tech Lead", "Head of", or "Principal" in the title
-- Cyber security domain - cloud security, network security, identity, fraud detection, threat intelligence, SOC tooling
-- Fintech fraud, payments risk, AML, KYC/KYB, transaction monitoring
-- Trust & Safety, abuse detection, anti-abuse ML
-- Anomaly detection, adversarial ML, supervised + unsupervised hybrid systems
-- Series A through C companies, 30-300 employees - small enough to have impact, large enough to have a real team
-- Large established companies (Google, Microsoft, AWS, Meta, Palo Alto, Check Point, CyberArk, Akamai, Wiz, SentinelOne, etc.) with cyber/fraud/security ML scope
-- Located within my 75-minute commute radius, or fully remote within Israel
-- Companies whose investor list includes YL, Team8, Glilot, Cyberstarts, JVP cyber arm, or Bessemer - signals serious cyber play
-- Roles that mention SageMaker, XGBoost, Python, or shipping models to production - these match my real stack
-- Mentions of mentoring, setting standards, or building infrastructure - these match how I actually lead technically
+- "Lead", "Team Lead", "Tech Lead", "Head of", or "Principal" in the title — strong boost regardless of domain
+- End-to-end ML ownership: designing, building, and shipping models to production
+- Roles that mention SageMaker, XGBoost, Python, or production model deployment — these match my real stack
+- Mentions of mentoring, setting technical direction, or owning a domain — these match how I actually lead
+- Series A through C companies, 30-300 employees — small enough to have impact, large enough to have a real team
+- Large established companies (Google, Microsoft, AWS, Meta, Palo Alto, Check Point, CyberArk, Akamai, Wiz, SentinelOne, etc.)
+- Located within my 75-minute commute radius
+- **Cyber security, fraud, fintech risk, AML, trust & safety, adversarial ML** — small domain boost (~+1). My background makes me stronger here, but not a requirement.
+- Anomaly detection, supervised + unsupervised hybrid systems — matches my technical approach regardless of domain
 
 ## Weak fit / skip (drop the score)
 
-- Heavy infra/platform engineering, MLOps as the primary role - this is not my craft
+- Heavy infra/platform engineering, MLOps as the primary role — this is not my craft
 - Sales engineering, solutions engineering, customer-facing ML roles
-- Pure NLP/LLM product roles where the entire job is RAG, agents, or LLM fine-tuning - I use LLMs but I'm not an LLM specialist and would lose against candidates who only do this
-- Computer vision as the primary domain - not my background
-- Recommender systems / personalization / growth ML - not my domain
-- Pure research roles with no production component - I am a production-first DS
+- Pure NLP/LLM product roles where the entire job is RAG, agents, or LLM fine-tuning — I use LLMs but I'm not an LLM specialist
+- Computer vision as the primary domain — not my background
+- Pure research roles with no production component — I am a production-first DS
 - "Junior" or "Mid-level" titles regardless of comp
 
 ## Dealbreakers (score = 0, do not surface)
@@ -52,7 +49,7 @@ I am based in Israel and need to commute. Acceptable company locations are anywh
 - Relocation outside Israel required
 - Office location outside the 75-minute commute radius (e.g., Haifa, Beer Sheva, Jerusalem) without remote flexibility
 - Roles that explicitly require 5+ years of direct people management - I would be misrepresenting myself
-- Companies in industries I won't work in: gambling, gaming, AdTech, adult, weapons sold to non-democratic regimes, crypto/Web3 as the primary product
+- Companies in industries I won't work in: AdTech, gaming, gambling, adult, weapons sold to non-democratic regimes, crypto/Web3 as the primary product
 
 ## Notes for the matcher
 
@@ -64,7 +61,7 @@ I am based in Israel and need to commute. Acceptable company locations are anywh
 
 **On large companies vs startups:** Score both fairly on their own merits. Large companies (Google, Palo Alto, etc.) get a small boost for stability/comp/brand even at Senior IC level, since they're a different bucket of opportunity than the startup track. Don't penalize them for being titled "Senior" when the team scope is large.
 
-**On VC tier context:** The matcher receives a `vc_tier` for startup companies. Tier 1 (cyber-pure VCs - YL, Team8, Glilot, Cyberstarts, Hyperwise, Merlin) means the company is almost certainly a serious cyber play - boost the score by ~1 for any cyber-relevant role. Tier 3 (NFX, Firstime, FinTLV, Champel) means the cyber relevance is less reliable - don't boost, and be stricter on whether the role actually fits the cyber/fraud bucket. Big companies don't have a tier - score them on the role itself.
+**On VC tier context:** The matcher receives a `vc_tier` for startup companies. Use it as a weak signal for company quality and domain relevance, but score primarily on the role itself. Tier 1 cyber VCs (YL, Team8, Glilot, Cyberstarts) are a small positive signal, not a multiplier. Big companies don't have a tier — score them on the role itself.
 
 **On location:** If the posting doesn't specify a city, do not assume - flag it as "location unclear" rather than skipping. If the posting clearly lists a location outside my radius and offers no remote option, treat as dealbreaker (score 0).
 
@@ -72,8 +69,8 @@ I am based in Israel and need to commute. Acceptable company locations are anywh
 
 ## Scoring rubric for the matcher
 
-- **9-10:** Lead role at a Tier 1/2 cyber/fraud company OR strong role at a major established company, responsibilities clearly match my CV, no dealbreakers, location works. Reach out today.
-- **7-8:** Strong fit on either domain or seniority, weaker on the other. Worth a closer look.
-- **5-6:** Adjacent fit. Either right domain wrong level, or right level wrong domain. Worth knowing about, not worth applying immediately.
+- **9-10:** Lead/Team Lead role with clear production ML ownership, strong company, no dealbreakers, location works. OR Senior DS at a top company with lead-level scope. Reach out today. Cyber/fraud domain adds ~1 point but is not required.
+- **7-8:** Strong Senior DS or Lead DS role with good production ML ownership, good company and location. Right level even if domain is not cyber/fraud.
+- **5-6:** Adjacent fit — right domain but IC/junior title, or right level but weak ML craft signal. Worth knowing about.
 - **3-4:** Tangential. Mention briefly, don't expand.
 - **0-2:** Do not surface unless asked.

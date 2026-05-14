@@ -12,16 +12,200 @@ import argparse
 import json
 import os
 import sys
-from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import date
 from pathlib import Path
 
 from dotenv import load_dotenv
 
-from matcher.gemini_scorer import build_prompt, score_job
+from matcher.gemini_scorer import build_prompt, score_jobs_batch, QuotaExhaustedError
 
 # Jobs below this score are not persisted in the digest.
 RELEVANCE_THRESHOLD = 5
+
+_BATCH_SIZE = int(os.environ.get("GEMINI_BATCH_SIZE", "10"))
+
+# Substrings that indicate an Israel-area location (case-insensitive).
+_ISRAEL_TERMS = [
+    "israel", "tel aviv", "herzliya", "ra'anana", "raanana",
+    "petach", "petah", "ramat gan", "netanya", "holon", "bat yam",
+    "bnei brak", "givat", "rehovot", "yokneam", "jerusalem", "haifa",
+    "airport city", "kfar saba", "hod hasharon", "rishon", "rosh haayin",
+]
+
+# "Remote" jobs that are explicitly NOT Israel-compatible.
+
+# Title keywords that clearly indicate a non-DS/ML role.
+# Denylist only - when in doubt, let Gemini decide.
+_SKIP_TITLE_TERMS = [
+    "sales engineer", "solutions engineer", "sales development",
+    "account executive", "account manager", "business development",
+    "marketing manager", "marketing director", "content marketing",
+    "brand designer", "graphic designer", "ux designer", "ui designer",
+    "product designer", "web designer",
+    "talent acquisition", "recruiter", "hr business", "human resources",
+    "legal counsel", "general counsel", "corporate counsel",
+    "finance manager", "financial analyst", "controller", "accountant",
+    "customer success", "customer support", "technical support",
+    "office manager", "executive assistant", "administrative",
+    "copywriter", "content writer", "technical writer",
+    "devops engineer", "site reliability", " sre ", "platform engineer",
+    "it manager", "it support", "network engineer",
+    "partnerships manager", "channel partner",
+]
+
+
+def _location_prefilter(jobs: list[dict]) -> tuple[list[dict], int]:
+    """Keep jobs in Israel or with no location. Drop everything else including remote."""
+    kept, empty_loc = [], 0
+    for job in jobs:
+        loc = (job.get("location") or "").strip()
+        if not loc:
+            kept.append(job)
+            empty_loc += 1
+            continue
+        if any(term in loc.lower() for term in _ISRAEL_TERMS):
+            kept.append(job)
+    return kept, empty_loc
+
+
+# At least one of these must appear in the title to pass to Gemini.
+_KEEP_TITLE_TERMS = [
+    # Data / ML / AI
+    "data scientist", "data science", "data engineer", "data analyst",
+    "machine learning", "ml engineer", "mlops",
+    "ai engineer", "ai researcher", "ai research", "artificial intelligence",
+    "applied scientist", "applied ml",
+    # Security / Fraud / Risk
+    "security researcher", "security research", "security engineer",
+    "threat", "detection", "fraud", "risk",
+    "anomaly", "offensive security", "application security",
+    # Research
+    "research scientist", "research engineer",
+    # Leadership / IC tracks in relevant domains
+    "r&d", "team lead", "team leader",
+    # Broad positive signals - let Gemini decide the rest
+    "analyst", "scientist",
+]
+
+
+def _read_cv(path: Path) -> str:
+    """Read a CV file — supports .md/.txt and .docx."""
+    if path.suffix.lower() == ".docx":
+        import zipfile
+        import xml.etree.ElementTree as ET
+        with zipfile.ZipFile(path) as z:
+            with z.open("word/document.xml") as f:
+                tree = ET.parse(f)
+        ns = "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}"
+        parts = []
+        for elem in tree.iter(f"{ns}t"):
+            if elem.text:
+                parts.append(elem.text)
+        return " ".join(parts)
+    return path.read_text(encoding="utf-8")
+
+
+def _sync_applied_from_digest(digest_path: Path, jobs_by_key: dict) -> int:
+    """Read digest.md, find Applied: 1 entries, mark them in jobs_by_key. Returns count updated."""
+    if not digest_path.exists():
+        return 0
+    import re
+    text = digest_path.read_text(encoding="utf-8")
+    # Find all (url, applied_value) pairs from the digest
+    # Format: ### **Company** - [Title](url) ... **Applied:** 0|1
+    blocks = re.split(r'\n(?=### )', text)
+    updated = 0
+    for block in blocks:
+        url_match = re.search(r'\]\((https?://[^\)]+)\)', block)
+        applied_match = re.search(r'\*\*Applied:\*\* (\d)', block)
+        if url_match and applied_match and applied_match.group(1) == "1":
+            url = url_match.group(1)
+            if url in jobs_by_key and not jobs_by_key[url].get("applied"):
+                jobs_by_key[url]["applied"] = True
+                updated += 1
+    return updated
+
+
+def _load_profile_config(profile_dir: Path) -> dict:
+    """Load score_config.json from a profile dir; returns {} if absent."""
+    config_path = profile_dir / "score_config.json"
+    if not config_path.exists():
+        return {}
+    return json.loads(config_path.read_text(encoding="utf-8"))
+
+
+def _title_prefilter(jobs: list[dict], skip_terms: list[str] | None = None) -> tuple[list[dict], int]:
+    """Drop jobs whose title matches any skip term."""
+    terms = skip_terms if skip_terms is not None else _SKIP_TITLE_TERMS
+    kept, dropped = [], 0
+    for job in jobs:
+        title_lower = (job.get("title") or "").lower()
+        if any(term in title_lower for term in terms):
+            dropped += 1
+        else:
+            kept.append(job)
+    return kept, dropped
+
+
+def _company_filter(jobs: list[dict], skip_companies: list[str]) -> tuple[list[dict], int]:
+    """Drop jobs whose company exactly matches any entry in skip_companies (case-insensitive)."""
+    if not skip_companies:
+        return jobs, 0
+    skip_lower = {c.lower() for c in skip_companies}
+    kept, dropped = [], 0
+    for job in jobs:
+        if (job.get("company") or "").lower() in skip_lower:
+            dropped += 1
+        else:
+            kept.append(job)
+    return kept, dropped
+
+
+def _title_allowlist_filter(jobs: list[dict], keep_terms: list[str] | None = None) -> tuple[list[dict], int]:
+    """Keep only jobs whose title matches at least one keep term. Pass keep_terms=[] to disable."""
+    if keep_terms is not None and len(keep_terms) == 0:
+        return jobs, 0
+    terms = keep_terms if keep_terms is not None else _KEEP_TITLE_TERMS
+    kept, dropped = [], 0
+    for job in jobs:
+        title_lower = (job.get("title") or "").lower()
+        if any(term in title_lower for term in terms):
+            kept.append(job)
+        else:
+            dropped += 1
+    return kept, dropped
+
+
+def _score_jobs_batched(
+    filtered_jobs: list[dict],
+    profile_md: str,
+    cv_md: str,
+    client,
+    name: str,
+    all_scores_fp=None,
+) -> list[dict]:
+    N = len(filtered_jobs)
+    scored: list[dict] = []
+
+    for batch_start in range(0, N, _BATCH_SIZE):
+        batch = filtered_jobs[batch_start:batch_start + _BATCH_SIZE]
+        try:
+            results = score_jobs_batch(batch, profile_md, cv_md, client)
+        except QuotaExhaustedError:
+            print(f"[{name}] QUOTA EXHAUSTED. Scored {len(scored)}/{N}. Persisting partial results.")
+            break
+
+        for j, (job, result) in enumerate(zip(batch, results)):
+            merged = {**job, **result}
+            scored.append(merged)
+            i = batch_start + j + 1
+            label = f"{job.get('company', '?')} - {job.get('title', '?')}"
+            print(f"[{name}] [{i}/{N}] {label}: score={result['score']}")
+            if all_scores_fp:
+                all_scores_fp.write(json.dumps(merged, ensure_ascii=False) + "\n")
+                all_scores_fp.flush()
+
+    return scored
 
 
 def _discover_profiles(profiles_dir: Path) -> list[Path]:
@@ -47,6 +231,24 @@ def _load_scored_jobs(store_path: Path) -> dict:
     with open(store_path, encoding="utf-8") as f:
         jobs = json.load(f)
     return {_job_key(j): j for j in jobs}
+
+
+def _load_seen_keys(profile_dir: Path) -> set[str]:
+    """Return the set of job keys already scored (any score, including sub-threshold)."""
+    seen: set[str] = set()
+    jsonl_path = profile_dir / "all_scores.jsonl"
+    if jsonl_path.exists():
+        with open(jsonl_path, encoding="utf-8") as f:
+            for line in f:
+                line = line.strip()
+                if not line:
+                    continue
+                try:
+                    seen.add(_job_key(json.loads(line)))
+                except (json.JSONDecodeError, KeyError):
+                    continue
+    seen |= _load_scored_jobs(profile_dir / "scored_jobs.json").keys()
+    return seen
 
 
 def _save_scored_jobs(store_path: Path, jobs_by_key: dict) -> None:
@@ -82,20 +284,25 @@ def _merge_new_results(existing: dict, new_scored: list[dict], today: str) -> tu
 
 
 def _write_digest(jobs_by_key: dict, out_path: Path) -> None:
-    """Write digest.md grouped by date (newest first), score desc within each date."""
+    """Write digest.md grouped by date (newest first), score desc within each date.
+    Applied jobs (applied=True in scored_jobs.json) are hidden with a count shown."""
     all_jobs = list(jobs_by_key.values())
-    all_jobs.sort(key=lambda j: (j.get("scored_at", ""), j.get("score", 0)), reverse=True)
+    visible = [j for j in all_jobs if not j.get("applied")]
+    hidden = len(all_jobs) - len(visible)
+    visible.sort(key=lambda j: (j.get("scored_at", ""), j.get("score", 0)), reverse=True)
 
-    # Group by date
     dates: dict[str, list[dict]] = {}
-    for job in all_jobs:
+    for job in visible:
         d = job.get("scored_at", "unknown")
         dates.setdefault(d, []).append(job)
 
     lines = ["# Job Digest\n"]
+    if hidden:
+        lines.append(f"*{hidden} applied position{'s' if hidden != 1 else ''} hidden.*\n")
+
     for day in sorted(dates.keys(), reverse=True):
         lines.append(f"## {day}\n")
-        for job in dates[day]:  # already sorted score desc within date from the sort above
+        for job in dates[day]:
             title = job.get("title", "")
             company = job.get("company", "")
             apply_url = job.get("apply_url", "")
@@ -108,7 +315,7 @@ def _write_digest(jobs_by_key: dict, out_path: Path) -> None:
             flag_str = f" `{'` `'.join(flags)}`" if flags else ""
 
             lines.append(f"### **{company}** - {title_link}")
-            lines.append(f"**Score:** {score}/10 | **Location:** {location}")
+            lines.append(f"**Score:** {score}/10 | **Location:** {location} | **Applied:** 0")
             lines.append(f"**Reasoning:** {reasoning}{flag_str}")
             lines.append("")
 
@@ -128,25 +335,80 @@ def _score_one_profile(profile_dir: Path, jobs: list, args) -> None:
         return
 
     profile_md = (profile_dir / "profile.md").read_text(encoding="utf-8")
-    cv_md = (profile_dir / "cv.md").read_text(encoding="utf-8")
 
     from google import genai
     client = genai.Client(api_key=api_key)
 
-    scored = []
-    for i, job in enumerate(jobs, 1):
-        label = f"{job.get('company', '?')} - {job.get('title', '?')}"
-        result = score_job(job, profile_md, cv_md, client)
-        score = result["score"]
-        print(f"[{name}] [{i}/{len(jobs)}] {label}: score={score}")
-        scored.append({**job, **result})
+    seen = _load_seen_keys(profile_dir)
+    total_in = len(jobs)
+    jobs = [j for j in jobs if _job_key(j) not in seen]
+    print(f"[{name}] Pre-filter: {total_in} → {len(jobs)} after dedup ({total_in - len(jobs)} already scored)")
+    if not jobs:
+        print(f"[{name}] Nothing new to score.")
+        return
+
+    config = _load_profile_config(profile_dir)
+    skip_companies = config.get("skip_companies", [])
+    skip_terms = config.get("skip_title_terms", _SKIP_TITLE_TERMS)
+    keep_terms = config.get("keep_title_terms", _KEEP_TITLE_TERMS)
+
+    # CV routing: lead CV vs default CV
+    cv_default_path = config.get("cv_default")
+    cv_lead_path = config.get("cv_lead")
+    lead_terms = [t.lower() for t in config.get("lead_title_terms", [])]
+    if cv_default_path:
+        cv_default = _read_cv(Path(cv_default_path))
+    else:
+        cv_default = _read_cv(profile_dir / "cv.md") if (profile_dir / "cv.md").exists() else ""
+    if cv_lead_path:
+        cv_lead = _read_cv(Path(cv_lead_path))
+        print(f"[{name}] CV routing: lead CV → {Path(cv_lead_path).name}, default CV → {Path(cv_default_path or 'cv.md').name}")
+    else:
+        cv_lead = cv_default
+
+    total = len(jobs)
+    loc_filtered, empty_loc = _location_prefilter(jobs)
+    co_filtered, co_dropped = _company_filter(loc_filtered, skip_companies)
+    title_filtered, title_dropped = _title_prefilter(co_filtered, skip_terms)
+    allowlisted, allowlist_dropped = _title_allowlist_filter(title_filtered, keep_terms)
+    filtered_jobs = allowlisted
+    print(
+        f"[{name}] Funnel: {total} total"
+        f" → {len(loc_filtered)} after location ({total - len(loc_filtered)} dropped, {empty_loc} empty-loc kept)"
+        + (f" → {len(co_filtered)} after company filter ({co_dropped} dropped)" if co_dropped else "")
+        + f" → {len(title_filtered)} after title denylist ({title_dropped} dropped)"
+        f" → {len(filtered_jobs)} after title allowlist ({allowlist_dropped} dropped)"
+        f" → sending {len(filtered_jobs)} to Gemini"
+    )
+
+    all_scores_path = profile_dir / "all_scores.jsonl"
+    all_scores_fp = open(all_scores_path, "a", encoding="utf-8")
+    try:
+        if lead_terms and cv_lead != cv_default:
+            lead_jobs = [j for j in filtered_jobs if any(t in (j.get("title") or "").lower() for t in lead_terms)]
+            other_jobs = [j for j in filtered_jobs if j not in lead_jobs]
+            print(f"[{name}] CV split: {len(lead_jobs)} lead jobs, {len(other_jobs)} other jobs")
+            scored = []
+            if lead_jobs:
+                scored += _score_jobs_batched(lead_jobs, profile_md, cv_lead, client, name, all_scores_fp)
+            if other_jobs:
+                scored += _score_jobs_batched(other_jobs, profile_md, cv_default, client, name, all_scores_fp)
+        else:
+            scored = _score_jobs_batched(filtered_jobs, profile_md, cv_default, client, name, all_scores_fp)
+    finally:
+        all_scores_fp.close()
 
     store_path = profile_dir / "scored_jobs.json"
     existing = _load_scored_jobs(store_path)
     merged, added = _merge_new_results(existing, scored, date.today().isoformat())
-    _save_scored_jobs(store_path, merged)
 
+    # Sync applied status from digest before saving
     out_path = profile_dir / "digest.md"
+    synced = _sync_applied_from_digest(out_path, merged)
+    if synced:
+        print(f"[{name}] Synced {synced} applied position{'s' if synced != 1 else ''} from digest")
+
+    _save_scored_jobs(store_path, merged)
     _write_digest(merged, out_path)
     print(f"[{name}] +{added} new positions | total {len(merged)} | wrote {out_path}")
 
@@ -231,20 +493,44 @@ def _run_root_profile(jobs: list, args) -> None:
     from google import genai
     client = genai.Client(api_key=api_key)
 
-    scored = []
-    for i, job in enumerate(jobs, 1):
-        label = f"{job.get('company', '?')} - {job.get('title', '?')}"
-        result = score_job(job, profile_md, cv_md, client)
-        score = result["score"]
-        print(f"[{i}/{len(jobs)}] {label}: score={score}")
-        scored.append({**job, **result})
+    root_dir = Path(".")
+    seen = _load_seen_keys(root_dir)
+    total_in = len(jobs)
+    jobs = [j for j in jobs if _job_key(j) not in seen]
+    print(f"[root] Pre-filter: {total_in} → {len(jobs)} after dedup ({total_in - len(jobs)} already scored)")
+    if not jobs:
+        print("[root] Nothing new to score.")
+        return
+
+    total = len(jobs)
+    loc_filtered, empty_loc = _location_prefilter(jobs)
+    title_filtered, title_dropped = _title_prefilter(loc_filtered)
+    allowlisted, allowlist_dropped = _title_allowlist_filter(title_filtered)
+    filtered_jobs = allowlisted
+    print(
+        f"[root] Funnel: {total} total"
+        f" → {len(loc_filtered)} after location ({total - len(loc_filtered)} dropped, {empty_loc} empty-loc kept)"
+        f" → {len(title_filtered)} after title denylist ({title_dropped} dropped)"
+        f" → {len(filtered_jobs)} after title allowlist ({allowlist_dropped} dropped)"
+        f" → sending {len(filtered_jobs)} to Gemini"
+    )
+
+    all_scores_fp = open(root_dir / "all_scores.jsonl", "a", encoding="utf-8")
+    try:
+        scored = _score_jobs_batched(filtered_jobs, profile_md, cv_md, client, "root", all_scores_fp)
+    finally:
+        all_scores_fp.close()
 
     store_path = Path("scored_jobs.json")
     existing = _load_scored_jobs(store_path)
     merged, added = _merge_new_results(existing, scored, date.today().isoformat())
-    _save_scored_jobs(store_path, merged)
 
     out_path = Path("digest.md")
+    synced = _sync_applied_from_digest(out_path, merged)
+    if synced:
+        print(f"[root] Synced {synced} applied position{'s' if synced != 1 else ''} from digest")
+
+    _save_scored_jobs(store_path, merged)
     _write_digest(merged, out_path)
     print(f"\n+{added} new positions | total {len(merged)} | wrote {out_path}")
 
