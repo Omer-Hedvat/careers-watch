@@ -4,6 +4,14 @@ Wrapped features only. Active work lives in `ROADMAP.md`.
 
 ---
 
+## Phase P2 — Web App v1
+
+| Feature | Spec | Effort | Status |
+|---|---|---|---|
+| [webapp] Project scaffold — Next.js + FastAPI + Supabase schema | `future_devs/archive/WEBAPP_SCAFFOLD_SPEC.md` | M | `wrapped` |
+
+---
+
 ## Phase P1 — Pipeline improvements
 
 | Feature | Spec | Effort | Status |
