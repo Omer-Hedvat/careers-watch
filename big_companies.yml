@@ -333,3 +333,257 @@
   category: general
   location_filter: israel
   notes: "TODO: Meta uses a proprietary careers system - no standard ATS puller"
+
+# ─── Cyber / Security (new batch) ────────────────────────────────────────────
+
+- name: Cybereason
+  website: https://www.cybereason.com
+  careers_url: https://jobs.cybereason.com/
+  ats: greenhouse
+  ats_params:
+    board_token: cybereason
+  category: cyber
+  location_filter: israel
+
+- name: Backslash Security
+  website: https://backslash.security
+  careers_url: https://backslash.security/careers
+  ats: comeet
+  ats_params:
+    company_uid: "98.004"
+    token: 89433783C0C22503378337889419BC33782AE4
+  category: cyber
+  location_filter: israel
+
+- name: DoControl
+  website: https://www.docontrol.io
+  careers_url: https://www.docontrol.io/careers
+  ats: comeet
+  ats_params:
+    company_uid: "07.003"
+    token: 7032A12E063F1B381831151C0C1C0C31153818
+  category: cyber
+  location_filter: israel
+
+- name: Nagomi Security
+  website: https://www.nagomisecurity.com
+  careers_url: https://www.nagomisecurity.com/careers
+  ats: comeet
+  ats_params:
+    company_uid: "89.00B"
+    token: 98B42CD98B98B4C5855E3262C262C262C3942
+  category: cyber
+  location_filter: israel
+
+- name: MazeBolt
+  website: https://mazebolt.com
+  careers_url: https://mazebolt.com/careers
+  ats: comeet
+  ats_params:
+    company_uid: "A7.00C"
+    token: 7AC2E081EB0F581EB07AC35B435B47AC35B4
+  category: cyber
+  location_filter: israel
+
+- name: Mine
+  website: https://www.mineos.ai
+  careers_url: https://www.mineos.ai/careers
+  ats: comeet
+  ats_params:
+    company_uid: "39.003"
+    token: 933373252CB4998499824CC2DFF01B990
+  category: security
+  location_filter: israel
+  notes: "Data privacy/GDPR compliance. Previously saymine.com, rebranded to mineos.ai."
+
+- name: XTEND
+  website: https://www.xtend.me
+  careers_url: https://www.xtend.me/working-at-xtend
+  ats: comeet
+  ats_params:
+    company_uid: "85.00A"
+    token: 58A1BB22C50B14213C162858A213C26C61628
+  category: general
+  location_filter: israel
+  notes: "Drone warfare / defense tech."
+
+- name: Forsight Robotics
+  website: https://forsightrobotics.com
+  careers_url: https://forsightrobotics.com/careers
+  ats: comeet
+  ats_params:
+    company_uid: "E9.008"
+    token: 9E845581DB8009E83B7027A001DB8
+  category: general
+  location_filter: israel
+  notes: "Defense robotics."
+
+# ─── Fraud / Fintech (new batch) ─────────────────────────────────────────────
+
+- name: nSure.ai
+  website: https://nsure.ai
+  careers_url: https://nsure.ai/careers
+  ats: comeet
+  ats_params:
+    company_uid: "A7.007"
+    token: 7A72DEA1E9CF4E03591F4E7A77A744DF
+  category: fraud
+  location_filter: israel
+  notes: "Payment fraud prevention for digital commerce."
+
+- name: IVIX
+  website: https://www.ivix.ai
+  careers_url: https://www.ivix.ai/company/careers
+  ats: comeet
+  ats_params:
+    company_uid: "09.002"
+    token: 902360C4810511203F0E3F0E481012042408
+  category: fintech
+  location_filter: israel
+  notes: "Tax analytics / financial crime compliance."
+
+- name: FundGuard
+  website: https://www.fundguard.com
+  careers_url: https://www.fundguard.com/careers
+  ats: comeet
+  ats_params:
+    company_uid: "37.002"
+    token: 7322B2C1596159623FA40C21CC8159615961CC8
+  category: fintech
+  location_filter: israel
+
+- name: Agora
+  website: https://www.agorareal.com
+  careers_url: https://agorareal.com/careers/
+  ats: comeet
+  ats_params:
+    company_uid: "08.007"
+    token: 807302A201C483F3831302A4038100E201C3831
+  category: fintech
+  location_filter: israel
+  notes: "Real estate fintech. Has Israel R&D team."
+
+- name: Vetric
+  website: https://vetric.ai
+  careers_url: https://jobs.ashbyhq.com/vetric
+  ats: ashby
+  ats_params:
+    org_name: vetric
+  category: fraud
+  location_filter: israel
+  notes: "Fraud/risk intelligence."
+
+# ─── AI / Data (new batch) ───────────────────────────────────────────────────
+
+- name: Gong
+  website: https://www.gong.io
+  careers_url: https://job-boards.greenhouse.io/gongio
+  ats: greenhouse
+  ats_params:
+    board_token: gongio
+  category: general
+  location_filter: israel
+
+- name: Guidde
+  website: https://www.guidde.com
+  careers_url: https://www.guidde.com/careers
+  ats: greenhouse
+  ats_params:
+    board_token: guidde
+  category: general
+  location_filter: israel
+  notes: "AI video guides. Greenhouse EU board, but US boards-api works."
+
+- name: Torii
+  website: https://www.toriihq.com
+  careers_url: https://www.toriihq.com/careers
+  ats: greenhouse
+  ats_params:
+    board_token: toriihq
+  category: general
+  location_filter: israel
+
+- name: Voyantis
+  website: https://www.voyantis.ai
+  careers_url: https://www.voyantis.ai/careers
+  ats: comeet
+  ats_params:
+    company_uid: "86.00B"
+    token: 68B2742D1600D16020B71A2C2742
+  category: general
+  location_filter: israel
+
+- name: Harmonya
+  website: https://www.harmonya.com
+  careers_url: https://www.harmonya.com/careers
+  ats: comeet
+  ats_params:
+    company_uid: "89.004"
+    token: 984429C98404C2039181308261055A455A4
+  category: general
+  location_filter: israel
+  notes: "CPG/retail analytics."
+
+- name: Sensi.ai
+  website: https://www.sensi.ai
+  careers_url: https://www.sensi.ai/careers/
+  ats: comeet
+  ats_params:
+    company_uid: "E7.00F"
+    token: 7EF2F9A1FBC3F78017CD7EFFDE1FBC3789
+  category: general
+  location_filter: israel
+  notes: "Senior care AI."
+
+- name: Orca AI
+  website: https://www.orca-ai.io
+  careers_url: https://www.orca-ai.io/careers
+  ats: comeet
+  ats_params:
+    company_uid: "86.003"
+    token: 68327126833A9B13891389138934182D95683
+  category: general
+  location_filter: israel
+  notes: "Maritime autonomous vessels. Not to be confused with Orca Security."
+
+- name: Quantum Machines
+  website: https://www.quantum-machines.co
+  careers_url: https://qm.teamme.link
+  ats: other
+  ats_params: {}  # TODO: uses TeamMe (same as Claroty) - no puller implemented
+  category: general
+  location_filter: israel
+  notes: "Quantum computing hardware/software. TeamMe ATS - no puller yet."
+
+# ─── Big Tech (new batch) ────────────────────────────────────────────────────
+
+- name: Nvidia Israel
+  website: https://www.nvidia.com
+  careers_url: https://nvidia.wd5.myworkdayjobs.com/NVIDIAExternalCareerSite
+  ats: workday
+  ats_params:
+    tenant: nvidia
+    wd_instance: wd5
+    job_site: NVIDIAExternalCareerSite
+  category: general
+  location_filter: israel
+
+- name: Intel Israel
+  website: https://www.intel.com
+  careers_url: https://intel.wd1.myworkdayjobs.com/External
+  ats: workday
+  ats_params:
+    tenant: intel
+    wd_instance: wd1
+    job_site: External
+  category: general
+  location_filter: israel
+
+- name: SAP Israel
+  website: https://www.sap.com
+  careers_url: https://jobs.sap.com
+  ats: other
+  ats_params: {}  # TODO: SAP uses SuccessFactors - no standard public ATS API
+  category: general
+  location_filter: israel
+  notes: "TODO: SAP uses its own SuccessFactors platform - no queryable public API."

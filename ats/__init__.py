@@ -4,6 +4,7 @@ from ats.consider import fetch_positions as _fetch_consider
 from ats.getro import fetch_positions as _fetch_getro
 from ats.greenhouse import fetch_positions as _fetch_greenhouse
 from ats.lever import fetch_positions as _fetch_lever
+from ats.teamtailor import fetch_positions as _fetch_teamtailor
 from ats.workable import fetch_positions as _fetch_workable
 from ats.workday import fetch_positions as _fetch_workday
 
@@ -17,6 +18,7 @@ ATS_PULLERS = {
         params.get("board_token") or params.get("company_slug", "")
     ),
     "lever": lambda params: _fetch_lever(params["company_slug"]),
+    "teamtailor": lambda params: _fetch_teamtailor(params["subdomain"], params.get("custom_host_url")),
     "workable": lambda params: _fetch_workable(params["company_slug"]),
     "workday": lambda params: _fetch_workday(params["tenant"], params["wd_instance"], params["job_site"]),
 }

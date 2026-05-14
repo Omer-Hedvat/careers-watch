@@ -27,6 +27,14 @@ COMEET_API = re.compile(
     r"comeet\.co/careers-api/[^/]+/company/([^/\s\"'?#]+)/positions[?&]token=([A-Fa-f0-9]{20,})",
     re.IGNORECASE,
 )
+# COMEET.init({...}) — JS-call embed used by many Israeli companies
+COMEET_INIT = re.compile(
+    r"COMEET[._]init\s*\(\s*\{(?P<body>[^)]{0,2000}?)\}\s*\)",
+    re.IGNORECASE | re.DOTALL,
+)
+COMEET_INIT_TOKEN = re.compile(r"""["']token["']\s*:\s*["']([A-Fa-f0-9]{20,})["']""")
+COMEET_INIT_UID   = re.compile(r"""["']company[-_]uid["']\s*:\s*["']([^"']+)["']""")
+COMEET_INIT_NAME  = re.compile(r"""["']company[-_]name["']\s*:\s*["']([^"']+)["']""")
 
 # Ashby hosted job boards: jobs.ashbyhq.com/<org_name>
 ASHBY_JOBS = re.compile(r"jobs\.ashbyhq\.com/([a-zA-Z0-9_.-]+)", re.IGNORECASE)
@@ -36,6 +44,10 @@ WORKABLE_RE = re.compile(r"apply\.workable\.com/([a-zA-Z0-9_-]+)", re.IGNORECASE
 
 # Lever: jobs.lever.co/<company_slug>
 LEVER_JOBS = re.compile(r"jobs\.lever\.co/([a-zA-Z0-9_.-]+)", re.IGNORECASE)
+
+# Teamtailor: <sub>.teamtailor.com (canonical), or career.<domain>.com which is a CNAME alias
+TEAMTAILOR_RE = re.compile(r"([a-zA-Z0-9_-]+)\.teamtailor\.com", re.IGNORECASE)
+TEAMTAILOR_GENERIC_SUBS = {"app", "api", "www", "support", "blog", "careers", "career", "help"}
 
 # Getro VC job boards: custom domains (careers.viola-group.com) and getro.com subdomains
 # The WAF anti-bot response also contains "getro.com", so this catches both cases
@@ -55,10 +67,21 @@ def find_careers_url(company_website: str) -> str | None:
         return None
 
     base = str(resp.url)
-    for m in ANCHOR_RE.finditer(resp.text):
+    html = resp.text
+    for m in ANCHOR_RE.finditer(html):
         href, text = m.group(1), re.sub(r"<[^>]+>", "", m.group(2)).strip()
         if CAREERS_PATTERNS.search(href) or CAREERS_PATTERNS.search(text):
             return urljoin(base, href)
+
+    # SPA shell: static HTML has no anchors at all — retry with Playwright
+    if len(html) < 20_000 and not re.search(r"<a\s", html, re.IGNORECASE):
+        pw_html, pw_url = _fetch_playwright(company_website)
+        base = pw_url
+        for m in ANCHOR_RE.finditer(pw_html):
+            href, text = m.group(1), re.sub(r"<[^>]+>", "", m.group(2)).strip()
+            if CAREERS_PATTERNS.search(href) or CAREERS_PATTERNS.search(text):
+                return urljoin(base, href)
+
     return None
 
 
@@ -75,7 +98,10 @@ def _fetch_playwright(url: str) -> tuple[str, str]:
         browser = p.chromium.launch(headless=True)
         page = browser.new_page()
         try:
-            page.goto(url, wait_until="domcontentloaded", timeout=20000)
+            page.goto(url, wait_until="networkidle", timeout=35000)
+        except Exception:
+            pass  # TimeoutError or nav error — grab whatever DOM we have
+        try:
             return page.content(), page.url
         except Exception:
             return "", url
@@ -145,6 +171,20 @@ def detect_ats(careers_url: str) -> tuple[str, dict]:
         if token:
             return "comeet", {"company_uid": company_uid, "company_name": company_name, "token": token}
 
+    # COMEET.init({...}) — JS-call embed pattern used by many Israeli companies
+    m = COMEET_INIT.search(html)
+    if m:
+        body = m.group("body")
+        tm = COMEET_INIT_TOKEN.search(body)
+        um = COMEET_INIT_UID.search(body)
+        nm = COMEET_INIT_NAME.search(body)
+        if tm:
+            return "comeet", {
+                "token": tm.group(1),
+                "company_uid": um.group(1) if um else "",
+                "company_name": nm.group(1) if nm else "",
+            }
+
     # Check for Greenhouse signatures in page HTML and final URL
     for pattern in (GREENHOUSE_JOBBOARDS, GREENHOUSE_EMBED, GREENHOUSE_BOARDS):
         for text in (html, final_url):
@@ -178,6 +218,14 @@ def detect_ats(careers_url: str) -> tuple[str, dict]:
             # Skip generic Workable paths that are not company slugs
             if slug not in ("api", "j", "static", "assets", "cdn"):
                 return "workable", {"company_slug": slug}
+
+    # Check for Teamtailor signature: <sub>.teamtailor.com in URL or HTML
+    # Skip generic subdomains (app/api/www/etc) which appear in page boilerplate but aren't company tenants
+    for text in (careers_url, final_url, html):
+        for m in TEAMTAILOR_RE.finditer(text):
+            sub = m.group(1).lower()
+            if sub not in TEAMTAILOR_GENERIC_SUBS:
+                return "teamtailor", {"subdomain": sub}
 
     # Check for Getro signature in URL or page source (the WAF anti-bot response also contains "getro.com")
     for text in (careers_url, final_url, html):
