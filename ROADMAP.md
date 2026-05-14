@@ -47,7 +47,7 @@ All Phase P0 tasks are wrapped. See `ROADMAP_ARCHIVE.md`.
 |---|---|---|---|---|
 | Fix Viola Getro duplicate jobs — dedupe by apply_url before scoring | `future_devs/VIOLA_GETRO_DEDUP_SPEC.md` | S | `wrapped` | — |
 | Rescore existing digest with updated profile | `future_devs/RESCORE_EXISTING_SPEC.md` | S | `wrapped` | — |
-| Scheduled automation via GitHub Actions (collect Mon/Thu, refresh biweekly) | `future_devs/GITHUB_ACTIONS_SCHEDULE_SPEC.md` | S | `not-started` | — |
+| Scheduled automation via GitHub Actions (collect Mon/Thu, refresh biweekly) | `future_devs/GITHUB_ACTIONS_SCHEDULE_SPEC.md` | S | `wrapped` | — |
 
 ---
 

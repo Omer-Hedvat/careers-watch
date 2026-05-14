@@ -133,7 +133,6 @@ If you need something else, ask first. The simpler this dependency tree stays, t
 These are intentionally out of scope for the current iteration. Do not add them unless explicitly asked:
 
 - SQLite or any database (companies.json is sufficient state)
-- GitHub Actions or scheduling (manual runs are fine for now)
 - Email, Slack, or Telegram delivery (Omer reads `digest.md` directly)
 - A generic scraping framework or plugin system (per-X adapters are the right choice here)
 - VCs not already implemented (add one at a time, end-to-end, with verification)
