@@ -9,6 +9,7 @@ Wrapped features only. Active work lives in `ROADMAP.md`.
 | Feature | Spec | Effort | Status |
 |---|---|---|---|
 | Fix Viola Getro duplicate jobs — dedupe by apply_url before scoring | `future_devs/VIOLA_GETRO_DEDUP_SPEC.md` | S | `wrapped` |
+| Rescore existing digest with updated profile | `future_devs/RESCORE_EXISTING_SPEC.md` | S | `wrapped` |
 
 ---
 
