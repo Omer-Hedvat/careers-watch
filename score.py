@@ -12,6 +12,7 @@ import argparse
 import json
 import os
 import sys
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import date
 from pathlib import Path
 
@@ -413,14 +414,78 @@ def _score_one_profile(profile_dir: Path, jobs: list, args) -> None:
     print(f"[{name}] +{added} new positions | total {len(merged)} | wrote {out_path}")
 
 
+def _rescore_profile(profile_dir: Path) -> None:
+    name = profile_dir.name
+    store_path = profile_dir / "scored_jobs.json"
+    if not store_path.exists():
+        print(f"[{name}] No scored_jobs.json, nothing to rescore.")
+        return
+
+    existing = _load_scored_jobs(store_path)
+    if not existing:
+        print(f"[{name}] scored_jobs.json is empty.")
+        return
+
+    env_file = profile_dir / ".env"
+    if env_file.exists():
+        load_dotenv(env_file, override=True)
+    api_key = os.environ.get("GEMINI_API_KEY")
+    if not api_key:
+        print(f"[{name}] Error: GEMINI_API_KEY not set.", file=sys.stderr)
+        return
+
+    profile_md = (profile_dir / "profile.md").read_text(encoding="utf-8")
+    config = _load_profile_config(profile_dir)
+    cv_default_path = config.get("cv_default")
+    cv_default = _read_cv(Path(cv_default_path)) if cv_default_path else _read_cv(profile_dir / "cv.md")
+
+    from google import genai
+    client = genai.Client(api_key=api_key)
+
+    jobs_to_rescore = list(existing.values())
+    print(f"[{name}] Rescoring {len(jobs_to_rescore)} jobs...")
+
+    rescored = _score_jobs_batched(jobs_to_rescore, profile_md, cv_default, client, name, all_scores_fp=None)
+
+    for job in rescored:
+        key = _job_key(job)
+        if key in existing:
+            existing[key]["score"] = job["score"]
+            existing[key]["reasoning"] = job.get("reasoning", "")
+            existing[key]["flags"] = job.get("flags", [])
+
+    out_path = profile_dir / "digest.md"
+    _save_scored_jobs(store_path, existing)
+    _write_digest(existing, out_path)
+    print(f"[{name}] Rescored {len(rescored)} jobs | wrote {out_path}")
+
+
 def main():
     parser = argparse.ArgumentParser(description="Score jobs and write per-profile digest.md")
     parser.add_argument("--dry-run", action="store_true", help="Print prompt for first job and exit")
+    parser.add_argument("--rescore", action="store_true", help="Re-score all jobs in scored_jobs.json with current profile")
     parser.add_argument("--input", default="new_jobs.json", help="Input jobs JSON file")
     parser.add_argument("--sample", action="store_true", help="Use tests/sample_jobs.json instead")
     parser.add_argument("--profiles-dir", default="profiles", help="Directory containing profile subdirectories")
     parser.add_argument("--profile", help="Run only this profile name (subdirectory under --profiles-dir)")
     args = parser.parse_args()
+
+    profiles_dir = Path(args.profiles_dir)
+    profiles = _discover_profiles(profiles_dir)
+
+    if args.profile:
+        profiles = [p for p in profiles if p.name == args.profile]
+        if not profiles:
+            print(f"Error: profile '{args.profile}' not found under {profiles_dir}", file=sys.stderr)
+            sys.exit(1)
+
+    if args.rescore and not args.dry_run:
+        if not profiles:
+            print("Error: no profiles found for rescore.", file=sys.stderr)
+            sys.exit(1)
+        for profile in profiles:
+            _rescore_profile(profile)
+        return
 
     input_file = "tests/sample_jobs.json" if args.sample else args.input
     if not Path(input_file).exists():
@@ -433,15 +498,6 @@ def main():
     if not jobs:
         print("No jobs to score.")
         return
-
-    profiles_dir = Path(args.profiles_dir)
-    profiles = _discover_profiles(profiles_dir)
-
-    if args.profile:
-        profiles = [p for p in profiles if p.name == args.profile]
-        if not profiles:
-            print(f"Error: profile '{args.profile}' not found under {profiles_dir}", file=sys.stderr)
-            sys.exit(1)
 
     if not profiles:
         _run_root_profile(jobs, args)
