@@ -22,3 +22,6 @@ Thumbs.db
 # IDE
 .vscode/
 .idea/
+
+# Claude Code runtime
+.claude/scheduled_tasks.lock
