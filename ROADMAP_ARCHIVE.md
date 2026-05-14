@@ -4,6 +4,14 @@ Wrapped features only. Active work lives in `ROADMAP.md`.
 
 ---
 
+## Phase P1 — Pipeline improvements
+
+| Feature | Spec | Effort | Status |
+|---|---|---|---|
+| Fix Viola Getro duplicate jobs — dedupe by apply_url before scoring | `future_devs/VIOLA_GETRO_DEDUP_SPEC.md` | S | `wrapped` |
+
+---
+
 ## Phase P0 — Pipeline (all wrapped)
 
 | Feature | Spec | Effort | Status |
