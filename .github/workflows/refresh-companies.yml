@@ -2,7 +2,7 @@ name: Refresh Companies
 
 on:
   schedule:
-    - cron: '0 6 */14 * 0'  # Every 2 weeks on Sunday 06:00 UTC
+    - cron: '0 6 * * 0'   # Every Sunday 06:00 UTC (GitHub doesn't support /14 for bi-weekly)
   workflow_dispatch:
 
 jobs:
