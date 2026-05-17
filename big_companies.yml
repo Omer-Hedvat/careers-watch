@@ -142,30 +142,31 @@
 
 - name: Palo Alto Networks
   website: https://www.paloaltonetworks.com
-  careers_url: https://www.paloaltonetworks.com/company/careers  # TODO: find Workday feed URL
-  ats: workday
-  ats_params: {}  # TODO: determine Workday tenant/job-site params (expected: paloaltonetworks.wd*.myworkdayjobs.com)
+  careers_url: https://jobs.smartrecruiters.com/PaloAltoNetworks2
+  ats: smartrecruiters
+  ats_params:
+    company: PaloAltoNetworks2
   category: cyber
   location_filter: israel
-  notes: "TODO: uses Workday - need to find tenant subdomain and external site name"
+  notes: "SmartRecruiters company: PaloAltoNetworks2 (verified 2026-05-17 - 75+ Israel jobs). Activate once smartrecruiters puller exists."
 
 - name: Check Point
   website: https://www.checkpoint.com
-  careers_url: https://checkpoint.wd5.myworkdayjobs.com/CheckPointCareers  # TODO: verify
-  ats: workday
-  ats_params: {}  # TODO: verify Workday params
+  careers_url: https://careers.checkpoint.com
+  ats: other
+  ats_params: {}  # Custom PHP ATS at careers.checkpoint.com - no standard ATS API
   category: cyber
   location_filter: israel
-  notes: "TODO: Israel HQ - verify exact Workday tenant URL"
+  notes: "Custom self-hosted ATS (PHP) at careers.checkpoint.com. Not pullable without a custom scraper. checkpoint.wd5.myworkdayjobs.com returns 500 - Workday hypothesis was wrong."
 
 - name: Akamai
   website: https://www.akamai.com
-  careers_url: https://akamai.wd1.myworkdayjobs.com/en-US/AkamaiCareers  # TODO: verify
-  ats: workday
-  ats_params: {}  # TODO: verify Workday params
+  careers_url: https://jobs.akamai.com
+  ats: other
+  ats_params: {}  # Oracle HCM - no standard puller
   category: security
   location_filter: israel
-  notes: "TODO: uses Workday - verify tenant URL"
+  notes: "Migrated from Workday to Oracle HCM (Mar 2025). Oracle endpoint: fa-extu-saasfaprod1.fa.ocs.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/jobs. Not pullable without Oracle HCM puller."
 
 - name: Cato Networks
   website: https://www.catonetworks.com
@@ -197,12 +198,12 @@
 
 - name: Radware
   website: https://www.radware.com
-  careers_url: https://www.radware.com/company/careers/  # TODO: verify ATS
+  careers_url: https://radware.taleo.net/careersection/ex/jobsearch.ftl
   ats: other
-  ats_params: {}  # TODO: determine ATS (may use SmartRecruiters or own system)
+  ats_params: {}  # Taleo (Oracle legacy) - no clean JSON API
   category: security
   location_filter: israel
-  notes: "TODO: Israeli company - verify ATS type"
+  notes: "Taleo (Oracle legacy ATS) at radware.taleo.net. No clean JSON API - not pullable without a Taleo scraper."
 
 - name: Imperva
   website: https://www.imperva.com
@@ -382,10 +383,10 @@
   website: https://bria.ai
   careers_url: https://bria.ai/career
   ats: other
-  ats_params: {}  # TODO: verify ATS
+  ats_params: {}  # LinkedIn-only - no external ATS board
   category: general
   location_filter: israel
-  notes: "Enterprise visual GenAI with attribution / IP-safe images."
+  notes: "Enterprise visual GenAI. Jobs posted to LinkedIn only - no external ATS board found (verified 2026-05-17)."
 
 - name: EON
   website: https://www.eon.io
@@ -408,34 +409,35 @@
   notes: "Nir Zuk's AI-native on-prem cyber co. $45M seed Greylock."
 
 - name: Kela
-  website: https://kelasys.com  # TODO: verify primary domain - distinct from kelasys IL ops platform
-  careers_url: https://www.comeet.com/jobs/kelasys/2A.007
+  website: https://kelasys.com
+  careers_url: https://www.comeet.com/jobs/kelatechnologies/2A.007
   ats: comeet
   ats_params:
     company_uid: "2A.007"
-    company_name: kelasys
-    token: ""  # TODO: token from page; may overlap with existing Kelasys entry
+    company_name: kelatechnologies
+    token: "A2747111E755B5F0513847114711A274711"
   category: general
   location_filter: israel
-  notes: "Defense-tech, real-time intel platform, Sequoia/Lux/In-Q-Tel. NOTE: 'Kelasys' entry already exists - may be same company."
+  notes: "Defense-tech, real-time intel platform, Sequoia/Lux/In-Q-Tel. Company is 'Kela Technologies' (rebranded from Kelasys). Token verified 2026-05-17 (28 jobs). NOTE: VC-discovered 'Kelasys' entry in companies.json has same company_uid - duplicate if both active."
 
 - name: AIR EV
   website: https://www.airev.aero
   careers_url: https://www.airev.aero/careers
   ats: other
-  ats_params: {}  # TODO: verify ATS
+  ats_params: {}  # Email-only (careers@airev.aero) - no ATS
   category: general
   location_filter: israel
-  notes: "eVTOL personal aircraft (AIR ONE), Pardes Hanna."
+  notes: "eVTOL personal aircraft (AIR ONE), Pardes Hanna. Email-only hiring (careers@airev.aero) - no external ATS found (verified 2026-05-17)."
 
 - name: Artemis Security
   website: https://artemissecurity.com
-  careers_url: https://artemissecurity.com/careers/
-  ats: other
-  ats_params: {}  # TODO: verify ATS
+  careers_url: https://jobs.ashbyhq.com/artemis
+  ats: ashby
+  ats_params:
+    org_name: artemis
   category: cyber
   location_filter: israel
-  notes: "Active AI-defense cyber, $70M seed+A 2026 (ex-AWS GuardDuty/Demisto founder)."
+  notes: "Active AI-defense cyber, $70M seed+A 2026 (ex-AWS GuardDuty/Demisto founder). Ashby board verified 2026-05-17 (10 jobs)."
 
 - name: Spines
   website: https://spines.com
@@ -471,21 +473,21 @@
 
 - name: Qbiq
   website: https://www.qbiq.ai
-  careers_url: https://www.qbiq.ai  # TODO: find careers page
+  careers_url: https://www.qbiq.ai
   ats: other
-  ats_params: {}  # TODO: verify ATS
+  ats_params: {}  # No ATS board found - LinkedIn-only or no active openings
   category: general
   location_filter: israel
-  notes: "Generative AI for architectural floor plans."
+  notes: "Generative AI for architectural floor plans. No external ATS found (Ashby/qbiq returns 404, no Greenhouse or Comeet board). Likely hiring via LinkedIn only as of 2026-05-17."
 
 - name: Mappo
   website: https://mappo.world
-  careers_url: https://mappo.world  # TODO: find careers page
+  careers_url: https://mappo.world
   ats: other
-  ats_params: {}  # TODO: no public openings at time of adding
+  ats_params: {}  # LinkedIn-only, ~10 person company - no ATS
   category: general
   location_filter: israel
-  notes: "Location-based audio/literary content for car navigation."
+  notes: "Location-based audio/literary content for car navigation. LinkedIn-only, ~10 person company. No external ATS found (verified 2026-05-17)."
 
 # ─── TLV Partners portfolio overrides (auto-discovery failed) ────────────────
 

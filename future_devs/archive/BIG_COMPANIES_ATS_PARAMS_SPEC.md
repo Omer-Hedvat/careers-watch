@@ -1,7 +1,7 @@
 | Field | Value |
 |---|---|
 | **Phase** | P3 |
-| **Status** | `in-progress` |
+| **Status** | `completed` |
 | **Effort** | M |
 | **Epic** | — |
 | **Depends on** | — |
