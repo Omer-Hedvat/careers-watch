@@ -1,5 +1,15 @@
 # Job Digest
 
+## 2026-05-17
+
+### **Cardinalops** - [Principal Data Scientist](https://il.linkedin.com/jobs/view/principal-data-scientist-at-pagaya-4413971924)
+**Score:** 6/10 | **Location:** Tel Aviv District, Israel, Tel Aviv-Yafo, Israel | **Applied:** 0
+**Reasoning:** Excellent title and location for the candidate's goals, but the absence of a job description prevents a full assessment of role responsibilities and technical fit. `description-missing`
+
+### **Monday** - [Engineering Team Lead](https://www.comeet.com/jobs/monday/41.00B/engineering-team-lead/72.B62)
+**Score:** 5/10 | **Location:** Tel-Aviv, Israel | **Applied:** 0
+**Reasoning:** A leadership role in a strong company and location, but the focus on 'Engineering Team Lead' for a 'marketing engine' suggests a primary craft mismatch from core production ML Data Science. `wrong-craft` `infra-focus` `management-gap`
+
 ## 2026-05-14
 
 ### **Cognyte** - [AI Applications Team Leader](https://www.comeet.com/jobs/cognyte/F2.009/ai-applications-team-leader/7B.A69)
