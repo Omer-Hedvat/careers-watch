@@ -1,7 +1,7 @@
 | Field | Value |
 |---|---|
 | **Phase** | P2 |
-| **Status** | `not-started` |
+| **Status** | `wrapped` |
 | **Effort** | XS |
 | **Epic** | — |
 | **Depends on** | — |
