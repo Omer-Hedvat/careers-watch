@@ -1,4 +1,4 @@
-from fastapi import APIRouter, HTTPException, Header
+from fastapi import APIRouter, HTTPException, Header, Request
 from pydantic import BaseModel
 from typing import List, Optional
 import os
@@ -186,3 +186,26 @@ def delete_account(authorization: str = Header(...)):
     except Exception:
         pass
     return {"status": "ok"}
+
+
+@router.post("/parse-cv")
+async def parse_cv(request: Request, authorization: str = Header(...)):
+    token = authorization.removeprefix("Bearer ")
+    resp = supabase.auth.get_user(token)
+    if not resp.user:
+        raise HTTPException(status_code=401, detail="Unauthorized")
+    body = await request.json()
+    pdf_b64 = body.get("pdf_b64", "")
+    import base64, io
+    from pypdf import PdfReader
+    try:
+        pdf_bytes = base64.b64decode(pdf_b64)
+        reader = PdfReader(io.BytesIO(pdf_bytes))
+        text = "\n".join(page.extract_text() or "" for page in reader.pages)
+        if not text.strip():
+            raise HTTPException(status_code=422, detail="Could not extract text - please paste manually")
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=422, detail=f"Could not extract text - please paste manually")
+    return {"text": text}
