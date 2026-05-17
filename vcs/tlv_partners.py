@@ -1,117 +1,79 @@
+"""
+TLV Partners portfolio adapter.
+
+Source-of-truth: jobs.tlv.partners/companies (the active-hiring board).
+We parse the Next.js __NEXT_DATA__ blob server-side; this avoids the WAF-blocked
+public API and gives us a clean (name, domain) for every actively-hiring company.
+
+The marketing portfolio at www.tlv.partners/portfolio is intentionally NOT used:
+it includes acquired/exited companies and serves logos as CSS background-image
+strings, which produced garbage names like 'Next.Svg")' in earlier versions.
+"""
+
+import json
 import re
-from urllib.parse import urlparse
-from playwright.sync_api import sync_playwright
 
-PORTFOLIO_URL = "https://www.tlv.partners/portfolio"
+import httpx
 
-SOCIAL_DOMAINS = {"linkedin.com", "twitter.com", "x.com", "facebook.com", "instagram.com", "youtube.com"}
-PRESS_DOMAINS = {
-    "forbes", "techcrunch", "wsj", "reuters", "bloomberg", "venturebeat",
-    "calcalistech", "prnewswire", "axios", "medium", "crunchbase", "globenewswire",
-    "businesswire", "nocamels",
-}
-SKIP_DOMAINS = {"tlv.partners", "gmpg.org", "fonts.gstatic.com", "jobs.tlv.partners"}
-
-
-def _is_social(netloc: str) -> bool:
-    clean = netloc.lower().split("@")[-1]
-    return any(clean == s or clean.endswith("." + s) for s in SOCIAL_DOMAINS)
-
-
-def _is_press(netloc: str, href: str) -> bool:
-    return any(p in netloc.lower() or p in href.lower() for p in PRESS_DOMAINS)
-
-
-def _is_skip(netloc: str) -> bool:
-    clean = netloc.lower().split("@")[-1]
-    return any(clean == s or clean.endswith("." + s) for s in SKIP_DOMAINS)
-
-
-def _logo_filename_to_name(logo_url: str) -> str:
-    """Derive a company name from a logo image filename."""
-    filename = logo_url.rsplit("/", 1)[-1]
-    base = re.sub(r"\.[a-z]{2,5}$", "", filename, flags=re.IGNORECASE)
-    # Remove common suffixes/qualifiers
-    base = re.sub(
-        r"(?i)([-_](?:logo|white|color|black|horizontal|v\d+).*|[-_]aquired|-\d{4}$|-\d+x\d+.*)$",
-        "",
-        base,
-    )
-    base = re.sub(r"[-_]+", " ", base).strip().title()
-    return base
+COMPANIES_URL = "https://jobs.tlv.partners/companies"
+NEXT_DATA_RE = re.compile(r'id="__NEXT_DATA__"[^>]*>(.*?)</script>', re.DOTALL)
+CHROME_UA = (
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
+    "AppleWebKit/537.36 (KHTML, like Gecko) "
+    "Chrome/120.0.0.0 Safari/537.36"
+)
 
 
 def fetch_portfolio() -> list[dict]:
     """
-    Scrape TLV Partners portfolio page.
-
-    Each company card (.tlv_company) contains:
-    - A "Visit" link: <a href="COMPANY_URL"> inside .visit
-    - A colored logo div (.tlv_logo_color) with data-bg pointing to the logo image
-
-    We use DOM evaluation to extract (url, logo_bg) pairs per company,
-    then derive the company name from the logo filename.
+    Return TLV Partners' actively-hiring portfolio as list[{company_name, company_website}].
+    Deduplicated by website. Returns [] on any error.
     """
-    with sync_playwright() as p:
-        browser = p.chromium.launch(headless=True)
-        page = browser.new_page()
-        try:
-            page.goto(PORTFOLIO_URL, wait_until="networkidle", timeout=45000)
-            for _ in range(10):
-                page.keyboard.press("End")
-                page.wait_for_timeout(300)
+    try:
+        resp = httpx.get(
+            COMPANIES_URL,
+            headers={"User-Agent": CHROME_UA},
+            follow_redirects=True,
+            timeout=20,
+        )
+        resp.raise_for_status()
+    except Exception as e:
+        print(f"TLV Partners: fetch error: {e}")
+        return []
 
-            raw = page.evaluate("""() => {
-                const companies = document.querySelectorAll('.tlv_company');
-                return Array.from(companies).map(c => {
-                    const visitLink = c.querySelector('.visit a');
-                    const logoDiv = c.querySelector('.tlv_logo_color');
-                    const url = visitLink ? visitLink.getAttribute('href') : null;
-                    const logoBg = logoDiv
-                        ? (logoDiv.getAttribute('data-bg') || logoDiv.style.backgroundImage)
-                        : null;
-                    return { url, logoBg };
-                });
-            }""")
-        finally:
-            page.close()
-            browser.close()
+    m = NEXT_DATA_RE.search(resp.text)
+    if not m:
+        print("TLV Partners: no __NEXT_DATA__ in response")
+        return []
 
-    results = []
-    seen_urls: set[str] = set()
+    try:
+        data = json.loads(m.group(1))
+        companies = data["props"]["pageProps"]["initialState"]["companies"]["found"]
+    except (KeyError, ValueError, TypeError) as e:
+        print(f"TLV Partners: unexpected data shape: {e}")
+        return []
 
-    for entry in raw:
-        href = (entry.get("url") or "").strip()
-        logo_bg = (entry.get("logoBg") or "").strip()
+    if not isinstance(companies, list):
+        return []
 
-        if not href:
+    results: list[dict] = []
+    seen_websites: set[str] = set()
+
+    for c in companies:
+        name = (c.get("name") or "").strip()
+        domain = (c.get("domain") or "").strip().lstrip("www.").rstrip("/")
+        if not name or not domain:
             continue
-
-        parsed = urlparse(href)
-        netloc = parsed.netloc
-
-        if _is_social(netloc) or _is_press(netloc, href) or _is_skip(netloc):
+        website = f"https://{domain}"
+        if website in seen_websites:
             continue
+        seen_websites.add(website)
+        results.append({"company_name": name, "company_website": website})
 
-        website = f"{parsed.scheme}://{parsed.netloc}"
-        if website in seen_urls:
-            continue
-        seen_urls.add(website)
-
-        # Derive company name from logo filename
-        if logo_bg:
-            name = _logo_filename_to_name(logo_bg)
-        else:
-            name = netloc.lstrip("www.").split(".")[0].title()
-
-        if name and website:
-            results.append({"company_name": name, "company_website": website})
-
-    print(f"TLV Partners: found {len(results)} portfolio companies")
+    print(f"TLV Partners: found {len(results)} actively-hiring portfolio companies")
     return results
 
 
 if __name__ == "__main__":
-    import json
     companies = fetch_portfolio()
     print(json.dumps(companies, ensure_ascii=False, indent=2))

@@ -51,10 +51,40 @@ All Phase P2 tasks are wrapped. See `ROADMAP_ARCHIVE.md`.
 
 ---
 
+## Phase P2 — Web App v1 (post-launch)
+
+| Slug | Title | Status | Effort | Depends on |
+|---|---|---|---|---|
+| [WEBAPP_SUPABASE_SETUP_GUIDE](future_devs/WEBAPP_SUPABASE_SETUP_GUIDE_SPEC.md) | Supabase initial setup guide (schema, OAuth, RLS) | `not-started` | XS | — |
+| [WEBAPP_PDF_CV_UPLOAD](future_devs/WEBAPP_PDF_CV_UPLOAD_SPEC.md) | PDF CV upload in onboarding Step 2 | `not-started` | S | — |
+| [WEBAPP_OLD_PROFILE_BADGE](future_devs/WEBAPP_OLD_PROFILE_BADGE_SPEC.md) | "Scored with old profile" badge on digest cards | `not-started` | S | — |
+
+---
+
+## Phase P3 — Coverage expansion
+
+| Slug | Title | Status | Effort | Depends on |
+|---|---|---|---|---|
+| [PROPRIETARY_ATS_PULLERS](future_devs/PROPRIETARY_ATS_PULLERS_SPEC.md) | Build pullers for SuccessFactors / TeamMe / Breezy / Jobvite / Eightfold | `not-started` | L | — |
+| [NEW_VC_ADAPTERS](future_devs/NEW_VC_ADAPTERS_SPEC.md) | Add VC adapters: State of Mind / Sequoia IL / Aleph / Lightspeed IL / Greylock / Insight IL | `not-started` | M | — |
+| [TLV_PORTFOLIO_FIX](future_devs/TLV_PORTFOLIO_FIX_SPEC.md) | Fix TLV Partners scraper + clean stale entries + add missing portfolio companies | `in-progress` | M | — |
+| [BIG_COMPANIES_ATS_PARAMS](future_devs/BIG_COMPANIES_ATS_PARAMS_SPEC.md) | Fill ATS params for ~30 unfilled big_companies.yml stubs | `not-started` | M | — |
+| [PIPELINE_TEST_COVERAGE](future_devs/PIPELINE_TEST_COVERAGE_SPEC.md) | Add test suite for pipeline scripts (ATS pullers, filters, scorer parser) | `not-started` | M | — |
+
+---
+
 ## Spec Index
 
 | Spec | Domain |
 |---|---|
+| `future_devs/WEBAPP_SUPABASE_SETUP_GUIDE_SPEC.md` | P2 post-launch — Supabase setup guide |
+| `future_devs/WEBAPP_PDF_CV_UPLOAD_SPEC.md` | P2 post-launch — PDF CV upload in onboarding |
+| `future_devs/WEBAPP_OLD_PROFILE_BADGE_SPEC.md` | P2 post-launch — "Scored with old profile" badge |
+| `future_devs/PROPRIETARY_ATS_PULLERS_SPEC.md` | P3 — Build pullers for SuccessFactors / TeamMe / Breezy / Jobvite / Eightfold |
+| `future_devs/NEW_VC_ADAPTERS_SPEC.md` | P3 — Add VC adapters: State of Mind / Sequoia IL / Aleph / Lightspeed IL / Greylock / Insight IL |
+| `future_devs/TLV_PORTFOLIO_FIX_SPEC.md` | P3 — Fix TLV Partners scraper + clean stale entries + add missing portfolio companies |
+| `future_devs/BIG_COMPANIES_ATS_PARAMS_SPEC.md` | P3 — Fill ATS params for ~30 unfilled big_companies.yml stubs |
+| `future_devs/PIPELINE_TEST_COVERAGE_SPEC.md` | P3 — Pipeline test suite |
 | `future_devs/VIOLA_GETRO_DEDUP_SPEC.md` | P1 — Deduplicate Viola Getro jobs before scoring |
 | `future_devs/RESCORE_EXISTING_SPEC.md` | P1 — Re-score stored jobs with updated profile |
 | `future_devs/GITHUB_ACTIONS_SCHEDULE_SPEC.md` | P1 — Automate collect + refresh with GitHub Actions |
