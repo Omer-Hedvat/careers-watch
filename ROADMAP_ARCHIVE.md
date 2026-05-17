@@ -4,6 +4,14 @@ Wrapped features only. Active work lives in `ROADMAP.md`.
 
 ---
 
+## Epics (all wrapped)
+
+| Epic | Spec | Phase | Status | Children |
+|---|---|---|---|---|
+| Web App v1 | `WEBAPP_SPEC.md` | P2 | `wrapped` | 9 |
+
+---
+
 ## Phase P2 — Web App v1
 
 | Feature | Spec | Effort | Status |
@@ -16,6 +24,7 @@ Wrapped features only. Active work lives in `ROADMAP.md`.
 | [webapp] Render.com deploy — FastAPI + Next.js, persistent disk, env vars | `future_devs/archive/WEBAPP_DEPLOY_SPEC.md` | S | `wrapped` |
 | [webapp] Onboarding — profile prompt generator, CV upload, Gemini key, filters | `future_devs/archive/WEBAPP_ONBOARDING_SPEC.md` | M | `wrapped` |
 | [webapp] Digest view — ranked cards, applied toggle, score filter | `future_devs/archive/WEBAPP_DIGEST_SPEC.md` | M | `wrapped` |
+| [webapp] Settings — profile, CV, filters, API key, account tabs | `future_devs/archive/WEBAPP_SETTINGS_SPEC.md` | S | `wrapped` |
 
 ---
 
