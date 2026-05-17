@@ -7,10 +7,6 @@ services:
     rootDir: webapp/backend
     buildCommand: pip install uv && uv sync
     startCommand: uv run uvicorn main:app --host 0.0.0.0 --port $PORT
-    disk:
-      name: data
-      mountPath: /data
-      sizeGB: 1
     envVars:
       - key: SUPABASE_URL
         sync: false
@@ -19,9 +15,9 @@ services:
       - key: FERNET_KEY
         sync: false
       - key: JOBS_PATH
-        value: /data/new_jobs.json
+        value: /opt/render/project/src/new_jobs.json
       - key: COMPANIES_PATH
-        value: /data/companies.json
+        value: /opt/render/project/src/companies.json
 
   - type: web
     name: careerwatch-frontend
