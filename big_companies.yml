@@ -85,12 +85,12 @@
 
 - name: CyberArk
   website: https://www.cyberark.com
-  careers_url: https://www.cyberark.com/careers/all-job-openings/
+  careers_url: https://jobs.smartrecruiters.com/Cyberark1
   ats: other
-  ats_params: {}  # TODO: uses SAP SuccessFactors (job_id format 744000124414169) - no public API
+  ats_params: {}  # TODO: needs a SmartRecruiters puller (api.smartrecruiters.com/v1/companies/Cyberark1/postings) - NOT SuccessFactors
   category: cyber
   location_filter: israel
-  notes: "TODO: SAP SuccessFactors - no standard public API. Example: https://www.cyberark.com/careers/all-job-openings/job-post/?job_id=744000124414169"
+  notes: "Reconfirmed 2026-05-17: CyberArk is on SmartRecruiters, not SuccessFactors. www.cyberark.com/careers/ redirects to Palo Alto Workday post-acquisition, but the residual /careers/all-job-openings/job-post/ template links to jobs.smartrecruiters.com/Cyberark1, which is the live board with 14+ Israel postings. Activate once a smartrecruiters puller exists."
 
 - name: SentinelOne
   website: https://www.sentinelone.com
@@ -886,9 +886,12 @@
 
 - name: SAP Israel
   website: https://www.sap.com
-  careers_url: https://jobs.sap.com
-  ats: other
-  ats_params: {}  # TODO: SAP uses SuccessFactors - no standard public ATS API
+  careers_url: https://jobs.sap.com/search/?locationsearch=israel
+  ats: successfactors
+  ats_params:
+    tenant: sap
+    branded_host: jobs.sap.com
+    location_query: israel
   category: general
   location_filter: israel
-  notes: "TODO: SAP uses its own SuccessFactors platform - no queryable public API."
+  notes: "Activated 2026-05-17: jobs.sap.com is SF's jobs2web branded host - ~6 Israel postings as of activation."

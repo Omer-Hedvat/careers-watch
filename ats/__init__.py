@@ -10,6 +10,7 @@ from ats.greenhouse import fetch_positions as _fetch_greenhouse
 from ats.jobvite import fetch_positions as _fetch_jobvite
 from ats.lever import fetch_positions as _fetch_lever
 from ats.microsoft_careers import fetch_positions as _fetch_microsoft_careers
+from ats.successfactors import fetch_positions as _fetch_successfactors
 from ats.talentbrew import fetch_positions as _fetch_talentbrew
 from ats.teamtailor import fetch_positions as _fetch_teamtailor
 from ats.workable import fetch_positions as _fetch_workable
@@ -31,6 +32,9 @@ ATS_PULLERS = {
     "jobvite": lambda params: _fetch_jobvite(params["company_slug"]),
     "lever": lambda params: _fetch_lever(params["company_slug"]),
     "microsoft_careers": lambda p: _fetch_microsoft_careers(p.get("location_query", "Israel")),
+    "successfactors": lambda p: _fetch_successfactors(
+        p["tenant"], p.get("branded_host"), p.get("location_query")
+    ),
     "talentbrew": lambda params: _fetch_talentbrew(params["host"], params.get("facet", "israel")),
     "teamtailor": lambda params: _fetch_teamtailor(params["subdomain"], params.get("custom_host_url")),
     "workable": lambda params: _fetch_workable(params["company_slug"]),
