@@ -1,7 +1,7 @@
 # Spec: Fix Viola Getro Duplicate Jobs
 
 ## Status
-`not-started`
+`wrapped`
 
 ## Problem
 The Viola VC adapter registers ~60 portfolio companies in `companies.json`, each with `ats: getro` and `ats_params: {board_host: careers.viola-group.com}`. The Getro puller is called once per company entry, fetching the same ~20 board-level jobs every time. This produces ~1,200 near-identical jobs in `new_jobs.json`, all sent to Gemini even though only 20 unique `apply_url` values exist.

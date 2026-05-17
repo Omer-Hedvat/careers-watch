@@ -61,16 +61,6 @@ All Phase P2 tasks are wrapped. See `ROADMAP_ARCHIVE.md`.
 
 ---
 
-## Phase P1 — Pipeline improvements (queued)
-
-| Slug | Title | Status | Effort | Depends on |
-|---|---|---|---|---|
-| [VIOLA_GETRO_DEDUP](future_devs/VIOLA_GETRO_DEDUP_SPEC.md) | Fix Viola Getro duplicate jobs burning Gemini quota | `not-started` | XS | — |
-| [GITHUB_ACTIONS_SCHEDULE](future_devs/GITHUB_ACTIONS_SCHEDULE_SPEC.md) | Automate collect + refresh with GitHub Actions cron | `not-started` | S | — |
-| [RESCORE_EXISTING](future_devs/RESCORE_EXISTING_SPEC.md) | Add `--rescore` flag to re-score stored jobs with updated profile | `not-started` | S | — |
-
----
-
 ## Phase P3 — Coverage expansion
 
 | Slug | Title | Status | Effort | Depends on |
@@ -103,9 +93,9 @@ All Phase P2 tasks are wrapped. See `ROADMAP_ARCHIVE.md`.
 | `future_devs/archive/TLV_PORTFOLIO_FIX_SPEC.md` | P3 — Fix TLV Partners scraper + clean stale entries (wrapped) |
 | `future_devs/BIG_COMPANIES_ATS_PARAMS_SPEC.md` | P3 — Fill ATS params for ~30 unfilled big_companies.yml stubs |
 | `future_devs/PIPELINE_TEST_COVERAGE_SPEC.md` | P3 — Pipeline test suite |
-| `future_devs/VIOLA_GETRO_DEDUP_SPEC.md` | P1 — Deduplicate Viola Getro jobs before scoring |
-| `future_devs/RESCORE_EXISTING_SPEC.md` | P1 — Re-score stored jobs with updated profile |
-| `future_devs/GITHUB_ACTIONS_SCHEDULE_SPEC.md` | P1 — Automate collect + refresh with GitHub Actions |
+| `future_devs/archive/VIOLA_GETRO_DEDUP_SPEC.md` | P1 — Deduplicate Viola Getro jobs before scoring (wrapped) |
+| `future_devs/archive/RESCORE_EXISTING_SPEC.md` | P1 — Re-score stored jobs with updated profile (wrapped) |
+| `future_devs/archive/GITHUB_ACTIONS_SCHEDULE_SPEC.md` | P1 — Automate collect + refresh with GitHub Actions (wrapped) |
 | `future_devs/archive/WEBAPP_SCAFFOLD_SPEC.md` | P2 — Project scaffold + Supabase schema (wrapped) |
 | `future_devs/archive/WEBAPP_AUTH_SPEC.md` | P2 — Auth: email + Google OAuth (wrapped) |
 | `future_devs/archive/WEBAPP_SCORING_ENDPOINT_SPEC.md` | P2 — Scoring API endpoint per user (wrapped) |

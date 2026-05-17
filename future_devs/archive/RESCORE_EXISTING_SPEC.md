@@ -1,7 +1,7 @@
 # Spec: Rescore Existing Digest with Updated Profile
 
 ## Status
-`not-started`
+`wrapped`
 
 ## Problem
 When `profile.md` is updated (scoring rubric, weights, priorities), jobs already in `scored_jobs.json` keep their old scores. There is no way to re-evaluate them without clearing state and re-running the full pipeline.

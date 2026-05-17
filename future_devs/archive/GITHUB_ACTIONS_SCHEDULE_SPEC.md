@@ -1,7 +1,7 @@
 # Spec: Scheduled Automation via GitHub Actions
 
 ## Status
-`not-started`
+`wrapped`
 
 ## Goal
 
