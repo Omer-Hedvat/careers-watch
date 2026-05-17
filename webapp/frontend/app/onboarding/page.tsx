@@ -66,6 +66,8 @@ export default function OnboardingPage() {
   })
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState('')
+  const [pdfLoading, setPdfLoading] = useState(false)
+  const [pdfError, setPdfError] = useState('')
   const [showKeyHelp, setShowKeyHelp] = useState(false)
   const [copied, setCopied] = useState(false)
 
@@ -150,6 +152,41 @@ export default function OnboardingPage() {
           <div className="space-y-4">
             <h2 className="text-2xl font-bold">Upload your CV</h2>
             <p className="text-gray-400 text-sm">Your CV is used verbatim in scoring prompts.</p>
+            <div>
+              <label className="text-sm text-gray-400 block mb-1">Upload PDF</label>
+              <input
+                type="file"
+                accept=".pdf"
+                onChange={async (e) => {
+                  const file = e.target.files?.[0]
+                  if (!file) return
+                  setPdfLoading(true)
+                  setPdfError('')
+                  try {
+                    const buf = await file.arrayBuffer()
+                    const b64 = btoa(String.fromCharCode(...new Uint8Array(buf)))
+                    const { data: { session } } = await supabase.auth.getSession()
+                    const token = session?.access_token ?? ''
+                    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/user/parse-cv`, {
+                      method: 'POST',
+                      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+                      body: JSON.stringify({ pdf_b64: b64 }),
+                    })
+                    const data = await res.json()
+                    if (!res.ok) throw new Error(data.detail ?? 'Extraction failed')
+                    setCvText(data.text)
+                  } catch (err: unknown) {
+                    setPdfError(err instanceof Error ? err.message : 'Could not extract text - please paste manually')
+                  } finally {
+                    setPdfLoading(false)
+                  }
+                }}
+                className="block w-full text-sm text-gray-400 file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:bg-gray-700 file:text-white file:text-sm hover:file:bg-gray-600 cursor-pointer"
+              />
+              {pdfLoading && <p className="text-sm text-gray-400 mt-1">Extracting text...</p>}
+              {pdfError && <p className="text-sm text-red-400 mt-1">{pdfError}</p>}
+              <p className="text-xs text-gray-500 mt-1">Or paste text directly below</p>
+            </div>
             <textarea value={cvText} onChange={e => setCvText(e.target.value)} rows={12} placeholder="Paste your CV text here..." className="w-full bg-gray-800 text-white p-3 rounded-lg border border-gray-700 resize-none focus:outline-none focus:border-green-500" />
             <div className="flex justify-between">
               <button onClick={() => setStep(1)} className="px-6 py-2 bg-gray-700 hover:bg-gray-600 rounded-lg">&lt;- Back</button>
