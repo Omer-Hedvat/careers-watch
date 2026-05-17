@@ -64,6 +64,15 @@ Wrapped features only. Active work lives in `ROADMAP.md`.
 
 ---
 
+## Phase P4 — Portfolio showcase
+
+| Feature | Spec | Effort | Status |
+|---|---|---|---|
+| DS analysis notebook — score distribution, VC tier signal, top companies, flag frequency | `future_devs/archive/DS_ANALYSIS_NOTEBOOK_SPEC.md` | S | `wrapped` |
+| README rewrite — engineering showcase with Mermaid architecture diagram and real scale numbers | `future_devs/archive/REPO_SHOWCASE_SPEC.md` | S | `wrapped` |
+
+---
+
 ## Phase P0 — Pipeline (all wrapped)
 
 | Feature | Spec | Effort | Status |
