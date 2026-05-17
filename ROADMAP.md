@@ -55,7 +55,7 @@ All Phase P2 tasks are wrapped. See `ROADMAP_ARCHIVE.md`.
 
 | Slug | Title | Status | Effort | Depends on |
 |---|---|---|---|---|
-| [WEBAPP_SUPABASE_SETUP_GUIDE](future_devs/WEBAPP_SUPABASE_SETUP_GUIDE_SPEC.md) | Supabase initial setup guide (schema, OAuth, RLS) | `completed` | XS | — |
+| [WEBAPP_SUPABASE_SETUP_GUIDE](future_devs/archive/WEBAPP_SUPABASE_SETUP_GUIDE_SPEC.md) | Supabase initial setup guide (schema, OAuth, RLS) | `wrapped` | XS | — |
 | [WEBAPP_PDF_CV_UPLOAD](future_devs/archive/WEBAPP_PDF_CV_UPLOAD_SPEC.md) | PDF CV upload in onboarding Step 2 | `wrapped` | S | — |
 | [WEBAPP_OLD_PROFILE_BADGE](future_devs/WEBAPP_OLD_PROFILE_BADGE_SPEC.md) | "Scored with old profile" badge on digest cards | `not-started` | S | — |
 
@@ -77,7 +77,7 @@ All Phase P2 tasks are wrapped. See `ROADMAP_ARCHIVE.md`.
 
 | Spec | Domain |
 |---|---|
-| `future_devs/WEBAPP_SUPABASE_SETUP_GUIDE_SPEC.md` | P2 post-launch — Supabase setup guide |
+| `future_devs/archive/WEBAPP_SUPABASE_SETUP_GUIDE_SPEC.md` | P2 post-launch — Supabase setup guide (wrapped) |
 | `future_devs/WEBAPP_PDF_CV_UPLOAD_SPEC.md` | P2 post-launch — PDF CV upload in onboarding |
 | `future_devs/WEBAPP_OLD_PROFILE_BADGE_SPEC.md` | P2 post-launch — "Scored with old profile" badge |
 | `future_devs/PROPRIETARY_ATS_PULLERS_SPEC.md` | P3 — Build pullers for SuccessFactors / TeamMe / Breezy / Jobvite / Eightfold |

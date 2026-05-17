@@ -28,6 +28,14 @@ Wrapped features only. Active work lives in `ROADMAP.md`.
 
 ---
 
+## Phase P2 — Web App v1 (post-launch)
+
+| Feature | Spec | Effort | Status |
+|---|---|---|---|
+| [webapp] Supabase initial setup guide — schema migration, Google OAuth, RLS verification | `future_devs/archive/WEBAPP_SUPABASE_SETUP_GUIDE_SPEC.md` | XS | `wrapped` |
+
+---
+
 ## Phase P1 — Pipeline improvements
 
 | Feature | Spec | Effort | Status |
