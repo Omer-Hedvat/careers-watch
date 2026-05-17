@@ -1,7 +1,7 @@
 # BUG: Render scoring endpoint always 503 — new_jobs.json unreachable on persistent disk
 
 ## Status
-🟢 Completed
+✅ Wrapped
 
 ## Severity
 P0
