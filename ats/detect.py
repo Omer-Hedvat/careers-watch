@@ -64,6 +64,9 @@ TALENTBREW_JOB_RE = re.compile(r'href="/job/[^"/]+/[^"/]+/\d+/\d+"', re.IGNORECA
 # Amazon Jobs: amazon.jobs/en/jobs/<id>/...
 AMAZON_JOBS_RE = re.compile(r"amazon\.jobs/en/jobs/", re.IGNORECASE)
 
+# TeamMe (niche Israeli ATS): <tenant>.teamme.link
+TEAMME_RE = re.compile(r"([a-zA-Z0-9_-]+)\.teamme\.link", re.IGNORECASE)
+
 # Microsoft Careers: jobs.careers.microsoft.com/global/en/job/<id>,
 # apply.careers.microsoft.com/careers (new Eightfold PCSX SPA), or either API host.
 MICROSOFT_CAREERS_RE = re.compile(
@@ -175,6 +178,11 @@ def detect_ats(careers_url: str) -> tuple[str, dict]:
     # Fast path: amazon.jobs careers URL — default country to ISR for our use case
     if AMAZON_JOBS_RE.search(careers_url) or "amazon.jobs" in careers_url.lower():
         return "amazon_jobs", {"country_code": "ISR"}
+
+    # Fast path: TeamMe — tenant is the leftmost label of {tenant}.teamme.link
+    m = TEAMME_RE.search(careers_url)
+    if m:
+        return "teamme", {"tenant": m.group(1).lower()}
 
     # Fast path: Microsoft careers SPA or API host — default location to Israel
     if MICROSOFT_CAREERS_RE.search(careers_url):
