@@ -1,12 +1,12 @@
 | Field | Value |
 |---|---|
 | **Phase** | P3 |
-| **Status** | `not-started` |
+| **Status** | `in-progress` |
 | **Effort** | M |
 | **Epic** | — |
 | **Depends on** | — |
 | **Blocks** | — |
-| **Touches** | `vcs/state_of_mind.py` (new), `vcs/sequoia_israel.py` (new), `vcs/aleph.py` (new), `vcs/lightspeed_israel.py` (new), `vcs/greylock_israel.py` (new), `vcs/insight_israel.py` (new), `refresh_companies.py` |
+| **Touches** | `vcs/state_of_mind.py` (new), `vcs/sequoia_israel.py` (new), `vcs/aleph.py` (new), `vcs/lightspeed_israel.py` (new), `vcs/greylock_israel.py` (new), `vcs/insight_israel.py` (new), `vcs/registry.py` |
 
 ## Overview
 
