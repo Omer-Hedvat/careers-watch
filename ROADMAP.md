@@ -61,13 +61,23 @@ All Phase P2 tasks are wrapped. See `ROADMAP_ARCHIVE.md`.
 
 ---
 
+## Phase P1 — Pipeline improvements (queued)
+
+| Slug | Title | Status | Effort | Depends on |
+|---|---|---|---|---|
+| [VIOLA_GETRO_DEDUP](future_devs/VIOLA_GETRO_DEDUP_SPEC.md) | Fix Viola Getro duplicate jobs burning Gemini quota | `not-started` | XS | — |
+| [GITHUB_ACTIONS_SCHEDULE](future_devs/GITHUB_ACTIONS_SCHEDULE_SPEC.md) | Automate collect + refresh with GitHub Actions cron | `not-started` | S | — |
+| [RESCORE_EXISTING](future_devs/RESCORE_EXISTING_SPEC.md) | Add `--rescore` flag to re-score stored jobs with updated profile | `not-started` | S | — |
+
+---
+
 ## Phase P3 — Coverage expansion
 
 | Slug | Title | Status | Effort | Depends on |
 |---|---|---|---|---|
 | [NEW_VC_ADAPTERS](future_devs/NEW_VC_ADAPTERS_SPEC.md) | Add VC adapters: State of Mind / Sequoia IL / Aleph / Lightspeed IL / Greylock / Insight IL | `in-progress` | M | — |
 | [TLV_PORTFOLIO_FIX](future_devs/archive/TLV_PORTFOLIO_FIX_SPEC.md) | Fix TLV Partners scraper + clean stale entries + add missing portfolio companies | `wrapped` | M | — |
-| [BIG_COMPANIES_ATS_PARAMS](future_devs/BIG_COMPANIES_ATS_PARAMS_SPEC.md) | Fill ATS params for ~30 unfilled big_companies.yml stubs | `not-started` | M | — |
+| [BIG_COMPANIES_ATS_PARAMS](future_devs/BIG_COMPANIES_ATS_PARAMS_SPEC.md) | Fill ATS params for ~30 unfilled big_companies.yml stubs | `in-progress` | M | — |
 | [PIPELINE_TEST_COVERAGE](future_devs/archive/PIPELINE_TEST_COVERAGE_SPEC.md) | Add test suite for pipeline scripts (ATS pullers, filters, scorer parser) | `wrapped` | M | — |
 
 ---
