@@ -231,6 +231,252 @@
   location_filter: israel
   notes: "Israeli cyber startup. Custom careers page (Webstudio) - no queryable ATS."
 
+# ─── Cyber / Security (2025-2026 batch) ──────────────────────────────────────
+
+- name: Wing Security
+  website: https://wing.security
+  careers_url: https://boards.greenhouse.io/embed/job_board?for=wing
+  ats: greenhouse
+  ats_params:
+    board_token: wing
+  category: cyber
+  location_filter: israel
+
+- name: Irregular
+  website: https://www.irregular.com
+  careers_url: https://jobs.ashbyhq.com/Irregular
+  ats: ashby
+  ats_params:
+    org_name: Irregular
+  category: cyber
+  location_filter: israel
+  notes: "AI model security lab, Calcalist #1 cyber 2026."
+
+- name: OX Security
+  website: https://www.ox.security
+  careers_url: https://www.comeet.com/jobs/ox_security/f8.006
+  ats: comeet
+  ats_params:
+    company_uid: "F8.006"
+    company_name: ox_security
+    token: ""  # TODO: extract from careers page HTML
+  category: cyber
+  location_filter: israel
+  notes: "Software supply chain security, ex-Check Point founders. TODO: token."
+
+- name: Astrix Security
+  website: https://astrix.security
+  careers_url: https://astrix.security/careers
+  ats: comeet
+  ats_params:
+    company_uid: "09.009"
+    company_name: ""
+    token: "90936365151024242D2D484890951513F3F"
+  category: cyber
+  location_filter: israel
+  notes: "Non-human identity / 3rd-party app integrations security."
+
+- name: Noma Security
+  website: https://noma.security
+  careers_url: https://noma.security/careers
+  ats: comeet
+  ats_params:
+    company_uid: "3A.005"
+    company_name: ""
+    token: "A35477328D4001E9F146A5BDD146A28D4"
+  category: cyber
+  location_filter: israel
+  notes: "Data/AI lifecycle security."
+
+- name: Upwind
+  website: https://www.upwind.io
+  careers_url: https://www.upwind.io/careers
+  ats: comeet
+  ats_params:
+    company_uid: "49.004"
+    company_name: ""
+    token: "94440DC0944094401BCC12882510"
+  category: cyber
+  location_filter: israel
+  notes: "Runtime cloud security."
+
+- name: Zenity
+  website: https://zenity.io
+  careers_url: https://zenity.io/careers
+  ats: comeet
+  ats_params:
+    company_uid: "19.000"
+    company_name: zenity
+    token: "9103660519012202D5024401B3091024403660"
+  category: cyber
+  location_filter: israel
+  notes: "Low-code/no-code security and governance."
+
+- name: Frame Security
+  website: https://www.frame.security
+  careers_url: https://www.comeet.com/jobs/framesecurity/FA.002
+  ats: comeet
+  ats_params:
+    company_uid: "FA.002"
+    company_name: framesecurity
+    token: "AF24C9E4C9E015E457906282579036BA36BA"
+  category: cyber
+  location_filter: israel
+  notes: "Israeli cyber stealth, $50M led by Index May 2026."
+
+- name: Terra Security
+  website: https://terra.security
+  careers_url: https://www.comeet.com/jobs/terrasecurity/1B.006
+  ats: comeet
+  ats_params:
+    company_uid: "1B.006"
+    company_name: terrasecurity
+    token: "B164D9A4D9A2C58162C376E162C0162C2C58"
+  category: cyber
+  location_filter: israel
+
+- name: Lightrun
+  website: https://lightrun.com
+  careers_url: https://lightrun.com/careers/
+  ats: greenhouse
+  ats_params:
+    board_token: lightrun
+  category: general
+  location_filter: israel
+  notes: "Production debugging / observability."
+
+- name: BridgeWise
+  website: https://bridgewise.com
+  careers_url: https://www.comeet.com/jobs/bridgewise/F9.009
+  ats: comeet
+  ats_params:
+    company_uid: "F9.009"
+    company_name: bridgewise
+    token: "9F945CF1DEB1DEB027E431DD04FC81DEB"
+  category: fintech
+  location_filter: israel
+  notes: "AI financial analysis for public-company equities."
+
+- name: Descope
+  website: https://www.descope.com
+  careers_url: https://descope.breezy.hr/
+  ats: other
+  ats_params: {}  # TODO: uses Breezy HR - no puller implemented yet
+  category: cyber
+  location_filter: israel
+  notes: "Customer/agentic identity platform. TODO: Breezy HR puller."
+
+- name: Token Security
+  website: https://www.token.security
+  careers_url: https://www.token.security/company/careers
+  ats: other
+  ats_params: {}  # TODO: verify ATS
+  category: cyber
+  location_filter: israel
+  notes: "Non-human identity / AI agent identity security."
+
+- name: Bria
+  website: https://bria.ai
+  careers_url: https://bria.ai/career
+  ats: other
+  ats_params: {}  # TODO: verify ATS
+  category: general
+  location_filter: israel
+  notes: "Enterprise visual GenAI with attribution / IP-safe images."
+
+- name: EON
+  website: https://www.eon.io
+  careers_url: https://www.eon.io/careers
+  ats: other
+  ats_params: {}  # TODO: verify ATS
+  category: general
+  location_filter: israel
+  notes: "Cloud backup/recovery. Sequoia-backed. Founders ex-AWS."
+
+- name: Cylake
+  website: https://cylake.com
+  careers_url: https://cylake.com/careers/
+  ats: other
+  ats_params: {}  # TODO: verify ATS
+  category: cyber
+  location_filter: israel
+  notes: "Nir Zuk's AI-native on-prem cyber co. $45M seed Greylock."
+
+- name: Kela
+  website: https://kelasys.com  # TODO: verify primary domain - distinct from kelasys IL ops platform
+  careers_url: https://www.comeet.com/jobs/kelasys/2A.007
+  ats: comeet
+  ats_params:
+    company_uid: "2A.007"
+    company_name: kelasys
+    token: ""  # TODO: token from page; may overlap with existing Kelasys entry
+  category: general
+  location_filter: israel
+  notes: "Defense-tech, real-time intel platform, Sequoia/Lux/In-Q-Tel. NOTE: 'Kelasys' entry already exists - may be same company."
+
+- name: AIR EV
+  website: https://www.airev.aero
+  careers_url: https://www.airev.aero/careers
+  ats: other
+  ats_params: {}  # TODO: verify ATS
+  category: general
+  location_filter: israel
+  notes: "eVTOL personal aircraft (AIR ONE), Pardes Hanna."
+
+- name: Artemis Security
+  website: https://artemissecurity.com
+  careers_url: https://artemissecurity.com/careers/
+  ats: other
+  ats_params: {}  # TODO: verify ATS
+  category: cyber
+  location_filter: israel
+  notes: "Active AI-defense cyber, $70M seed+A 2026 (ex-AWS GuardDuty/Demisto founder)."
+
+- name: Spines
+  website: https://spines.com
+  careers_url: https://spines.com/career/
+  ats: other
+  ats_params: {}  # TODO: verify ATS
+  category: general
+  location_filter: israel
+  notes: "AI book publishing platform."
+
+- name: Honeycomb Insurance
+  website: https://honeycombinsurance.com
+  careers_url: https://honeycombinsurance.com/careers
+  ats: other
+  ats_params: {}  # TODO: verify ATS
+  category: fintech
+  location_filter: israel
+  notes: "Real-estate insurtech, R&D Herzliya."
+
+- name: Appcharge
+  website: https://www.appcharge.com
+  careers_url: https://www.appcharge.com/careers
+  ats: comeet
+  ats_params: {}  # TODO: extract company_uid + token from page (Comeet embed confirmed)
+  category: general
+  location_filter: israel
+  notes: "Direct-to-consumer payments infra for gaming. Comeet embed but params not yet extracted."
+
+- name: Qbiq
+  website: https://www.qbiq.ai
+  careers_url: https://www.qbiq.ai  # TODO: find careers page
+  ats: other
+  ats_params: {}  # TODO: verify ATS
+  category: general
+  location_filter: israel
+  notes: "Generative AI for architectural floor plans."
+
+- name: Mappo
+  website: https://mappo.world
+  careers_url: https://mappo.world  # TODO: find careers page
+  ats: other
+  ats_params: {}  # TODO: no public openings at time of adding
+  category: general
+  location_filter: israel
+  notes: "Location-based audio/literary content for car navigation."
+
 # ─── Fraud / Fintech ─────────────────────────────────────────────────────────
 
 - name: Riskified
