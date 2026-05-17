@@ -84,6 +84,25 @@ JOBVITE_GENERIC_PATHS = {"api", "static", "assets", "cdn", "favicon-2024.ico"}
 EIGHTFOLD_RE = re.compile(r"([a-zA-Z0-9_-]+)\.eightfold\.ai", re.IGNORECASE)
 EIGHTFOLD_GENERIC_SUBS = {"www", "api", "app", "static"}
 
+# SAP SuccessFactors: branded "jobs2web" hosts (jobs.sap.com etc.) plus the
+# legacy multi-tenant career.successfactors.eu/career?career_company=<tenant>
+# surface and rmkcdn.successfactors.com asset references that leak into HTML.
+SUCCESSFACTORS_LEGACY_RE = re.compile(
+    r"career\.successfactors\.(?:com|eu)/career\?career_company=([a-zA-Z0-9_-]+)",
+    re.IGNORECASE,
+)
+SUCCESSFACTORS_ASSETS_RE = re.compile(
+    r"(?:rmkcdn|performancemanager\d*|career\d*)\.successfactors\.(?:com|eu)",
+    re.IGNORECASE,
+)
+# jobs2web is SAP's white-label careers builder; pages from it render
+# <span class="jobLocation"> and <a class="jobTitle-link"> markers regardless
+# of the hostname (jobs.sap.com, careers.<company>.com, etc.).
+SUCCESSFACTORS_JOBS2WEB_RE = re.compile(
+    r'(class="jobTitle-link"|class="jobLocation"|jobs2web\.com)',
+    re.IGNORECASE,
+)
+
 # Greenhouse embed/boards patterns — check JOBBOARDS and EMBED before BOARDS (BOARDS is more general)
 GREENHOUSE_JOBBOARDS = re.compile(r"job-boards\.greenhouse\.io/([a-zA-Z0-9_-]+)", re.IGNORECASE)
 GREENHOUSE_EMBED = re.compile(r"greenhouse\.io/embed/job_board[?&]for=([a-zA-Z0-9_-]+)", re.IGNORECASE)
@@ -312,5 +331,27 @@ def detect_ats(careers_url: str) -> tuple[str, dict]:
         host = parsed.netloc or urlparse(careers_url).netloc
         if host:
             return "talentbrew", {"host": host, "facet": "israel"}
+
+    # SAP SuccessFactors — three surfaces we recognize:
+    #   1. legacy career.successfactors.{com,eu}?career_company=<tenant>
+    #   2. branded jobs2web host whose HTML contains jobTitle-link markers
+    #   3. page that just embeds SF assets (rmkcdn/performancemanager hosts)
+    # For (2) and (3) we can't infer the tenant slug from the URL alone, so we
+    # surface the branded host and leave tenant blank — the operator needs to
+    # fill it in big_companies.yml. That's an acceptable trade-off given how
+    # rarely SF is auto-discovered vs. manually added.
+    for text in (careers_url, final_url, html):
+        m = SUCCESSFACTORS_LEGACY_RE.search(text)
+        if m:
+            return "successfactors", {"tenant": m.group(1).lower(), "location_query": "Israel"}
+    if SUCCESSFACTORS_JOBS2WEB_RE.search(html) or SUCCESSFACTORS_ASSETS_RE.search(html):
+        parsed = urlparse(final_url or careers_url)
+        host = parsed.netloc or urlparse(careers_url).netloc
+        if host:
+            return "successfactors", {
+                "tenant": host.split(".")[0],
+                "branded_host": host,
+                "location_query": "Israel",
+            }
 
     return "unknown", {}

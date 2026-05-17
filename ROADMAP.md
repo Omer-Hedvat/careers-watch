@@ -72,7 +72,7 @@ All Phase P2 tasks are wrapped. See `ROADMAP_ARCHIVE.md`.
 | ├─ [ATS_GOOGLE_CAREERS](future_devs/ATS_GOOGLE_CAREERS_SPEC.md) | careers.google.com puller → Google Israel | `completed` | S | — |
 | ├─ [ATS_EIGHTFOLD](future_devs/ATS_EIGHTFOLD_SPEC.md) | Eightfold puller → PayPal Israel | `completed` | S | — |
 | ├─ [ATS_JOBVITE](future_devs/ATS_JOBVITE_SPEC.md) | Jobvite puller → Varonis | `completed` | S | — |
-| ├─ [ATS_SUCCESSFACTORS](future_devs/ATS_SUCCESSFACTORS_SPEC.md) | SuccessFactors puller → CyberArk, SAP | `not-started` | M | — |
+| ├─ [ATS_SUCCESSFACTORS](future_devs/ATS_SUCCESSFACTORS_SPEC.md) | SuccessFactors puller → SAP (CyberArk now on SmartRecruiters via PAN) | `completed` | M | — |
 | ├─ [ATS_TEAMME](future_devs/ATS_TEAMME_SPEC.md) | TeamMe puller → Claroty, Quantum Machines | `not-started` | M | — |
 | └─ [ATS_BREEZY](future_devs/ATS_BREEZY_SPEC.md) | Breezy HR puller → Descope | `completed` | XS | — |
 | [NEW_VC_ADAPTERS](future_devs/NEW_VC_ADAPTERS_SPEC.md) | Add VC adapters: State of Mind / Sequoia IL / Aleph / Lightspeed IL / Greylock / Insight IL | `in-progress` | M | — |
