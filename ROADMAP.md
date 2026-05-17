@@ -76,8 +76,8 @@ All Phase P2 tasks are wrapped. See `ROADMAP_ARCHIVE.md`.
 
 | Slug | Title | Status | Effort | Depends on |
 |---|---|---|---|---|
-| [DS_ANALYSIS_NOTEBOOK](future_devs/DS_ANALYSIS_NOTEBOOK_SPEC.md) | DS analysis notebook — score distribution, VC tier signal, top companies | `in-progress` | S | — |
-| [REPO_SHOWCASE](future_devs/REPO_SHOWCASE_SPEC.md) | README rewrite — engineering showcase with architecture diagram and scale callouts | `in-progress` | S | — |
+| [DS_ANALYSIS_NOTEBOOK](future_devs/archive/DS_ANALYSIS_NOTEBOOK_SPEC.md) | DS analysis notebook — score distribution, VC tier signal, top companies | `wrapped` | S | — |
+| [REPO_SHOWCASE](future_devs/archive/REPO_SHOWCASE_SPEC.md) | README rewrite — engineering showcase with architecture diagram and scale callouts | `wrapped` | S | — |
 | [SCORING_RUBRIC_ABLATION](future_devs/SCORING_RUBRIC_ABLATION_SPEC.md) | Scoring calibration doc — rubric design, spot-check, failure modes | `not-started` | S | — |
 
 ---
@@ -115,6 +115,6 @@ All Phase P2 tasks are wrapped. See `ROADMAP_ARCHIVE.md`.
 | `future_devs/archive/WEBAPP_ONBOARDING_SPEC.md` | P2 — Onboarding flow (4 steps) (wrapped) |
 | `future_devs/archive/WEBAPP_DIGEST_SPEC.md` | P2 — Digest view with score cards (wrapped) |
 | `future_devs/archive/WEBAPP_SETTINGS_SPEC.md` | P2 — Settings tabs (wrapped) |
-| `future_devs/DS_ANALYSIS_NOTEBOOK_SPEC.md` | P4 — DS analysis notebook |
-| `future_devs/REPO_SHOWCASE_SPEC.md` | P4 — README rewrite / engineering showcase |
+| `future_devs/archive/DS_ANALYSIS_NOTEBOOK_SPEC.md` | P4 — DS analysis notebook (wrapped) |
+| `future_devs/archive/REPO_SHOWCASE_SPEC.md` | P4 — README rewrite / engineering showcase (wrapped) |
 | `future_devs/SCORING_RUBRIC_ABLATION_SPEC.md` | P4 — Scoring calibration doc |

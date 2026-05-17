@@ -1,78 +1,101 @@
 # cyber-jobs-radar
 
-Personal job-search automation. Scrapes Israeli cyber/fintech VC portfolio
-companies, pulls open roles via ATS APIs, scores them against my profile
-via Gemini, outputs a markdown digest.
+Automated job-search pipeline for senior DS / ML roles in Israeli cyber and fintech.
+Scrapes 22 VC portfolio pages, calls ATS APIs directly for 2003+ companies,
+scores every open role against a candidate profile via Gemini 2.5 Flash,
+and commits a ranked digest to the repo on a cron schedule - fully hands-off
+after the weekly refresh.
 
-Not actively maintained for general use.
+**Stack:** Python - Playwright - Gemini 2.5 Flash - GitHub Actions - Render
 
-## Three-script flow
+---
 
-```
-refresh_companies.py   # weekly  — VC scrape + careers discovery + ATS detection
-collect_jobs.py        # daily   — hit ATS APIs, write new_jobs.json
-score.py               # on demand — score jobs via Gemini, write digest.md
-```
+## How it works
 
-### refresh_companies.py
-
-Scrapes VC portfolio pages (currently: YL Ventures), discovers the careers
-page and ATS for each company, and writes `companies.json`. This file is a
-persistent cache — it accumulates over time and is never overwritten.
-
-Re-verification runs automatically for any company whose `last_verified_at`
-is older than 30 days or whose `consecutive_failures` counter is ≥ 3.
-
-```
-uv run python refresh_companies.py
+```mermaid
+flowchart LR
+    subgraph Weekly["Weekly (Sunday)"]
+        A["refresh_companies.py\nPlaywright scrapes 22 VC portfolios\nauto-detects ATS per company"] -->|"writes"| B[("companies.json\n2003+ companies\nATS params cached")]
+    end
+    subgraph Daily["Mon + Thu (07:00 UTC)"]
+        B --> C["collect_jobs.py\nDirect ATS API calls\nno scraping, no browser"]
+        C -->|"writes"| D[("new_jobs.json")]
+        D --> E["score.py\nGemini 2.5 Flash\nbatch scoring against profile + CV"]
+        E -->|"commits"| F["digest.md\nranked by score tier"]
+    end
 ```
 
-### collect_jobs.py
+---
 
-Reads `companies.json`, calls ATS APIs (currently: Comeet) using cached
-credentials, and writes `new_jobs.json`. Does no VC knowledge or discovery —
-all it needs is `ats` and `ats_params` from the cache.
+## Scale
 
-Increments `consecutive_failures` on errors, resets to 0 on success.
+| Metric | Count |
+|---|---|
+| VC portfolios scraped | 22 |
+| Companies tracked | 2003 (as of 2026-05-17, grows weekly) |
+| ATS integrations | 18 (Comeet, Greenhouse, Lever, Workday, Ashby, SmartRecruiters, Workable, TeamTailor, ...) |
+
+---
+
+## Design decisions
+
+**Direct API calls, not scraping.** `collect_jobs.py` hits ATS REST APIs directly (Comeet, Greenhouse, Lever, Workday, and 14 others). No DOM parsing, no Selenium, no fragile selectors. Most requests complete in under a second.
+
+**LLM only at the scoring edge.** Gemini is called exactly once per job, inside `score.py`. Discovery and collection are fully deterministic - no LLM calls, no token waste in the pipeline.
+
+**Per-adapter, not generic.** Each VC portfolio and ATS has its own adapter file. A single site redesign breaks one file, not the whole pipeline.
+
+**Persistent JSON cache, no database.** `companies.json` accumulates ATS params, failure counts, and verification timestamps for 2003+ companies. No ORM, no migrations, no infrastructure.
+
+---
+
+## Example digest output
 
 ```
-uv run python collect_jobs.py
+## Tier 9-10 - Strong fit
+
+### [Hunters] Staff Data Scientist - Detection (score: 9)
+Location: Tel Aviv | Source: Glilot Capital (Tier 1) | ATS: Comeet
+Apply: https://www.comeet.com/jobs/hunters/...
+
+> Strong match: detection engineering + adversarial ML aligns directly with candidate
+> fraud background. Staff-level framing matches target seniority. Israel HQ confirmed.
+> Flags: strong-domain-fit
 ```
 
-### score.py
+---
 
-Reads `new_jobs.json` (or `tests/sample_jobs.json` with `--sample`),
-scores each job against `profile.md` and `cv.md` via Gemini, and writes
-`digest.md` grouped by score tier.
+## Architecture
 
 ```
-uv run python score.py --dry-run --sample   # inspect prompt, no API call
-uv run python score.py --sample             # score sample jobs
-uv run python score.py                      # score real jobs
+ats/            per-ATS API pullers (comeet.py, greenhouse.py, lever.py, workday.py, ashby.py, smartrecruiters.py, ...)
+vcs/            per-VC portfolio scrapers (yl_ventures.py, glilot.py, team8.py, cyberstarts.py, viola.py, ...)
+matcher/        Gemini scoring (gemini_scorer.py) - LLM calls live here only
+profiles/       per-user config + outputs (profile.md, cv.md, digest.md, scored_jobs.json)
+companies.json  persistent cache - ATS params + failure tracking for 2003+ companies
 ```
+
+---
 
 ## Setup
 
-```
+```bash
 uv sync
 uv run playwright install chromium
 cp .env.example .env   # add GEMINI_API_KEY
 ```
 
-## companies.json schema
+```bash
+uv run python refresh_companies.py   # weekly  - VC scrape + ATS detection
+uv run python collect_jobs.py        # daily   - hit ATS APIs
+uv run python score.py               # on demand - score via Gemini, write digest.md
+```
 
-```json
-{
-  "name": "Grip Security",
-  "website": "https://www.grip.security",
-  "source_vc": "YL Ventures",
-  "vc_tier": "tier1",
-  "careers_url": "https://www.comeet.com/jobs/grip/A8.001",
-  "ats": "comeet",
-  "ats_params": { "company_uid": "A8.001", "company_name": "grip", "token": "..." },
-  "discovered_at": "2026-05-04T...",
-  "last_verified_at": "2026-05-04T...",
-  "last_jobs_pulled_at": "2026-05-04T...",
-  "consecutive_failures": 0
-}
+---
+
+## Tests
+
+```bash
+uv run python3 -m pytest tests/ -v
+uv run python score.py --dry-run     # inspect prompt, no API call
 ```
