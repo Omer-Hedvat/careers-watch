@@ -216,11 +216,12 @@
 - name: Claroty
   website: https://claroty.com
   careers_url: https://claroty.teamme.link/careers
-  ats: other
-  ats_params: {}  # TODO: uses TeamMe (claroty.teamme.link) - no standard puller
+  ats: teamme
+  ats_params:
+    tenant: claroty
   category: cyber
   location_filter: israel
-  notes: "OT/ICS/IoT security, strong Israeli R&D team. TODO: TeamMe ATS - no puller yet."
+  notes: "OT/ICS/IoT security, strong Israeli R&D team."
 
 - name: Orion Security
   website: https://www.orionsec.io
@@ -854,11 +855,12 @@
 - name: Quantum Machines
   website: https://www.quantum-machines.co
   careers_url: https://qm.teamme.link
-  ats: other
-  ats_params: {}  # TODO: uses TeamMe (same as Claroty) - no puller implemented
+  ats: teamme
+  ats_params:
+    tenant: qm
   category: general
   location_filter: israel
-  notes: "Quantum computing hardware/software. TeamMe ATS - no puller yet."
+  notes: "Quantum computing hardware/software."
 
 # ─── Big Tech (new batch) ────────────────────────────────────────────────────
 

@@ -12,6 +12,7 @@ from ats.lever import fetch_positions as _fetch_lever
 from ats.microsoft_careers import fetch_positions as _fetch_microsoft_careers
 from ats.successfactors import fetch_positions as _fetch_successfactors
 from ats.talentbrew import fetch_positions as _fetch_talentbrew
+from ats.teamme import fetch_positions as _fetch_teamme
 from ats.teamtailor import fetch_positions as _fetch_teamtailor
 from ats.workable import fetch_positions as _fetch_workable
 from ats.workday import fetch_positions as _fetch_workday
@@ -36,6 +37,7 @@ ATS_PULLERS = {
         p["tenant"], p.get("branded_host"), p.get("location_query")
     ),
     "talentbrew": lambda params: _fetch_talentbrew(params["host"], params.get("facet", "israel")),
+    "teamme": lambda p: _fetch_teamme(p["tenant"]),
     "teamtailor": lambda params: _fetch_teamtailor(params["subdomain"], params.get("custom_host_url")),
     "workable": lambda params: _fetch_workable(params["company_slug"]),
     "workday": lambda params: _fetch_workday(params["tenant"], params["wd_instance"], params["job_site"]),
