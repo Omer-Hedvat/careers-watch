@@ -9,6 +9,23 @@ Wrapped features only. Active work lives in `ROADMAP.md`.
 | Epic | Spec | Phase | Status | Children |
 |---|---|---|---|---|
 | Web App v1 | `WEBAPP_SPEC.md` | P2 | `wrapped` | 9 |
+| Proprietary ATS Pullers | `future_devs/archive/PROPRIETARY_ATS_PULLERS_SPEC.md` | P3 | `wrapped` | 9 |
+
+---
+
+## Phase P3 — Coverage expansion
+
+| Feature | Spec | Effort | Status |
+|---|---|---|---|
+| TalentBrew puller → Intuit (474 IL jobs) | `future_devs/archive/ATS_TALENTBREW_SPEC.md` | XS | `wrapped` |
+| amazon.jobs puller → AWS Israel (135 jobs) | `future_devs/archive/ATS_AMAZON_JOBS_SPEC.md` | S | `wrapped` |
+| Microsoft Careers puller → Microsoft Israel (10 jobs) | `future_devs/archive/ATS_MICROSOFT_CAREERS_SPEC.md` | S | `wrapped` |
+| Google Careers puller → Google Israel (70 jobs) | `future_devs/archive/ATS_GOOGLE_CAREERS_SPEC.md` | S | `wrapped` |
+| Eightfold puller → PayPal Israel (4 jobs; PCSX fallback) | `future_devs/archive/ATS_EIGHTFOLD_SPEC.md` | S | `wrapped` |
+| Jobvite puller → Varonis (67 jobs) | `future_devs/archive/ATS_JOBVITE_SPEC.md` | S | `wrapped` |
+| SuccessFactors puller → SAP Israel (6 jobs; CyberArk → PAN/SmartRecruiters) | `future_devs/archive/ATS_SUCCESSFACTORS_SPEC.md` | M | `wrapped` |
+| TeamMe puller → Claroty (24) + Quantum Machines (45) | `future_devs/archive/ATS_TEAMME_SPEC.md` | M | `wrapped` |
+| Breezy HR puller → Descope (0 openings at wrap time) | `future_devs/archive/ATS_BREEZY_SPEC.md` | XS | `wrapped` |
 
 ---
 
