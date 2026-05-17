@@ -38,9 +38,9 @@ e.g. `/orchestrate_epic WEBAPP`
 
 ### 4. Present wave plan
 
-Print the wave breakdown and pause for user confirmation before executing.
+Print the wave breakdown for visibility, then proceed immediately. Do NOT pause for user confirmation — Omer trusts autonomous execution for this project. Only pause if the plan reveals something genuinely ambiguous (e.g. an undeclared dependency, conflicting Touches sets).
 
-### 5. Execute wave by wave
+### 5. Execute wave by wave (autonomous)
 
 For each wave:
 1. Call `/start_task <slug>` (Phase A only — status flip + validation)
@@ -51,8 +51,10 @@ For each wave:
    - `uv run python3 -m pytest tests/ -v`
    - `uv run python score.py --dry-run`
 4. If exit gate passes: flip all wave children to `completed`
-5. Call `/qa_task` for each child
-6. On QA pass: call `/wrap_task` for each child
+5. Call `/qa_task` for each child — auto-chains to `/wrap_task` on pass
+6. Proceed to the next wave without user confirmation
+
+Only stop the epic mid-flight if: exit gate fails and the fix isn't obvious, scope expansion is needed, or a spec is ambiguous enough to require Omer's judgement.
 
 ### 6. Epic completion
 

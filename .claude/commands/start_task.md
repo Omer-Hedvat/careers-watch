@@ -35,8 +35,17 @@ e.g. `/start_task BUG_VIOLA_GETRO_DUPES` or `/start_task WEBAPP_AUTH`
 9. Flip status to `🟢 Completed` (bug) or `completed` (feature)
 10. Print summary of what changed
 
+### Phase C — Auto-chain QA + wrap (default)
+
+11. Immediately invoke `/qa_task <slug>` without waiting for user input
+12. If QA passes, immediately invoke `/wrap_task <slug>` without waiting for user input
+13. If QA or wrap fails, stop and report the failure to the user
+
+Omer does not act as the QA reviewer for this project — assume autonomous completion. Only pause for the user when something genuinely needs their judgement (scope expansion, ambiguous spec, failing exit gate that can't be auto-fixed).
+
 ## Rules
 
 - Never touch files outside the **Touches** list without updating the spec first
 - Never mark `completed` if the sanity checks fail
 - If scope expands during implementation, pause and update the spec before continuing
+- Do NOT ask the user "should I run QA now?" or "ready to wrap?" — just do it
