@@ -432,7 +432,7 @@
     "category": "cyber",
     "location_filter": "israel",
     "discovered_at": "2026-05-04T18:54:33.370404+00:00",
-    "last_verified_at": "2026-05-17T11:32:14.759406+00:00",
+    "last_verified_at": "2026-05-17T12:16:08.932757+00:00",
     "last_jobs_pulled_at": "2026-05-04T18:54:39.592896+00:00",
     "consecutive_failures": 0
   },
@@ -614,8 +614,8 @@
     "name": "Aqua Security",
     "website": "https://www.aquasec.com",
     "source": "big_companies_list",
-    "source_vc": null,
-    "vc_tier": null,
+    "source_vc": "TLV Partners",
+    "vc_tier": 2,
     "careers_url": "https://www.aquasec.com/about-us/careers/",
     "ats": "comeet",
     "ats_params": {
@@ -625,7 +625,7 @@
     "category": "cyber",
     "location_filter": "israel",
     "discovered_at": "2026-05-04T18:54:33.370404+00:00",
-    "last_verified_at": "2026-05-04T19:13:42.496617+00:00",
+    "last_verified_at": "2026-05-17T12:16:08.932757+00:00",
     "last_jobs_pulled_at": "2026-05-17T10:37:21.831427+00:00",
     "consecutive_failures": 0
   },
@@ -711,7 +711,7 @@
     "category": "fintech",
     "location_filter": "israel",
     "discovered_at": "2026-05-04T18:54:33.370404+00:00",
-    "last_verified_at": "2026-05-17T11:32:14.759406+00:00",
+    "last_verified_at": "2026-05-17T12:16:08.932757+00:00",
     "last_jobs_pulled_at": "2026-05-17T10:37:22.517931+00:00",
     "consecutive_failures": 0
   },
@@ -849,7 +849,7 @@
   },
   {
     "name": "BAND",
-    "website": "https://snap.licdn.com",
+    "website": "https://www.band.ai",
     "source_vc": "Team8",
     "vc_tier": 1,
     "careers_url": "https://www.band.ai/careers",
@@ -863,7 +863,7 @@
   },
   {
     "name": "FlowRx",
-    "website": "https://scripts.clarity.ms",
+    "website": "https://www.flowrx.ai",
     "source_vc": "Team8",
     "vc_tier": 1,
     "careers_url": null,
@@ -879,7 +879,7 @@
   },
   {
     "name": "Dimer Health",
-    "website": "https://scripts.clarity.ms",
+    "website": "https://www.dimerhealth.com",
     "source_vc": "Team8",
     "vc_tier": 1,
     "careers_url": "https://www.dimerhealth.com/positions",
@@ -911,7 +911,7 @@
   },
   {
     "name": "Fig",
-    "website": "https://scripts.clarity.ms",
+    "website": "https://www.fig.security",
     "source_vc": "Team8",
     "vc_tier": 1,
     "careers_url": "https://www.fig.security/careers",
@@ -925,7 +925,7 @@
   },
   {
     "name": "Astelia",
-    "website": "https://snap.licdn.com",
+    "website": "https://www.astelia.io",
     "source_vc": "Team8",
     "vc_tier": 1,
     "careers_url": "https://www.astelia.io/careers",
@@ -942,7 +942,7 @@
   },
   {
     "name": "Lema",
-    "website": "https://snap.licdn.com",
+    "website": "https://www.lema.ai",
     "source_vc": "Team8",
     "vc_tier": 1,
     "careers_url": "https://www.comeet.com/jobs/lemalabs/EA.001",
@@ -959,7 +959,7 @@
   },
   {
     "name": "Solid",
-    "website": "https://snap.licdn.com",
+    "website": "https://www.getsolid.ai",
     "source_vc": "Team8",
     "vc_tier": 1,
     "careers_url": null,
@@ -975,7 +975,7 @@
   },
   {
     "name": "Lumia",
-    "website": "https://scripts.clarity.ms",
+    "website": "https://www.lumia.security",
     "source_vc": "Team8",
     "vc_tier": 1,
     "careers_url": "https://www.lumia.security/careers",
@@ -991,7 +991,7 @@
   },
   {
     "name": "Clover",
-    "website": "https://snap.licdn.com",
+    "website": "https://clover.security",
     "source_vc": "Team8",
     "vc_tier": 1,
     "careers_url": "https://clover.security/careers/",
@@ -1006,7 +1006,7 @@
   },
   {
     "name": "Mate",
-    "website": "https://snap.licdn.com",
+    "website": "https://mate.security",
     "source_vc": "Team8",
     "vc_tier": 1,
     "careers_url": "https://www.linkedin.com/company/mate-security/jobs/",
@@ -1073,9 +1073,13 @@
     "vc_tier": 1,
     "careers_url": "https://www.appcharge.com/careers",
     "ats": "comeet",
-    "ats_params": {},
+    "ats_params": {
+      "company_uid": "9A.00B",
+      "company_name": "",
+      "token": "A9B4A3D35074A3D3507A9B2A6CA9BA9BA9B"
+    },
     "discovered_at": "2026-05-04T22:12:04.354160+00:00",
-    "last_verified_at": "2026-05-17T11:32:14.759406+00:00",
+    "last_verified_at": "2026-05-17T12:16:08.932757+00:00",
     "last_jobs_pulled_at": null,
     "consecutive_failures": 1,
     "ats_source": "gemini-2.5-pro",
@@ -1975,7 +1979,7 @@
       "token": "94440DC0944094401BCC12882510"
     },
     "discovered_at": "2026-05-04T22:13:39.140529+00:00",
-    "last_verified_at": "2026-05-17T11:32:14.759406+00:00",
+    "last_verified_at": "2026-05-17T12:16:08.932757+00:00",
     "last_jobs_pulled_at": null,
     "consecutive_failures": 1,
     "ats_source": "gemini-2.5-pro",
@@ -4211,7 +4215,7 @@
   {
     "name": "Protai",
     "website": "https://www.protai.bio",
-    "source_vc": "Pitango",
+    "source_vc": "Grove",
     "vc_tier": 2,
     "careers_url": "https://protai.bio/careers",
     "ats": "unknown",
@@ -5185,7 +5189,7 @@
       "token": "9103660519012202D5024401B3091024403660"
     },
     "discovered_at": "2026-05-04T22:20:45.737333+00:00",
-    "last_verified_at": "2026-05-17T11:32:14.759406+00:00",
+    "last_verified_at": "2026-05-17T12:16:08.932757+00:00",
     "last_jobs_pulled_at": null,
     "consecutive_failures": 0,
     "careers_url_source": "gemini-2.5-pro",
@@ -10996,7 +11000,7 @@
     "category": "cyber",
     "location_filter": "israel",
     "discovered_at": "2026-05-04T22:31:35.530163+00:00",
-    "last_verified_at": "2026-05-17T11:32:14.759406+00:00",
+    "last_verified_at": "2026-05-17T12:16:08.932757+00:00",
     "last_jobs_pulled_at": null,
     "consecutive_failures": 0
   },
@@ -30119,7 +30123,7 @@
       "token": "AF24C9E4C9E015E457906282579036BA36BA"
     },
     "discovered_at": "2026-05-17T11:24:29.799753+00:00",
-    "last_verified_at": "2026-05-17T11:32:14.759406+00:00",
+    "last_verified_at": "2026-05-17T12:00:13.515256+00:00",
     "last_jobs_pulled_at": null,
     "consecutive_failures": 0,
     "category": "cyber",
@@ -30268,12 +30272,12 @@
     "ats_params": {
       "company_uid": "F8.006",
       "company_name": "ox_security",
-      "token": ""
+      "token": "8F635C447B035C42CCE2CCE23D83EBA35C48F6"
     },
     "category": "cyber",
     "location_filter": "israel",
     "discovered_at": "2026-05-17T11:32:14.759406+00:00",
-    "last_verified_at": "2026-05-17T11:32:14.759406+00:00",
+    "last_verified_at": "2026-05-17T12:16:08.932757+00:00",
     "last_jobs_pulled_at": null,
     "consecutive_failures": 0
   },
@@ -30380,12 +30384,14 @@
     "source_vc": null,
     "vc_tier": null,
     "careers_url": "https://www.token.security/company/careers",
-    "ats": "other",
-    "ats_params": {},
+    "ats": "greenhouse",
+    "ats_params": {
+      "board_token": "tokensecurity"
+    },
     "category": "cyber",
     "location_filter": "israel",
     "discovered_at": "2026-05-17T11:32:14.759406+00:00",
-    "last_verified_at": "2026-05-17T11:32:14.759406+00:00",
+    "last_verified_at": "2026-05-17T12:16:08.932757+00:00",
     "last_jobs_pulled_at": null,
     "consecutive_failures": 0
   },
@@ -30411,13 +30417,15 @@
     "source": "big_companies_list",
     "source_vc": null,
     "vc_tier": null,
-    "careers_url": "https://www.eon.io/careers",
-    "ats": "other",
-    "ats_params": {},
+    "careers_url": "https://job-boards.eu.greenhouse.io/eonio",
+    "ats": "greenhouse",
+    "ats_params": {
+      "board_token": "eonio"
+    },
     "category": "general",
     "location_filter": "israel",
     "discovered_at": "2026-05-17T11:32:14.759406+00:00",
-    "last_verified_at": "2026-05-17T11:32:14.759406+00:00",
+    "last_verified_at": "2026-05-17T12:00:13.515256+00:00",
     "last_jobs_pulled_at": null,
     "consecutive_failures": 0
   },
@@ -30427,13 +30435,15 @@
     "source": "big_companies_list",
     "source_vc": null,
     "vc_tier": null,
-    "careers_url": "https://cylake.com/careers/",
-    "ats": "other",
-    "ats_params": {},
+    "careers_url": "https://jobs.ashbyhq.com/cylake-inc",
+    "ats": "ashby",
+    "ats_params": {
+      "org_name": "cylake-inc"
+    },
     "category": "cyber",
     "location_filter": "israel",
     "discovered_at": "2026-05-17T11:32:14.759406+00:00",
-    "last_verified_at": "2026-05-17T11:32:14.759406+00:00",
+    "last_verified_at": "2026-05-17T12:16:08.932757+00:00",
     "last_jobs_pulled_at": null,
     "consecutive_failures": 0
   },
@@ -30495,13 +30505,15 @@
     "source": "big_companies_list",
     "source_vc": null,
     "vc_tier": null,
-    "careers_url": "https://spines.com/career/",
-    "ats": "other",
-    "ats_params": {},
+    "careers_url": "https://apply.workable.com/spines/",
+    "ats": "workable",
+    "ats_params": {
+      "company_slug": "spines"
+    },
     "category": "general",
     "location_filter": "israel",
     "discovered_at": "2026-05-17T11:32:14.759406+00:00",
-    "last_verified_at": "2026-05-17T11:32:14.759406+00:00",
+    "last_verified_at": "2026-05-17T12:16:08.932757+00:00",
     "last_jobs_pulled_at": null,
     "consecutive_failures": 0
   },
@@ -30511,13 +30523,15 @@
     "source": "big_companies_list",
     "source_vc": null,
     "vc_tier": null,
-    "careers_url": "https://honeycombinsurance.com/careers",
-    "ats": "other",
-    "ats_params": {},
+    "careers_url": "https://job-boards.greenhouse.io/honeycombinsurance",
+    "ats": "greenhouse",
+    "ats_params": {
+      "board_token": "honeycombinsurance"
+    },
     "category": "fintech",
     "location_filter": "israel",
     "discovered_at": "2026-05-17T11:32:14.759406+00:00",
-    "last_verified_at": "2026-05-17T11:32:14.759406+00:00",
+    "last_verified_at": "2026-05-17T12:16:08.932757+00:00",
     "last_jobs_pulled_at": null,
     "consecutive_failures": 0
   },
@@ -30550,6 +30564,147 @@
     "location_filter": "israel",
     "discovered_at": "2026-05-17T11:32:14.759406+00:00",
     "last_verified_at": "2026-05-17T11:32:14.759406+00:00",
+    "last_jobs_pulled_at": null,
+    "consecutive_failures": 0
+  },
+  {
+    "name": "Buildots",
+    "website": "https://buildots.com",
+    "source_vc": "TLV Partners",
+    "vc_tier": 2,
+    "careers_url": "https://careers.viola-group.com/companies",
+    "ats": "getro",
+    "ats_params": {
+      "board_host": "careers.viola-group.com"
+    },
+    "discovered_at": "2026-05-17T11:54:39.783582+00:00",
+    "last_verified_at": "2026-05-17T11:54:39.783609+00:00",
+    "last_jobs_pulled_at": null,
+    "consecutive_failures": 0
+  },
+  {
+    "name": "Aidoc",
+    "website": "https://www.aidoc.com",
+    "source_vc": "TLV Partners",
+    "vc_tier": 2,
+    "careers_url": "https://www.aidoc.com/about/careers/",
+    "ats": "comeet",
+    "ats_params": {
+      "company_uid": "B4.007",
+      "company_name": "",
+      "token": "4B717931C4A012DC96E96E2A6F210112DC"
+    },
+    "discovered_at": "2026-05-17T11:56:21.085591+00:00",
+    "last_verified_at": "2026-05-17T12:16:08.932757+00:00",
+    "last_jobs_pulled_at": null,
+    "consecutive_failures": 0,
+    "category": "general",
+    "location_filter": "israel",
+    "source": "big_companies_list"
+  },
+  {
+    "name": "Unframe",
+    "website": "https://unframe.ai",
+    "source_vc": "TLV Partners",
+    "vc_tier": 2,
+    "careers_url": "https://www.unframe.ai/careers",
+    "ats": "greenhouse",
+    "ats_params": {
+      "board_token": "unframe"
+    },
+    "discovered_at": "2026-05-17T11:56:22.061446+00:00",
+    "last_verified_at": "2026-05-17T12:16:08.932757+00:00",
+    "last_jobs_pulled_at": null,
+    "consecutive_failures": 0,
+    "category": "general",
+    "location_filter": "israel",
+    "source": "big_companies_list"
+  },
+  {
+    "name": "Silverfort",
+    "website": "https://silverfort.com",
+    "source_vc": "TLV Partners",
+    "vc_tier": 2,
+    "careers_url": "https://www.silverfort.com/careers",
+    "ats": "unknown",
+    "ats_params": {},
+    "discovered_at": "2026-05-17T11:56:24.656943+00:00",
+    "last_verified_at": "2026-05-17T11:56:24.656955+00:00",
+    "last_jobs_pulled_at": null,
+    "consecutive_failures": 0
+  },
+  {
+    "name": "Oligo Security",
+    "website": "https://oligo.security",
+    "source_vc": "TLV Partners",
+    "vc_tier": 2,
+    "careers_url": "https://www.oligo.security/company/careers",
+    "ats": "unknown",
+    "ats_params": {},
+    "discovered_at": "2026-05-17T11:56:25.782767+00:00",
+    "last_verified_at": "2026-05-17T11:56:25.782785+00:00",
+    "last_jobs_pulled_at": null,
+    "consecutive_failures": 0
+  },
+  {
+    "name": "CodiumAI",
+    "website": "https://codium.ai",
+    "source_vc": "TLV Partners",
+    "vc_tier": 2,
+    "careers_url": "https://www.qodo.ai/events/",
+    "ats": "unknown",
+    "ats_params": {},
+    "discovered_at": "2026-05-17T11:56:27.232267+00:00",
+    "last_verified_at": "2026-05-17T11:56:27.232323+00:00",
+    "last_jobs_pulled_at": null,
+    "consecutive_failures": 0
+  },
+  {
+    "name": "REAL",
+    "website": "https://www.real.dev",
+    "source_vc": "TLV Partners",
+    "vc_tier": 2,
+    "careers_url": "https://apply.workable.com/real/",
+    "ats": "workable",
+    "ats_params": {
+      "company_slug": "real"
+    },
+    "discovered_at": "2026-05-17T11:56:29.641392+00:00",
+    "last_verified_at": "2026-05-17T12:16:08.932757+00:00",
+    "last_jobs_pulled_at": null,
+    "consecutive_failures": 0,
+    "category": "general",
+    "location_filter": "israel",
+    "source": "big_companies_list"
+  },
+  {
+    "name": "Unit",
+    "website": "https://www.unit.co",
+    "source_vc": "TLV Partners",
+    "vc_tier": 2,
+    "careers_url": "https://jobs.ashbyhq.com/unit",
+    "ats": "ashby",
+    "ats_params": {
+      "org_name": "unit"
+    },
+    "discovered_at": "2026-05-17T11:56:30.965133+00:00",
+    "last_verified_at": "2026-05-17T12:16:08.932757+00:00",
+    "last_jobs_pulled_at": null,
+    "consecutive_failures": 0,
+    "category": "fintech",
+    "location_filter": "israel",
+    "source": "big_companies_list"
+  },
+  {
+    "name": "Kipp",
+    "website": "https://letskipp.com",
+    "source_vc": "TLV Partners",
+    "vc_tier": 2,
+    "careers_url": "https://letskipp.com/careers/",
+    "ats": "unknown",
+    "ats_params": {},
+    "discovered_at": "2026-05-17T11:56:31.804633+00:00",
+    "last_verified_at": "2026-05-17T11:56:31.804651+00:00",
     "last_jobs_pulled_at": null,
     "consecutive_failures": 0
   }
