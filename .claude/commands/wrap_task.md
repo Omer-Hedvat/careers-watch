@@ -15,7 +15,7 @@ Archive a QA-passed task and unblock downstream work.
 ## Pre-flight
 
 - Confirm status is `🟢 Completed` or `completed` — refuse if not
-- Confirm `/qa_task` was run and passed in this session (or user confirms)
+- Confirm `/qa_task` was run and passed in this session — do NOT ask the user to confirm; if QA was not run, run it now and only proceed on pass
 
 ## Steps
 

@@ -37,10 +37,16 @@
       "Bash(uv run python vcs/*.py*)",
       "Bash(uv run python ats/*.py*)",
       "Bash(uv run python3 -m pytest*)",
+      "Bash(uv run python -m pytest *)",
       "Bash(uv add *)",
       "Bash(uv sync*)",
       "Bash(python3 -c *)",
-      "Bash(jq *)"
+      "Bash(jq *)",
+      "Bash(mv future_devs/* future_devs/archive/*)",
+      "Bash(mv /Users/omerhedvat/git/careers-watch/future_devs/*)",
+      "Bash(mkdir -p *)",
+      "Bash(cp companies.json *)",
+      "Bash(cp new_jobs.json *)"
     ]
   }
 }

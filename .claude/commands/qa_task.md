@@ -49,5 +49,5 @@ Verify:
 
 All Tier 1 checks pass AND no Tier 2/3/4 regressions observed.
 
-On pass: proceed to `/wrap_task`.
-On fail: return to `/start_task` Phase B, fix, re-run QA.
+On pass: immediately invoke `/wrap_task <slug>` — do NOT pause for user confirmation. Omer does not gate on manual QA review for this project.
+On fail: return to `/start_task` Phase B, fix, re-run QA. Only surface to the user if the failure needs their judgement.
