@@ -1,7 +1,7 @@
 # BUG: Render scoring endpoint always 503 — new_jobs.json unreachable on persistent disk
 
 ## Status
-🔵 Open
+🟢 Completed
 
 ## Severity
 P0
@@ -36,4 +36,7 @@ Also remove the `disk:` block from `render.yaml` unless needed for another purpo
 - **Spec files to update:** `future_devs/archive/WEBAPP_DEPLOY_SPEC.md`
 
 ## Fix Notes
-<!-- populated after fix -->
+- Removed `disk:` block from `render.yaml` (free-tier disk was unused)
+- Changed `JOBS_PATH` from `/data/new_jobs.json` → `/opt/render/project/src/new_jobs.json`
+- Changed `COMPANIES_PATH` from `/data/companies.json` → `/opt/render/project/src/companies.json`
+- Both files are committed to the repo; Render redeploys on every push so they are always current
