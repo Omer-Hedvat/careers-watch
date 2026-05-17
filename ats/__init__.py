@@ -1,15 +1,18 @@
 from ats.ashby import fetch_positions as _fetch_ashby
+from ats.breezy import fetch_positions as _fetch_breezy
 from ats.comeet import fetch_positions as _fetch_comeet
 from ats.consider import fetch_positions as _fetch_consider
 from ats.getro import fetch_positions as _fetch_getro
 from ats.greenhouse import fetch_positions as _fetch_greenhouse
 from ats.lever import fetch_positions as _fetch_lever
+from ats.talentbrew import fetch_positions as _fetch_talentbrew
 from ats.teamtailor import fetch_positions as _fetch_teamtailor
 from ats.workable import fetch_positions as _fetch_workable
 from ats.workday import fetch_positions as _fetch_workday
 
 ATS_PULLERS = {
     "ashby": lambda params: _fetch_ashby(params["org_name"]),
+    "breezy": lambda params: _fetch_breezy(params["company_slug"]),
     "comeet": lambda params: _fetch_comeet(params["company_uid"], params["token"]),
     "consider": lambda params: _fetch_consider(params["board_id"]),
     "getro": lambda params: _fetch_getro(params["board_host"]),
@@ -18,6 +21,7 @@ ATS_PULLERS = {
         params.get("board_token") or params.get("company_slug", "")
     ),
     "lever": lambda params: _fetch_lever(params["company_slug"]),
+    "talentbrew": lambda params: _fetch_talentbrew(params["host"], params.get("facet", "israel")),
     "teamtailor": lambda params: _fetch_teamtailor(params["subdomain"], params.get("custom_host_url")),
     "workable": lambda params: _fetch_workable(params["company_slug"]),
     "workday": lambda params: _fetch_workday(params["tenant"], params["wd_instance"], params["job_site"]),
