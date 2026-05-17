@@ -57,7 +57,7 @@ All Phase P2 tasks are wrapped. See `ROADMAP_ARCHIVE.md`.
 |---|---|---|---|---|
 | [WEBAPP_SUPABASE_SETUP_GUIDE](future_devs/archive/WEBAPP_SUPABASE_SETUP_GUIDE_SPEC.md) | Supabase initial setup guide (schema, OAuth, RLS) | `wrapped` | XS | — |
 | [WEBAPP_PDF_CV_UPLOAD](future_devs/archive/WEBAPP_PDF_CV_UPLOAD_SPEC.md) | PDF CV upload in onboarding Step 2 | `wrapped` | S | — |
-| [WEBAPP_OLD_PROFILE_BADGE](future_devs/WEBAPP_OLD_PROFILE_BADGE_SPEC.md) | "Scored with old profile" badge on digest cards | `in-progress` | S | — |
+| [WEBAPP_OLD_PROFILE_BADGE](future_devs/archive/WEBAPP_OLD_PROFILE_BADGE_SPEC.md) | "Scored with old profile" badge on digest cards | `wrapped` | S | — |
 
 ---
 
@@ -66,7 +66,7 @@ All Phase P2 tasks are wrapped. See `ROADMAP_ARCHIVE.md`.
 | Slug | Title | Status | Effort | Depends on |
 |---|---|---|---|---|
 | [PROPRIETARY_ATS_PULLERS](future_devs/PROPRIETARY_ATS_PULLERS_SPEC.md) **(epic)** | Pullers for Intuit/AWS/Microsoft/Google/PayPal/Varonis/CyberArk/SAP/Claroty/QM/Descope | `in-progress` | L | — |
-| ├─ [ATS_TALENTBREW](future_devs/ATS_TALENTBREW_SPEC.md) | TalentBrew puller → Intuit | `not-started` | XS | — |
+| ├─ [ATS_TALENTBREW](future_devs/ATS_TALENTBREW_SPEC.md) | TalentBrew puller → Intuit | `in-progress` | XS | — |
 | ├─ [ATS_AMAZON_JOBS](future_devs/ATS_AMAZON_JOBS_SPEC.md) | amazon.jobs puller → AWS Israel | `not-started` | S | — |
 | ├─ [ATS_MICROSOFT_CAREERS](future_devs/ATS_MICROSOFT_CAREERS_SPEC.md) | careers.microsoft.com puller → Microsoft Israel | `not-started` | S | — |
 | ├─ [ATS_GOOGLE_CAREERS](future_devs/ATS_GOOGLE_CAREERS_SPEC.md) | careers.google.com puller → Google Israel | `not-started` | S | — |

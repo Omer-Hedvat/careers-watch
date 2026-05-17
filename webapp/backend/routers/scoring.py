@@ -115,6 +115,8 @@ def trigger_score(authorization: str = Header(...)):
     gemini_client = genai.Client(api_key=gemini_key)
     results = score_jobs_batch(pending, profile_md, cv_text, gemini_client)
 
+    profile_version = user_row.get("profile_version") or 1
+
     rows = []
     for job, result in zip(pending, results):
         if result is None:
@@ -128,6 +130,7 @@ def trigger_score(authorization: str = Header(...)):
             "score": result.get("score"),
             "reasoning": result.get("reasoning", ""),
             "flags": result.get("flags", []),
+            "profile_version": profile_version,
         })
 
     if rows:

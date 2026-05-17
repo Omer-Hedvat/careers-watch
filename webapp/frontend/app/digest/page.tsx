@@ -15,6 +15,7 @@ type Job = {
   scored_at: string
   applied: boolean
   apply_url: string
+  profile_version?: number
 }
 
 function timeAgo(iso: string): string {
@@ -31,12 +32,16 @@ function ScoreBadge({ score }: { score: number }) {
   return <span className={`${bg} text-white text-sm font-bold w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0`}>{score}</span>
 }
 
-function JobCard({ job, onToggleApplied }: { job: Job; onToggleApplied: (j: Job) => void }) {
+function JobCard({ job, onToggleApplied, currentProfileVersion }: { job: Job; onToggleApplied: (j: Job) => void; currentProfileVersion: number }) {
+  const staleProfile = job.profile_version !== undefined && job.profile_version < currentProfileVersion
   return (
     <div className={`bg-gray-900 rounded-xl p-5 flex gap-4 ${job.applied ? 'opacity-50' : ''}`}>
       <ScoreBadge score={job.score} />
       <div className="flex-1 min-w-0">
-        <div className="font-semibold text-white">{job.company} — {job.title}</div>
+        <div className="flex items-center gap-2 flex-wrap">
+          <span className="font-semibold text-white">{job.company} — {job.title}</span>
+          {staleProfile && <span className="px-2 py-0.5 bg-gray-800 text-gray-500 text-xs rounded border border-gray-700">scored with old profile</span>}
+        </div>
         <div className="text-sm text-gray-400 mt-0.5">{job.location} · scored {timeAgo(job.scored_at)}</div>
         {job.reasoning && <p className="text-sm text-gray-300 mt-2 line-clamp-2">"{job.reasoning}"</p>}
         {job.flags.length > 0 && (
@@ -65,6 +70,7 @@ export default function DigestPage() {
   const [scoring, setScoring] = useState(false)
   const [scoreMsg, setScoreMsg] = useState('')
   const [runsUsed, setRunsUsed] = useState(0)
+  const [currentProfileVersion, setCurrentProfileVersion] = useState(1)
   const [minScore, setMinScore] = useState(5)
   const [search, setSearch] = useState('')
   const [showApplied, setShowApplied] = useState(false)
@@ -91,6 +97,7 @@ export default function DigestPage() {
     if (res.ok) {
       const d = await res.json()
       setRunsUsed(d.scoring_runs_this_week ?? 0)
+      setCurrentProfileVersion(d.profile_version ?? 1)
     }
   }
 
@@ -171,7 +178,7 @@ export default function DigestPage() {
         {!loading && active.length === 0 && applied.length > 0 && (
           <p className="text-gray-400 text-center py-6">No jobs match your current filters.</p>
         )}
-        {active.map(job => <JobCard key={job.id} job={job} onToggleApplied={toggleApplied} />)}
+        {active.map(job => <JobCard key={job.id} job={job} onToggleApplied={toggleApplied} currentProfileVersion={currentProfileVersion} />)}
 
         {/* Applied section */}
         {applied.length > 0 && (
@@ -179,7 +186,7 @@ export default function DigestPage() {
             <button onClick={() => setShowApplied(v => !v)} className="text-sm text-gray-400 hover:text-white py-2">
               {showApplied ? `Hide ${applied.length} applied` : `Show ${applied.length} applied`}
             </button>
-            {showApplied && applied.map(job => <JobCard key={job.id} job={job} onToggleApplied={toggleApplied} />)}
+            {showApplied && applied.map(job => <JobCard key={job.id} job={job} onToggleApplied={toggleApplied} currentProfileVersion={currentProfileVersion} />)}
           </div>
         )}
       </div>
