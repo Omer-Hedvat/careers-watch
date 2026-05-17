@@ -426,13 +426,13 @@
     "source": "big_companies_list",
     "source_vc": "Vertex Israel",
     "vc_tier": 2,
-    "careers_url": "https://www.cyberark.com/careers/all-job-openings/",
+    "careers_url": "https://jobs.smartrecruiters.com/Cyberark1",
     "ats": "other",
     "ats_params": {},
     "category": "cyber",
     "location_filter": "israel",
     "discovered_at": "2026-05-04T18:54:33.370404+00:00",
-    "last_verified_at": "2026-05-17T12:16:08.932757+00:00",
+    "last_verified_at": "2026-05-17T15:21:36.730337+00:00",
     "last_jobs_pulled_at": "2026-05-04T18:54:39.592896+00:00",
     "consecutive_failures": 0
   },
@@ -517,12 +517,14 @@
     "source_vc": null,
     "vc_tier": null,
     "careers_url": "https://jobs.jobvite.com/varonis",
-    "ats": "other",
-    "ats_params": {},
+    "ats": "jobvite",
+    "ats_params": {
+      "company_slug": "varonis"
+    },
     "category": "cyber",
     "location_filter": "israel",
     "discovered_at": "2026-05-04T18:54:33.370404+00:00",
-    "last_verified_at": "2026-05-05T14:40:51.826906+00:00",
+    "last_verified_at": "2026-05-17T15:21:36.730337+00:00",
     "last_jobs_pulled_at": "2026-05-04T18:54:41.115650+00:00",
     "consecutive_failures": 0
   },
@@ -532,13 +534,15 @@
     "source": "big_companies_list",
     "source_vc": null,
     "vc_tier": null,
-    "careers_url": "https://www.paloaltonetworks.com/company/careers",
-    "ats": "workday",
-    "ats_params": {},
+    "careers_url": "https://jobs.smartrecruiters.com/PaloAltoNetworks2",
+    "ats": "smartrecruiters",
+    "ats_params": {
+      "company": "PaloAltoNetworks2"
+    },
     "category": "cyber",
     "location_filter": "israel",
     "discovered_at": "2026-05-04T18:54:33.370404+00:00",
-    "last_verified_at": "2026-05-04T18:54:33.370404+00:00",
+    "last_verified_at": "2026-05-17T15:21:36.730337+00:00",
     "last_jobs_pulled_at": null,
     "consecutive_failures": 0
   },
@@ -548,13 +552,13 @@
     "source": "big_companies_list",
     "source_vc": null,
     "vc_tier": null,
-    "careers_url": "https://checkpoint.wd5.myworkdayjobs.com/CheckPointCareers",
-    "ats": "workday",
+    "careers_url": "https://careers.checkpoint.com",
+    "ats": "other",
     "ats_params": {},
     "category": "cyber",
     "location_filter": "israel",
     "discovered_at": "2026-05-04T18:54:33.370404+00:00",
-    "last_verified_at": "2026-05-04T18:54:33.370404+00:00",
+    "last_verified_at": "2026-05-17T15:21:36.730337+00:00",
     "last_jobs_pulled_at": null,
     "consecutive_failures": 0
   },
@@ -564,13 +568,13 @@
     "source": "big_companies_list",
     "source_vc": null,
     "vc_tier": null,
-    "careers_url": "https://akamai.wd1.myworkdayjobs.com/en-US/AkamaiCareers",
-    "ats": "workday",
+    "careers_url": "https://jobs.akamai.com",
+    "ats": "other",
     "ats_params": {},
     "category": "security",
     "location_filter": "israel",
     "discovered_at": "2026-05-04T18:54:33.370404+00:00",
-    "last_verified_at": "2026-05-04T18:54:33.370404+00:00",
+    "last_verified_at": "2026-05-17T15:21:36.730337+00:00",
     "last_jobs_pulled_at": null,
     "consecutive_failures": 0
   },
@@ -635,13 +639,13 @@
     "source": "big_companies_list",
     "source_vc": null,
     "vc_tier": null,
-    "careers_url": "https://www.radware.com/company/careers/",
+    "careers_url": "https://radware.taleo.net/careersection/ex/jobsearch.ftl",
     "ats": "other",
     "ats_params": {},
     "category": "security",
     "location_filter": "israel",
     "discovered_at": "2026-05-04T18:54:33.370404+00:00",
-    "last_verified_at": "2026-05-04T18:54:33.370404+00:00",
+    "last_verified_at": "2026-05-17T15:21:36.730337+00:00",
     "last_jobs_pulled_at": null,
     "consecutive_failures": 0
   },
@@ -711,7 +715,7 @@
     "category": "fintech",
     "location_filter": "israel",
     "discovered_at": "2026-05-04T18:54:33.370404+00:00",
-    "last_verified_at": "2026-05-17T12:16:08.932757+00:00",
+    "last_verified_at": "2026-05-17T15:21:36.730337+00:00",
     "last_jobs_pulled_at": "2026-05-17T10:37:22.517931+00:00",
     "consecutive_failures": 0
   },
@@ -757,13 +761,16 @@
     "source": "big_companies_list",
     "source_vc": null,
     "vc_tier": null,
-    "careers_url": "https://careers.intuit.com/",
-    "ats": "other",
-    "ats_params": {},
+    "careers_url": "https://jobs.intuit.com/",
+    "ats": "talentbrew",
+    "ats_params": {
+      "host": "jobs.intuit.com",
+      "facet": "israel"
+    },
     "category": "fintech",
     "location_filter": "israel",
     "discovered_at": "2026-05-04T18:54:33.370404+00:00",
-    "last_verified_at": "2026-05-04T18:54:33.370404+00:00",
+    "last_verified_at": "2026-05-17T15:21:36.730337+00:00",
     "last_jobs_pulled_at": null,
     "consecutive_failures": 0
   },
@@ -774,12 +781,15 @@
     "source_vc": null,
     "vc_tier": null,
     "careers_url": "https://paypal.eightfold.ai/careers",
-    "ats": "other",
-    "ats_params": {},
+    "ats": "eightfold",
+    "ats_params": {
+      "tenant": "paypal",
+      "location_query": "Israel"
+    },
     "category": "fintech",
     "location_filter": "israel",
     "discovered_at": "2026-05-04T18:54:33.370404+00:00",
-    "last_verified_at": "2026-05-04T18:54:33.370404+00:00",
+    "last_verified_at": "2026-05-17T15:21:36.730337+00:00",
     "last_jobs_pulled_at": null,
     "consecutive_failures": 0
   },
@@ -790,12 +800,14 @@
     "source_vc": null,
     "vc_tier": null,
     "careers_url": "https://jobs.careers.microsoft.com/global/en/search?lc=Israel",
-    "ats": "other",
-    "ats_params": {},
+    "ats": "microsoft_careers",
+    "ats_params": {
+      "location_query": "Israel"
+    },
     "category": "general",
     "location_filter": "israel",
     "discovered_at": "2026-05-04T18:54:33.370404+00:00",
-    "last_verified_at": "2026-05-04T18:54:33.370404+00:00",
+    "last_verified_at": "2026-05-17T15:21:36.730337+00:00",
     "last_jobs_pulled_at": null,
     "consecutive_failures": 0
   },
@@ -805,13 +817,15 @@
     "source": "big_companies_list",
     "source_vc": null,
     "vc_tier": null,
-    "careers_url": "https://careers.google.com/locations/tel-aviv/",
-    "ats": "other",
-    "ats_params": {},
+    "careers_url": "https://www.google.com/about/careers/applications/jobs/results?location=Israel",
+    "ats": "google_careers",
+    "ats_params": {
+      "location_query": "Israel"
+    },
     "category": "general",
     "location_filter": "israel",
     "discovered_at": "2026-05-04T18:54:33.370404+00:00",
-    "last_verified_at": "2026-05-04T18:54:33.370404+00:00",
+    "last_verified_at": "2026-05-17T15:21:36.730337+00:00",
     "last_jobs_pulled_at": null,
     "consecutive_failures": 0
   },
@@ -822,12 +836,14 @@
     "source_vc": null,
     "vc_tier": null,
     "careers_url": "https://www.amazon.jobs/en/locations/israel",
-    "ats": "other",
-    "ats_params": {},
+    "ats": "amazon_jobs",
+    "ats_params": {
+      "country_code": "ISR"
+    },
     "category": "general",
     "location_filter": "israel",
     "discovered_at": "2026-05-04T18:54:33.370404+00:00",
-    "last_verified_at": "2026-05-04T18:54:33.370404+00:00",
+    "last_verified_at": "2026-05-17T15:21:36.730337+00:00",
     "last_jobs_pulled_at": null,
     "consecutive_failures": 0
   },
@@ -1979,7 +1995,7 @@
       "token": "94440DC0944094401BCC12882510"
     },
     "discovered_at": "2026-05-04T22:13:39.140529+00:00",
-    "last_verified_at": "2026-05-17T12:16:08.932757+00:00",
+    "last_verified_at": "2026-05-17T15:21:36.730337+00:00",
     "last_jobs_pulled_at": null,
     "consecutive_failures": 1,
     "ats_source": "gemini-2.5-pro",
@@ -5189,7 +5205,7 @@
       "token": "9103660519012202D5024401B3091024403660"
     },
     "discovered_at": "2026-05-04T22:20:45.737333+00:00",
-    "last_verified_at": "2026-05-17T12:16:08.932757+00:00",
+    "last_verified_at": "2026-05-17T15:21:36.730337+00:00",
     "last_jobs_pulled_at": null,
     "consecutive_failures": 0,
     "careers_url_source": "gemini-2.5-pro",
@@ -10995,12 +11011,14 @@
     "source_vc": "Bessemer",
     "vc_tier": 2,
     "careers_url": "https://claroty.teamme.link/careers",
-    "ats": "other",
-    "ats_params": {},
+    "ats": "teamme",
+    "ats_params": {
+      "tenant": "claroty"
+    },
     "category": "cyber",
     "location_filter": "israel",
     "discovered_at": "2026-05-04T22:31:35.530163+00:00",
-    "last_verified_at": "2026-05-17T12:16:08.932757+00:00",
+    "last_verified_at": "2026-05-17T15:21:36.730337+00:00",
     "last_jobs_pulled_at": null,
     "consecutive_failures": 0
   },
@@ -30032,12 +30050,14 @@
     "source_vc": null,
     "vc_tier": null,
     "careers_url": "https://qm.teamme.link",
-    "ats": "other",
-    "ats_params": {},
+    "ats": "teamme",
+    "ats_params": {
+      "tenant": "qm"
+    },
     "category": "general",
     "location_filter": "israel",
     "discovered_at": "2026-05-07T11:24:33.472448+00:00",
-    "last_verified_at": "2026-05-07T11:24:33.472448+00:00",
+    "last_verified_at": "2026-05-17T15:21:36.730337+00:00",
     "last_jobs_pulled_at": null,
     "consecutive_failures": 0
   },
@@ -30087,13 +30107,17 @@
     "source": "big_companies_list",
     "source_vc": null,
     "vc_tier": null,
-    "careers_url": "https://jobs.sap.com",
-    "ats": "other",
-    "ats_params": {},
+    "careers_url": "https://jobs.sap.com/search/?locationsearch=israel",
+    "ats": "successfactors",
+    "ats_params": {
+      "tenant": "sap",
+      "branded_host": "jobs.sap.com",
+      "location_query": "israel"
+    },
     "category": "general",
     "location_filter": "israel",
     "discovered_at": "2026-05-07T11:24:33.472448+00:00",
-    "last_verified_at": "2026-05-07T11:24:33.472448+00:00",
+    "last_verified_at": "2026-05-17T15:21:36.730337+00:00",
     "last_jobs_pulled_at": null,
     "consecutive_failures": 0
   },
@@ -30368,12 +30392,14 @@
     "source_vc": null,
     "vc_tier": null,
     "careers_url": "https://descope.breezy.hr/",
-    "ats": "other",
-    "ats_params": {},
+    "ats": "breezy",
+    "ats_params": {
+      "company_slug": "descope"
+    },
     "category": "cyber",
     "location_filter": "israel",
     "discovered_at": "2026-05-17T11:32:14.759406+00:00",
-    "last_verified_at": "2026-05-17T11:32:14.759406+00:00",
+    "last_verified_at": "2026-05-17T15:21:36.730337+00:00",
     "last_jobs_pulled_at": null,
     "consecutive_failures": 0
   },
@@ -30453,17 +30479,17 @@
     "source": "big_companies_list",
     "source_vc": null,
     "vc_tier": null,
-    "careers_url": "https://www.comeet.com/jobs/kelasys/2A.007",
+    "careers_url": "https://www.comeet.com/jobs/kelatechnologies/2A.007",
     "ats": "comeet",
     "ats_params": {
       "company_uid": "2A.007",
-      "company_name": "kelasys",
-      "token": ""
+      "company_name": "kelatechnologies",
+      "token": "A2747111E755B5F0513847114711A274711"
     },
     "category": "general",
     "location_filter": "israel",
     "discovered_at": "2026-05-17T11:32:14.759406+00:00",
-    "last_verified_at": "2026-05-17T11:32:14.759406+00:00",
+    "last_verified_at": "2026-05-17T15:21:36.730337+00:00",
     "last_jobs_pulled_at": null,
     "consecutive_failures": 0
   },
@@ -30489,13 +30515,15 @@
     "source": "big_companies_list",
     "source_vc": null,
     "vc_tier": null,
-    "careers_url": "https://artemissecurity.com/careers/",
-    "ats": "other",
-    "ats_params": {},
+    "careers_url": "https://jobs.ashbyhq.com/artemis",
+    "ats": "ashby",
+    "ats_params": {
+      "org_name": "artemis"
+    },
     "category": "cyber",
     "location_filter": "israel",
     "discovered_at": "2026-05-17T11:32:14.759406+00:00",
-    "last_verified_at": "2026-05-17T11:32:14.759406+00:00",
+    "last_verified_at": "2026-05-17T15:21:36.730337+00:00",
     "last_jobs_pulled_at": null,
     "consecutive_failures": 0
   },
@@ -30595,7 +30623,7 @@
       "token": "4B717931C4A012DC96E96E2A6F210112DC"
     },
     "discovered_at": "2026-05-17T11:56:21.085591+00:00",
-    "last_verified_at": "2026-05-17T12:16:08.932757+00:00",
+    "last_verified_at": "2026-05-17T15:21:36.730337+00:00",
     "last_jobs_pulled_at": null,
     "consecutive_failures": 0,
     "category": "general",
@@ -30670,7 +30698,7 @@
       "company_slug": "real"
     },
     "discovered_at": "2026-05-17T11:56:29.641392+00:00",
-    "last_verified_at": "2026-05-17T12:16:08.932757+00:00",
+    "last_verified_at": "2026-05-17T15:21:36.730337+00:00",
     "last_jobs_pulled_at": null,
     "consecutive_failures": 0,
     "category": "general",
@@ -30688,7 +30716,7 @@
       "org_name": "unit"
     },
     "discovered_at": "2026-05-17T11:56:30.965133+00:00",
-    "last_verified_at": "2026-05-17T12:16:08.932757+00:00",
+    "last_verified_at": "2026-05-17T15:21:36.730337+00:00",
     "last_jobs_pulled_at": null,
     "consecutive_failures": 0,
     "category": "fintech",
@@ -30705,6 +30733,19 @@
     "ats_params": {},
     "discovered_at": "2026-05-17T11:56:31.804633+00:00",
     "last_verified_at": "2026-05-17T11:56:31.804651+00:00",
+    "last_jobs_pulled_at": null,
+    "consecutive_failures": 0
+  },
+  {
+    "name": "MetalBear",
+    "website": "https://metalbear.com",
+    "source_vc": "TLV Partners",
+    "vc_tier": 2,
+    "careers_url": null,
+    "ats": "unknown",
+    "ats_params": {},
+    "discovered_at": "2026-05-17T15:17:21.304267+00:00",
+    "last_verified_at": "2026-05-17T15:17:21.304275+00:00",
     "last_jobs_pulled_at": null,
     "consecutive_failures": 0
   }
