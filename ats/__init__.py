@@ -1,3 +1,4 @@
+from ats.amazon_jobs import fetch_positions as _fetch_amazon_jobs
 from ats.ashby import fetch_positions as _fetch_ashby
 from ats.breezy import fetch_positions as _fetch_breezy
 from ats.comeet import fetch_positions as _fetch_comeet
@@ -11,6 +12,7 @@ from ats.workable import fetch_positions as _fetch_workable
 from ats.workday import fetch_positions as _fetch_workday
 
 ATS_PULLERS = {
+    "amazon_jobs": lambda p: _fetch_amazon_jobs(p.get("country_code", "ISR")),
     "ashby": lambda params: _fetch_ashby(params["org_name"]),
     "breezy": lambda params: _fetch_breezy(params["company_slug"]),
     "comeet": lambda params: _fetch_comeet(params["company_uid"], params["token"]),

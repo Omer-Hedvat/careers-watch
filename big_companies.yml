@@ -619,12 +619,13 @@
 
 - name: AWS Israel
   website: https://aws.amazon.com
-  careers_url: https://www.amazon.jobs/en/locations/israel  # TODO: verify
-  ats: other
-  ats_params: {}  # TODO: Amazon/AWS uses its own careers system - no public ATS API
+  careers_url: https://www.amazon.jobs/en/locations/israel
+  ats: amazon_jobs
+  ats_params:
+    country_code: ISR
   category: general
   location_filter: israel
-  notes: "TODO: Amazon/AWS uses a proprietary careers system - no standard ATS puller"
+  notes: "Amazon Jobs (covers AWS, Lab126, retail, etc.). Public JSON API."
 
 - name: Meta Israel
   website: https://www.metacareers.com
