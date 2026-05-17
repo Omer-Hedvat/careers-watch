@@ -134,11 +134,11 @@
 - name: Varonis
   website: https://www.varonis.com
   careers_url: https://jobs.jobvite.com/varonis
-  ats: other
-  ats_params: {}  # Jobvite - no puller implemented yet. careers.varonis.com is a custom Angular app backed by Jobvite (confirmed via main.js: careerSiteUri="varonis", frame-src *.jobvite.com). The URL pattern ?p=job/shortcode seen on the site is the custom Angular router, not Workable.
+  ats: jobvite
+  ats_params:
+    company_slug: varonis
   category: cyber
   location_filter: israel
-  notes: "ATS is Jobvite (jobs.jobvite.com/varonis). Needs a Jobvite puller to activate."
 
 - name: Palo Alto Networks
   website: https://www.paloaltonetworks.com
@@ -590,12 +590,13 @@
 
 - name: PayPal Israel
   website: https://www.paypal.com
-  careers_url: https://paypal.eightfold.ai/careers  # TODO: verify - PayPal uses Eightfold AI platform
-  ats: other
-  ats_params: {}  # TODO: PayPal uses Eightfold AI - no standard ATS puller
+  careers_url: https://paypal.eightfold.ai/careers
+  ats: eightfold
+  ats_params:
+    tenant: paypal
+    location_query: Israel
   category: fintech
   location_filter: israel
-  notes: "TODO: PayPal uses Eightfold AI careers platform - need custom puller"
 
 # ─── Big Tech (Israel offices) ───────────────────────────────────────────────
 
