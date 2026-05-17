@@ -5,9 +5,11 @@ from ats.comeet import fetch_positions as _fetch_comeet
 from ats.consider import fetch_positions as _fetch_consider
 from ats.eightfold import fetch_positions as _fetch_eightfold
 from ats.getro import fetch_positions as _fetch_getro
+from ats.google_careers import fetch_positions as _fetch_google_careers
 from ats.greenhouse import fetch_positions as _fetch_greenhouse
 from ats.jobvite import fetch_positions as _fetch_jobvite
 from ats.lever import fetch_positions as _fetch_lever
+from ats.microsoft_careers import fetch_positions as _fetch_microsoft_careers
 from ats.talentbrew import fetch_positions as _fetch_talentbrew
 from ats.teamtailor import fetch_positions as _fetch_teamtailor
 from ats.workable import fetch_positions as _fetch_workable
@@ -21,12 +23,14 @@ ATS_PULLERS = {
     "consider": lambda params: _fetch_consider(params["board_id"]),
     "eightfold": lambda p: _fetch_eightfold(p["tenant"], p.get("location_query", "Israel")),
     "getro": lambda params: _fetch_getro(params["board_host"]),
+    "google_careers": lambda p: _fetch_google_careers(p.get("location_query", "Israel")),
     # board_token is the new canonical key (big_companies.yml); company_slug is the legacy key (VC-discovered entries)
     "greenhouse": lambda params: _fetch_greenhouse(
         params.get("board_token") or params.get("company_slug", "")
     ),
     "jobvite": lambda params: _fetch_jobvite(params["company_slug"]),
     "lever": lambda params: _fetch_lever(params["company_slug"]),
+    "microsoft_careers": lambda p: _fetch_microsoft_careers(p.get("location_query", "Israel")),
     "talentbrew": lambda params: _fetch_talentbrew(params["host"], params.get("facet", "israel")),
     "teamtailor": lambda params: _fetch_teamtailor(params["subdomain"], params.get("custom_host_url")),
     "workable": lambda params: _fetch_workable(params["company_slug"]),

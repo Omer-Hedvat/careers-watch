@@ -64,6 +64,18 @@ TALENTBREW_JOB_RE = re.compile(r'href="/job/[^"/]+/[^"/]+/\d+/\d+"', re.IGNORECA
 # Amazon Jobs: amazon.jobs/en/jobs/<id>/...
 AMAZON_JOBS_RE = re.compile(r"amazon\.jobs/en/jobs/", re.IGNORECASE)
 
+# Microsoft Careers: jobs.careers.microsoft.com/global/en/job/<id>,
+# apply.careers.microsoft.com/careers (new Eightfold PCSX SPA), or either API host.
+MICROSOFT_CAREERS_RE = re.compile(
+    r"(jobs\.careers\.microsoft\.com/global/en/job/\d+"
+    r"|apply\.careers\.microsoft\.com"
+    r"|gcsservices\.careers\.microsoft\.com)",
+    re.IGNORECASE,
+)
+
+# Google Careers (proprietary SPA - no ATS API, HTML-scrape only)
+GOOGLE_CAREERS_RE = re.compile(r"google\.com/about/careers/applications/jobs/results", re.IGNORECASE)
+
 # Jobvite: jobs.jobvite.com/<slug>
 JOBVITE_RE = re.compile(r"jobs\.jobvite\.com/([a-zA-Z0-9_.-]+)", re.IGNORECASE)
 JOBVITE_GENERIC_PATHS = {"api", "static", "assets", "cdn", "favicon-2024.ico"}
@@ -144,6 +156,14 @@ def detect_ats(careers_url: str) -> tuple[str, dict]:
     # Fast path: amazon.jobs careers URL — default country to ISR for our use case
     if AMAZON_JOBS_RE.search(careers_url) or "amazon.jobs" in careers_url.lower():
         return "amazon_jobs", {"country_code": "ISR"}
+
+    # Fast path: Microsoft careers SPA or API host — default location to Israel
+    if MICROSOFT_CAREERS_RE.search(careers_url):
+        return "microsoft_careers", {"location_query": "Israel"}
+
+    # Fast path: Google Careers SPA — HTML-scrape backed puller, no ATS API
+    if GOOGLE_CAREERS_RE.search(careers_url):
+        return "google_careers", {"location_query": "Israel"}
 
     # Fast path: <tenant>.eightfold.ai — tenant is the subdomain, default location Israel.
     # Skip generic subdomains (www/api/etc) that aren't real tenants.

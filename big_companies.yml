@@ -602,21 +602,23 @@
 
 - name: Microsoft Israel
   website: https://www.microsoft.com/en-il
-  careers_url: https://jobs.careers.microsoft.com/global/en/search?lc=Israel  # TODO: verify
-  ats: other
-  ats_params: {}  # TODO: Microsoft uses its own careers system - no public ATS API
+  careers_url: https://jobs.careers.microsoft.com/global/en/search?lc=Israel
+  ats: microsoft_careers
+  ats_params:
+    location_query: Israel
   category: general
   location_filter: israel
-  notes: "TODO: Microsoft uses a proprietary careers system - no standard ATS puller"
+  notes: "Microsoft's public careers SPA backed by gcsservices.careers.microsoft.com search API."
 
 - name: Google Israel
   website: https://careers.google.com
-  careers_url: https://careers.google.com/locations/tel-aviv/  # TODO: verify
-  ats: other
-  ats_params: {}  # TODO: Google uses its own careers system - no public ATS API
+  careers_url: https://www.google.com/about/careers/applications/jobs/results?location=Israel
+  ats: google_careers
+  ats_params:
+    location_query: Israel
   category: general
   location_filter: israel
-  notes: "TODO: Google uses a proprietary careers system - no standard ATS puller"
+  notes: "Google's public careers SPA. Endpoint discovery may require HTML scrape fallback."
 
 - name: AWS Israel
   website: https://aws.amazon.com
