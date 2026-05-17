@@ -259,10 +259,10 @@
   ats_params:
     company_uid: "F8.006"
     company_name: ox_security
-    token: ""  # TODO: extract from careers page HTML
+    token: "8F635C447B035C42CCE2CCE23D83EBA35C48F6"
   category: cyber
   location_filter: israel
-  notes: "Software supply chain security, ex-Check Point founders. TODO: token."
+  notes: "Software supply chain security, ex-Check Point founders."
 
 - name: Astrix Security
   website: https://astrix.security
@@ -369,8 +369,9 @@
 - name: Token Security
   website: https://www.token.security
   careers_url: https://www.token.security/company/careers
-  ats: other
-  ats_params: {}  # TODO: verify ATS
+  ats: greenhouse
+  ats_params:
+    board_token: tokensecurity
   category: cyber
   location_filter: israel
   notes: "Non-human identity / AI agent identity security."
@@ -386,18 +387,20 @@
 
 - name: EON
   website: https://www.eon.io
-  careers_url: https://www.eon.io/careers
-  ats: other
-  ats_params: {}  # TODO: verify ATS
+  careers_url: https://job-boards.eu.greenhouse.io/eonio
+  ats: greenhouse
+  ats_params:
+    board_token: eonio
   category: general
   location_filter: israel
   notes: "Cloud backup/recovery. Sequoia-backed. Founders ex-AWS."
 
 - name: Cylake
   website: https://cylake.com
-  careers_url: https://cylake.com/careers/
-  ats: other
-  ats_params: {}  # TODO: verify ATS
+  careers_url: https://jobs.ashbyhq.com/cylake-inc
+  ats: ashby
+  ats_params:
+    org_name: cylake-inc
   category: cyber
   location_filter: israel
   notes: "Nir Zuk's AI-native on-prem cyber co. $45M seed Greylock."
@@ -434,18 +437,20 @@
 
 - name: Spines
   website: https://spines.com
-  careers_url: https://spines.com/career/
-  ats: other
-  ats_params: {}  # TODO: verify ATS
+  careers_url: https://apply.workable.com/spines/
+  ats: workable
+  ats_params:
+    company_slug: spines
   category: general
   location_filter: israel
   notes: "AI book publishing platform."
 
 - name: Honeycomb Insurance
   website: https://honeycombinsurance.com
-  careers_url: https://honeycombinsurance.com/careers
-  ats: other
-  ats_params: {}  # TODO: verify ATS
+  careers_url: https://job-boards.greenhouse.io/honeycombinsurance
+  ats: greenhouse
+  ats_params:
+    board_token: honeycombinsurance
   category: fintech
   location_filter: israel
   notes: "Real-estate insurtech, R&D Herzliya."
@@ -454,10 +459,13 @@
   website: https://www.appcharge.com
   careers_url: https://www.appcharge.com/careers
   ats: comeet
-  ats_params: {}  # TODO: extract company_uid + token from page (Comeet embed confirmed)
+  ats_params:
+    company_uid: "9A.00B"
+    company_name: ""
+    token: "A9B4A3D35074A3D3507A9B2A6CA9BA9BA9B"
   category: general
   location_filter: israel
-  notes: "Direct-to-consumer payments infra for gaming. Comeet embed but params not yet extracted."
+  notes: "Direct-to-consumer payments infra for gaming."
 
 - name: Qbiq
   website: https://www.qbiq.ai
@@ -476,6 +484,50 @@
   category: general
   location_filter: israel
   notes: "Location-based audio/literary content for car navigation."
+
+# ─── TLV Partners portfolio overrides (auto-discovery failed) ────────────────
+
+- name: Aidoc
+  website: https://www.aidoc.com
+  careers_url: https://www.aidoc.com/about/careers/
+  ats: comeet
+  ats_params:
+    company_uid: "B4.007"
+    company_name: ""
+    token: "4B717931C4A012DC96E96E2A6F210112DC"
+  category: general
+  location_filter: israel
+  notes: "Medical imaging AI. TLV Partners portfolio."
+
+- name: Unframe
+  website: https://unframe.ai
+  careers_url: https://www.unframe.ai/careers
+  ats: greenhouse
+  ats_params:
+    board_token: unframe
+  category: general
+  location_filter: israel
+  notes: "Agentic AI for enterprises. TLV Partners portfolio."
+
+- name: Unit
+  website: https://www.unit.co
+  careers_url: https://jobs.ashbyhq.com/unit
+  ats: ashby
+  ats_params:
+    org_name: unit
+  category: fintech
+  location_filter: israel
+  notes: "Banking-as-a-Service. TLV Partners portfolio."
+
+- name: REAL
+  website: https://www.real.dev
+  careers_url: https://apply.workable.com/real/
+  ats: workable
+  ats_params:
+    company_slug: real
+  category: general
+  location_filter: israel
+  notes: "TLV Partners portfolio. (REAL DEV INC)"
 
 # ─── Fraud / Fintech ─────────────────────────────────────────────────────────
 

@@ -57,7 +57,7 @@ All Phase P2 tasks are wrapped. See `ROADMAP_ARCHIVE.md`.
 |---|---|---|---|---|
 | [WEBAPP_SUPABASE_SETUP_GUIDE](future_devs/archive/WEBAPP_SUPABASE_SETUP_GUIDE_SPEC.md) | Supabase initial setup guide (schema, OAuth, RLS) | `wrapped` | XS | — |
 | [WEBAPP_PDF_CV_UPLOAD](future_devs/archive/WEBAPP_PDF_CV_UPLOAD_SPEC.md) | PDF CV upload in onboarding Step 2 | `wrapped` | S | — |
-| [WEBAPP_OLD_PROFILE_BADGE](future_devs/WEBAPP_OLD_PROFILE_BADGE_SPEC.md) | "Scored with old profile" badge on digest cards | `not-started` | S | — |
+| [WEBAPP_OLD_PROFILE_BADGE](future_devs/WEBAPP_OLD_PROFILE_BADGE_SPEC.md) | "Scored with old profile" badge on digest cards | `in-progress` | S | — |
 
 ---
 
@@ -65,9 +65,18 @@ All Phase P2 tasks are wrapped. See `ROADMAP_ARCHIVE.md`.
 
 | Slug | Title | Status | Effort | Depends on |
 |---|---|---|---|---|
-| [PROPRIETARY_ATS_PULLERS](future_devs/PROPRIETARY_ATS_PULLERS_SPEC.md) | Build pullers for SuccessFactors / TeamMe / Breezy / Jobvite / Eightfold | `not-started` | L | — |
+| [PROPRIETARY_ATS_PULLERS](future_devs/PROPRIETARY_ATS_PULLERS_SPEC.md) **(epic)** | Pullers for Intuit/AWS/Microsoft/Google/PayPal/Varonis/CyberArk/SAP/Claroty/QM/Descope | `in-progress` | L | — |
+| ├─ [ATS_TALENTBREW](future_devs/ATS_TALENTBREW_SPEC.md) | TalentBrew puller → Intuit | `not-started` | XS | — |
+| ├─ [ATS_AMAZON_JOBS](future_devs/ATS_AMAZON_JOBS_SPEC.md) | amazon.jobs puller → AWS Israel | `not-started` | S | — |
+| ├─ [ATS_MICROSOFT_CAREERS](future_devs/ATS_MICROSOFT_CAREERS_SPEC.md) | careers.microsoft.com puller → Microsoft Israel | `not-started` | S | — |
+| ├─ [ATS_GOOGLE_CAREERS](future_devs/ATS_GOOGLE_CAREERS_SPEC.md) | careers.google.com puller → Google Israel | `not-started` | S | — |
+| ├─ [ATS_EIGHTFOLD](future_devs/ATS_EIGHTFOLD_SPEC.md) | Eightfold puller → PayPal Israel | `not-started` | S | — |
+| ├─ [ATS_JOBVITE](future_devs/ATS_JOBVITE_SPEC.md) | Jobvite puller → Varonis | `not-started` | S | — |
+| ├─ [ATS_SUCCESSFACTORS](future_devs/ATS_SUCCESSFACTORS_SPEC.md) | SuccessFactors puller → CyberArk, SAP | `not-started` | M | — |
+| ├─ [ATS_TEAMME](future_devs/ATS_TEAMME_SPEC.md) | TeamMe puller → Claroty, Quantum Machines | `not-started` | M | — |
+| └─ [ATS_BREEZY](future_devs/ATS_BREEZY_SPEC.md) | Breezy HR puller → Descope | `not-started` | XS | — |
 | [NEW_VC_ADAPTERS](future_devs/NEW_VC_ADAPTERS_SPEC.md) | Add VC adapters: State of Mind / Sequoia IL / Aleph / Lightspeed IL / Greylock / Insight IL | `not-started` | M | — |
-| [TLV_PORTFOLIO_FIX](future_devs/TLV_PORTFOLIO_FIX_SPEC.md) | Fix TLV Partners scraper + clean stale entries + add missing portfolio companies | `in-progress` | M | — |
+| [TLV_PORTFOLIO_FIX](future_devs/TLV_PORTFOLIO_FIX_SPEC.md) | Fix TLV Partners scraper + clean stale entries + add missing portfolio companies | `completed` | M | — |
 | [BIG_COMPANIES_ATS_PARAMS](future_devs/BIG_COMPANIES_ATS_PARAMS_SPEC.md) | Fill ATS params for ~30 unfilled big_companies.yml stubs | `not-started` | M | — |
 | [PIPELINE_TEST_COVERAGE](future_devs/archive/PIPELINE_TEST_COVERAGE_SPEC.md) | Add test suite for pipeline scripts (ATS pullers, filters, scorer parser) | `wrapped` | M | — |
 
@@ -80,7 +89,16 @@ All Phase P2 tasks are wrapped. See `ROADMAP_ARCHIVE.md`.
 | `future_devs/archive/WEBAPP_SUPABASE_SETUP_GUIDE_SPEC.md` | P2 post-launch — Supabase setup guide (wrapped) |
 | `future_devs/WEBAPP_PDF_CV_UPLOAD_SPEC.md` | P2 post-launch — PDF CV upload in onboarding |
 | `future_devs/WEBAPP_OLD_PROFILE_BADGE_SPEC.md` | P2 post-launch — "Scored with old profile" badge |
-| `future_devs/PROPRIETARY_ATS_PULLERS_SPEC.md` | P3 — Build pullers for SuccessFactors / TeamMe / Breezy / Jobvite / Eightfold |
+| `future_devs/PROPRIETARY_ATS_PULLERS_SPEC.md` | P3 — Big-corp ATS pullers epic |
+| `future_devs/ATS_TALENTBREW_SPEC.md` | P3 — TalentBrew puller (Intuit) |
+| `future_devs/ATS_AMAZON_JOBS_SPEC.md` | P3 — amazon.jobs puller (AWS) |
+| `future_devs/ATS_MICROSOFT_CAREERS_SPEC.md` | P3 — Microsoft careers puller |
+| `future_devs/ATS_GOOGLE_CAREERS_SPEC.md` | P3 — Google careers puller |
+| `future_devs/ATS_EIGHTFOLD_SPEC.md` | P3 — Eightfold puller (PayPal) |
+| `future_devs/ATS_JOBVITE_SPEC.md` | P3 — Jobvite puller (Varonis) |
+| `future_devs/ATS_SUCCESSFACTORS_SPEC.md` | P3 — SuccessFactors puller (CyberArk, SAP) |
+| `future_devs/ATS_TEAMME_SPEC.md` | P3 — TeamMe puller (Claroty, QM) |
+| `future_devs/ATS_BREEZY_SPEC.md` | P3 — Breezy HR puller (Descope) |
 | `future_devs/NEW_VC_ADAPTERS_SPEC.md` | P3 — Add VC adapters: State of Mind / Sequoia IL / Aleph / Lightspeed IL / Greylock / Insight IL |
 | `future_devs/TLV_PORTFOLIO_FIX_SPEC.md` | P3 — Fix TLV Partners scraper + clean stale entries + add missing portfolio companies |
 | `future_devs/BIG_COMPANIES_ATS_PARAMS_SPEC.md` | P3 — Fill ATS params for ~30 unfilled big_companies.yml stubs |
