@@ -1,7 +1,7 @@
 | Field | Value |
 |---|---|
 | **Phase** | P3 |
-| **Status** | `not-started` |
+| **Status** | `completed` |
 | **Effort** | XS |
 | **Epic** | PROPRIETARY_ATS_PULLERS |
 | **Depends on** | — |

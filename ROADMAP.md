@@ -66,7 +66,7 @@ All Phase P2 tasks are wrapped. See `ROADMAP_ARCHIVE.md`.
 | Slug | Title | Status | Effort | Depends on |
 |---|---|---|---|---|
 | [PROPRIETARY_ATS_PULLERS](future_devs/PROPRIETARY_ATS_PULLERS_SPEC.md) **(epic)** | Pullers for Intuit/AWS/Microsoft/Google/PayPal/Varonis/CyberArk/SAP/Claroty/QM/Descope | `in-progress` | L | — |
-| ├─ [ATS_TALENTBREW](future_devs/ATS_TALENTBREW_SPEC.md) | TalentBrew puller → Intuit | `in-progress` | XS | — |
+| ├─ [ATS_TALENTBREW](future_devs/ATS_TALENTBREW_SPEC.md) | TalentBrew puller → Intuit | `completed` | XS | — |
 | ├─ [ATS_AMAZON_JOBS](future_devs/ATS_AMAZON_JOBS_SPEC.md) | amazon.jobs puller → AWS Israel | `not-started` | S | — |
 | ├─ [ATS_MICROSOFT_CAREERS](future_devs/ATS_MICROSOFT_CAREERS_SPEC.md) | careers.microsoft.com puller → Microsoft Israel | `not-started` | S | — |
 | ├─ [ATS_GOOGLE_CAREERS](future_devs/ATS_GOOGLE_CAREERS_SPEC.md) | careers.google.com puller → Google Israel | `not-started` | S | — |
@@ -74,7 +74,7 @@ All Phase P2 tasks are wrapped. See `ROADMAP_ARCHIVE.md`.
 | ├─ [ATS_JOBVITE](future_devs/ATS_JOBVITE_SPEC.md) | Jobvite puller → Varonis | `not-started` | S | — |
 | ├─ [ATS_SUCCESSFACTORS](future_devs/ATS_SUCCESSFACTORS_SPEC.md) | SuccessFactors puller → CyberArk, SAP | `not-started` | M | — |
 | ├─ [ATS_TEAMME](future_devs/ATS_TEAMME_SPEC.md) | TeamMe puller → Claroty, Quantum Machines | `not-started` | M | — |
-| └─ [ATS_BREEZY](future_devs/ATS_BREEZY_SPEC.md) | Breezy HR puller → Descope | `not-started` | XS | — |
+| └─ [ATS_BREEZY](future_devs/ATS_BREEZY_SPEC.md) | Breezy HR puller → Descope | `completed` | XS | — |
 | [NEW_VC_ADAPTERS](future_devs/NEW_VC_ADAPTERS_SPEC.md) | Add VC adapters: State of Mind / Sequoia IL / Aleph / Lightspeed IL / Greylock / Insight IL | `not-started` | M | — |
 | [TLV_PORTFOLIO_FIX](future_devs/TLV_PORTFOLIO_FIX_SPEC.md) | Fix TLV Partners scraper + clean stale entries + add missing portfolio companies | `completed` | M | — |
 | [BIG_COMPANIES_ATS_PARAMS](future_devs/BIG_COMPANIES_ATS_PARAMS_SPEC.md) | Fill ATS params for ~30 unfilled big_companies.yml stubs | `not-started` | M | — |

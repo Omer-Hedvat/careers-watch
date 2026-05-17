@@ -39,6 +39,9 @@ COMEET_INIT_NAME  = re.compile(r"""["']company[-_]name["']\s*:\s*["']([^"']+)["'
 # Ashby hosted job boards: jobs.ashbyhq.com/<org_name>
 ASHBY_JOBS = re.compile(r"jobs\.ashbyhq\.com/([a-zA-Z0-9_.-]+)", re.IGNORECASE)
 
+# Breezy HR: <slug>.breezy.hr
+BREEZY_RE = re.compile(r"([a-zA-Z0-9_-]+)\.breezy\.hr", re.IGNORECASE)
+
 # Workable: apply.workable.com/<slug> in URL or page HTML
 WORKABLE_RE = re.compile(r"apply\.workable\.com/([a-zA-Z0-9_-]+)", re.IGNORECASE)
 
@@ -52,6 +55,11 @@ TEAMTAILOR_GENERIC_SUBS = {"app", "api", "www", "support", "blog", "careers", "c
 # Getro VC job boards: custom domains (careers.viola-group.com) and getro.com subdomains
 # The WAF anti-bot response also contains "getro.com", so this catches both cases
 GETRO_RE = re.compile(r"getro\.com", re.IGNORECASE)
+
+# TalentBrew (Radancy) careers platform: page assets are served from tbcdn.talentbrew.com/company/<id>
+# and job links follow the /job/<city>/<slug>/<org_id>/<job_id> pattern
+TALENTBREW_RE = re.compile(r"tbcdn\.talentbrew\.com/company/(\d+)", re.IGNORECASE)
+TALENTBREW_JOB_RE = re.compile(r'href="/job/[^"/]+/[^"/]+/\d+/\d+"', re.IGNORECASE)
 
 # Greenhouse embed/boards patterns — check JOBBOARDS and EMBED before BOARDS (BOARDS is more general)
 GREENHOUSE_JOBBOARDS = re.compile(r"job-boards\.greenhouse\.io/([a-zA-Z0-9_-]+)", re.IGNORECASE)
@@ -209,6 +217,12 @@ def detect_ats(careers_url: str) -> tuple[str, dict]:
         if m:
             return "ashby", {"org_name": m.group(1)}
 
+    # Check for Breezy HR signature in careers URL, final URL, or page HTML
+    for text in (careers_url, final_url, html):
+        m = BREEZY_RE.search(text)
+        if m:
+            return "breezy", {"company_slug": m.group(1)}
+
     # Check for Workable signature in careers URL, final URL, or page HTML
     # Covers both apply.workable.com/<slug> direct URLs and custom-domain sites that embed Workable
     for text in (careers_url, final_url, html):
@@ -234,5 +248,12 @@ def detect_ats(careers_url: str) -> tuple[str, dict]:
             board_host = parsed.netloc or urlparse(careers_url).netloc
             if board_host:
                 return "getro", {"board_host": board_host}
+
+    # TalentBrew (Radancy): detect from CDN asset URL or job-link pattern in page HTML
+    if TALENTBREW_RE.search(html) or TALENTBREW_JOB_RE.search(html):
+        parsed = urlparse(final_url or careers_url)
+        host = parsed.netloc or urlparse(careers_url).netloc
+        if host:
+            return "talentbrew", {"host": host, "facet": "israel"}
 
     return "unknown", {}

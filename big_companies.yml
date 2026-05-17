@@ -360,11 +360,12 @@
 - name: Descope
   website: https://www.descope.com
   careers_url: https://descope.breezy.hr/
-  ats: other
-  ats_params: {}  # TODO: uses Breezy HR - no puller implemented yet
+  ats: breezy
+  ats_params:
+    company_slug: descope
   category: cyber
   location_filter: israel
-  notes: "Customer/agentic identity platform. TODO: Breezy HR puller."
+  notes: "Customer/agentic identity platform. Breezy HR ATS."
 
 - name: Token Security
   website: https://www.token.security
@@ -578,12 +579,14 @@
 
 - name: Intuit Israel
   website: https://careers.intuit.com
-  careers_url: https://careers.intuit.com/  # TODO: verify Israel-specific URL
-  ats: other
-  ats_params: {}  # TODO: Intuit uses its own careers platform - no standard API
+  careers_url: https://jobs.intuit.com/
+  ats: talentbrew
+  ats_params:
+    host: jobs.intuit.com
+    facet: israel
   category: fintech
   location_filter: israel
-  notes: "TODO: Intuit has its own careers system - no public ATS API available"
+  notes: "TalentBrew (Radancy) platform - endpoint /search-jobs/results"
 
 - name: PayPal Israel
   website: https://www.paypal.com
