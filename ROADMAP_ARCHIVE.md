@@ -26,6 +26,7 @@ Wrapped features only. Active work lives in `ROADMAP.md`.
 | SuccessFactors puller → SAP Israel (6 jobs; CyberArk → PAN/SmartRecruiters) | `future_devs/archive/ATS_SUCCESSFACTORS_SPEC.md` | M | `wrapped` |
 | TeamMe puller → Claroty (24) + Quantum Machines (45) | `future_devs/archive/ATS_TEAMME_SPEC.md` | M | `wrapped` |
 | Breezy HR puller → Descope (0 openings at wrap time) | `future_devs/archive/ATS_BREEZY_SPEC.md` | XS | `wrapped` |
+| Fix TLV Partners scraper + clean stale entries + add missing portfolio companies | `future_devs/archive/TLV_PORTFOLIO_FIX_SPEC.md` | M | `wrapped` |
 
 ---
 
