@@ -54,7 +54,7 @@ def get_me(authorization: str = Header(...)):
     resp = supabase.auth.get_user(token)
     if not resp.user:
         raise HTTPException(status_code=401, detail="Unauthorized")
-    row = supabase.table("users").select("scoring_runs_this_week,last_week_reset,profile_md,cv_text").eq("id", resp.user.id).maybe_single().execute().data
+    row = supabase.table("users").select("scoring_runs_this_week,last_week_reset,profile_md,cv_text,profile_version").eq("id", resp.user.id).maybe_single().execute().data
     return row or {}
 
 
@@ -81,7 +81,9 @@ def update_profile(body: ProfileUpdate, authorization: str = Header(...)):
     resp = supabase.auth.get_user(token)
     if not resp.user:
         raise HTTPException(status_code=401, detail="Unauthorized")
-    supabase.table("users").update({"profile_md": body.profile_md}).eq("id", resp.user.id).execute()
+    current = supabase.table("users").select("profile_version").eq("id", resp.user.id).maybe_single().execute().data
+    new_version = ((current or {}).get("profile_version") or 1) + 1
+    supabase.table("users").update({"profile_md": body.profile_md, "profile_version": new_version}).eq("id", resp.user.id).execute()
     return {"status": "ok"}
 
 
