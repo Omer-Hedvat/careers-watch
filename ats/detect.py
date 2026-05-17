@@ -64,6 +64,14 @@ TALENTBREW_JOB_RE = re.compile(r'href="/job/[^"/]+/[^"/]+/\d+/\d+"', re.IGNORECA
 # Amazon Jobs: amazon.jobs/en/jobs/<id>/...
 AMAZON_JOBS_RE = re.compile(r"amazon\.jobs/en/jobs/", re.IGNORECASE)
 
+# Jobvite: jobs.jobvite.com/<slug>
+JOBVITE_RE = re.compile(r"jobs\.jobvite\.com/([a-zA-Z0-9_.-]+)", re.IGNORECASE)
+JOBVITE_GENERIC_PATHS = {"api", "static", "assets", "cdn", "favicon-2024.ico"}
+
+# Eightfold AI: <tenant>.eightfold.ai (PayPal, Cisco, Bayer, Hilton, etc.)
+EIGHTFOLD_RE = re.compile(r"([a-zA-Z0-9_-]+)\.eightfold\.ai", re.IGNORECASE)
+EIGHTFOLD_GENERIC_SUBS = {"www", "api", "app", "static"}
+
 # Greenhouse embed/boards patterns — check JOBBOARDS and EMBED before BOARDS (BOARDS is more general)
 GREENHOUSE_JOBBOARDS = re.compile(r"job-boards\.greenhouse\.io/([a-zA-Z0-9_-]+)", re.IGNORECASE)
 GREENHOUSE_EMBED = re.compile(r"greenhouse\.io/embed/job_board[?&]for=([a-zA-Z0-9_-]+)", re.IGNORECASE)
@@ -136,6 +144,12 @@ def detect_ats(careers_url: str) -> tuple[str, dict]:
     # Fast path: amazon.jobs careers URL — default country to ISR for our use case
     if AMAZON_JOBS_RE.search(careers_url) or "amazon.jobs" in careers_url.lower():
         return "amazon_jobs", {"country_code": "ISR"}
+
+    # Fast path: <tenant>.eightfold.ai — tenant is the subdomain, default location Israel.
+    # Skip generic subdomains (www/api/etc) that aren't real tenants.
+    m = EIGHTFOLD_RE.search(careers_url)
+    if m and m.group(1).lower() not in EIGHTFOLD_GENERIC_SUBS:
+        return "eightfold", {"tenant": m.group(1).lower(), "location_query": "Israel"}
 
     # Fast path: if the careers URL is itself a direct Comeet jobs link
     m = COMEET_DIRECT.search(careers_url)
@@ -230,6 +244,14 @@ def detect_ats(careers_url: str) -> tuple[str, dict]:
         if m:
             return "breezy", {"company_slug": m.group(1)}
 
+    # Check for Jobvite signature in careers URL, final URL, or page HTML
+    for text in (careers_url, final_url, html):
+        m = JOBVITE_RE.search(text)
+        if m:
+            slug = m.group(1)
+            if slug not in JOBVITE_GENERIC_PATHS:
+                return "jobvite", {"company_slug": slug}
+
     # Check for Workable signature in careers URL, final URL, or page HTML
     # Covers both apply.workable.com/<slug> direct URLs and custom-domain sites that embed Workable
     for text in (careers_url, final_url, html):
@@ -239,6 +261,14 @@ def detect_ats(careers_url: str) -> tuple[str, dict]:
             # Skip generic Workable paths that are not company slugs
             if slug not in ("api", "j", "static", "assets", "cdn"):
                 return "workable", {"company_slug": slug}
+
+    # Check for Eightfold AI signature in final URL or page HTML (redirect/embed case).
+    # Skip generic subdomains (www/api/etc) which can appear in script boilerplate.
+    for text in (final_url, html):
+        for em in EIGHTFOLD_RE.finditer(text):
+            sub = em.group(1).lower()
+            if sub not in EIGHTFOLD_GENERIC_SUBS:
+                return "eightfold", {"tenant": sub, "location_query": "Israel"}
 
     # Check for Teamtailor signature: <sub>.teamtailor.com in URL or HTML
     # Skip generic subdomains (app/api/www/etc) which appear in page boilerplate but aren't company tenants

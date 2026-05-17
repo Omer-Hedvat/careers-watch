@@ -70,8 +70,8 @@ All Phase P2 tasks are wrapped. See `ROADMAP_ARCHIVE.md`.
 | ├─ [ATS_AMAZON_JOBS](future_devs/ATS_AMAZON_JOBS_SPEC.md) | amazon.jobs puller → AWS Israel | `completed` | S | — |
 | ├─ [ATS_MICROSOFT_CAREERS](future_devs/ATS_MICROSOFT_CAREERS_SPEC.md) | careers.microsoft.com puller → Microsoft Israel | `not-started` | S | — |
 | ├─ [ATS_GOOGLE_CAREERS](future_devs/ATS_GOOGLE_CAREERS_SPEC.md) | careers.google.com puller → Google Israel | `not-started` | S | — |
-| ├─ [ATS_EIGHTFOLD](future_devs/ATS_EIGHTFOLD_SPEC.md) | Eightfold puller → PayPal Israel | `not-started` | S | — |
-| ├─ [ATS_JOBVITE](future_devs/ATS_JOBVITE_SPEC.md) | Jobvite puller → Varonis | `not-started` | S | — |
+| ├─ [ATS_EIGHTFOLD](future_devs/ATS_EIGHTFOLD_SPEC.md) | Eightfold puller → PayPal Israel | `completed` | S | — |
+| ├─ [ATS_JOBVITE](future_devs/ATS_JOBVITE_SPEC.md) | Jobvite puller → Varonis | `completed` | S | — |
 | ├─ [ATS_SUCCESSFACTORS](future_devs/ATS_SUCCESSFACTORS_SPEC.md) | SuccessFactors puller → CyberArk, SAP | `not-started` | M | — |
 | ├─ [ATS_TEAMME](future_devs/ATS_TEAMME_SPEC.md) | TeamMe puller → Claroty, Quantum Machines | `not-started` | M | — |
 | └─ [ATS_BREEZY](future_devs/ATS_BREEZY_SPEC.md) | Breezy HR puller → Descope | `completed` | XS | — |
