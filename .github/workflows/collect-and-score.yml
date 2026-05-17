@@ -1,4 +1,4 @@
-name: Collect and Score Jobs
+name: Collect Jobs
 
 on:
   schedule:
@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  collect-and-score:
+  collect:
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -29,15 +29,10 @@ jobs:
       - name: Collect jobs
         run: uv run python collect_jobs.py
 
-      - name: Score jobs
-        env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-        run: uv run python score.py
-
-      - name: Commit updated outputs
+      - name: Commit collected jobs
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add profiles/*/digest.md profiles/*/scored_jobs.json profiles/*/all_scores.jsonl companies.json
-          git diff --cached --quiet || git commit -m "chore: auto collect+score $(date -u +%Y-%m-%d)"
+          git add new_jobs.json companies.json
+          git diff --cached --quiet || git commit -m "chore: auto collect $(date -u +%Y-%m-%d)"
           git push

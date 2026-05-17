@@ -9,6 +9,11 @@ Wrapped features only. Active work lives in `ROADMAP.md`.
 | Feature | Spec | Effort | Status |
 |---|---|---|---|
 | [webapp] Project scaffold — Next.js + FastAPI + Supabase schema | `future_devs/archive/WEBAPP_SCAFFOLD_SPEC.md` | M | `wrapped` |
+| [webapp] Auth — email + Google OAuth, session management | `future_devs/archive/WEBAPP_AUTH_SPEC.md` | S | `wrapped` |
+| [webapp] Scoring endpoint — runs score.py per user, rate-limited 2x/week | `future_devs/archive/WEBAPP_SCORING_ENDPOINT_SPEC.md` | M | `wrapped` |
+| [webapp] Landing page — value prop, how it works, CTA | `future_devs/archive/WEBAPP_LANDING_SPEC.md` | S | `wrapped` |
+| [webapp] GitHub Actions wiring — scheduled collect + refresh commit to repo | `future_devs/archive/WEBAPP_ACTIONS_WIRING_SPEC.md` | S | `wrapped` |
+| [webapp] Render.com deploy — FastAPI + Next.js, persistent disk, env vars | `future_devs/archive/WEBAPP_DEPLOY_SPEC.md` | S | `wrapped` |
 
 ---
 
