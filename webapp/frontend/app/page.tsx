@@ -5,5 +5,5 @@ import { redirect } from 'next/navigation'
 export default async function Home() {
   const supabase = createServerComponentClient({ cookies })
   const { data: { session } } = await supabase.auth.getSession()
-  redirect(session ? '/digest' : '/auth')
+  redirect(session ? '/digest' : '/landing')
 }
