@@ -27,7 +27,7 @@ from urllib.parse import urljoin, urlparse
 import httpx
 
 COMPANIES_FILE = Path("companies.json")
-OUT = Path("/tmp/careers_probe.json")
+OUT = Path("careers_recovery.json")  # canonical snapshot; queried by scripts/careers_queue.py
 HEADERS = {"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
            "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36"}
 

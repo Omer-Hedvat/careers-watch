@@ -11531,16 +11531,18 @@
     "website": "https://www.surf.ai",
     "source_vc": "Accel",
     "vc_tier": 3,
-    "careers_url": null,
-    "ats": "unknown",
-    "ats_params": {},
+    "careers_url": "https://job-boards.eu.greenhouse.io/surfai",
+    "ats": "greenhouse",
+    "ats_params": {
+      "board_token": "surfai"
+    },
     "discovered_at": "2026-05-04T22:31:15.300875+00:00",
-    "last_verified_at": "2026-06-07T09:01:19.645714+00:00",
+    "last_verified_at": "2026-06-08T12:41:35.502476+00:00",
     "last_jobs_pulled_at": null,
     "consecutive_failures": 0,
-    "careers_url_source": "gemini-2.5-pro",
+    "careers_url_source": "manual",
     "skip_discovery": true,
-    "skip_reason": "no_careers"
+    "skip_reason": "manual_verified"
   },
   {
     "name": "Swan",
