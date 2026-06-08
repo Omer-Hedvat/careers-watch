@@ -8,8 +8,10 @@ from ats.getro import fetch_positions as _fetch_getro
 from ats.google_careers import fetch_positions as _fetch_google_careers
 from ats.greenhouse import fetch_positions as _fetch_greenhouse
 from ats.jobvite import fetch_positions as _fetch_jobvite
+from ats.lemonade import fetch_positions as _fetch_lemonade
 from ats.lever import fetch_positions as _fetch_lever
 from ats.microsoft_careers import fetch_positions as _fetch_microsoft_careers
+from ats.privya import fetch_positions as _fetch_privya
 from ats.successfactors import fetch_positions as _fetch_successfactors
 from ats.talentbrew import fetch_positions as _fetch_talentbrew
 from ats.teamme import fetch_positions as _fetch_teamme
@@ -31,8 +33,11 @@ ATS_PULLERS = {
         params.get("board_token") or params.get("company_slug", "")
     ),
     "jobvite": lambda params: _fetch_jobvite(params["company_slug"]),
+    # self-hosted single-tenant careers sites (no third-party ATS, no params)
+    "lemonade": lambda params: _fetch_lemonade(),
     "lever": lambda params: _fetch_lever(params["company_slug"]),
     "microsoft_careers": lambda p: _fetch_microsoft_careers(p.get("location_query", "Israel")),
+    "privya": lambda params: _fetch_privya(),
     "successfactors": lambda p: _fetch_successfactors(
         p["tenant"], p.get("branded_host"), p.get("location_query")
     ),
