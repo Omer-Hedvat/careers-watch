@@ -2015,15 +2015,18 @@
     "website": "https://www.surf.ai",
     "source_vc": "Cyberstarts",
     "vc_tier": 1,
-    "careers_url": null,
-    "ats": "unknown",
-    "ats_params": {},
+    "careers_url": "https://job-boards.eu.greenhouse.io/surfai",
+    "ats": "greenhouse",
+    "ats_params": {
+      "board_token": "surfai"
+    },
     "discovered_at": "2026-05-04T22:13:34.996159+00:00",
-    "last_verified_at": "2026-06-07T08:45:26.577488+00:00",
+    "last_verified_at": "2026-06-08T11:48:23.302534+00:00",
     "last_jobs_pulled_at": null,
     "consecutive_failures": 0,
     "skip_discovery": true,
-    "skip_reason": "no_careers"
+    "skip_reason": "manual_verified",
+    "careers_url_source": "manual"
   },
   {
     "name": "Trail",
@@ -4080,18 +4083,21 @@
     "website": "https://frontegg.com",
     "source_vc": "Insight Partners",
     "vc_tier": 2,
-    "careers_url": null,
-    "ats": "unknown",
-    "ats_params": {},
+    "careers_url": "https://frontegg.com/careers",
+    "ats": "comeet",
+    "ats_params": {
+      "company_uid": "77.009",
+      "token": "7792CD6166B3BC8344F4341166B3BC83BC83BC8"
+    },
     "discovered_at": "2026-05-04T22:17:23.342571+00:00",
-    "last_verified_at": "2026-06-07T08:49:19.954655+00:00",
+    "last_verified_at": "2026-06-08T11:48:23.302534+00:00",
     "last_jobs_pulled_at": null,
     "consecutive_failures": 0,
-    "careers_url_source": "gemini-2.5-pro",
+    "careers_url_source": "manual",
     "ats_hint": "comeet",
     "ats_hint_source": "gemini-2.5-pro",
     "skip_discovery": true,
-    "skip_reason": "no_careers"
+    "skip_reason": "manual_verified"
   },
   {
     "name": "QuantHealth",
