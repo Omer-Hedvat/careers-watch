@@ -60,11 +60,34 @@ def fetch_positions(company_uid: str, token: str) -> list[dict]:
     return results
 
 
+# Comeet returns the country as an ISO-3166 alpha-2 code (e.g. "IL").
+# location_filter does a plain substring match, so a job whose name is just
+# "Tel Aviv" would be dropped by a "israel" filter even though country == "IL".
+# Expand the code so the country name is present in the location string.
+_ISO_COUNTRY = {
+    "IL": "Israel",
+    "US": "United States",
+    "GB": "United Kingdom",
+    "DE": "Germany",
+    "FR": "France",
+    "IN": "India",
+    "PL": "Poland",
+    "NL": "Netherlands",
+    "CA": "Canada",
+    "AU": "Australia",
+    "SG": "Singapore",
+    "ES": "Spain",
+    "IE": "Ireland",
+}
+
+
 def _parse_location(loc: dict | None) -> str:
     if not loc:
         return ""
-    parts = [loc.get("city"), loc.get("state"), loc.get("country"), loc.get("name")]
-    filled = [p for p in parts if p]
-    if filled:
-        return filled[-1]  # 'name' is usually the most descriptive
-    return ""
+    name = loc.get("name") or loc.get("city") or loc.get("state") or ""
+    country = loc.get("country") or ""
+    country = _ISO_COUNTRY.get(country, country)
+    # Append the country only when it isn't already reflected in the name.
+    if country and country.lower() not in name.lower():
+        return f"{name}, {country}" if name else country
+    return name
