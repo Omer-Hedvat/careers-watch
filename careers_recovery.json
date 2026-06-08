@@ -1,0 +1,5732 @@
+[
+  {
+    "name": "Hush",
+    "vc": "YL Ventures",
+    "tier": 1,
+    "website": "https://www.hush.security",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: 403"
+  },
+  {
+    "name": "Refineintelligence",
+    "vc": "Glilot",
+    "tier": 1,
+    "website": "https://www.refineintelligence.com",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: 403"
+  },
+  {
+    "name": "BlazeMeter",
+    "vc": "YL Ventures",
+    "tier": 1,
+    "website": "https://www.blazemeter.com",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: 403"
+  },
+  {
+    "name": "Surf Ai",
+    "vc": "Cyberstarts",
+    "tier": 1,
+    "website": "https://www.surf.ai",
+    "conf": 5,
+    "careers_url": "https://www.surf.ai",
+    "ats": "greenhouse",
+    "note": "ATS embed on homepage"
+  },
+  {
+    "name": "Torq",
+    "vc": "Bessemer",
+    "tier": 2,
+    "website": "https://torq.io",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: 403"
+  },
+  {
+    "name": "Eureka Security",
+    "vc": "YL Ventures",
+    "tier": 1,
+    "website": "https://www.eureka.security",
+    "conf": 5,
+    "careers_url": "https://www.tenable.com/careers",
+    "ats": "greenhouse",
+    "note": "ATS embed at /careers"
+  },
+  {
+    "name": "Clicktale",
+    "vc": "YL Ventures",
+    "tier": 1,
+    "website": "https://www.clicktale.com",
+    "conf": 5,
+    "careers_url": "https://contentsquare.com/careers/",
+    "ats": "lever",
+    "note": "ATS embed at /careers"
+  },
+  {
+    "name": "Tomorrow.io",
+    "vc": "Pitango",
+    "tier": 2,
+    "website": "http://@tomorrowio_",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: ConnectError"
+  },
+  {
+    "name": "MCPTotal",
+    "vc": "YL Ventures",
+    "tier": 1,
+    "website": "https://mcptotal.io",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Laguna Health",
+    "vc": "Pitango",
+    "tier": 2,
+    "website": "https://www.lagunahealth.com%20",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: ConnectError"
+  },
+  {
+    "name": "Genoox",
+    "vc": "Glilot",
+    "tier": 1,
+    "website": "https://www.genoox.com",
+    "conf": 4,
+    "careers_url": "https://franklin.genoox.com/careers",
+    "ats": null,
+    "note": "careers content at /careers"
+  },
+  {
+    "name": "Lema",
+    "vc": "Team8",
+    "tier": 1,
+    "website": "https://snap.licdn.com",
+    "conf": 1,
+    "careers_url": null,
+    "ats": null,
+    "note": "redirects to px.ads.linkedin.com"
+  },
+  {
+    "name": "Inshur",
+    "vc": "Viola",
+    "tier": 2,
+    "website": "https://www.viola-group.com/portfolio/inshur",
+    "conf": 4,
+    "careers_url": "https://www.viola-group.com/careers/",
+    "ats": null,
+    "note": "careers content at /careers"
+  },
+  {
+    "name": "Nominis",
+    "vc": "Hyperwise",
+    "tier": 1,
+    "website": "https://www.nominis.io",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Astelia",
+    "vc": "Team8",
+    "tier": 1,
+    "website": "https://scripts.clarity.ms",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "BAND",
+    "vc": "Team8",
+    "tier": 1,
+    "website": "https://scripts.clarity.ms",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Clover",
+    "vc": "Team8",
+    "tier": 1,
+    "website": "https://scripts.clarity.ms",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Dimer Health",
+    "vc": "Team8",
+    "tier": 1,
+    "website": "https://scripts.clarity.ms",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Fig",
+    "vc": "Team8",
+    "tier": 1,
+    "website": "https://scripts.clarity.ms",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Yuki",
+    "vc": "Hyperwise",
+    "tier": 1,
+    "website": "https://yukidata.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Tylko",
+    "vc": "Pitango",
+    "tier": 2,
+    "website": "https://tylko.com",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: 403"
+  },
+  {
+    "name": "Upstream",
+    "vc": "Boldstart",
+    "tier": 2,
+    "website": "http://upstreamapp.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Zapata Computing",
+    "vc": "Pitango",
+    "tier": 2,
+    "website": "https://www.zapatacomputing.com",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: 404"
+  },
+  {
+    "name": "LeaFix Medical",
+    "vc": "Pitango",
+    "tier": 2,
+    "website": "http://www.Leafix-medical.com",
+    "conf": 1,
+    "careers_url": null,
+    "ats": null,
+    "note": "redirects to leafix-medical.com"
+  },
+  {
+    "name": "SolarEdge",
+    "vc": "Lightspeed Israel",
+    "tier": 2,
+    "website": "https://solaredge.com",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: 403"
+  },
+  {
+    "name": "Navina",
+    "vc": "Grove",
+    "tier": 2,
+    "website": "https://www.navina.ai",
+    "conf": 5,
+    "careers_url": "https://www.navina.ai/careers",
+    "ats": "comeet",
+    "note": "ATS embed at /careers"
+  },
+  {
+    "name": "Holidu",
+    "vc": "83North",
+    "tier": 2,
+    "website": "https://www.holidu.com",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: 403"
+  },
+  {
+    "name": "Cynamics",
+    "vc": "Merlin Ventures",
+    "tier": 1,
+    "website": "https://www.cynamics.ai",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "FloLive",
+    "vc": "83North",
+    "tier": 2,
+    "website": "https://www.flolive.net",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: 403"
+  },
+  {
+    "name": "JustEat",
+    "vc": "83North",
+    "tier": 2,
+    "website": "http://www.just-eat.co.uk",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: 403"
+  },
+  {
+    "name": "Visby Medical",
+    "vc": "Pitango",
+    "tier": 2,
+    "website": "http://www.visbymedical.com",
+    "conf": 1,
+    "careers_url": null,
+    "ats": null,
+    "note": "redirects to visby.com"
+  },
+  {
+    "name": "Medigate",
+    "vc": "YL Ventures",
+    "tier": 1,
+    "website": "https://www.medigate.io",
+    "conf": 4,
+    "careers_url": "https://claroty.com/careers",
+    "ats": null,
+    "note": "careers content at /careers"
+  },
+  {
+    "name": "Twistlock",
+    "vc": "YL Ventures",
+    "tier": 1,
+    "website": "https://www.twistlock.com",
+    "conf": 4,
+    "careers_url": "https://jobs.paloaltonetworks.com/en",
+    "ats": null,
+    "note": "careers content at /careers"
+  },
+  {
+    "name": "Mixtiles",
+    "vc": "83North",
+    "tier": 2,
+    "website": "https://mixtiles.com",
+    "conf": 5,
+    "careers_url": "https://mixtiles.com/careers",
+    "ats": "greenhouse",
+    "note": "ATS embed at /careers"
+  },
+  {
+    "name": "CommonGround",
+    "vc": "Grove",
+    "tier": 2,
+    "website": "https://www.commonground-ai.com",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: ConnectError"
+  },
+  {
+    "name": "RapidAPI",
+    "vc": "Grove",
+    "tier": 2,
+    "website": "https://rapidapi.com",
+    "conf": 5,
+    "careers_url": "https://rapidapi.com",
+    "ats": "comeet",
+    "note": "ATS embed on homepage"
+  },
+  {
+    "name": "Axonius",
+    "vc": "Bessemer",
+    "tier": 2,
+    "website": "https://www.axonius.com",
+    "conf": 3,
+    "careers_url": "https://www.axonius.com/company/careers",
+    "ats": null,
+    "note": "careers link in homepage HTML"
+  },
+  {
+    "name": "FormX",
+    "vc": "Grove",
+    "tier": 2,
+    "website": "https://www.formx.com",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: 429"
+  },
+  {
+    "name": "Niv Ai",
+    "vc": "Glilot",
+    "tier": 1,
+    "website": "https://niv-ai.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Onfire",
+    "vc": "Grove",
+    "tier": 2,
+    "website": "https://www.onfire.ai",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "FireLayers",
+    "vc": "YL Ventures",
+    "tier": 1,
+    "website": "https://www.proofpoint.com",
+    "conf": 3,
+    "careers_url": "https://www.proofpoint.com/us/company/careers",
+    "ats": null,
+    "note": "careers link in homepage HTML"
+  },
+  {
+    "name": "Incredo",
+    "vc": "Pitango",
+    "tier": 2,
+    "website": "https://www.incredosugar.com",
+    "conf": 1,
+    "careers_url": null,
+    "ats": null,
+    "note": "redirects to incredo.com"
+  },
+  {
+    "name": "MotorK",
+    "vc": "83North",
+    "tier": 2,
+    "website": "https://www.motork.io",
+    "conf": 5,
+    "careers_url": "https://www.motork.ai/jobs",
+    "ats": "workable",
+    "note": "ATS embed at /jobs"
+  },
+  {
+    "name": "Enso Security",
+    "vc": "YL Ventures",
+    "tier": 1,
+    "website": "https://enso.security",
+    "conf": 4,
+    "careers_url": "https://snyk.io/careers/",
+    "ats": null,
+    "note": "careers content at /careers"
+  },
+  {
+    "name": "Autograph",
+    "vc": "NFX",
+    "tier": 3,
+    "website": "https://www.autograph-ai.com",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: 404"
+  },
+  {
+    "name": "Frontegg",
+    "vc": "Insight Partners",
+    "tier": 2,
+    "website": "https://frontegg.com",
+    "conf": 4,
+    "careers_url": "https://frontegg.com/careers",
+    "ats": null,
+    "note": "careers content at /careers"
+  },
+  {
+    "name": "Blackbird",
+    "vc": "NFX",
+    "tier": 3,
+    "website": "https://blackbrd.co",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: 403"
+  },
+  {
+    "name": "Restore Medical",
+    "vc": "Pitango",
+    "tier": 2,
+    "website": "https://restoremedical.co",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Gambit",
+    "vc": "Cyberstarts",
+    "tier": 1,
+    "website": "https://gambit.security",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Celonis",
+    "vc": "83North",
+    "tier": 2,
+    "website": "https://www.celonis.com",
+    "conf": 4,
+    "careers_url": "https://careers.celonis.com",
+    "ats": null,
+    "note": "careers content at /careers"
+  },
+  {
+    "name": "Particula",
+    "vc": "Grove",
+    "tier": 2,
+    "website": "https://particula-tech.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Buttonwood",
+    "vc": "NFX",
+    "tier": 3,
+    "website": "https://button.foundation",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: 404"
+  },
+  {
+    "name": "CalmiGo",
+    "vc": "Grove",
+    "tier": 2,
+    "website": "https://calmigo.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Spera Security",
+    "vc": "YL Ventures",
+    "tier": 1,
+    "website": "https://spera.security",
+    "conf": 4,
+    "careers_url": "https://www.okta.com/company/careers/",
+    "ats": null,
+    "note": "careers content at /careers"
+  },
+  {
+    "name": "AMT",
+    "vc": "NFX",
+    "tier": 3,
+    "website": "https://www.amt.ai",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Lumen",
+    "vc": "Pitango",
+    "tier": 2,
+    "website": "https://www.lumen.me",
+    "conf": 4,
+    "careers_url": "https://www.lumen.me/careers",
+    "ats": null,
+    "note": "careers content at /careers"
+  },
+  {
+    "name": "Auggie",
+    "vc": "NFX",
+    "tier": 3,
+    "website": "https://www.auggie.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Arc",
+    "vc": "NFX",
+    "tier": 3,
+    "website": "https://www.arc.tech",
+    "conf": 4,
+    "careers_url": "https://www.joinarc.com/careers",
+    "ats": null,
+    "note": "careers content at /careers"
+  },
+  {
+    "name": "Jimini Health",
+    "vc": "Grove",
+    "tier": 2,
+    "website": "https://jiminihealth.com",
+    "conf": 4,
+    "careers_url": "https://jiminihealth.com/careers",
+    "ats": null,
+    "note": "careers content at /careers"
+  },
+  {
+    "name": "Akooda",
+    "vc": "NFX",
+    "tier": 3,
+    "website": "https://www.akooda.co",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Niv-AI",
+    "vc": "Grove",
+    "tier": 2,
+    "website": "https://niv-ai.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Breeze",
+    "vc": "NFX",
+    "tier": 3,
+    "website": "https://www.breezeai.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Cord",
+    "vc": "NFX",
+    "tier": 3,
+    "website": "https://cord.com",
+    "conf": 4,
+    "careers_url": "https://cord.com/careers",
+    "ats": null,
+    "note": "careers content at /careers"
+  },
+  {
+    "name": "Camu",
+    "vc": "NFX",
+    "tier": 3,
+    "website": "https://camu.com.br",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Fair.xyz",
+    "vc": "NFX",
+    "tier": 3,
+    "website": "https://fair.xyz",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: 403"
+  },
+  {
+    "name": "Crystal",
+    "vc": "NFX",
+    "tier": 3,
+    "website": "https://crystalai.org",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Upstream Commerce",
+    "vc": "YL Ventures",
+    "tier": 1,
+    "website": "http://upstreamcommerce.com",
+    "conf": 4,
+    "careers_url": "https://www.flipkartcareers.com/index",
+    "ats": null,
+    "note": "careers content at /careers"
+  },
+  {
+    "name": "Color",
+    "vc": "NFX",
+    "tier": 3,
+    "website": "https://withcolor.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "ImagenAI",
+    "vc": "NFX",
+    "tier": 3,
+    "website": "https://www.imagen-ai.com",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: 403"
+  },
+  {
+    "name": "ACID Labs",
+    "vc": "NFX",
+    "tier": 3,
+    "website": "https://www.astronomica.io",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "ConvoSpace",
+    "vc": "NFX",
+    "tier": 3,
+    "website": "https://theconvo.space",
+    "conf": 3,
+    "careers_url": "https://theconvo.space/dashboard",
+    "ats": null,
+    "note": "careers link in homepage HTML"
+  },
+  {
+    "name": "Duco",
+    "vc": "NFX",
+    "tier": 3,
+    "website": "https://www.ducoexperts.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "La Haus",
+    "vc": "NFX",
+    "tier": 3,
+    "website": "https://www.lahaus.com",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: 403"
+  },
+  {
+    "name": "lastminute.com",
+    "vc": "NFX",
+    "tier": 3,
+    "website": "http://www.lastminute.com",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: 403"
+  },
+  {
+    "name": "Let&#8217;s Do This",
+    "vc": "NFX",
+    "tier": 3,
+    "website": "https://www.letsdothis.com",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: 403"
+  },
+  {
+    "name": "LinearB",
+    "vc": "83North",
+    "tier": 2,
+    "website": "https://linearb.io",
+    "conf": 4,
+    "careers_url": "https://linearb.io/careers",
+    "ats": null,
+    "note": "careers content at /careers"
+  },
+  {
+    "name": "Coinvise",
+    "vc": "NFX",
+    "tier": 3,
+    "website": "https://www.coinvise.co",
+    "conf": 4,
+    "careers_url": "https://www.coinvise.co/careers",
+    "ats": null,
+    "note": "careers content at /careers"
+  },
+  {
+    "name": "Emcie",
+    "vc": "NFX",
+    "tier": 3,
+    "website": "https://www.emcie.co",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "PriviaAI",
+    "vc": "Hyperwise",
+    "tier": 1,
+    "website": "http://privya.ai",
+    "conf": 4,
+    "careers_url": "https://privya.ai/jobs/",
+    "ats": null,
+    "note": "careers content at /jobs"
+  },
+  {
+    "name": "Altesa Biosciences",
+    "vc": "Pitango",
+    "tier": 2,
+    "website": "https://altesabio.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Circles",
+    "vc": "NFX",
+    "tier": 3,
+    "website": "https://circlesup.com",
+    "conf": 4,
+    "careers_url": "https://circlesup.com/jobs",
+    "ats": null,
+    "note": "careers content at /jobs"
+  },
+  {
+    "name": "Hitch",
+    "vc": "NFX",
+    "tier": 3,
+    "website": "https://hitchequity.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Drip Labs",
+    "vc": "NFX",
+    "tier": 3,
+    "website": "https://drip.haus",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "EFEX",
+    "vc": "NFX",
+    "tier": 3,
+    "website": "https://www.efexpay.com",
+    "conf": 1,
+    "careers_url": null,
+    "ats": null,
+    "note": "redirects to efex.com"
+  },
+  {
+    "name": "Inspectio",
+    "vc": "NFX",
+    "tier": 3,
+    "website": "https://www.inspectio.ai",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Oshi",
+    "vc": "Pitango",
+    "tier": 2,
+    "website": "https://www.oshi.com",
+    "conf": 4,
+    "careers_url": "https://oshi.com/",
+    "ats": null,
+    "note": "careers content at /careers"
+  },
+  {
+    "name": "Jupiter",
+    "vc": "NFX",
+    "tier": 3,
+    "website": "http://jupiter.co",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "OpenEyes",
+    "vc": "Pitango",
+    "tier": 2,
+    "website": "https://openeyes.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Outdoorsy",
+    "vc": "NFX",
+    "tier": 3,
+    "website": "https://www.outdoorsy.com",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: 403"
+  },
+  {
+    "name": "Evalon",
+    "vc": "NFX",
+    "tier": 3,
+    "website": "https://www.evalon.ai",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Hyperspace",
+    "vc": "NFX",
+    "tier": 3,
+    "website": "https://hyperspace.xyz",
+    "conf": 1,
+    "careers_url": null,
+    "ats": null,
+    "note": "redirects to joinearlybird.com"
+  },
+  {
+    "name": "fidu",
+    "vc": "NFX",
+    "tier": 3,
+    "website": "https://fidu.la",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Nuvocargo",
+    "vc": "NFX",
+    "tier": 3,
+    "website": "http://www.nuvocargo.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Deepchecks",
+    "vc": "Grove",
+    "tier": 2,
+    "website": "https://deepchecks.com",
+    "conf": 4,
+    "careers_url": "https://deepchecks.com/careers/",
+    "ats": null,
+    "note": "careers content at /careers"
+  },
+  {
+    "name": "DNK",
+    "vc": "NFX",
+    "tier": 3,
+    "website": "https://www.dnk.co",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Line5",
+    "vc": "NFX",
+    "tier": 3,
+    "website": "https://line5.ai",
+    "conf": 4,
+    "careers_url": "https://line5.ai/careers",
+    "ats": null,
+    "note": "careers content at /careers"
+  },
+  {
+    "name": "Indigo",
+    "vc": "NFX",
+    "tier": 3,
+    "website": "https://www.useindigo.com",
+    "conf": 1,
+    "careers_url": null,
+    "ats": null,
+    "note": "redirects to indigo.app"
+  },
+  {
+    "name": "Yotpo",
+    "vc": "Bessemer",
+    "tier": 2,
+    "website": "https://www.yotpo.com",
+    "conf": 4,
+    "careers_url": "https://www.yotpo.com/careers/",
+    "ats": null,
+    "note": "careers content at /careers"
+  },
+  {
+    "name": "Melonn",
+    "vc": "NFX",
+    "tier": 3,
+    "website": "https://www.melonn.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "The.com",
+    "vc": "NFX",
+    "tier": 3,
+    "website": "https://www.the.com",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: ConnectError"
+  },
+  {
+    "name": "Club",
+    "vc": "NFX",
+    "tier": 3,
+    "website": "https://www.club.fans",
+    "conf": 4,
+    "careers_url": "https://www.luvi.fans/blog/jobs/",
+    "ats": null,
+    "note": "careers content at /jobs"
+  },
+  {
+    "name": "Mable",
+    "vc": "NFX",
+    "tier": 3,
+    "website": "https://www.meetmable.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Octoplay",
+    "vc": "NFX",
+    "tier": 3,
+    "website": "https://octo-play.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Radicle.xyz",
+    "vc": "NFX",
+    "tier": 3,
+    "website": "https://radicle.xyz",
+    "conf": 1,
+    "careers_url": null,
+    "ats": null,
+    "note": "redirects to radicle.dev"
+  },
+  {
+    "name": "Moov",
+    "vc": "Abstract Ventures",
+    "tier": 3,
+    "website": "https://moov.io",
+    "conf": 4,
+    "careers_url": "https://moov.io/careers/",
+    "ats": null,
+    "note": "careers content at /careers"
+  },
+  {
+    "name": "Lev",
+    "vc": "NFX",
+    "tier": 3,
+    "website": "https://www.levcapital.com",
+    "conf": 1,
+    "careers_url": null,
+    "ats": null,
+    "note": "redirects to lev.com"
+  },
+  {
+    "name": "GoSource",
+    "vc": "NFX",
+    "tier": 3,
+    "website": "https://www.gosource.us",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Codi",
+    "vc": "NFX",
+    "tier": 3,
+    "website": "https://www.codiwork.com",
+    "conf": 1,
+    "careers_url": null,
+    "ats": null,
+    "note": "redirects to codi.com"
+  },
+  {
+    "name": "Lyric",
+    "vc": "NFX",
+    "tier": 3,
+    "website": "https://www.lyric.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Nanocarry",
+    "vc": "NFX",
+    "tier": 3,
+    "website": "https://www.nanocarry.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Payouts.com",
+    "vc": "NFX",
+    "tier": 3,
+    "website": "https://payouts.com",
+    "conf": 1,
+    "careers_url": null,
+    "ats": null,
+    "note": "redirects to new.payouts.com"
+  },
+  {
+    "name": "Baibys",
+    "vc": "Firstime",
+    "tier": 3,
+    "website": "https://www.baibys.com",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: 403"
+  },
+  {
+    "name": "MyHeritage",
+    "vc": "NFX",
+    "tier": 3,
+    "website": "https://www.myheritage.com",
+    "conf": 1,
+    "careers_url": null,
+    "ats": null,
+    "note": "redirects to myheritage.co.il"
+  },
+  {
+    "name": "Byondxr",
+    "vc": "Firstime",
+    "tier": 3,
+    "website": "http://www.byondvr.com",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: ConnectError"
+  },
+  {
+    "name": "Papaya Gaming",
+    "vc": "NFX",
+    "tier": 3,
+    "website": "http://www.papayagaming.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "UME",
+    "vc": "NFX",
+    "tier": 3,
+    "website": "https://www.ume.com.br",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Patreon",
+    "vc": "NFX",
+    "tier": 3,
+    "website": "https://www.patreon.com",
+    "conf": 5,
+    "careers_url": "https://www.patreon.com/about",
+    "ats": "ashby",
+    "note": "ATS embed at /about/careers"
+  },
+  {
+    "name": "Overmoon",
+    "vc": "NFX",
+    "tier": 3,
+    "website": "https://overmoon.com",
+    "conf": 3,
+    "careers_url": "https://overmoon.com/orlando-vacation-rentals",
+    "ats": null,
+    "note": "careers link in homepage HTML"
+  },
+  {
+    "name": "WingPlay",
+    "vc": "NFX",
+    "tier": 3,
+    "website": "https://wingplay.co",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Livez",
+    "vc": "FinTLV",
+    "tier": 3,
+    "website": "https://www.livez.health",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: ConnectError"
+  },
+  {
+    "name": "UltraHorse",
+    "vc": "NFX",
+    "tier": 3,
+    "website": "https://ultra.horse",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Hygieia",
+    "vc": "Firstime",
+    "tier": 3,
+    "website": "https://d-nav.com",
+    "conf": 1,
+    "careers_url": null,
+    "ats": null,
+    "note": "redirects to hugedomains.com"
+  },
+  {
+    "name": "MEM Protocol",
+    "vc": "NFX",
+    "tier": 3,
+    "website": "https://mem.co",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: ConnectTimeout"
+  },
+  {
+    "name": "Renewal Bio",
+    "vc": "NFX",
+    "tier": 3,
+    "website": "https://www.renewal.bio",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "wefox",
+    "vc": "FinTLV",
+    "tier": 3,
+    "website": "https://www.wefox.com",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: 429"
+  },
+  {
+    "name": "BlaBlaCar",
+    "vc": "Accel",
+    "tier": 3,
+    "website": "http://www.blablacar.com",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: 403"
+  },
+  {
+    "name": "TripleW",
+    "vc": "Firstime",
+    "tier": 3,
+    "website": "https://www.triplew.co",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Catawiki",
+    "vc": "Accel",
+    "tier": 3,
+    "website": "http://www.catawiki.com",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: 403"
+  },
+  {
+    "name": "Vendict",
+    "vc": "NFX",
+    "tier": 3,
+    "website": "https://vendict.com",
+    "conf": 4,
+    "careers_url": "https://vendict.com/",
+    "ats": null,
+    "note": "careers content at /careers"
+  },
+  {
+    "name": "Momentick",
+    "vc": "FinTLV",
+    "tier": 3,
+    "website": "https://momentick.com",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: 429"
+  },
+  {
+    "name": "Monkey League",
+    "vc": "NFX",
+    "tier": 3,
+    "website": "https://www.monkeyleague.io",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "FeelBetter",
+    "vc": "Firstime",
+    "tier": 3,
+    "website": "https://www.feelbetter.healthcare",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Mypart",
+    "vc": "Firstime",
+    "tier": 3,
+    "website": "https://www.mypart.net",
+    "conf": 1,
+    "careers_url": null,
+    "ats": null,
+    "note": "redirects to mypart.ai"
+  },
+  {
+    "name": "H Company",
+    "vc": "Accel",
+    "tier": 3,
+    "website": "https://www.hcompany.ai",
+    "conf": 5,
+    "careers_url": "https://hcompany.ai/careers",
+    "ats": "ashby",
+    "note": "ATS embed at /careers"
+  },
+  {
+    "name": "Polar",
+    "vc": "Abstract Ventures",
+    "tier": 3,
+    "website": "https://polar.sh",
+    "conf": 5,
+    "careers_url": "https://polar.sh/company",
+    "ats": "ashby",
+    "note": "ATS embed at /careers"
+  },
+  {
+    "name": "Stardust",
+    "vc": "NFX",
+    "tier": 3,
+    "website": "https://stardust.app",
+    "conf": 4,
+    "careers_url": "https://stardust.app/careers",
+    "ats": null,
+    "note": "careers content at /careers"
+  },
+  {
+    "name": "Monzo",
+    "vc": "Accel",
+    "tier": 3,
+    "website": "http://www.monzo.com",
+    "conf": 5,
+    "careers_url": "https://monzo.com/careers",
+    "ats": "greenhouse",
+    "note": "ATS embed at /careers"
+  },
+  {
+    "name": "Wallapop",
+    "vc": "Accel",
+    "tier": 3,
+    "website": "http://www.wallapop.com",
+    "conf": 5,
+    "careers_url": "https://www.wallapop.com/",
+    "ats": "greenhouse",
+    "note": "ATS embed on homepage"
+  },
+  {
+    "name": "Uptop",
+    "vc": "NFX",
+    "tier": 3,
+    "website": "https://www.uptop.xyz",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Surf AI",
+    "vc": "Accel",
+    "tier": 3,
+    "website": "https://www.surf.ai",
+    "conf": 5,
+    "careers_url": "https://www.surf.ai",
+    "ats": "greenhouse",
+    "note": "ATS embed on homepage"
+  },
+  {
+    "name": "Boards",
+    "vc": "Bessemer",
+    "tier": 2,
+    "website": "https://www.boards.com",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: 429"
+  },
+  {
+    "name": "Health Bridge",
+    "vc": "FinTLV",
+    "tier": 3,
+    "website": "https://www.hbridge.com",
+    "conf": 1,
+    "careers_url": null,
+    "ats": null,
+    "note": "redirects to hugedomains.com"
+  },
+  {
+    "name": "Fiverr",
+    "vc": "Bessemer",
+    "tier": 2,
+    "website": "https://www.fiverr.com",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: 403"
+  },
+  {
+    "name": "Gameforge",
+    "vc": "Accel",
+    "tier": 3,
+    "website": "https://gameforge.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Waymont",
+    "vc": "NFX",
+    "tier": 3,
+    "website": "https://www.waymont.co",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Memphis",
+    "vc": "Boldstart",
+    "tier": 2,
+    "website": "https://memphis.dev",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: ConnectError"
+  },
+  {
+    "name": "Psyga",
+    "vc": "NFX",
+    "tier": 3,
+    "website": "https://cannasoul.co.il",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "dylibso (MCP.run)",
+    "vc": "Boldstart",
+    "tier": 2,
+    "website": "https://dylibso.com",
+    "conf": 1,
+    "careers_url": null,
+    "ats": null,
+    "note": "redirects to dylibso.ai"
+  },
+  {
+    "name": "UtilizeCore",
+    "vc": "Boldstart",
+    "tier": 2,
+    "website": "https://utilizecore.com",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: 403"
+  },
+  {
+    "name": "TravelJoy",
+    "vc": "NFX",
+    "tier": 3,
+    "website": "https://traveljoy.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Helsing",
+    "vc": "Accel",
+    "tier": 3,
+    "website": "https://helsing.ai",
+    "conf": 4,
+    "careers_url": "https://helsing.ai/careers",
+    "ats": null,
+    "note": "careers content at /careers"
+  },
+  {
+    "name": "Themis",
+    "vc": "NFX",
+    "tier": 3,
+    "website": "https://themis.exchange",
+    "conf": 4,
+    "careers_url": "https://themis.exchange/careers",
+    "ats": null,
+    "note": "careers content at /careers"
+  },
+  {
+    "name": "Auxon",
+    "vc": "Boldstart",
+    "tier": 2,
+    "website": "https://auxon.io",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: 404"
+  },
+  {
+    "name": "Wonder",
+    "vc": "Bain Capital Ventures",
+    "tier": 3,
+    "website": "https://www.wonder.com",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: 403"
+  },
+  {
+    "name": "Tilt",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://tilt.com",
+    "conf": 5,
+    "careers_url": "https://tilt.com/careers",
+    "ats": "ashby",
+    "note": "ATS embed at /careers"
+  },
+  {
+    "name": "Lovys",
+    "vc": "FinTLV",
+    "tier": 3,
+    "website": "https://www.lovys.com",
+    "conf": 4,
+    "careers_url": "https://lovys.com/fr/",
+    "ats": null,
+    "note": "careers content at /careers"
+  },
+  {
+    "name": "Snax Games",
+    "vc": "NFX",
+    "tier": 3,
+    "website": "https://www.snaxgames.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Maverick",
+    "vc": "Firstime",
+    "tier": 3,
+    "website": "https://www.maverick-med.com",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: ConnectTimeout"
+  },
+  {
+    "name": "All Day",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://www.allday.com",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: ConnectError"
+  },
+  {
+    "name": "Vinted",
+    "vc": "Accel",
+    "tier": 3,
+    "website": "http://www.vinted.fr",
+    "conf": 4,
+    "careers_url": "https://careers.vinted.com/",
+    "ats": null,
+    "note": "careers content at /jobs"
+  },
+  {
+    "name": "Doctolib",
+    "vc": "Accel",
+    "tier": 3,
+    "website": "http://www.doctolib.fr",
+    "conf": 3,
+    "careers_url": "https://careers.doctolib.fr/?origin=home-footer&amp;utm_button=footer&amp;utm_content-group=homepage&amp;utm_website=doctolib_patients",
+    "ats": null,
+    "note": "careers link in homepage HTML"
+  },
+  {
+    "name": "Lighthouse",
+    "vc": "Accel",
+    "tier": 3,
+    "website": "https://www.lighthouselabs.xyz",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Sweetch",
+    "vc": "FinTLV",
+    "tier": 3,
+    "website": "https://www.sweetch.com",
+    "conf": 3,
+    "careers_url": "https://www.sweetch.com/join-our-team",
+    "ats": null,
+    "note": "careers link in homepage HTML"
+  },
+  {
+    "name": "Anduril",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://www.anduril.com",
+    "conf": 5,
+    "careers_url": "https://www.anduril.com",
+    "ats": "greenhouse",
+    "note": "ATS embed on homepage"
+  },
+  {
+    "name": "Bolttech",
+    "vc": "FinTLV",
+    "tier": 3,
+    "website": "https://bolt.tech",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: ConnectTimeout"
+  },
+  {
+    "name": "Alleviate Health",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://alleviatehealth.care",
+    "conf": 5,
+    "careers_url": "https://jobs.ashbyhq.com/alleviatehealth",
+    "ats": "ashby",
+    "note": "ATS embed at /careers"
+  },
+  {
+    "name": "Zoomin",
+    "vc": "Bessemer",
+    "tier": 2,
+    "website": "https://www.zoominsoftware.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Qwak",
+    "vc": "Bessemer",
+    "tier": 2,
+    "website": "https://www.qwak.com",
+    "conf": 4,
+    "careers_url": "https://join.jfrog.com/",
+    "ats": null,
+    "note": "careers content at /careers"
+  },
+  {
+    "name": "BlackSwan Technologies",
+    "vc": "FinTLV",
+    "tier": 3,
+    "website": "https://www.blackswantechnologies.ai",
+    "conf": 4,
+    "careers_url": "https://www.blackswantechnologies.ai/careers/",
+    "ats": null,
+    "note": "careers content at /careers"
+  },
+  {
+    "name": "Cape AI",
+    "vc": "Boldstart",
+    "tier": 2,
+    "website": "https://cape.ai",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "CodeYam",
+    "vc": "Boldstart",
+    "tier": 2,
+    "website": "https://codeyam.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Harbr Data",
+    "vc": "Boldstart",
+    "tier": 2,
+    "website": "https://www.harbrdata.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Avalanche",
+    "vc": "Abstract Ventures",
+    "tier": 3,
+    "website": "https://www.avalabs.org",
+    "conf": 5,
+    "careers_url": "https://www.avalabs.org/careers",
+    "ats": "greenhouse",
+    "note": "ATS embed at /careers"
+  },
+  {
+    "name": "Beacons",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://beacons.ai",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: 403"
+  },
+  {
+    "name": "Arena",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://arena.ai",
+    "conf": 5,
+    "careers_url": "https://jobs.ashbyhq.com/arena",
+    "ats": "ashby",
+    "note": "ATS embed at /jobs"
+  },
+  {
+    "name": "Addi",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://addi.com",
+    "conf": 1,
+    "careers_url": null,
+    "ats": null,
+    "note": "redirects to co.addi.com"
+  },
+  {
+    "name": "Alchemy Health",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://alchemyhealth.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "AminoChain",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://aminochain.io",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Arcjet",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://arcjet.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Akinova",
+    "vc": "FinTLV",
+    "tier": 3,
+    "website": "https://www.akinova.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Aztec",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://aztec.network",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Praso",
+    "vc": "NFX",
+    "tier": 3,
+    "website": "https://praso.com.br",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Arpeggi Labs",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://arpeggi.io",
+    "conf": 1,
+    "careers_url": null,
+    "ats": null,
+    "note": "redirects to kits.ai"
+  },
+  {
+    "name": "Angle",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://angle.money",
+    "conf": 4,
+    "careers_url": "https://angle.money/careers",
+    "ats": null,
+    "note": "careers content at /careers"
+  },
+  {
+    "name": "Belong",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://belongrewards.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Sumeria",
+    "vc": "Accel",
+    "tier": 3,
+    "website": "https://sumeria.eu",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Ber Sarai Labs",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://yupp.ai",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Cardiogram",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://cardiogram.com",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: ConnectError"
+  },
+  {
+    "name": "Axoni",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://axoni.com",
+    "conf": 4,
+    "careers_url": "https://axoni.com/careers/",
+    "ats": null,
+    "note": "careers content at /careers"
+  },
+  {
+    "name": "Blackbird.xyz",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://blackbird.xyz",
+    "conf": 5,
+    "careers_url": "https://jobs.ashbyhq.com/blackbird-labs-inc",
+    "ats": "ashby",
+    "note": "ATS embed at /careers"
+  },
+  {
+    "name": "Character.AI",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://character.ai",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: 403"
+  },
+  {
+    "name": "Airbnb",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://airbnb.com",
+    "conf": 4,
+    "careers_url": "https://careers.airbnb.com/",
+    "ats": null,
+    "note": "careers content at /careers/"
+  },
+  {
+    "name": "Autograph.io",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://autograph.io",
+    "conf": 4,
+    "careers_url": "https://autograph.io/careers",
+    "ats": null,
+    "note": "careers content at /careers"
+  },
+  {
+    "name": "CHIP Professionals",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://www.chipprofessionals.com",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: 403"
+  },
+  {
+    "name": "Sling",
+    "vc": "Boldstart",
+    "tier": 2,
+    "website": "http://getsling.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "BioAge Labs",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "http://bioagelabs.com",
+    "conf": 4,
+    "careers_url": "https://bioagelabs.com/careers",
+    "ats": null,
+    "note": "careers content at /careers"
+  },
+  {
+    "name": "Allset",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://allsetnow.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Beeps",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://beeps.dev",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Backbone Systems",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://www.backbonesystems.ai",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Sentra",
+    "vc": "Bessemer",
+    "tier": 2,
+    "website": "https://www.sentra.io",
+    "conf": 4,
+    "careers_url": "https://sentra.io/careers",
+    "ats": null,
+    "note": "careers content at /careers"
+  },
+  {
+    "name": "Taxdoo",
+    "vc": "Accel",
+    "tier": 3,
+    "website": "https://www.taxdoo.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Createra",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://createra.fun",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: ConnectError"
+  },
+  {
+    "name": "Border0",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://border0.com",
+    "conf": 3,
+    "careers_url": "https://www.border0.com/contact-us",
+    "ats": null,
+    "note": "careers link in homepage HTML"
+  },
+  {
+    "name": "Black Ore Technologies",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://www.blackore.ai",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Daze",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://daze.nyc",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: 403"
+  },
+  {
+    "name": "Classos",
+    "vc": "Firstime",
+    "tier": 3,
+    "website": "https://classoos.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Celo",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://clabs.co",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Canal",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://shopcanal.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "DELV",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://delv.tech",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: ConnectError"
+  },
+  {
+    "name": "Capital.xyz",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://capital.xyz",
+    "conf": 4,
+    "careers_url": "https://capital.xyz/team",
+    "ats": null,
+    "note": "careers content at /careers"
+  },
+  {
+    "name": "Dispatch",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://dispatch.ai",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: ConnectError"
+  },
+  {
+    "name": "Biodock",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://www.biodock.ai",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "CCP Games",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://eveonline.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Core Loop",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://coreloop.ai",
+    "conf": 1,
+    "careers_url": null,
+    "ats": null,
+    "note": "redirects to coreloop.gg"
+  },
+  {
+    "name": "Civitai",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://civitai.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Deepr",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://www.deeprmusic.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Culture Wireless",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://www.goculturewireless.com",
+    "conf": 1,
+    "careers_url": null,
+    "ats": null,
+    "note": "redirects to culturewireless.com"
+  },
+  {
+    "name": "Divvy Homes",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://divvyhomes.com",
+    "conf": 5,
+    "careers_url": "https://www.divvyhomes.com/careers",
+    "ats": "greenhouse",
+    "note": "ATS embed at /careers"
+  },
+  {
+    "name": "DeSO",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://deso.org",
+    "conf": 1,
+    "careers_url": null,
+    "ats": null,
+    "note": "redirects to deso.com"
+  },
+  {
+    "name": "EPAL, INC.",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://www.epal.gg",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: 403"
+  },
+  {
+    "name": "Earli",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://earli.com",
+    "conf": 5,
+    "careers_url": "https://www.earli.com/",
+    "ats": "greenhouse",
+    "note": "ATS embed on homepage"
+  },
+  {
+    "name": "Braid.ai",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://braid.ai",
+    "conf": 1,
+    "careers_url": null,
+    "ats": null,
+    "note": "redirects to atom.com"
+  },
+  {
+    "name": "Fanatics",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://fanatics.com",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: 403"
+  },
+  {
+    "name": "Cryptoys",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://onchainstudios.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Distributional",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://www.distributional.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Compound",
+    "vc": "Abstract Ventures",
+    "tier": 3,
+    "website": "https://compound.finance",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Cotool",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://cotool.ai",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Feedplan",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://feedplan.com",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: 404"
+  },
+  {
+    "name": "Cider",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://shopcider.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Deepcell",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://deepcell.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Flow",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://www.flow.life",
+    "conf": 5,
+    "careers_url": "https://flow.life/",
+    "ats": "lever",
+    "note": "ATS embed on homepage"
+  },
+  {
+    "name": "Forte Labs, Inc.",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://forte.io",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: 403"
+  },
+  {
+    "name": "Destruction Labz",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://www.destructionlabz.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Datanomik",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://www.datanomik.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Entropy",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://entropy.xyz",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Cuenca",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://cuenca.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Co:Create",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://usecocreate.io",
+    "conf": 1,
+    "careers_url": null,
+    "ats": null,
+    "note": "redirects to cocreate.ink"
+  },
+  {
+    "name": "Arweave",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://arweave.org",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Gamma.app",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://www.gamma.app",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: 403"
+  },
+  {
+    "name": "Equal IQ",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://www.equal-iq.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "dYdX",
+    "vc": "Abstract Ventures",
+    "tier": 3,
+    "website": "https://dydx.exchange",
+    "conf": 1,
+    "careers_url": null,
+    "ats": null,
+    "note": "redirects to dydx.xyz"
+  },
+  {
+    "name": "E-3 Tech",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://e-3.tech",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Cult of the North",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://www.cultofthenorth.com",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: ConnectTimeout"
+  },
+  {
+    "name": "DoNotPay",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://donotpay.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Papaya Global",
+    "vc": "Bessemer",
+    "tier": 2,
+    "website": "https://papayaglobal.com",
+    "conf": 3,
+    "careers_url": "https://www.papayaglobal.com/careers/",
+    "ats": null,
+    "note": "careers link in homepage HTML"
+  },
+  {
+    "name": "Accolade",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://www.accolade.com",
+    "conf": 4,
+    "careers_url": "https://transcarent.com/careers",
+    "ats": null,
+    "note": "careers content at /careers"
+  },
+  {
+    "name": "Equals",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://equals.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Headway",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://headway.co",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: 403"
+  },
+  {
+    "name": "Ideogram",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://ideogram.ai",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: 403"
+  },
+  {
+    "name": "Flash Hoops",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://www.flashhoops.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Inventa",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://inventa.shop",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: ConnectError"
+  },
+  {
+    "name": "Camp4",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://www.camp4tx.com",
+    "conf": 4,
+    "careers_url": "https://www.camp4tx.com/about/join-camp4/",
+    "ats": null,
+    "note": "careers content at /join"
+  },
+  {
+    "name": "Freatic",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://freatic.team",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Foundation",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://foundation.app",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "FingerprintsDAO",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://fingerprintsdao.xyz",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Jopwell",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://www.jopwell.com",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: 403"
+  },
+  {
+    "name": "Fortuna Health",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://fortunahealth.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Journera",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://journera.com",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: ConnectError"
+  },
+  {
+    "name": "K12 Crypto",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://www.k12crypto.com",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: 404"
+  },
+  {
+    "name": "District",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://www.joindistrict.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Groupon, Inc.",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://www.groupon.com",
+    "conf": 5,
+    "careers_url": "https://www.grouponcareers.com/",
+    "ats": "greenhouse",
+    "note": "ATS embed at /jobs"
+  },
+  {
+    "name": "GamerXSociety",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://www.gamerxsociety.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Foodology",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://foodology.com.co",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Here Not There, Inc.",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://hntlabs.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "KIKI",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://kikiworld.io",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: 403"
+  },
+  {
+    "name": "FlyHomes",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://www.flyhomes.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Irreverent Labs",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://irreverentlabs.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "FWB",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://fwb.help",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Faraway",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://faraway.gg",
+    "conf": 3,
+    "careers_url": "https://dookeydashunclogged.com/",
+    "ats": null,
+    "note": "careers link in homepage HTML"
+  },
+  {
+    "name": "Glow",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://glowing.com",
+    "conf": 4,
+    "careers_url": "https://glowing.com/jobs",
+    "ats": null,
+    "note": "careers content at /jobs"
+  },
+  {
+    "name": "Cadre",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://cadre.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Lime",
+    "vc": "Bain Capital Ventures",
+    "tier": 3,
+    "website": "https://www.li.me",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: 403"
+  },
+  {
+    "name": "Genius",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://genius.com",
+    "conf": 4,
+    "careers_url": "https://genius.com/Careers",
+    "ats": null,
+    "note": "careers content at /careers"
+  },
+  {
+    "name": "Greether",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://www.greether.com",
+    "conf": 4,
+    "careers_url": "https://www.greether.com/careers",
+    "ats": null,
+    "note": "careers content at /careers"
+  },
+  {
+    "name": "Loop",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://loopcrypto.xyz",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: ConnectError"
+  },
+  {
+    "name": "Loft",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://loft.com.br",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: 403"
+  },
+  {
+    "name": "Incention",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://www.incention.io",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Medium",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://medium.com",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: 403"
+  },
+  {
+    "name": "LootRush",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://www.lootrush.com",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: 403"
+  },
+  {
+    "name": "Iron Fish",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://ironfish.network",
+    "conf": 3,
+    "careers_url": "https://www.theblock.co/post/227336/a16z-backed-iron-fish-launches-mainnet-blockchain",
+    "ats": null,
+    "note": "careers link in homepage HTML"
+  },
+  {
+    "name": "Kalshi",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://www.kalshi.com",
+    "conf": 5,
+    "careers_url": "https://kalshi.com/careers",
+    "ats": "ashby",
+    "note": "ATS embed at /careers"
+  },
+  {
+    "name": "GoodData",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://www.gooddata.com",
+    "conf": 4,
+    "careers_url": "https://www.gooddata.ai/company/careers/",
+    "ats": null,
+    "note": "careers content at /company/careers"
+  },
+  {
+    "name": "IYK",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://iyk.app",
+    "conf": 4,
+    "careers_url": "https://iyk.notion.site/Open-Roles-at-IYK-ec465c774c4c4ccbb4d884b7fad8d3df",
+    "ats": null,
+    "note": "careers content at /careers"
+  },
+  {
+    "name": "Lightup",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://www.lightup.ai",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Julep",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://www.julep.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Kiosk",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://kiosk.app",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Golden",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://golden.com",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: ReadTimeout"
+  },
+  {
+    "name": "Keep Network",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://keep.network",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Muse App Inc",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://www.musesessions.co",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Intrinsic",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://intrinsic.com",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: ConnectTimeout"
+  },
+  {
+    "name": "Lido Finance",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://lido.fi",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "NEAR",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://near.org",
+    "conf": 5,
+    "careers_url": "https://www.near.org/",
+    "ats": "greenhouse",
+    "note": "ATS embed on homepage"
+  },
+  {
+    "name": "Lighter",
+    "vc": "Abstract Ventures",
+    "tier": 3,
+    "website": "https://lighter.xyz",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Locale",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://shoplocale.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Kavak",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://kavak.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "OpenAI",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://openai.com",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: 403"
+  },
+  {
+    "name": "Labelbox",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://labelbox.com",
+    "conf": 4,
+    "careers_url": "https://labelbox.com/company/careers/",
+    "ats": null,
+    "note": "careers content at /company/careers"
+  },
+  {
+    "name": "NationBuilder",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://nationbuilder.com",
+    "conf": 5,
+    "careers_url": "https://nationbuilder.com/careers",
+    "ats": "greenhouse",
+    "note": "ATS embed at /careers"
+  },
+  {
+    "name": "Merit Systems",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://www.merit.systems",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Medley",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://www.withmedley.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Otter",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://withotter.com",
+    "conf": 5,
+    "careers_url": "https://withotter.com/careers",
+    "ats": "greenhouse",
+    "note": "ATS embed at /careers"
+  },
+  {
+    "name": "Meta4 Capital",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://meta4.capital",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Meitre",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://meitre.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Isovalent",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://isovalent.com",
+    "conf": 4,
+    "careers_url": "https://isovalent.com/careers/",
+    "ats": null,
+    "note": "careers content at /careers"
+  },
+  {
+    "name": "Paloma",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://www.paloma.club",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "NG.CASH",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://ng.cash",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "North Pole Security",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://northpolesec.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Mvmnt",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://mvmnt.io",
+    "conf": 4,
+    "careers_url": "https://mvmnt.io/careers",
+    "ats": null,
+    "note": "careers content at /careers"
+  },
+  {
+    "name": "Oasis Labs",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://www.oasislabs.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "PartyDAO",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://partybid.app",
+    "conf": 1,
+    "careers_url": null,
+    "ats": null,
+    "note": "redirects to forever.partydao.org"
+  },
+  {
+    "name": "Mercury",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://www.mercury.build",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "NOD Games",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://nodgames.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Patch Biosciences",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://www.patch.bio",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: ConnectError"
+  },
+  {
+    "name": "Kosen Labs",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://kosen.ai",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Quora",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://quora.com",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: 403"
+  },
+  {
+    "name": "Palmstreet",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://palmstreet.app",
+    "conf": 4,
+    "careers_url": "https://palmstreet.app/careers",
+    "ats": null,
+    "note": "careers content at /careers"
+  },
+  {
+    "name": "Ready Player Me",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://readyplayer.me",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: ConnectError"
+  },
+  {
+    "name": "Rapid",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://rapidapi.com",
+    "conf": 5,
+    "careers_url": "https://rapidapi.com",
+    "ats": "comeet",
+    "note": "ATS embed on homepage"
+  },
+  {
+    "name": "Outing",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://www.joinouting.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Orchid Labs",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://www.orchid.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Mem Protocol",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://mem.co",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: ConnectTimeout"
+  },
+  {
+    "name": "Resourcely",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://resourcely.io",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: ConnectError"
+  },
+  {
+    "name": "Rival",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://rival.co",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: ConnectError"
+  },
+  {
+    "name": "Protege",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://withprotege.ai",
+    "conf": 5,
+    "careers_url": "https://withprotege.ai/people",
+    "ats": "ashby",
+    "note": "ATS embed at /careers"
+  },
+  {
+    "name": "Revolut",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://revolut.com",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: 403"
+  },
+  {
+    "name": "PromptFoo",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://www.promptfoo.dev",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "ROME Therapeutics",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://rometx.com",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: ConnectError"
+  },
+  {
+    "name": "Regrello",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://regrello.com",
+    "conf": 5,
+    "careers_url": "https://www.regrello.com/careers",
+    "ats": "lever",
+    "note": "ATS embed at /careers"
+  },
+  {
+    "name": "Manifold",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://manifold.xyz",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Niftmint",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://tflabs.io",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Rye",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://rye.store",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: 403"
+  },
+  {
+    "name": "Mountaintop Studios",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://www.mountaintop.gg",
+    "conf": 4,
+    "careers_url": "https://www.mountaintop.gg/careers",
+    "ats": null,
+    "note": "careers content at /careers"
+  },
+  {
+    "name": "Pimlico",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://pimlico.io",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "kweliTV",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://www.kweli.tv",
+    "conf": 4,
+    "careers_url": "https://www.kweli.tv/careers",
+    "ats": null,
+    "note": "careers content at /careers"
+  },
+  {
+    "name": "Payall",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://payall.com",
+    "conf": 3,
+    "careers_url": "https://payall.com/join-our-team",
+    "ats": null,
+    "note": "careers link in homepage HTML"
+  },
+  {
+    "name": "Fudo",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://fu.do",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Q Bio, Inc.",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://q.bio",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Stelo Labs, Inc.",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://stelolabs.com",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: 404"
+  },
+  {
+    "name": "Merkle Manufactory, Inc.",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://farcaster.xyz",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "SkySafe",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://www.skysafe.io",
+    "conf": 5,
+    "careers_url": "https://www.skysafe.io/company",
+    "ats": "lever",
+    "note": "ATS embed at /jobs"
+  },
+  {
+    "name": "Replay",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://replay.io",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Seismic Systems",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://seismic.systems",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Scribenote",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://scribenote.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Raid Base",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://raidbase.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Relay",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://relay.app",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Scene Infrastructure Co",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://sceneinfrastructure.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Sound.xyz",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://sound.xyz",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Shibuya",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://shibuya.xyz",
+    "conf": 1,
+    "careers_url": null,
+    "ats": null,
+    "note": "redirects to shibuya.film"
+  },
+  {
+    "name": "Teespring",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://teespring.com",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: 403"
+  },
+  {
+    "name": "Keep",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://keepfinancial.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Teleport",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://teleport.org",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: ConnectError"
+  },
+  {
+    "name": "Segura",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://www.sejasegura.com.br",
+    "conf": 1,
+    "careers_url": null,
+    "ats": null,
+    "note": "redirects to segura.ai"
+  },
+  {
+    "name": "Tally Labs, Inc.",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://tallylabs.xyz",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: 403"
+  },
+  {
+    "name": "Sky",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://sky.money",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "PleasrDAO",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://pleasr.org",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: ConnectTimeout"
+  },
+  {
+    "name": "Talos",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://talos.com",
+    "conf": 5,
+    "careers_url": "https://www.talos.com/working/open-roles",
+    "ats": "ashby",
+    "note": "ATS embed at /careers"
+  },
+  {
+    "name": "Swell",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://swell.life",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Udio",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://www.udio.com",
+    "conf": 5,
+    "careers_url": "https://www.udio.com",
+    "ats": "greenhouse",
+    "note": "ATS embed on homepage"
+  },
+  {
+    "name": "Super Evil MegaCorp",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://www.superevilmegacorp.com",
+    "conf": 5,
+    "careers_url": "https://superevilmegacorp.com/careers/",
+    "ats": "ashby",
+    "note": "ATS embed at /careers"
+  },
+  {
+    "name": "greply",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://www.grep.ly",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "WaveForms AI",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://www.waveforms.ai",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: ConnectError"
+  },
+  {
+    "name": "Pinterest",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://pinterest.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Testcode",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://testco.de",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Pietra",
+    "vc": "Abstract Ventures",
+    "tier": 3,
+    "website": "https://www.pietrastudio.com",
+    "conf": 4,
+    "careers_url": "https://www.pietrastudio.com/careers",
+    "ats": null,
+    "note": "careers content at /careers"
+  },
+  {
+    "name": "Tlon",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://urbit.org",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Uniswap",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://uniswap.org",
+    "conf": 1,
+    "careers_url": null,
+    "ats": null,
+    "note": "redirects to app.uniswap.org"
+  },
+  {
+    "name": "Shop Rodeo",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://www.shoprodeo.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Syndicate",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://syndicate.io",
+    "conf": 4,
+    "careers_url": "https://syndicate.io/careers",
+    "ats": null,
+    "note": "careers content at /careers"
+  },
+  {
+    "name": "Stacker",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://www.stackerhq.com",
+    "conf": 4,
+    "careers_url": "https://stacker.ai/careers",
+    "ats": null,
+    "note": "careers content at /careers"
+  },
+  {
+    "name": "Ario",
+    "vc": "Bain Capital Ventures",
+    "tier": 3,
+    "website": "https://www.heyario.com",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: ConnectError"
+  },
+  {
+    "name": "6sense",
+    "vc": "Bain Capital Ventures",
+    "tier": 3,
+    "website": "https://6sense.com",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: 403"
+  },
+  {
+    "name": "OpenSea",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://opensea.io",
+    "conf": 4,
+    "careers_url": "https://opensea.io/careers",
+    "ats": null,
+    "note": "careers content at /careers"
+  },
+  {
+    "name": "Yuga Labs (BAYC)",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://yuga.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "SwayBrand, Inc.",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://www.swaybrand.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Aqueduct",
+    "vc": "Bain Capital Ventures",
+    "tier": 3,
+    "website": "https://www.tryaqueduct.com",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: ConnectError"
+  },
+  {
+    "name": "Substack",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://substack.com",
+    "conf": 4,
+    "careers_url": "https://substack.com/jobs",
+    "ats": null,
+    "note": "careers content at /careers"
+  },
+  {
+    "name": "Practice",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://practice.do",
+    "conf": 4,
+    "careers_url": "https://www.notion.so/practice/Work-with-Practice-2562ed9918814f90bb93751ac3b69a10",
+    "ats": null,
+    "note": "careers content at /careers"
+  },
+  {
+    "name": "Centivo",
+    "vc": "Bain Capital Ventures",
+    "tier": 3,
+    "website": "https://centivo.com",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: 403"
+  },
+  {
+    "name": "Stoik",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://stoik.io",
+    "conf": 1,
+    "careers_url": null,
+    "ats": null,
+    "note": "redirects to stoik.com"
+  },
+  {
+    "name": "Yellow",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://yellow3d.com",
+    "conf": 5,
+    "careers_url": "https://yellow3d.com/careers/",
+    "ats": "ashby",
+    "note": "ATS embed at /careers"
+  },
+  {
+    "name": "Rubrik",
+    "vc": "Bain Capital Ventures",
+    "tier": 3,
+    "website": "https://www.rubrik.com",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: 403"
+  },
+  {
+    "name": "Timbucktoo",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://www.thetimbucktoo.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Appriss Inc.",
+    "vc": "Bain Capital Ventures",
+    "tier": 3,
+    "website": "https://apprisscorp.com",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: 404"
+  },
+  {
+    "name": "TruVideo",
+    "vc": "Bain Capital Ventures",
+    "tier": 3,
+    "website": "https://truvideo.com",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: 403"
+  },
+  {
+    "name": "Unisound",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://www.unisound.io",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Parative",
+    "vc": "Bain Capital Ventures",
+    "tier": 3,
+    "website": "https://www.parative.com",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: ConnectError"
+  },
+  {
+    "name": "Third Arc Bio",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://thirdarcbio.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Stonks",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://stonks.com",
+    "conf": 1,
+    "careers_url": null,
+    "ats": null,
+    "note": "redirects to pilotgpt.com"
+  },
+  {
+    "name": "Warbler Labs, Incorporated",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://goldfinch.finance",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Futuredontics",
+    "vc": "Bain Capital Ventures",
+    "tier": 3,
+    "website": "https://www.futuredontics.com",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: 403"
+  },
+  {
+    "name": "Yield Guild Games",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://yieldguild.io",
+    "conf": 1,
+    "careers_url": null,
+    "ats": null,
+    "note": "redirects to yggplay.fun"
+  },
+  {
+    "name": "Topography Health",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://jointopo.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Parafi",
+    "vc": "Bain Capital Ventures",
+    "tier": 3,
+    "website": "https://parafi.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Tradeblock",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://tradeblock.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Applied Compute",
+    "vc": "Abstract Ventures",
+    "tier": 3,
+    "website": "https://appliedcompute.com",
+    "conf": 5,
+    "careers_url": "https://www.appliedcompute.com/",
+    "ats": "ashby",
+    "note": "ATS embed on homepage"
+  },
+  {
+    "name": "Adrenaline",
+    "vc": "Abstract Ventures",
+    "tier": 3,
+    "website": "https://useadrenaline.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Amo",
+    "vc": "Abstract Ventures",
+    "tier": 3,
+    "website": "http://amo.co",
+    "conf": 5,
+    "careers_url": "https://amo.co/jobs/",
+    "ats": "ashby",
+    "note": "ATS embed at /jobs"
+  },
+  {
+    "name": "XBuild",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://www.x.build",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Bazar",
+    "vc": "Abstract Ventures",
+    "tier": 3,
+    "website": "https://shopbazar.com",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: 423"
+  },
+  {
+    "name": "Zed.run",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://vhslab.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Wealthmore",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://www.wealthmore.net",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Netdata",
+    "vc": "Bain Capital Ventures",
+    "tier": 3,
+    "website": "https://www.netdata.cloud",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Alpaca",
+    "vc": "Abstract Ventures",
+    "tier": 3,
+    "website": "https://alpaca.markets",
+    "conf": 3,
+    "careers_url": "https://alpaca.markets/hiring",
+    "ats": null,
+    "note": "careers link in homepage HTML"
+  },
+  {
+    "name": "SigFig",
+    "vc": "Bain Capital Ventures",
+    "tier": 3,
+    "website": "https://sigfig.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "RentoMojo",
+    "vc": "Bain Capital Ventures",
+    "tier": 3,
+    "website": "https://www.rentomojo.com",
+    "conf": 4,
+    "careers_url": "https://www.rentomojo.com/about/careers",
+    "ats": null,
+    "note": "careers content at /about/careers"
+  },
+  {
+    "name": "TrueFi",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://truefi.io",
+    "conf": 3,
+    "careers_url": "https://forum.truefi.io/t/when-access-will-open-to-claiming-positions/2971",
+    "ats": null,
+    "note": "careers link in homepage HTML"
+  },
+  {
+    "name": "Snapser",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://snapser.com",
+    "conf": 4,
+    "careers_url": "https://snapser.com/careers",
+    "ats": null,
+    "note": "careers content at /careers"
+  },
+  {
+    "name": "Zenlytic",
+    "vc": "Bain Capital Ventures",
+    "tier": 3,
+    "website": "https://www.zenlytic.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Excision",
+    "vc": "Abstract Ventures",
+    "tier": 3,
+    "website": "https://www.excision.bio",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: 404"
+  },
+  {
+    "name": "Alloy",
+    "vc": "Abstract Ventures",
+    "tier": 3,
+    "website": "https://runalloy.com",
+    "conf": 4,
+    "careers_url": "https://runalloy.com/careers/",
+    "ats": null,
+    "note": "careers content at /careers"
+  },
+  {
+    "name": "Formal",
+    "vc": "Abstract Ventures",
+    "tier": 3,
+    "website": "https://www.joinformal.com",
+    "conf": 5,
+    "careers_url": "https://formal.ai/",
+    "ats": "ashby",
+    "note": "ATS embed on homepage"
+  },
+  {
+    "name": "Atum",
+    "vc": "Abstract Ventures",
+    "tier": 3,
+    "website": "https://atumlabs.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Frubana",
+    "vc": "Abstract Ventures",
+    "tier": 3,
+    "website": "https://www.frubana.com",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: ConnectError"
+  },
+  {
+    "name": "Astral",
+    "vc": "Abstract Ventures",
+    "tier": 3,
+    "website": "https://www.astral.now",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "OpenFin",
+    "vc": "Bain Capital Ventures",
+    "tier": 3,
+    "website": "https://www.openfin.co",
+    "conf": 4,
+    "careers_url": "https://www.here.io/careers",
+    "ats": null,
+    "note": "careers content at /careers"
+  },
+  {
+    "name": "Chance",
+    "vc": "Abstract Ventures",
+    "tier": 3,
+    "website": "https://chanceapp.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Applied Labs",
+    "vc": "Abstract Ventures",
+    "tier": 3,
+    "website": "https://appliedlabs.ai",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Concrete",
+    "vc": "Abstract Ventures",
+    "tier": 3,
+    "website": "https://concretehq.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Bezel",
+    "vc": "Abstract Ventures",
+    "tier": 3,
+    "website": "https://shop.getbezel.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Dupe",
+    "vc": "Abstract Ventures",
+    "tier": 3,
+    "website": "https://dupe.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Audiogen",
+    "vc": "Abstract Ventures",
+    "tier": 3,
+    "website": "https://www.audiogen.co",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Decart",
+    "vc": "Abstract Ventures",
+    "tier": 3,
+    "website": "https://decart.ai",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Friend",
+    "vc": "Abstract Ventures",
+    "tier": 3,
+    "website": "http://friend.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Anzenna",
+    "vc": "Abstract Ventures",
+    "tier": 3,
+    "website": "https://www.anzenna.ai",
+    "conf": 4,
+    "careers_url": "https://www.anzenna.ai/careers/",
+    "ats": null,
+    "note": "careers content at /careers"
+  },
+  {
+    "name": "Arc Boats",
+    "vc": "Abstract Ventures",
+    "tier": 3,
+    "website": "https://arcboats.com",
+    "conf": 4,
+    "careers_url": "https://arcboats.com/careers",
+    "ats": null,
+    "note": "careers content at /careers"
+  },
+  {
+    "name": "Levro",
+    "vc": "Abstract Ventures",
+    "tier": 3,
+    "website": "https://www.levro.com",
+    "conf": 5,
+    "careers_url": "https://www.levro.com/careers",
+    "ats": "ashby",
+    "note": "ATS embed at /careers"
+  },
+  {
+    "name": "Kinetic",
+    "vc": "Abstract Ventures",
+    "tier": 3,
+    "website": "https://kinetic.xyz",
+    "conf": 5,
+    "careers_url": "https://kinetic.xyz",
+    "ats": "greenhouse",
+    "note": "ATS embed on homepage"
+  },
+  {
+    "name": "Hero",
+    "vc": "Abstract Ventures",
+    "tier": 3,
+    "website": "https://tryhero.app",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "TidalScale",
+    "vc": "Bain Capital Ventures",
+    "tier": 3,
+    "website": "https://www.tidalscale.com",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: ReadTimeout"
+  },
+  {
+    "name": "Hypermode",
+    "vc": "Abstract Ventures",
+    "tier": 3,
+    "website": "https://hypermode.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Corner",
+    "vc": "Abstract Ventures",
+    "tier": 3,
+    "website": "https://www.corner.inc",
+    "conf": 4,
+    "careers_url": "https://www.corner.inc/careers",
+    "ats": null,
+    "note": "careers content at /careers"
+  },
+  {
+    "name": "Kelasys",
+    "vc": "Abstract Ventures",
+    "tier": 3,
+    "website": "https://kelasys.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Comp",
+    "vc": "Abstract Ventures",
+    "tier": 3,
+    "website": "http://comp.vc",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "FlickPlay",
+    "vc": "Abstract Ventures",
+    "tier": 3,
+    "website": "https://flickplay.co",
+    "conf": 4,
+    "careers_url": "https://flickplay.co/company/careers",
+    "ats": null,
+    "note": "careers content at /company/careers"
+  },
+  {
+    "name": "Lemon",
+    "vc": "Abstract Ventures",
+    "tier": 3,
+    "website": "https://lemon.me",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Sonera",
+    "vc": "Abstract Ventures",
+    "tier": 3,
+    "website": "https://www.sonera.io",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: 404"
+  },
+  {
+    "name": "Nexon",
+    "vc": "Abstract Ventures",
+    "tier": 3,
+    "website": "https://www.getnexon.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Nomad Homes",
+    "vc": "Abstract Ventures",
+    "tier": 3,
+    "website": "https://www.nomadhomes.ae",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Cure",
+    "vc": "Abstract Ventures",
+    "tier": 3,
+    "website": "https://www.getcure.app",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Tapi",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://tapi.la",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Lind",
+    "vc": "Abstract Ventures",
+    "tier": 3,
+    "website": "https://www.lind.care",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Nomad",
+    "vc": "Abstract Ventures",
+    "tier": 3,
+    "website": "https://www.nomadglobal.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "LuzIA",
+    "vc": "Abstract Ventures",
+    "tier": 3,
+    "website": "https://www.luzia.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Match Day",
+    "vc": "Abstract Ventures",
+    "tier": 3,
+    "website": "https://matchday.com",
+    "conf": 4,
+    "careers_url": "https://matchday.com/careers",
+    "ats": null,
+    "note": "careers content at /careers"
+  },
+  {
+    "name": "OneSafe",
+    "vc": "Abstract Ventures",
+    "tier": 3,
+    "website": "https://www.onesafe.io",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Wiser",
+    "vc": "Abstract Ventures",
+    "tier": 3,
+    "website": "https://getwiser.io",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: ConnectError"
+  },
+  {
+    "name": "Wondera",
+    "vc": "Abstract Ventures",
+    "tier": 3,
+    "website": "https://www.wondera.ai",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: 403"
+  },
+  {
+    "name": "Valinor",
+    "vc": "Abstract Ventures",
+    "tier": 3,
+    "website": "https://www.valinor.co",
+    "conf": 5,
+    "careers_url": "https://www.valinor.co",
+    "ats": "ashby",
+    "note": "ATS embed on homepage"
+  },
+  {
+    "name": "Index",
+    "vc": "Abstract Ventures",
+    "tier": 3,
+    "website": "https://index.app",
+    "conf": 1,
+    "careers_url": null,
+    "ats": null,
+    "note": "redirects to mora.com"
+  },
+  {
+    "name": "Rue Four",
+    "vc": "Abstract Ventures",
+    "tier": 3,
+    "website": "https://www.joinrue.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Volumetrics",
+    "vc": "Abstract Ventures",
+    "tier": 3,
+    "website": "https://volu.dev",
+    "conf": 1,
+    "careers_url": null,
+    "ats": null,
+    "note": "redirects to alef.io"
+  },
+  {
+    "name": "Showrunner",
+    "vc": "Abstract Ventures",
+    "tier": 3,
+    "website": "https://www.showrunner.xyz",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "XDOF",
+    "vc": "Abstract Ventures",
+    "tier": 3,
+    "website": "https://www.xdof.ai",
+    "conf": 5,
+    "careers_url": "https://www.xdof.ai/careers",
+    "ats": "ashby",
+    "note": "ATS embed at /careers"
+  },
+  {
+    "name": "HighFi",
+    "vc": "Abstract Ventures",
+    "tier": 3,
+    "website": "https://www.highfi.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "MetalBear",
+    "vc": "TLV Partners",
+    "tier": 2,
+    "website": "https://metalbear.com",
+    "conf": 5,
+    "careers_url": "https://metalbear.com/careers/",
+    "ats": "comeet",
+    "note": "ATS embed at /careers"
+  },
+  {
+    "name": "Ndata",
+    "vc": "Bain Capital Ventures",
+    "tier": 3,
+    "website": "https://www.ndata.cz",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Predictive Oncology  (Precision Therapeutics)",
+    "vc": "Bain Capital Ventures",
+    "tier": 3,
+    "website": "https://predictive-oncology.com",
+    "conf": 4,
+    "careers_url": "https://predictive-oncology.com/careers/",
+    "ats": null,
+    "note": "careers content at /careers"
+  },
+  {
+    "name": "Ridian",
+    "vc": "Abstract Ventures",
+    "tier": 3,
+    "website": "https://ridian.io",
+    "conf": 1,
+    "careers_url": null,
+    "ats": null,
+    "note": "redirects to crosspoint.global"
+  },
+  {
+    "name": "Status AI",
+    "vc": "Abstract Ventures",
+    "tier": 3,
+    "website": "https://www.statusai.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Motormia",
+    "vc": "State of Mind",
+    "tier": 1,
+    "website": "http://motormia.co",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: RemoteProtocolError"
+  },
+  {
+    "name": "Forus (fka Tandem Health)",
+    "vc": "Bain Capital Ventures",
+    "tier": 3,
+    "website": "https://forus.com",
+    "conf": 5,
+    "careers_url": "https://forus.com/company",
+    "ats": "ashby",
+    "note": "ATS embed at /careers"
+  },
+  {
+    "name": "Prompt AI",
+    "vc": "Abstract Ventures",
+    "tier": 3,
+    "website": "https://www.promptai.co",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Vana",
+    "vc": "Abstract Ventures",
+    "tier": 3,
+    "website": "https://www.vana.org",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Tempest",
+    "vc": "Abstract Ventures",
+    "tier": 3,
+    "website": "https://tempestdx.com",
+    "conf": 1,
+    "careers_url": null,
+    "ats": null,
+    "note": "redirects to hellofriday.ai"
+  },
+  {
+    "name": "DocuSign",
+    "vc": "Bain Capital Ventures",
+    "tier": 3,
+    "website": "https://www.docusign.com",
+    "conf": 4,
+    "careers_url": "https://careers.docusign.com/careers-home",
+    "ats": null,
+    "note": "careers content at /careers"
+  },
+  {
+    "name": "Particle Intel",
+    "vc": "Abstract Ventures",
+    "tier": 3,
+    "website": "https://www.particleintel.com",
+    "conf": 1,
+    "careers_url": null,
+    "ats": null,
+    "note": "redirects to sandbar.ai"
+  },
+  {
+    "name": "Zero Gravity",
+    "vc": "Abstract Ventures",
+    "tier": 3,
+    "website": "https://0g.ai",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Autonomous Security",
+    "vc": "YL Ventures",
+    "tier": 1,
+    "website": "https://a16y.ai",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Indieflow",
+    "vc": "State of Mind",
+    "tier": 1,
+    "website": "http://www.indieflow.me",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: ConnectError"
+  },
+  {
+    "name": "Clearitty",
+    "vc": "State of Mind",
+    "tier": 1,
+    "website": "http://www.clearitty.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Ethos",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://agent.askethos.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Kanduai",
+    "vc": "State of Mind",
+    "tier": 1,
+    "website": "https://www.kanduai.com",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: ConnectError"
+  },
+  {
+    "name": "Tessera Labs",
+    "vc": "a16z",
+    "tier": 2,
+    "website": "https://tesseralabs.ai",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Knock Ai",
+    "vc": "State of Mind",
+    "tier": 1,
+    "website": "https://www.knock-ai.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Scalar",
+    "vc": "Abstract Ventures",
+    "tier": 3,
+    "website": "https://scalar.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Alkira",
+    "vc": "Sequoia Israel",
+    "tier": 2,
+    "website": "https://www.alkira.com",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: 403"
+  },
+  {
+    "name": "Torch Systems",
+    "vc": "Abstract Ventures",
+    "tier": 3,
+    "website": "https://www.torchsystems.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Telepatia",
+    "vc": "Abstract Ventures",
+    "tier": 3,
+    "website": "http://telepatia.ai",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Innerbalance",
+    "vc": "State of Mind",
+    "tier": 1,
+    "website": "https://www.innerbalance.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Avelios",
+    "vc": "Sequoia Israel",
+    "tier": 2,
+    "website": "https://en.avelios.com",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: ConnectError"
+  },
+  {
+    "name": "Websim",
+    "vc": "Abstract Ventures",
+    "tier": 3,
+    "website": "https://websim.ai",
+    "conf": 1,
+    "careers_url": null,
+    "ats": null,
+    "note": "redirects to websim.com"
+  },
+  {
+    "name": "Astrocade",
+    "vc": "Sequoia Israel",
+    "tier": 2,
+    "website": "https://www.astrocade.com",
+    "conf": 5,
+    "careers_url": "https://jobs.ashbyhq.com/astrocade",
+    "ats": "ashby",
+    "note": "ATS embed at /careers"
+  },
+  {
+    "name": "Factify",
+    "vc": "whatsapp",
+    "tier": null,
+    "website": "https://www.factify.ai",
+    "conf": 1,
+    "careers_url": null,
+    "ats": null,
+    "note": "redirects to dwg.io"
+  },
+  {
+    "name": "Vee",
+    "vc": "State of Mind",
+    "tier": 1,
+    "website": "http://www.vee.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Getbrew",
+    "vc": "Aleph",
+    "tier": 2,
+    "website": "https://www.getbrew.com",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: ConnectError"
+  },
+  {
+    "name": "Tilled",
+    "vc": "Abstract Ventures",
+    "tier": 3,
+    "website": "https://gettilled.com",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: ConnectTimeout"
+  },
+  {
+    "name": "Spacepharma",
+    "vc": "State of Mind",
+    "tier": 1,
+    "website": "https://www.spacepharma.health",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "The Arena",
+    "vc": "Abstract Ventures",
+    "tier": 3,
+    "website": "https://starsarena.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Embed",
+    "vc": "Aleph",
+    "tier": 2,
+    "website": "https://www.embed.xyz",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: 404"
+  },
+  {
+    "name": "Atlas Invest",
+    "vc": "State of Mind",
+    "tier": 1,
+    "website": "https://www.atlas-invest.co",
+    "conf": 4,
+    "careers_url": "https://atlas-invest.co/careers/",
+    "ats": null,
+    "note": "careers content at /careers"
+  },
+  {
+    "name": "Seemoredata",
+    "vc": "State of Mind",
+    "tier": 1,
+    "website": "https://seemoredata.io",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Arcwise",
+    "vc": "Sequoia Israel",
+    "tier": 2,
+    "website": "https://arcwise.app",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Apex",
+    "vc": "Sequoia Israel",
+    "tier": 2,
+    "website": "https://www.apexhq.ai",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Agency",
+    "vc": "Sequoia Israel",
+    "tier": 2,
+    "website": "https://agency.inc",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Bruce",
+    "vc": "Sequoia Israel",
+    "tier": 2,
+    "website": "https://www.bruce.bot",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Q",
+    "vc": "Aleph",
+    "tier": 2,
+    "website": "https://www.q.ai",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: ConnectError"
+  },
+  {
+    "name": "Colu",
+    "vc": "Aleph",
+    "tier": 2,
+    "website": "https://www.colu.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "AdMob",
+    "vc": "Sequoia Israel",
+    "tier": 2,
+    "website": "https://www.admob.com",
+    "conf": 4,
+    "careers_url": "https://www.google.com/about/careers/applications/",
+    "ats": null,
+    "note": "careers content at /careers"
+  },
+  {
+    "name": "CafePress",
+    "vc": "Sequoia Israel",
+    "tier": 2,
+    "website": "https://www.cafepress.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Opstream",
+    "vc": "State of Mind",
+    "tier": 1,
+    "website": "https://www.opstream.ai",
+    "conf": 4,
+    "careers_url": "https://www.opstream.ai/careers/",
+    "ats": null,
+    "note": "careers content at /careers"
+  },
+  {
+    "name": "Competewith",
+    "vc": "Aleph",
+    "tier": 2,
+    "website": "https://competewith.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Thriver",
+    "vc": "Aleph",
+    "tier": 2,
+    "website": "https://www.thriver.com",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: ConnectError"
+  },
+  {
+    "name": "Dreamgroup",
+    "vc": "Aleph",
+    "tier": 2,
+    "website": "https://www.dreamgroup.com",
+    "conf": 4,
+    "careers_url": "https://dreamgroup.com/careers/",
+    "ats": null,
+    "note": "careers content at /careers"
+  },
+  {
+    "name": "Livecycle",
+    "vc": "State of Mind",
+    "tier": 1,
+    "website": "https://livecycle.io",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: ConnectTimeout"
+  },
+  {
+    "name": "Ework",
+    "vc": "Aleph",
+    "tier": 2,
+    "website": "https://www.wework.com",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: 403"
+  },
+  {
+    "name": "Spherex",
+    "vc": "Aleph",
+    "tier": 2,
+    "website": "https://spherex.xyz",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: ConnectError"
+  },
+  {
+    "name": "Bolt",
+    "vc": "Sequoia Israel",
+    "tier": 2,
+    "website": "https://bolt.eu",
+    "conf": 4,
+    "careers_url": "https://bolt.eu/en/careers/",
+    "ats": null,
+    "note": "careers content at /careers"
+  },
+  {
+    "name": "Epsagon",
+    "vc": "Lightspeed Israel",
+    "tier": 2,
+    "website": "https://epsagon.com",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: ConnectError"
+  },
+  {
+    "name": "Lemonade",
+    "vc": "Aleph",
+    "tier": 2,
+    "website": "https://www.lemonade.com",
+    "conf": 3,
+    "careers_url": "https://makers.lemonade.com",
+    "ats": null,
+    "note": "careers link in homepage HTML"
+  },
+  {
+    "name": "Binaris",
+    "vc": "Lightspeed Israel",
+    "tier": 2,
+    "website": "https://binaris.com",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: 404"
+  },
+  {
+    "name": "Geoquant",
+    "vc": "Aleph",
+    "tier": 2,
+    "website": "http://www.geoquant.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Arista",
+    "vc": "Greylock",
+    "tier": 2,
+    "website": "https://www.arista.com",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: 406"
+  },
+  {
+    "name": "DraftKings",
+    "vc": "whatsapp",
+    "tier": null,
+    "website": "https://www.draftkings.com",
+    "conf": 3,
+    "careers_url": "https://careers.draftkings.com/",
+    "ats": null,
+    "note": "careers link in homepage HTML"
+  },
+  {
+    "name": "Raftt",
+    "vc": "Aleph",
+    "tier": 2,
+    "website": "https://www.raftt.io",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Awake",
+    "vc": "Greylock",
+    "tier": 2,
+    "website": "https://awakesecurity.com",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: 406"
+  },
+  {
+    "name": "Ply",
+    "vc": "Aleph",
+    "tier": 2,
+    "website": "https://ply.io",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Ohr",
+    "vc": "Aleph",
+    "tier": 2,
+    "website": "https://ohr.xyz",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "enSilo",
+    "vc": "Lightspeed Israel",
+    "tier": 2,
+    "website": "https://ensilo.com",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: 404"
+  },
+  {
+    "name": "Letsriseup",
+    "vc": "Aleph",
+    "tier": 2,
+    "website": "https://letsriseup.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Getsequence",
+    "vc": "Aleph",
+    "tier": 2,
+    "website": "https://www.getsequence.io",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Thegist",
+    "vc": "Aleph",
+    "tier": 2,
+    "website": "https://www.thegist.ai",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Sightful",
+    "vc": "Aleph",
+    "tier": 2,
+    "website": "http://www.sightful.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Catch",
+    "vc": "Sequoia Israel",
+    "tier": 2,
+    "website": "https://www.getcatch.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Wi-Charge",
+    "vc": "Lightspeed Israel",
+    "tier": 2,
+    "website": "https://wi-charge.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Netic",
+    "vc": "Greylock",
+    "tier": 2,
+    "website": "https://www.netic.ai",
+    "conf": 5,
+    "careers_url": "https://www.netic.ai/company",
+    "ats": "ashby",
+    "note": "ATS embed at /careers"
+  },
+  {
+    "name": "Clockwise",
+    "vc": "Greylock",
+    "tier": 2,
+    "website": "http://getclockwise.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Rivery",
+    "vc": "State of Mind",
+    "tier": 1,
+    "website": "https://rivery.io",
+    "conf": 3,
+    "careers_url": "https://rivery.io/integration/comeet/",
+    "ats": null,
+    "note": "careers link in homepage HTML"
+  },
+  {
+    "name": "Freightos",
+    "vc": "Aleph",
+    "tier": 2,
+    "website": "https://www.freightos.com",
+    "conf": 4,
+    "careers_url": "https://www.freightos.com/careers/",
+    "ats": null,
+    "note": "careers content at /careers"
+  },
+  {
+    "name": "Handshake",
+    "vc": "Greylock",
+    "tier": 2,
+    "website": "https://handshake.org",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Veego",
+    "vc": "State of Mind",
+    "tier": 1,
+    "website": "https://veego.io",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Skyhigh",
+    "vc": "Greylock",
+    "tier": 2,
+    "website": "https://www.skyhighnetworks.com",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: ConnectError"
+  },
+  {
+    "name": "Mov",
+    "vc": "State of Mind",
+    "tier": 1,
+    "website": "https://www.mov.ai",
+    "conf": 4,
+    "careers_url": "https://www.mov.ai/careers/",
+    "ats": null,
+    "note": "careers content at /careers"
+  },
+  {
+    "name": "Caavo",
+    "vc": "Greylock",
+    "tier": 2,
+    "website": "https://caavo.com",
+    "conf": 4,
+    "careers_url": "https://www.caavo.com/careers",
+    "ats": null,
+    "note": "careers content at /careers"
+  },
+  {
+    "name": "Postscript",
+    "vc": "Greylock",
+    "tier": 2,
+    "website": "http://www.postscript.io",
+    "conf": 5,
+    "careers_url": "https://postscript.io/careers",
+    "ats": "greenhouse",
+    "note": "ATS embed at /careers"
+  },
+  {
+    "name": "ZenGo",
+    "vc": "Insight Partners",
+    "tier": 2,
+    "website": "https://www.zengo.com",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: 403"
+  },
+  {
+    "name": "Multi",
+    "vc": "Greylock",
+    "tier": 2,
+    "website": "https://multi.app",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Mammoth Media",
+    "vc": "Greylock",
+    "tier": 2,
+    "website": "http://mammoth.la",
+    "conf": 1,
+    "careers_url": null,
+    "ats": null,
+    "note": "redirects to tokenbot.com"
+  },
+  {
+    "name": "Natoma",
+    "vc": "Greylock",
+    "tier": 2,
+    "website": "https://www.natoma.id",
+    "conf": 1,
+    "careers_url": null,
+    "ats": null,
+    "note": "redirects to natoma.ai"
+  },
+  {
+    "name": "Hour One",
+    "vc": "Insight Partners",
+    "tier": 2,
+    "website": "https://www.hourone.ai",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: ConnectError"
+  },
+  {
+    "name": "run.ai",
+    "vc": "Insight Partners",
+    "tier": 2,
+    "website": "https://www.run.ai",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: 404"
+  },
+  {
+    "name": "Varada",
+    "vc": "Lightspeed Israel",
+    "tier": 2,
+    "website": "https://Varada.io",
+    "conf": 4,
+    "careers_url": "https://varada.io/careers",
+    "ats": null,
+    "note": "careers content at /careers"
+  },
+  {
+    "name": "Gloww",
+    "vc": "State of Mind",
+    "tier": 1,
+    "website": "https://gloww.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Yoom (fka Tetavi)",
+    "vc": "Insight Partners",
+    "tier": 2,
+    "website": "https://www.tetavi.com",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: ConnectError"
+  },
+  {
+    "name": "Laminar",
+    "vc": "Insight Partners",
+    "tier": 2,
+    "website": "https://lmnr.io",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: ConnectError"
+  },
+  {
+    "name": "Noname Security",
+    "vc": "Insight Partners",
+    "tier": 2,
+    "website": "https://nonamesecurity.com",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: 403"
+  },
+  {
+    "name": "joonko",
+    "vc": "Insight Partners",
+    "tier": 2,
+    "website": "https://joonko.co",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: ConnectError"
+  },
+  {
+    "name": "Fireglass",
+    "vc": "Lightspeed Israel",
+    "tier": 2,
+    "website": "https://fire.glass",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: ConnectTimeout"
+  },
+  {
+    "name": "vanti",
+    "vc": "Insight Partners",
+    "tier": 2,
+    "website": "https://www.vanti-analytics.com",
+    "conf": 4,
+    "careers_url": "https://www.vanti-analytics.com/careers",
+    "ats": null,
+    "note": "careers content at /careers"
+  },
+  {
+    "name": "Nextdoor",
+    "vc": "Greylock",
+    "tier": 2,
+    "website": "http://nextdoor.com",
+    "conf": 5,
+    "careers_url": "https://about.nextdoor.com/careers/",
+    "ats": "greenhouse",
+    "note": "ATS embed at /careers"
+  },
+  {
+    "name": "Highstock",
+    "vc": "Greylock",
+    "tier": 2,
+    "website": "https://www.highstock.com",
+    "conf": 4,
+    "careers_url": "https://www.highstock.com/careers",
+    "ats": null,
+    "note": "careers content at /careers"
+  },
+  {
+    "name": "Blooma",
+    "vc": "Abstract Ventures",
+    "tier": 3,
+    "website": "https://www.blooma.ai",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Trusstor",
+    "vc": "State of Mind",
+    "tier": 1,
+    "website": "https://trusstor.com",
+    "conf": 3,
+    "careers_url": "https://trusstor.com/careers/",
+    "ats": null,
+    "note": "careers link in homepage HTML"
+  },
+  {
+    "name": "Jiga",
+    "vc": "Aleph",
+    "tier": 2,
+    "website": "https://jiga.io",
+    "conf": 4,
+    "careers_url": "https://jiga.io/about-us/",
+    "ats": null,
+    "note": "careers content at /careers"
+  },
+  {
+    "name": "Optic",
+    "vc": "Greylock",
+    "tier": 2,
+    "website": "https://www.optic.inc",
+    "conf": 1,
+    "careers_url": null,
+    "ats": null,
+    "note": "redirects to bioptic.io"
+  },
+  {
+    "name": "Nuro",
+    "vc": "Greylock",
+    "tier": 2,
+    "website": "https://nuro.ai",
+    "conf": 4,
+    "careers_url": "https://www.nuro.ai/careers",
+    "ats": null,
+    "note": "careers content at /careers"
+  },
+  {
+    "name": "WarpStream",
+    "vc": "Greylock",
+    "tier": 2,
+    "website": "https://www.warpstream.com",
+    "conf": 3,
+    "careers_url": "https://www.warpstream.com/migration",
+    "ats": null,
+    "note": "careers link in homepage HTML"
+  },
+  {
+    "name": "OpenEyes Insurance",
+    "vc": "Insight Partners",
+    "tier": 2,
+    "website": "https://openeyes.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Reduct",
+    "vc": "Greylock",
+    "tier": 2,
+    "website": "https://reduct.video",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Tribal",
+    "vc": "Team8",
+    "tier": 1,
+    "website": "https://snap.licdn.com",
+    "conf": 1,
+    "careers_url": null,
+    "ats": null,
+    "note": "redirects to px.ads.linkedin.com"
+  },
+  {
+    "name": "Bit",
+    "vc": "Insight Partners",
+    "tier": 2,
+    "website": "https://bit.dev",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Quip",
+    "vc": "Greylock",
+    "tier": 2,
+    "website": "https://quip.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Jit (fka Cbrix)",
+    "vc": "Insight Partners",
+    "tier": 2,
+    "website": "https://www.jit.io",
+    "conf": 4,
+    "careers_url": "https://www.jit.io/career",
+    "ats": null,
+    "note": "careers content at /career"
+  },
+  {
+    "name": "Abnormal",
+    "vc": "Greylock",
+    "tier": 2,
+    "website": "https://abnormal.ai",
+    "conf": 4,
+    "careers_url": "https://abnormal.ai/careers",
+    "ats": null,
+    "note": "careers content at /careers"
+  },
+  {
+    "name": "SuperMe",
+    "vc": "Greylock",
+    "tier": 2,
+    "website": "https://superme.ai",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Visual Layer",
+    "vc": "Insight Partners",
+    "tier": 2,
+    "website": "https://visual-layer.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "servicenow",
+    "vc": "Greylock",
+    "tier": 2,
+    "website": "https://www.servicenow.com",
+    "conf": 0,
+    "careers_url": null,
+    "ats": null,
+    "note": "dead: ReadTimeout"
+  },
+  {
+    "name": "AiVF",
+    "vc": "Insight Partners",
+    "tier": 2,
+    "website": "https://www.aivf.co",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Bluewhite (fka Blue White Robotics)",
+    "vc": "Insight Partners",
+    "tier": 2,
+    "website": "https://bluewhiterobotics.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  },
+  {
+    "name": "Orkiz",
+    "vc": "Aleph",
+    "tier": 2,
+    "website": "https://workiz.com",
+    "conf": 3,
+    "careers_url": "https://www.workiz.com/careers/",
+    "ats": null,
+    "note": "careers link in homepage HTML"
+  },
+  {
+    "name": "Canditech Ltd.",
+    "vc": "Insight Partners",
+    "tier": 2,
+    "website": "https://www.canditech.io",
+    "conf": 3,
+    "careers_url": "https://www.canditech.io/use-cases/objective-hiring/",
+    "ats": null,
+    "note": "careers link in homepage HTML"
+  },
+  {
+    "name": "Lapse",
+    "vc": "Greylock",
+    "tier": 2,
+    "website": "http://lapse.com",
+    "conf": 4,
+    "careers_url": "https://lapse.com/careers",
+    "ats": null,
+    "note": "careers content at /careers"
+  },
+  {
+    "name": "Winn.ai",
+    "vc": "Insight Partners",
+    "tier": 2,
+    "website": "https://www.winn.ai",
+    "conf": 4,
+    "careers_url": "https://winn.ai/join-linkedin-takeover/",
+    "ats": null,
+    "note": "careers content at /join"
+  },
+  {
+    "name": "OpenDNS",
+    "vc": "Greylock",
+    "tier": 2,
+    "website": "https://www.opendns.com",
+    "conf": 2,
+    "careers_url": null,
+    "ats": null,
+    "note": ""
+  }
+]
