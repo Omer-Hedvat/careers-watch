@@ -37,11 +37,33 @@ def main() -> None:
 
     patched = 0
     for v in verified:
-        name, ats, params = v["name"], v["ats"], v.get("ats_params", {})
+        name = v["name"]
         entry = by_name.get(name)
         if not entry:
             print(f"  {name}: NOT FOUND in companies.json - skipping")
             continue
+
+        # "park" entries: careers page verified by hand, but nothing pullable
+        # (no third-party ATS, or no open roles). Record the URL + note and lock
+        # so it leaves the recovery queue and is never re-discovered. No puller.
+        if v.get("park"):
+            print(f"  {name}: PARK ({v.get('note', 'no pullable board')})"
+                  + (" [dry-run]" if args.dry_run else ""))
+            if args.dry_run:
+                continue
+            entry.update(
+                careers_url=v.get("careers_url"),
+                skip_discovery=True,
+                skip_reason="manual_verified",
+                note=v.get("note", "verified - nothing to pull"),
+                consecutive_failures=0,
+                last_verified_at=now,
+                careers_url_source="manual",
+            )
+            patched += 1
+            continue
+
+        ats, params = v["ats"], v.get("ats_params", {})
         # verify the puller actually returns jobs before committing
         try:
             n = len(ATS_PULLERS[ats](params))
