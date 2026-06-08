@@ -203,7 +203,8 @@
     "score": 9,
     "reasoning": "This is a strong senior data scientist role in AI Security with clear end-to-end ownership and technical direction responsibilities, aligning perfectly with the candidate's production-first adversarial ML expertise.",
     "flags": [],
-    "scored_at": "2026-05-12"
+    "scored_at": "2026-05-12",
+    "applied": true
   },
   {
     "company": "Cato Networks",
@@ -285,7 +286,8 @@
     "score": 9,
     "reasoning": "An excellent fit for a security researcher team lead role in cloud-native security, involving leadership, mentorship, and turning advanced research into production-grade AI and data-driven solutions.",
     "flags": [],
-    "scored_at": "2026-05-12"
+    "scored_at": "2026-05-12",
+    "applied": true
   },
   {
     "company": "Aqua Security",
@@ -296,7 +298,8 @@
     "score": 9,
     "reasoning": "An excellent fit for a security researcher team lead role in cloud-native security, involving leadership, mentorship, and turning advanced research into production-grade detection and prevention systems.",
     "flags": [],
-    "scored_at": "2026-05-12"
+    "scored_at": "2026-05-12",
+    "applied": true
   },
   {
     "company": "Forter",
@@ -312,7 +315,8 @@
       "llm-as-tool",
       "strong-ownership"
     ],
-    "scored_at": "2026-05-12"
+    "scored_at": "2026-05-12",
+    "applied": true
   },
   {
     "company": "Jazz",
@@ -330,7 +334,8 @@
       "production-focus",
       "tier1-vc"
     ],
-    "scored_at": "2026-05-12"
+    "scored_at": "2026-05-12",
+    "applied": true
   },
   {
     "company": "Astelia",
@@ -347,7 +352,8 @@
       "founding-team",
       "tier1-vc"
     ],
-    "scored_at": "2026-05-12"
+    "scored_at": "2026-05-12",
+    "applied": true
   },
   {
     "company": "Astelia",
@@ -362,7 +368,8 @@
       "lead-path-implied",
       "production-first-DS-match"
     ],
-    "scored_at": "2026-05-12"
+    "scored_at": "2026-05-12",
+    "applied": true
   },
   {
     "company": "Astelia",
@@ -393,7 +400,8 @@
       "lead-path-implied",
       "production-first-DS-match"
     ],
-    "scored_at": "2026-05-12"
+    "scored_at": "2026-05-12",
+    "applied": true
   },
   {
     "company": "Guardz",
@@ -421,7 +429,8 @@
       "management-gap",
       "not-ds-manager"
     ],
-    "scored_at": "2026-05-12"
+    "scored_at": "2026-05-12",
+    "applied": true
   },
   {
     "company": "Mitiga",
@@ -435,7 +444,8 @@
       "no-people-management",
       "principal-ic"
     ],
-    "scored_at": "2026-05-12"
+    "scored_at": "2026-05-12",
+    "applied": true
   },
   {
     "company": "Cyera",
@@ -462,7 +472,8 @@
     "flags": [
       "location-unclear"
     ],
-    "scored_at": "2026-05-12"
+    "scored_at": "2026-05-12",
+    "applied": true
   },
   {
     "company": "Thetaray",
@@ -501,7 +512,8 @@
     "score": 9,
     "reasoning": "This Research Team Lead role in online child safety is an excellent fit, aligning with the candidate's leadership aspirations and expertise in adversarial domains and abuse detection within a desired location.",
     "flags": [],
-    "scored_at": "2026-05-12"
+    "scored_at": "2026-05-12",
+    "applied": true
   },
   {
     "company": "Reco",
@@ -514,7 +526,8 @@
     "flags": [
       "no-lead-path"
     ],
-    "scored_at": "2026-05-12"
+    "scored_at": "2026-05-12",
+    "applied": true
   },
   {
     "company": "Reco",
@@ -528,7 +541,8 @@
       "management-gap-formal-tech-lead",
       "llm-as-tool"
     ],
-    "scored_at": "2026-05-12"
+    "scored_at": "2026-05-12",
+    "applied": true
   },
   {
     "company": "Dream",
@@ -628,7 +642,8 @@
       "llm-product-unclear-focus",
       "vague-description"
     ],
-    "scored_at": "2026-05-14"
+    "scored_at": "2026-05-14",
+    "applied": true
   },
   {
     "company": "Dream",
@@ -672,7 +687,8 @@
       "empty-description",
       "lead-path-unclear"
     ],
-    "scored_at": "2026-05-14"
+    "scored_at": "2026-05-14",
+    "applied": true
   },
   {
     "company": "Kelasys",
@@ -686,7 +702,8 @@
       "weak-fit-cv",
       "no-lead-path"
     ],
-    "scored_at": "2026-05-14"
+    "scored_at": "2026-05-14",
+    "applied": true
   },
   {
     "company": "Monday",
@@ -774,7 +791,8 @@
     "score": 10,
     "reasoning": "An excellent match, combining a team lead role in cyber security with clear management responsibilities and production-grade AI applications, all within the desired location.",
     "flags": [],
-    "scored_at": "2026-05-14"
+    "scored_at": "2026-05-14",
+    "applied": true
   },
   {
     "company": "Nebius",
@@ -788,7 +806,8 @@
       "wrong-domain",
       "no-clear-lead-path"
     ],
-    "scored_at": "2026-05-14"
+    "scored_at": "2026-05-14",
+    "applied": true
   },
   {
     "company": "Voyantis",
@@ -802,7 +821,8 @@
       "wrong-domain",
       "growth-ml"
     ],
-    "scored_at": "2026-05-14"
+    "scored_at": "2026-05-14",
+    "applied": true
   },
   {
     "company": "Harmonya",
@@ -832,7 +852,8 @@
       "domain-unclear",
       "management-gap"
     ],
-    "scored_at": "2026-05-14"
+    "scored_at": "2026-05-14",
+    "applied": true
   },
   {
     "company": "Cardinalops",
@@ -847,7 +868,8 @@
       "domain-unclear",
       "management-gap"
     ],
-    "scored_at": "2026-05-14"
+    "scored_at": "2026-05-14",
+    "applied": true
   },
   {
     "company": "Cardinalops",
@@ -875,7 +897,8 @@
     "flags": [
       "description-missing"
     ],
-    "scored_at": "2026-05-17"
+    "scored_at": "2026-05-17",
+    "applied": true
   },
   {
     "company": "Monday",
@@ -891,5 +914,352 @@
       "management-gap"
     ],
     "scored_at": "2026-05-17"
+  },
+  {
+    "company": "Claroty",
+    "title": "Vulnerability Research Team Lead",
+    "location": "Israel",
+    "apply_url": "https://claroty.teamme.link/jobs/94.A63",
+    "source_vc": "Bessemer",
+    "score": 9,
+    "reasoning": "This Team Lead role is an excellent fit, aligning with the candidate's leadership aspirations and deep adversarial ML experience in cloud security.",
+    "flags": [],
+    "scored_at": "2026-05-17"
+  },
+  {
+    "company": "Wiz",
+    "title": "AI Security Researcher   ",
+    "location": "Tel Aviv",
+    "apply_url": "https://www.wiz.io/careers/job/4681239006/:title?gh_jid=4681239006",
+    "source_vc": "a16z",
+    "score": 8,
+    "reasoning": "This role offers a senior-level applied AI security research position at a top company, with a strong focus on translating research into production capabilities in a highly relevant adversarial domain.",
+    "flags": [
+      "applied-research-strong-fit"
+    ],
+    "scored_at": "2026-05-17"
+  },
+  {
+    "company": "Varonis",
+    "title": "Senior Machine Learning Engineer (MLE)",
+    "location": "Israel",
+    "apply_url": "https://jobs.jobvite.com/varonis/job/oLtQzfwn",
+    "source_vc": null,
+    "score": 6,
+    "reasoning": "Despite the strong title and relevant domain, the empty job description prevents a full assessment of production ML ownership or lead opportunities.",
+    "flags": [
+      "job-description-missing",
+      "location-unclear"
+    ],
+    "scored_at": "2026-05-17"
+  },
+  {
+    "company": "Intuit Israel",
+    "title": "Staff ML Engineer, Foresight",
+    "location": "Petach Tikva, Israel",
+    "apply_url": "https://jobs.intuit.com/job/petah-tikva/staff-ml-engineer-foresight/27595/93112360672",
+    "source_vc": null,
+    "score": 7,
+    "reasoning": "The 'Staff ML Engineer' title suggests a senior IC role with potential for technical leadership and a strong production ML focus in a relevant domain and ideal location, but the empty description limits full evaluation.",
+    "flags": [
+      "job-description-missing"
+    ],
+    "scored_at": "2026-05-17",
+    "applied": true
+  },
+  {
+    "company": "PayPal Israel",
+    "title": "Sr Decision Scientist",
+    "location": "Tel Aviv, Tel Aviv District, Israel",
+    "apply_url": "https://paypal.eightfold.ai/careers/job/274917669239",
+    "source_vc": null,
+    "score": 9,
+    "reasoning": "This is a senior role in Omer's core fraud/fintech risk domain at a large company, with explicit responsibilities for leading model development and mentoring, aligning strongly with his lead aspirations and production ML expertise.",
+    "flags": [],
+    "scored_at": "2026-05-17",
+    "applied": true
+  },
+  {
+    "company": "PayPal Israel",
+    "title": "Data Scientist - Risk Automation",
+    "location": "Tel Aviv, Tel Aviv District, Israel",
+    "apply_url": "https://paypal.eightfold.ai/careers/job/274906097349",
+    "source_vc": null,
+    "score": 6,
+    "reasoning": "The role's domain and company are strong fits, but the title is not senior and the description emphasizes strategic analysis and automation over end-to-end production ML model building, which is a weaker match for Omer's core focus.",
+    "flags": [
+      "title-mismatch-seniority",
+      "analytics-heavy"
+    ],
+    "scored_at": "2026-05-17",
+    "applied": true
+  },
+  {
+    "company": "PayPal Israel",
+    "title": "Sr Machine Learning Scientist",
+    "location": "Tel Aviv, Tel Aviv District, Israel",
+    "apply_url": "https://paypal.eightfold.ai/careers/job/274918502425",
+    "source_vc": null,
+    "score": 8,
+    "reasoning": "This role is a strong senior production ML position with explicit end-to-end ownership and deployment responsibilities, perfectly matching Omer's core skills and experience at a large, relevant company.",
+    "flags": [],
+    "scored_at": "2026-05-17"
+  },
+  {
+    "company": "Google Israel",
+    "title": "Staff Data Scientist, GenAI and Agentic SOC",
+    "location": "Ramat Gan, Israel; Tel Aviv, Israel",
+    "apply_url": "https://www.google.com/about/careers/applications/jobs/results/110451722916111046",
+    "source_vc": null,
+    "score": 9,
+    "reasoning": "This Staff Data Scientist role at Google strongly aligns with Omer's technical leadership, production ML expertise, and adversarial domain experience, focusing on applied AI in cybersecurity within a preferred large company and location.",
+    "flags": [
+      "lead-path-explicit",
+      "experience-gap-minor"
+    ],
+    "scored_at": "2026-05-17"
+  },
+  {
+    "company": "Unframe",
+    "title": "Applied AI Engineer",
+    "location": "Tel Aviv-Yafo, Tel Aviv District, Israel",
+    "apply_url": "https://job-boards.eu.greenhouse.io/unframe/jobs/4857306101",
+    "source_vc": "TLV Partners",
+    "score": 7,
+    "reasoning": "This role is a strong technical fit for Omer's production Applied AI skills and experience in a desirable startup location, but it lacks explicit leadership responsibilities or a clear lead path.",
+    "flags": [
+      "lead-path-unclear"
+    ],
+    "scored_at": "2026-05-17",
+    "applied": true
+  },
+  {
+    "company": "Orchid Security",
+    "title": "Senior AI Engineer",
+    "location": "Tel- Aviv, Israel",
+    "apply_url": "https://www.comeet.com/jobs/orchid_security/4A.001/senior-ai-engineer/53.359",
+    "source_vc": null,
+    "score": 8,
+    "reasoning": "This Senior AI Engineer role is in the strong-fit cybersecurity domain, involves architectural ownership of agentic systems for identity risk, and uses LLMs as a tool to serve the product, aligning well with the candidate's applied production ML expertise.",
+    "flags": [
+      "cyber-domain",
+      "llm-as-tool",
+      "lead-path-implied",
+      "e2e-ownership"
+    ],
+    "scored_at": "2026-06-01"
+  },
+  {
+    "company": "Nimbleway",
+    "title": "Senior AI Engineer",
+    "location": "Tel Aviv, Israel",
+    "apply_url": "https://www.comeet.com/jobs/nimbleway/09.00F/senior-ai-engineer/00.A6C",
+    "source_vc": "Target Global",
+    "score": 6,
+    "reasoning": "A production-focused Senior AI Engineer role at a Series A company with a location fit, but the domain is not adversarial ML, and the agentic AI focus may lean slightly more into LLM specialization than desired for a non-security role.",
+    "flags": [
+      "llm-focus-risk",
+      "domain-neutral"
+    ],
+    "scored_at": "2026-06-01"
+  },
+  {
+    "company": "Zeroport",
+    "title": "Senior AI Engineer",
+    "location": "Herzliya, Israel",
+    "apply_url": "https://www.comeet.com/jobs/zeroport/7A.00E/senior-ai-engineer/D9.960",
+    "source_vc": "Elron Ventures",
+    "score": 9,
+    "reasoning": "This Senior AI Engineer role offers deep technical ownership in a strong-fit cyber security domain, utilizing multimodal AI agents for threat detection at the edge with clear production focus, aligning perfectly with the candidate's adversarial ML expertise.",
+    "flags": [
+      "cyber-domain",
+      "llm-as-tool",
+      "e2e-ownership",
+      "lead-path-implied"
+    ],
+    "scored_at": "2026-06-01"
+  },
+  {
+    "company": "Datarails",
+    "title": "AI Researcher",
+    "location": "Tel Aviv-Yafo, Tel Aviv District, Israel",
+    "apply_url": "https://job-boards.greenhouse.io/datarails/jobs/4164316009",
+    "source_vc": "Qumra Capital",
+    "score": 7,
+    "reasoning": "This 'AI Researcher' role explicitly focuses on end-to-end production-grade GenAI solutions for high-precision financial workflows, aligning with the candidate's production ML ownership and using LLMs as a tool for a specific product.",
+    "flags": [
+      "e2e-ownership",
+      "llm-as-tool",
+      "lead-path-implied"
+    ],
+    "scored_at": "2026-06-01"
+  },
+  {
+    "company": "JFrog",
+    "title": "R&D Team Lead -JFrog Security",
+    "location": "Tel Aviv/ Netanya, Israel",
+    "apply_url": "https://join.jfrog.com/job/?job=7920898&gh_jid=7920898",
+    "source_vc": null,
+    "score": 9,
+    "reasoning": "This is a strong R&D Team Lead role in cybersecurity, perfectly aligning with the candidate's desire for leadership in production ML within an adversarial domain and within his commute radius.",
+    "flags": [
+      "people-management-context"
+    ],
+    "scored_at": "2026-06-07"
+  },
+  {
+    "company": "Monday",
+    "title": "Engineering Team Lead - Sidekick Group",
+    "location": "Tel-Aviv, Israel",
+    "apply_url": "https://www.comeet.com/jobs/monday/41.00B/engineering-team-lead---sidekick-group/C4.062",
+    "source_vc": "whatsapp",
+    "score": 5,
+    "reasoning": "While a Team Lead role in AI at a good company and location, the focus on leading full-stack engineers with a non-matching tech stack makes it a weaker fit for the candidate's specialized ML engineering craft.",
+    "flags": [
+      "craft-mismatch",
+      "stack-mismatch"
+    ],
+    "scored_at": "2026-06-07"
+  },
+  {
+    "company": "Ironscales",
+    "title": "SW Development Team Lead- Inspection & Detection",
+    "location": "Tel Aviv, Israel",
+    "apply_url": "https://www.comeet.com/jobs/ironscales/1A.007/sw-development-team-lead--inspection--detection/99.668",
+    "source_vc": "Elron Ventures",
+    "score": 7,
+    "reasoning": "This is a strong Team Lead role in a highly relevant cybersecurity domain with excellent location, but the emphasis on leading a 'SW Development' team may not fully align with the candidate's primary craft as an ML-focused Data Scientist.",
+    "flags": [
+      "people-management-context",
+      "craft-focus-nuance"
+    ],
+    "scored_at": "2026-06-07"
+  },
+  {
+    "company": "Cyera",
+    "title": "Data Scientist  - DLP",
+    "location": "Tel Aviv, Israel",
+    "apply_url": "https://www.comeet.com/jobs/cyera/17.008/data-scientist----dlp/24.C60",
+    "source_vc": "Cyberstarts",
+    "score": 9,
+    "reasoning": "This is a strong senior data scientist role in a preferred cybersecurity domain with clear end-to-end production ML ownership and lead-level influence.",
+    "flags": [],
+    "scored_at": "2026-06-07"
+  },
+  {
+    "company": "Linx",
+    "title": "AI Engineer",
+    "location": "Tel Aviv, Israel",
+    "apply_url": "https://www.comeet.com/jobs/linxsecurity/99.00C/ai-engineer/5E.B67",
+    "source_vc": "Cyberstarts",
+    "score": 10,
+    "reasoning": "This AI Engineer role in identity security involves driving technical direction, end-to-end production ML ownership, and LLM integration as a tool for a core product, aligning perfectly with Omer's lead aspirations and expertise.",
+    "flags": [
+      "title-laundering",
+      "lead-path-implied"
+    ],
+    "scored_at": "2026-06-07"
+  },
+  {
+    "company": "Kiva Systems (Amazon Robotics since 2012)",
+    "title": "Applied scientist, Agentic AI, AWS Agentic AI",
+    "location": "Tel Aviv-Yafo, Tel Aviv, ISR",
+    "apply_url": "https://www.amazon.jobs/en/jobs/10430758/applied-scientist-agentic-ai-aws-agentic-ai",
+    "source_vc": "Bain Capital Ventures",
+    "score": 5,
+    "reasoning": "The role leans heavily into advanced research in agentic AI, RL, and multimodal models with an emphasis on publishing, which is a weaker fit for Omer's production-first, specialized ML background.",
+    "flags": [
+      "pure-research-component",
+      "llm-specialist-focus",
+      "skill-mismatch"
+    ],
+    "scored_at": "2026-06-07"
+  },
+  {
+    "company": "Kiva Systems (Amazon Robotics since 2012)",
+    "title": "Senior Applied scientist, Agentic AI, AWS Agentic AI",
+    "location": "Tel Aviv-Yafo, Tel Aviv, ISR",
+    "apply_url": "https://www.amazon.jobs/en/jobs/10417549/senior-applied-scientist-agentic-ai-aws-agentic-ai",
+    "source_vc": "Bain Capital Ventures",
+    "score": 6,
+    "reasoning": "This senior role, identical to the previous, still emphasizes research, agentic AI, and specific LLM/RL domains that are not Omer's primary production ML specialization.",
+    "flags": [
+      "pure-research-component",
+      "llm-specialist-focus",
+      "skill-mismatch"
+    ],
+    "scored_at": "2026-06-07"
+  },
+  {
+    "company": "Kiva Systems (Amazon Robotics since 2012)",
+    "title": "Data Scientist, Prime Video Sports",
+    "location": "Tel Aviv-Yafo, Tel Aviv, ISR",
+    "apply_url": "https://www.amazon.jobs/en/jobs/10412180/data-scientist-prime-video-sports",
+    "source_vc": "Bain Capital Ventures",
+    "score": 7,
+    "reasoning": "This is a strong analytics and experimentation-focused data scientist role within entertainment, which lacks the adversarial ML specialization and direct production model building emphasis Omer seeks.",
+    "flags": [
+      "no-adversarial-domain",
+      "heavy-analytics-over-ml-dev",
+      "no-clear-lead-path"
+    ],
+    "scored_at": "2026-06-07"
+  },
+  {
+    "company": "Kiva Systems (Amazon Robotics since 2012)",
+    "title": "Senior Applied Scientist, Personalization, Personalization Strategic Initiatives Science",
+    "location": "Tel Aviv-Yafo, Tel Aviv, ISR",
+    "apply_url": "https://www.amazon.jobs/en/jobs/10379250/senior-applied-scientist-personalization-personalization-strategic-initiatives-science",
+    "source_vc": "Bain Capital Ventures",
+    "score": 7,
+    "reasoning": "This senior role in personalization and recommendation systems, while involving production, emphasizes leading research and inventing new ML techniques, which is a weaker fit for Omer's production-first, adversarial ML specialization.",
+    "flags": [
+      "heavy-research-component",
+      "no-adversarial-domain",
+      "recommendation-focus"
+    ],
+    "scored_at": "2026-06-07"
+  },
+  {
+    "company": "Kiva Systems (Amazon Robotics since 2012)",
+    "title": "Applied Scientist, Personalization, Personalization Strategic Initiatives Science",
+    "location": "Tel Aviv-Yafo, Tel Aviv, ISR",
+    "apply_url": "https://www.amazon.jobs/en/jobs/10379251/applied-scientist-personalization-personalization-strategic-initiatives-science",
+    "source_vc": "Bain Capital Ventures",
+    "score": 7,
+    "reasoning": "This is a strong Senior DS role at a top company with clear production ML ownership and an ideal location, though it is an individual contributor position.",
+    "flags": [
+      "IC-only"
+    ],
+    "scored_at": "2026-06-07"
+  },
+  {
+    "company": "Kiva Systems (Amazon Robotics since 2012)",
+    "title": "Applied scientist, Agentic AI, AWS Agentic AI",
+    "location": "Tel Aviv-Yafo, Tel Aviv, ISR",
+    "apply_url": "https://www.amazon.jobs/en/jobs/3196112/applied-scientist-agentic-ai-aws-agentic-ai",
+    "source_vc": "Bain Capital Ventures",
+    "score": 5,
+    "reasoning": "Despite being at a top company with a good location, the role's primary focus on pure LLM/Agentic AI development is a weaker fit for the candidate's specialization.",
+    "flags": [
+      "pure-llm-product",
+      "research-component"
+    ],
+    "scored_at": "2026-06-07"
+  },
+  {
+    "company": "Menteebot",
+    "title": "AI Researcher",
+    "location": "Herzliya, Israel",
+    "apply_url": "https://www.comeet.com/jobs/mentee_robotics/6A.002/ai-researcher/7E.956",
+    "source_vc": "10D",
+    "score": 6,
+    "reasoning": "This role features strong production ML ownership at a relevant startup with good location, but the 'AI Researcher' title and robotics domain are not ideal matches for the candidate's primary experience or lead aspirations.",
+    "flags": [
+      "title-misleading-research",
+      "lead-path-unclear",
+      "not-adversarial-domain"
+    ],
+    "scored_at": "2026-06-07"
   }
 ]
