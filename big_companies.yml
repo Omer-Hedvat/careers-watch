@@ -899,3 +899,721 @@
   category: general
   location_filter: israel
   notes: "Activated 2026-05-17: jobs.sap.com is SF's jobs2web branded host - ~6 Israel postings as of activation."
+
+# --- Added 2026-05-28 ---
+
+- name: Tenable
+  website: https://www.tenable.com
+  careers_url: https://www.tenable.com/careers
+  ats: greenhouse
+  ats_params:
+    board_token: tenableinc
+  category: cyber
+  location_filter: israel
+  notes: "Vulnerability management / Nessus. Major R&D in Beer Sheva. board_token verified 2026-05-28."
+
+- name: Cymulate
+  website: https://cymulate.com
+  careers_url: https://cymulate.com/company/careers/
+  ats: greenhouse
+  ats_params:
+    board_token: cymulate
+  category: cyber
+  location_filter: israel
+  notes: "Breach and attack simulation. board_token verified 2026-05-28 (7 jobs)."
+
+- name: Semperis
+  website: https://semperis.com
+  careers_url: https://jobs.ashbyhq.com/semperis
+  ats: ashby
+  ats_params:
+    org_name: semperis
+  category: cyber
+  location_filter: israel
+  notes: "Enterprise identity security (AD recovery). Ashby board verified 2026-05-28."
+
+- name: Nexxen
+  website: https://nexxen.com
+  careers_url: https://jobs.ashbyhq.com/nexxen
+  ats: ashby
+  ats_params:
+    org_name: nexxen
+  category: general
+  location_filter: israel
+  notes: "Ad tech / programmatic media. Israeli-founded, Nasdaq-listed. Ashby board verified 2026-05-28 (8 jobs)."
+
+- name: Immunai
+  website: https://immunai.com
+  careers_url: https://www.comeet.com/jobs/immunai/37.009
+  ats: comeet
+  ats_params:
+    company_uid: immunai
+    token: "37.009"
+  category: general
+  location_filter: israel
+  notes: "AI for immunology. Israeli co-founded."
+
+- name: Grubhub
+  website: https://grubhub.com
+  careers_url: https://wonder.wd1.myworkdayjobs.com/en-US/Grubhub_Careers
+  ats: workday
+  ats_params:
+    tenant: wonder
+    wd_instance: wd1
+    job_site: Grubhub_Careers
+  category: general
+  location_filter: israel
+  notes: "US food delivery. No Israel office identified - location_filter will likely yield 0 jobs."
+
+- name: StarkWare
+  website: https://starkware.co
+  careers_url: https://starkware.co/careers/
+  ats: other
+  ats_params: {}
+  category: general
+  location_filter: israel
+  notes: "ZK-proofs / blockchain. Israeli company. TODO: ATS unknown - careers page appears to use a custom form."
+
+- name: Lusha
+  website: https://lusha.com
+  careers_url: https://lusha.com/careers/
+  ats: comeet
+  ats_params:
+    company_uid: "73.00B"
+    token: "37B11676F61F53DEC6F606F61BD8185D"
+  category: general
+  location_filter: israel
+  notes: "B2B contact data enrichment. Israeli company. Self-hosted Comeet embed; credentials extracted via Playwright 2026-05-28 (15 jobs verified)."
+
+- name: Remitly
+  website: https://remitly.com
+  careers_url: https://careers.remitly.com/
+  ats: other
+  ats_params: {}
+  category: fintech
+  location_filter: israel
+  notes: "US fintech / international transfers. Has Tel Aviv R&D office. TODO: ATS blocked - need a job link."
+
+- name: General Motors Israel
+  website: https://www.gm.com
+  careers_url: https://careers.gm.com/
+  ats: workday
+  ats_params: {}
+  category: general
+  location_filter: israel
+  notes: "GM Israel R&D center. GM uses Workday globally. TODO: verify tenant/wd_instance/job_site."
+
+- name: Kaltura
+  website: https://kaltura.com
+  careers_url: https://corp.kaltura.com/company/careers/
+  ats: comeet
+  ats_params:
+    company_uid: "E2.00D"
+    token: "2EDEA12ED017688C7147B1A555DA2ED"
+  category: general
+  location_filter: israel
+  notes: "Video platform / SaaS. Israeli company. Self-hosted Comeet embed; credentials extracted via Playwright 2026-05-28 (7 jobs verified)."
+
+- name: AU10TIX
+  website: https://au10tix.com
+  careers_url: https://www.au10tix.com/company/careers/
+  ats: comeet
+  ats_params:
+    company_uid: "3A.00C"
+    token: "A3C47A428F003D6847A40147847A41478"
+  category: cyber
+  location_filter: israel
+  notes: "Identity verification / fraud prevention. Israeli company. Self-hosted Comeet embed; credentials extracted via Playwright 2026-05-28 (10 jobs verified)."
+
+- name: Bright Data
+  website: https://brightdata.com
+  careers_url: https://brightdata.com/careers
+  ats: comeet
+  ats_params:
+    company_uid: "88.007"
+    token: "887332A3BB119951995221C199519954438110E"
+  category: general
+  location_filter: israel
+  notes: "Web data platform. Israeli company. Self-hosted Comeet embed; credentials extracted via Playwright 2026-05-28 (34 jobs verified)."
+
+- name: Vast Data
+  website: https://vastdata.com
+  careers_url: https://www.comeet.com/jobs/vastdata/43.001
+  ats: comeet
+  ats_params:
+    company_uid: vastdata
+    token: "43.001"
+  category: general
+  location_filter: israel
+  notes: "Storage / AI infrastructure. Israeli co-founded. Comeet verified 2026-05-28 from job URL."
+
+- name: Plarium
+  website: https://plarium.com
+  careers_url: https://plarium.com/en/careers/
+  ats: other
+  ats_params: {}
+  category: general
+  location_filter: israel
+  notes: "Mobile gaming. Israeli company. Uses Workable ATS (not currently supported)."
+
+- name: Cyberint
+  website: https://cyberint.com
+  careers_url: https://cyberint.com/company/careers/
+  ats: other
+  ats_params: {}
+  category: cyber
+  location_filter: israel
+  notes: "Threat intelligence. Acquired by Check Point in 2024 - careers page inaccessible. May now post via Check Point careers."
+
+- name: HiredScore
+  website: https://hiredscore.com
+  careers_url: https://hiredscore.com/careers/
+  ats: other
+  ats_params: {}
+  category: general
+  location_filter: israel
+  notes: "HR AI / talent intelligence. Acquired by Workday 2024 - careers redirect to Workday homepage. Likely no standalone job board."
+
+- name: Pilops
+  website: https://pilops.ai
+  careers_url: https://pilops.ai/careers
+  ats: other
+  ats_params: {}
+  category: cyber
+  location_filter: israel
+  notes: "Israeli startup. Site inaccessible - TODO: verify correct website and ATS."
+
+- name: Deep Instinct
+  website: https://deepinstinct.com
+  careers_url: https://deepinstinct.com/careers
+  ats: other
+  ats_params: {}
+  category: cyber
+  location_filter: israel
+  notes: "AI-based endpoint security. Israeli company. TODO: ATS unknown - not Greenhouse, not Ashby."
+
+- name: Neema
+  website: https://neema.io
+  careers_url: https://neema.io/careers
+  ats: other
+  ats_params: {}
+  category: fintech
+  location_filter: israel
+  notes: "Israeli fintech. Site inaccessible - TODO: verify correct website and ATS."
+
+- name: Dell Technologies Israel
+  website: https://dell.com
+  careers_url: https://iawmqy.fa.ocs.oraclecloud.com/hcmUI/CandidateExperience/en/sites/careers
+  ats: other
+  ats_params: {}
+  category: general
+  location_filter: israel
+  notes: "Dell Israel R&D. Uses Oracle Fusion HCM - not a supported ATS. Stub only."
+
+- name: NetApp Israel
+  website: https://netapp.com
+  careers_url: https://career4.successfactors.com/career?career_company=netappinc
+  ats: other
+  ats_params: {}
+  category: general
+  location_filter: israel
+  notes: "NetApp Israel R&D. Uses SuccessFactors + Eightfold AI - not currently supported. Stub only."
+
+- name: Above Security
+  website: https://abovesecurity.com
+  careers_url: https://jobs.ashbyhq.com/above-security
+  ats: other
+  ats_params: {}
+  category: cyber
+  location_filter: israel
+  notes: "Israeli cyber. Ashby suspected (URL returns 'Jobs' header). TODO: verify org_name - need a direct job link."
+
+- name: Duve
+  website: https://duve.com
+  careers_url: https://duve.com/careers
+  ats: comeet
+  ats_params:
+    company_uid: "58.00D"
+    token: "85D322E322E21743A8B42E8042E819174B45"
+  category: general
+  location_filter: israel
+  notes: "Hotel tech SaaS. Israeli company. Self-hosted Comeet embed; credentials extracted via Playwright 2026-05-28 (8 jobs verified)."
+
+- name: CaliAlfa
+  website: https://calialfa.com
+  careers_url: https://calialfa.com/careers
+  ats: other
+  ats_params: {}
+  category: general
+  location_filter: israel
+  notes: "Previously Alfabet. Site returning 404 - TODO: find active careers page URL."
+
+- name: SafeBreach
+  website: https://www.safebreach.com
+  careers_url: https://job-boards.greenhouse.io/safebreach
+  ats: greenhouse
+  ats_params:
+    board_token: safebreach
+  category: cyber
+  location_filter: israel
+  notes: "Breach and attack simulation (BAS) platform. Verified 4 open jobs via Greenhouse API 2026-05-28 including Threat Security Researcher (Tel Aviv)."
+
+# ─── Added 2026-05-28 (user batch) ───────────────────────────────────────────
+
+- name: Sunbit
+  website: https://sunbit.com
+  careers_url: https://www.comeet.com/jobs/sunbit/37.001
+  ats: comeet
+  ats_params:
+    company_uid: sunbit
+    token: "37.001"
+  category: fintech
+  location_filter: israel
+  notes: "BNPL / consumer financing."
+
+- name: Scopely
+  website: https://scopely.com
+  careers_url: https://scopely.com/careers/
+  ats: other
+  ats_params: {}
+  category: general
+  location_filter: israel
+  notes: "Mobile gaming. TODO: ATS unknown - no URL provided. Likely Greenhouse or Lever."
+
+- name: Tricentis
+  website: https://tricentis.com
+  careers_url: https://tricentis.wd1.myworkdayjobs.com/en-US/Tricentis_Careers
+  ats: workday
+  ats_params:
+    tenant: tricentis
+    wd_instance: wd1
+    job_site: Tricentis_Careers
+  category: general
+  location_filter: israel
+  notes: "Software testing platform. Ra'anana office."
+
+- name: DriveNets
+  website: https://drivenets.com
+  careers_url: https://www.comeet.com/jobs/drivenets/72.006
+  ats: comeet
+  ats_params:
+    company_uid: drivenets
+    token: "72.006"
+  category: general
+  location_filter: israel
+  notes: "Distributed cloud networking."
+
+- name: Imagen AI
+  website: https://imagen-ai.com
+  careers_url: https://www.comeet.com/jobs/imagen-ai/78.00F
+  ats: comeet
+  ats_params:
+    company_uid: imagen-ai
+    token: "78.00F"
+  category: general
+  location_filter: israel
+  notes: "AI photo editing for professional photographers."
+
+- name: Wix
+  website: https://wix.com
+  careers_url: https://careers.wix.com
+  ats: other
+  ats_params: {}
+  category: general
+  location_filter: israel
+  notes: "Website builder. Custom careers portal at careers.wix.com - not a standard ATS. TODO: find API."
+
+- name: Addressable
+  website: https://addressable.io
+  careers_url: https://www.comeet.com/jobs/addressable_io/8A.00C
+  ats: comeet
+  ats_params:
+    company_uid: addressable_io
+    token: "8A.00C"
+  category: general
+  location_filter: israel
+  notes: "Audience intelligence / social media marketing."
+
+- name: Marvell
+  website: https://marvell.com
+  careers_url: https://marvell.wd1.myworkdayjobs.com/en-US/MarvellCareers
+  ats: workday
+  ats_params:
+    tenant: marvell
+    wd_instance: wd1
+    job_site: MarvellCareers
+  category: general
+  location_filter: israel
+  notes: "Semiconductor / networking chips. Israel R&D (Yokneam)."
+
+- name: Qualcomm Israel
+  website: https://qualcomm.com
+  careers_url: https://careers.qualcomm.com/careers
+  ats: other
+  ats_params: {}
+  category: general
+  location_filter: israel
+  notes: "Semiconductor / mobile chips. Israel R&D. Custom careers portal - ATS not identified."
+
+- name: Egis Technology
+  website: https://egis-group.com
+  careers_url: https://www.linkedin.com/company/egis-technology
+  ats: other
+  ats_params: {}
+  category: general
+  location_filter: israel
+  notes: "IC design / fingerprint security chips. Jobs posted via LinkedIn only."
+
+- name: GE HealthCare
+  website: https://gehealthcare.com
+  careers_url: https://gehc.wd5.myworkdayjobs.com/en-US/GEHC_ExternalSite
+  ats: workday
+  ats_params:
+    tenant: gehc
+    wd_instance: wd5
+    job_site: GEHC_ExternalSite
+  category: general
+  location_filter: israel
+  notes: "Medical imaging / diagnostics. Israel R&D (Haifa)."
+
+- name: 4M Analytics
+  website: https://4manalytics.com
+  careers_url: https://www.comeet.com/jobs/4Manalytics/B6.00F
+  ats: comeet
+  ats_params:
+    company_uid: 4Manalytics
+    token: "B6.00F"
+  category: general
+  location_filter: israel
+  notes: "Underground infrastructure AI (utilities mapping)."
+
+- name: Sygnia
+  website: https://sygnia.co
+  careers_url: https://www.comeet.com/jobs/sygnia/78.00A
+  ats: comeet
+  ats_params:
+    company_uid: sygnia
+    token: "78.00A"
+  category: cyber
+  location_filter: israel
+  notes: "Cyber incident response / red team / threat intel. Part of Temasek."
+
+- name: Altair Semiconductor
+  website: https://altair-semi.com
+  careers_url: https://www.comeet.com/jobs/altair_semiconductor/88.003
+  ats: comeet
+  ats_params:
+    company_uid: altair_semiconductor
+    token: "88.003"
+  category: general
+  location_filter: israel
+  notes: "Cellular IoT chips (acquired by Sony). Israel HQ."
+
+- name: Talma
+  website: https://talma.co.il
+  careers_url: https://www.linkedin.com/company/talma-aviation-services
+  ats: other
+  ats_params: {}
+  category: general
+  location_filter: israel
+  notes: "Aviation ground handling services (Ben Gurion Airport). Jobs posted via LinkedIn."
+
+- name: AppsFlyer
+  website: https://appsflyer.com
+  careers_url: https://boards.greenhouse.io/appsflyer
+  ats: greenhouse
+  ats_params:
+    board_token: appsflyer
+  category: general
+  location_filter: israel
+  notes: "Mobile marketing analytics. Israeli company, HQ Tel Aviv."
+
+- name: Abra
+  website: https://abracloud.com
+  careers_url: https://www.comeet.com/jobs/abra_rnd/15.007
+  ats: comeet
+  ats_params:
+    company_uid: abra_rnd
+    token: "15.007"
+  category: cyber
+  location_filter: israel
+  notes: "Cloud security / SaaS security. Israeli company."
+
+- name: UVEye
+  website: https://uveye.com
+  careers_url: https://www.comeet.com/jobs/uveye/92.00F
+  ats: comeet
+  ats_params:
+    company_uid: uveye
+    token: "92.00F"
+  category: general
+  location_filter: israel
+  notes: "Automotive under-vehicle AI inspection."
+
+- name: Navan
+  website: https://navan.com
+  careers_url: https://boards.greenhouse.io/navan
+  ats: greenhouse
+  ats_params:
+    board_token: navan
+  category: general
+  location_filter: israel
+  notes: "Travel and expense management (formerly TripActions). board_token needs verification."
+
+- name: Lemonade
+  website: https://lemonade.com
+  careers_url: https://makers.lemonade.com/
+  ats: other
+  ats_params: {}
+  category: fintech
+  location_filter: israel
+  notes: "Insurtech / AI insurance. Israel R&D (Tel Aviv). Jobs posted via LinkedIn - ATS not confirmed."
+
+- name: Automate.it
+  website: https://automate.io
+  careers_url: https://www.linkedin.com/company/automate-it
+  ats: other
+  ats_params: {}
+  category: general
+  location_filter: israel
+  notes: "IT automation / workflow. Jobs posted via LinkedIn."
+
+- name: Deloitte Israel
+  website: https://deloitte.com/il
+  careers_url: https://careers.deloitte.co.il
+  ats: comeet
+  ats_params: {}
+  category: general
+  location_filter: israel
+  notes: "Consulting / tech advisory. Careers on custom Comeet domain (careers.deloitte.co.il). TODO: extract company_uid and token from page source."
+
+- name: Vinesight
+  website: https://vinesight.com
+  careers_url: https://www.linkedin.com/company/vinesight
+  ats: other
+  ats_params: {}
+  category: cyber
+  location_filter: israel
+  notes: "AI-powered disinformation and influence campaign detection. Israeli startup."
+
+- name: BeyondTrust
+  website: https://beyondtrust.com
+  careers_url: https://beyondtrust.com/careers
+  ats: other
+  ats_params: {}
+  category: cyber
+  location_filter: israel
+  notes: "PAM / privileged access security. Jobs posted via LinkedIn. TODO: identify ATS (likely Workday)."
+
+- name: Insightec
+  website: https://insightec.com
+  careers_url: https://www.comeet.com/jobs/insightec/4A.004
+  ats: comeet
+  ats_params:
+    company_uid: insightec
+    token: "4A.004"
+  category: general
+  location_filter: israel
+  notes: "Focused ultrasound / non-invasive neurosurgery. Israel HQ (Tirat Carmel near Haifa)."
+
+- name: Takeaway.com
+  website: https://takeaway.com
+  careers_url: https://www.linkedin.com/company/takeaway-com
+  ats: other
+  ats_params: {}
+  category: general
+  location_filter: israel
+  notes: "Food delivery (Just Eat Takeaway). Israel R&D. Jobs posted via LinkedIn."
+
+- name: Medtronic Israel
+  website: https://medtronic.com
+  careers_url: https://medtronic.wd1.myworkdayjobs.com/en-US/MedtronicCareers
+  ats: workday
+  ats_params:
+    tenant: medtronic
+    wd_instance: wd1
+    job_site: MedtronicCareers
+  category: general
+  location_filter: israel
+  notes: "Medical devices. Israel R&D (Herzliya)."
+
+- name: Weka
+  website: https://weka.io
+  careers_url: https://boards.greenhouse.io/weka
+  ats: greenhouse
+  ats_params:
+    board_token: weka
+  category: general
+  location_filter: israel
+  notes: "AI-native data platform / storage. Israeli company. board_token needs verification."
+
+- name: RealPlay
+  website: https://realplay.gg
+  careers_url: https://www.comeet.com/jobs/realplay/9A.003
+  ats: comeet
+  ats_params:
+    company_uid: realplay
+    token: "9A.003"
+  category: general
+  location_filter: israel
+  notes: "Social gaming / interactive entertainment."
+
+- name: HP
+  website: https://hp.com
+  careers_url: https://hp.wd5.myworkdayjobs.com/en-US/ExternalCareerSite
+  ats: workday
+  ats_params:
+    tenant: hp
+    wd_instance: wd5
+    job_site: ExternalCareerSite
+  category: general
+  location_filter: israel
+  notes: "HP Inc. Israel R&D (Ness Ziona)."
+
+- name: AlgoSec
+  website: https://www.algosec.com
+  careers_url: https://www.comeet.com/jobs/algosec/71.006
+  ats: comeet
+  ats_params:
+    company_uid: "71.006"
+    token: "1765D874E8C4BB05D82ECA3AA3A176"
+  category: cyber
+  location_filter: israel
+  notes: "Network security policy management. HQ Petah Tikva. 5 Israel jobs verified 2026-05-28."
+
+- name: Appdome
+  website: https://www.appdome.com
+  careers_url: https://www.comeet.com/jobs/appdome/E6.005
+  ats: comeet
+  ats_params:
+    company_uid: "E6.005"
+    token: "6E5295EDCA304314AF03043295E1B942279"
+  category: cyber
+  location_filter: israel
+  notes: "Mobile security platform - app shielding and mobile fraud defense. Tel Aviv. 6 Israel jobs including Mobile Security Researcher and Mobile Fraud Engine engineer. Verified 2026-05-28."
+
+- name: Claroty
+  website: https://www.claroty.com
+  careers_url: https://www.comeet.com/jobs/Claroty/F2.004
+  ats: comeet
+  ats_params:
+    company_uid: "F2.004"
+    token: "2F4EC42F42F45E814AC1A945E814AC5E8"
+  category: cyber
+  location_filter: israel
+  notes: "OT/IoT/ICS security platform. Tel Aviv R&D. 7 Israel jobs verified 2026-05-28."
+
+- name: Orchid Security
+  website: https://www.orchidsecurity.com
+  careers_url: https://www.comeet.com/jobs/orchid_security/4A.001
+  ats: comeet
+  ats_params:
+    company_uid: "4A.001"
+    token: "A4147C72904A41A410A41047C7A41"
+  category: cyber
+  location_filter: israel
+  notes: "Israeli cyber startup. 3 Israel jobs including Senior AI Engineer. Verified 2026-05-28."
+
+- name: Melio
+  website: https://www.meliopayments.com
+  careers_url: https://job-boards.greenhouse.io/melio
+  ats: greenhouse
+  ats_params:
+    board_token: melio
+  category: fintech
+  location_filter: israel
+  notes: "Israeli B2B payments fintech. Verified 2026-05-28."
+
+- name: Ocean Security
+  website: https://ocean.security
+  careers_url: https://www.comeet.com/jobs/ocean_security/F9.001
+  ats: comeet
+  ats_params:
+    company_uid: "F9.001"
+    company_name: ocean_security
+    token: "9F145971DD39F127C44F883BA6597905979"
+  category: cyber
+  location_filter: israel
+  notes: "AI-based email security. Founded 2024 by ex-IDF Intelligence (Shay Shwartz, Oran Moyal); $28M Series A led by Lightspeed. 23 open roles incl. Tel Aviv eng. Verified 2026-05-31."
+
+- name: groundcover
+  website: https://www.groundcover.com
+  careers_url: https://www.groundcover.com/careers
+  ats: comeet
+  ats_params:
+    company_uid: "88.008"
+    company_name: groundcover
+    token: "88833303BB81998222022202220044403330"
+  category: general
+  location_filter: israel
+  notes: "eBPF cloud-native observability. Globes 2026 promising-startup list. 21 roles, ~9 Israel. Verified 2026-05-31."
+
+- name: Guardio
+  website: https://guard.io
+  careers_url: https://guard.io/careers
+  ats: comeet
+  ats_params:
+    company_uid: "57.000"
+    company_name: guardio
+    token: "7502BE015F0249041D01D40EA03A801D40EA0"
+  category: cyber
+  location_filter: israel
+  notes: "Consumer/browser cybersecurity. Globes 2026 promising-startup list. 21 roles, mostly Israel. Verified 2026-05-31."
+
+- name: Justt
+  website: https://justt.ai
+  careers_url: https://justt.ai/careers
+  ats: comeet
+  ats_params:
+    company_uid: "36.001"
+    company_name: justt
+    token: "6312526631018C41EF518C431883188C62"
+  category: fraud
+  location_filter: israel
+  notes: "AI chargeback/dispute mitigation (fraud/fintech). Globes 2026 promising-startup list. Verified 2026-05-31."
+
+- name: Qodo
+  website: https://www.qodo.ai
+  careers_url: https://www.qodo.ai/careers
+  ats: comeet
+  ats_params:
+    company_uid: "B8.00B"
+    company_name: qodo
+    token: "8BB34623D1D45D8346203D1D08BB8BB"
+  category: general
+  location_filter: israel
+  notes: "AI code integrity/testing (ex-CodiumAI). Globes 2026 promising-startup list. 15 roles incl. Tel Aviv. Verified 2026-05-31."
+
+- name: Tastewise
+  website: https://www.tastewise.io
+  careers_url: https://www.tastewise.io/careers
+  ats: comeet
+  ats_params:
+    company_uid: "F8.000"
+    company_name: tastewise
+    token: "8F035A047802CB047803E90478035A001AD0"
+  category: general
+  location_filter: israel
+  notes: "Food & beverage AI consumer-insights. Globes 2026 promising-startup list. Verified 2026-05-31."
+
+- name: April
+  website: https://www.getapril.com
+  careers_url: https://jobs.ashbyhq.com/april
+  ats: ashby
+  ats_params:
+    org_name: april
+  category: fintech
+  location_filter: israel
+  notes: "AI-embedded tax filing fintech. Globes 2026 promising-startup list. 11 roles, 7 Tel Aviv eng/data. Verified 2026-05-31."
+
+- name: Converge Bio
+  website: https://converge-bio.com
+  careers_url: https://converge-bio.com/careers
+  ats: comeet
+  ats_params:
+    company_uid: "CA.00D"
+    company_name: convergebio
+    token: "ACD4B9B40CE36016135360156680ACD6135"
+  category: general
+  location_filter: israel
+  notes: "GenAI lab for life sciences/drug discovery, Tel Aviv. $25M Series A (Bessemer, TLV Partners). Globes 2026 list. Verified 2026-05-31."
