@@ -5423,15 +5423,20 @@
     "website": "https://www.navina.ai",
     "source_vc": "Grove",
     "vc_tier": 2,
-    "careers_url": null,
-    "ats": "unknown",
-    "ats_params": {},
+    "careers_url": "https://www.navina.ai/careers",
+    "ats": "comeet",
+    "ats_params": {
+      "company_uid": "E6.00C",
+      "token": "6EC2988DD837606EC376014C43E4C376014C4"
+    },
     "discovered_at": "2026-05-04T22:20:45.681728+00:00",
-    "last_verified_at": "2026-06-07T08:51:25.634989+00:00",
+    "last_verified_at": "2026-06-08T14:55:50.741665+00:00",
     "last_jobs_pulled_at": "2026-06-04T10:35:09.571747+00:00",
     "consecutive_failures": 0,
     "skip_discovery": true,
-    "skip_reason": "no_careers"
+    "skip_reason": "manual_verified",
+    "careers_url_source": "manual",
+    "location_filter": "israel"
   },
   {
     "name": "Dot Compliance",
@@ -6145,15 +6150,18 @@
     "website": "https://mixtiles.com",
     "source_vc": "83North",
     "vc_tier": 2,
-    "careers_url": null,
-    "ats": "unknown",
-    "ats_params": {},
+    "careers_url": "https://www.mixtiles.com/careers",
+    "ats": "greenhouse",
+    "ats_params": {
+      "board_token": "mixtiles"
+    },
     "discovered_at": "2026-05-04T22:21:29.130536+00:00",
-    "last_verified_at": "2026-06-07T08:52:34.088161+00:00",
+    "last_verified_at": "2026-06-08T14:55:50.741665+00:00",
     "last_jobs_pulled_at": "2026-06-04T10:35:19.008827+00:00",
     "consecutive_failures": 0,
     "skip_discovery": true,
-    "skip_reason": "no_careers"
+    "skip_reason": "manual_verified",
+    "careers_url_source": "manual"
   },
   {
     "name": "MotorK",
@@ -32778,15 +32786,20 @@
     "website": "https://metalbear.com",
     "source_vc": "TLV Partners",
     "vc_tier": 2,
-    "careers_url": null,
-    "ats": "unknown",
-    "ats_params": {},
+    "careers_url": "https://metalbear.com/careers/",
+    "ats": "comeet",
+    "ats_params": {
+      "company_uid": "8A.002",
+      "token": "A82498E348A1F860498E3F0C3F0CA820"
+    },
     "discovered_at": "2026-05-17T15:17:21.304267+00:00",
-    "last_verified_at": "2026-05-17T15:17:21.304275+00:00",
+    "last_verified_at": "2026-06-08T14:55:50.741665+00:00",
     "last_jobs_pulled_at": null,
     "consecutive_failures": 0,
     "skip_discovery": true,
-    "skip_reason": "no_careers"
+    "skip_reason": "manual_verified",
+    "careers_url_source": "manual",
+    "location_filter": "israel"
   },
   {
     "name": "Motormia",
