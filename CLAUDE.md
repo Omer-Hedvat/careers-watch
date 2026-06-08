@@ -148,9 +148,9 @@ If a user request would add any of these, confirm explicitly before building.
 - Hebrew may appear in job titles and descriptions. Do NOT translate before sending to Gemini - the model handles Hebrew well and translation loses signal.
 - Location parsing matters. Omer's commute radius is max 75 minutes from home. Anywhere from Netanya south through Herzliya, Ra'anana, Petach Tikva, Tel Aviv, Ramat Gan, Bnei Brak, Holon, Bat Yam is in range. Haifa, Beer Sheva, and Jerusalem are out of range without remote flexibility.
 - VC tiering for the matcher's `vc_tier` field:
-  - Tier 1 (cyber-pure): YL Ventures, Team8, Glilot, Cyberstarts, Hyperwise, Merlin, JVP
-  - Tier 2 (generalist with strong cyber/fintech): Viola, Pitango, TLV Partners, Vertex Israel, Bessemer, Insight, 83North, Grove
-  - Tier 3 (adjacent, lower signal): NFX, Firstime, FinTLV, Champel
+  - Tier 1 (cyber-pure): YL Ventures, Team8, Glilot, Cyberstarts, Hyperwise, Merlin, JVP, Magenta VC, Greenfield Partners, Hetz Ventures, 10D
+  - Tier 2 (generalist with strong cyber/fintech): Viola, Viola Ventures, Viola Growth, Pitango, TLV Partners, Vertex Israel, Bessemer, Insight, 83North, Grove, StageOne Ventures, Elron Ventures, Red Dot Capital, Qumra Capital, Entrée Capital
+  - Tier 3 (adjacent, lower signal): NFX, Firstime, FinTLV, Champel, Amiti Ventures, Triventures, Target Global
 
 ## Common gotchas
 
@@ -159,6 +159,7 @@ If a user request would add any of these, confirm explicitly before building.
 - **ATS redirects:** company "Careers" links sometimes go through one or two redirects before landing on the actual ATS URL. Follow redirects in `ats/detect.py` and detect from the final URL.
 - **Gemini JSON wrapping:** Gemini Flash sometimes returns JSON wrapped in markdown code fences (```json ... ```). Strip these before `json.loads()`. Robust parser, not strict.
 - **Hebrew filenames or content:** make sure all file I/O is UTF-8. Default on modern Python but worth being explicit.
+- **location_filter vs. bare city names:** `location_filter` is a plain substring match on the job's location string. Comeet often returns a location `name` of just "Tel Aviv" (country only in the `country` ISO code), and Ashby returns a bare city (country in the structured `address`). A naive "israel" filter silently drops these Israeli jobs. The Comeet and Ashby pullers therefore append the expanded country to the location string (e.g. "Tel Aviv, Israel") so the filter matches on country, not just city. When adding a new ATS, do the same.
 
 ## Debugging workflow
 

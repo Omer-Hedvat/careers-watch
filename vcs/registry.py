@@ -26,6 +26,20 @@ from vcs.boldstart import fetch_portfolio as boldstart_fetch
 from vcs.bain_capital import fetch_portfolio as bain_capital_fetch
 from vcs.a16z import fetch_portfolio as a16z_fetch
 from vcs.abstract import fetch_portfolio as abstract_fetch
+from vcs.magenta import fetch_portfolio as magenta_fetch
+from vcs.stageone import fetch_portfolio as stageone_fetch
+from vcs.amiti import fetch_portfolio as amiti_fetch
+from vcs.greenfield import fetch_portfolio as greenfield_fetch
+from vcs.hetz import fetch_portfolio as hetz_fetch
+from vcs.ten_d import fetch_portfolio as ten_d_fetch
+from vcs.elron import fetch_portfolio as elron_fetch
+from vcs.red_dot import fetch_portfolio as red_dot_fetch
+from vcs.qumra import fetch_portfolio as qumra_fetch
+from vcs.triventures import fetch_portfolio as triventures_fetch
+from vcs.viola_ventures import fetch_portfolio as viola_ventures_fetch
+from vcs.viola_growth import fetch_portfolio as viola_growth_fetch
+from vcs.entree import fetch_portfolio as entree_fetch
+from vcs.target_global import fetch_portfolio as target_global_fetch
 
 VC_REGISTRY = {
     # Tier 1: Cyber-pure
@@ -59,4 +73,19 @@ VC_REGISTRY = {
     "Accel": {"tier": 3, "fetch": accel_fetch},
     "Bain Capital Ventures": {"tier": 3, "fetch": bain_capital_fetch},
     "Abstract Ventures": {"tier": 3, "fetch": abstract_fetch},
+    # New VCs added 2026-05-28/29
+    "Magenta VC": {"tier": 1, "fetch": magenta_fetch},
+    "Greenfield Partners": {"tier": 1, "fetch": greenfield_fetch},
+    "Hetz Ventures": {"tier": 1, "fetch": hetz_fetch},
+    "10D": {"tier": 1, "fetch": ten_d_fetch},
+    "StageOne Ventures": {"tier": 2, "fetch": stageone_fetch},
+    "Elron Ventures": {"tier": 2, "fetch": elron_fetch},
+    "Red Dot Capital": {"tier": 2, "fetch": red_dot_fetch},
+    "Qumra Capital": {"tier": 2, "fetch": qumra_fetch},
+    "Viola Ventures": {"tier": 2, "fetch": viola_ventures_fetch},
+    "Viola Growth": {"tier": 2, "fetch": viola_growth_fetch},
+    "Entrée Capital": {"tier": 2, "fetch": entree_fetch},
+    "Amiti Ventures": {"tier": 3, "fetch": amiti_fetch},
+    "Triventures": {"tier": 3, "fetch": triventures_fetch},
+    "Target Global": {"tier": 3, "fetch": target_global_fetch},
 }
