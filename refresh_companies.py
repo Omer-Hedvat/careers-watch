@@ -43,9 +43,16 @@ def save_companies(companies: dict[str, dict]) -> None:
 
 
 def needs_reverify(entry: dict, reverify_unknown: bool = False) -> bool:
-    if entry.get("consecutive_failures", 0) >= REVERIFY_FAILURES:
-        return True
+    # Escape hatch: force a re-check of unknown-ATS entries even if skipped.
     if reverify_unknown and entry.get("ats") == "unknown":
+        return True
+    # Dead-end companies (unknown ATS, no website, no careers page, acquired)
+    # are flagged skip_discovery so we stop wasting Playwright discovery on them
+    # every cycle. Re-run scripts/mark_skips.py to refresh the set, or pass
+    # --reverify-unknown to override for the unknown-ATS ones.
+    if entry.get("skip_discovery"):
+        return False
+    if entry.get("consecutive_failures", 0) >= REVERIFY_FAILURES:
         return True
     lv = entry.get("last_verified_at")
     if not lv:
