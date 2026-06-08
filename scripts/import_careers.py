@@ -62,6 +62,8 @@ def main() -> None:
             last_verified_at=now,
             careers_url_source="manual",
         )
+        if v.get("location_filter"):
+            entry["location_filter"] = v["location_filter"]
         patched += 1
 
     if args.dry_run:

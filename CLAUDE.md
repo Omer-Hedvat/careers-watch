@@ -187,6 +187,8 @@ When something breaks, in this order:
 
 Use `ats/utils.py` for the shared `HEADERS` and `strip_html` - don't redefine them per module.
 
+**Single-tenant pullers:** some companies self-host careers (no third-party ATS) - e.g. `ats/lemonade.py` (Next.js `__NEXT_DATA__`), `ats/privya.py` (WordPress REST API). These take no params; register them as `"name": lambda params: _fetch_name()` and wire the company via `scripts/import_careers.py` (which locks the entry as `skip_reason=manual_verified` so refresh never re-discovers it). Detection (`ats/detect.py`) is skipped for these - they are hand-verified, not auto-discovered.
+
 ## Scope discipline
 
 This is plumbing - scrape, score, surface. The mission is not to expand into a full job-application platform. Specific anti-patterns:
