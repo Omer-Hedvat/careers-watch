@@ -39,6 +39,12 @@ def fetch_positions(org_name: str) -> list[dict]:
     for job in jobs:
         title = job.get("title", "")
         location = job.get("location", "")
+        # location is often just a city ("Tel Aviv"); the country lives in the
+        # structured address. Append it so location_filter (a substring match)
+        # can match on country, not only city name.
+        country = ((job.get("address") or {}).get("postalAddress") or {}).get("addressCountry", "")
+        if country and country.lower() not in location.lower():
+            location = f"{location}, {country}" if location else country
         apply_url = job.get("applyUrl") or job.get("jobUrl", "")
         raw_content = job.get("descriptionHtml") or job.get("descriptionPlain") or ""
         description = _strip_html(raw_content)
