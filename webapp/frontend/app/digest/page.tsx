@@ -194,6 +194,7 @@ export default function DigestPage() {
           </button>
           <Link href="/companies" className="text-sm text-gray-400 hover:text-white">Companies</Link>
           <Link href="/positions" className="text-sm text-gray-400 hover:text-white">Positions</Link>
+          <Link href="/gaps" className="text-sm text-gray-400 hover:text-white">Gaps</Link>
           <Link href="/settings" className="p-2 text-gray-400 hover:text-white rounded-lg">⚙</Link>
         </div>
       </div>
