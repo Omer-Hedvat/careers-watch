@@ -13,6 +13,7 @@ Wrapped features only. Active work lives in `ROADMAP.md`.
 | Position Liveness | `future_devs/archive/POSITION_LIVENESS_SPEC.md` | P8 | `wrapped` | 4 |
 | App shell & account UX | `future_devs/archive/WEBAPP_APP_SHELL_ACCOUNT_SPEC.md` | P7 | `wrapped` | 4 |
 | First-run comprehension | `future_devs/archive/WEBAPP_FIRST_RUN_COMPREHENSION_SPEC.md` | P7 | `wrapped` | 5 |
+| Digest legibility & trust | `future_devs/archive/WEBAPP_DIGEST_TRUST_SPEC.md` | P7 | `wrapped` | 4 |
 
 ---
 
@@ -115,6 +116,17 @@ Wrapped features only. Active work lives in `ROADMAP.md`.
 | Getting-started checklist — 4-item dismissible checklist on digest; auto-hides when complete | `future_devs/archive/WEBAPP_GETTING_STARTED_CHECKLIST_SPEC.md` | S | `wrapped` |
 | In-app Help / FAQ — `/help` page with anchored sections (scoring, flags, cadence, privacy, improve) | `future_devs/archive/WEBAPP_IN_APP_HELP_FAQ_SPEC.md` | S | `wrapped` |
 | Auth: forgot-password + email-confirm state + password requirements + Terms/Privacy stubs | `future_devs/archive/WEBAPP_AUTH_RESET_CONFIRM_LEGAL_SPEC.md` | M | `wrapped` |
+
+---
+
+## Phase P7 — Digest legibility & trust
+
+| Feature | Spec | Effort | Status |
+|---|---|---|---|
+| Score legend & tier explainer — inline key, "How scoring works" popover, per-badge tooltips | `future_devs/archive/WEBAPP_SCORE_LEGEND_SPEC.md` | S | `wrapped` |
+| Flag glossary & friendly labels — shared `lib/flags.ts` slug→label/definition map, tooltips, glossary popover | `future_devs/archive/WEBAPP_FLAG_GLOSSARY_SPEC.md` | S | `wrapped` |
+| Cadence & run-limit explainer — score-now help, reset-day copy, "Mon & Thu" cadence; `/user/me` returns `run_limit_resets_on` | `future_devs/archive/WEBAPP_CADENCE_RUN_LIMIT_EXPLAINER_SPEC.md` | S | `wrapped` |
+| Diagnostic empty states + scoring progress feedback — account-state-keyed empties, in-progress indicator + result count, loading skeletons | `future_devs/archive/WEBAPP_DIAGNOSTIC_STATES_SPEC.md` | S | `wrapped` |
 
 ---
 
