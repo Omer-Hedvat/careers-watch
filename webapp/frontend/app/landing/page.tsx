@@ -17,7 +17,9 @@ export default function LandingPage() {
             Get started free
           </Link>
           <a
-            href="#"
+            href="https://github.com/omerhedvat/careers-watch"
+            target="_blank"
+            rel="noopener noreferrer"
             className="px-6 py-3 bg-gray-800 hover:bg-gray-700 rounded-lg font-semibold transition-colors"
           >
             View on GitHub
@@ -69,7 +71,7 @@ export default function LandingPage() {
       {/* Footer */}
       <footer className="py-8 px-4 border-t border-gray-800 text-center text-gray-500 text-sm">
         CareerWatch &middot; Built by Omer Hedvat &middot;{' '}
-        <a href="#" className="hover:text-white transition-colors">
+        <a href="https://github.com/omerhedvat/careers-watch" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
           GitHub
         </a>
       </footer>
