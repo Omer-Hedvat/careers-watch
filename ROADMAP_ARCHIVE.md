@@ -12,6 +12,7 @@ Wrapped features only. Active work lives in `ROADMAP.md`.
 | Proprietary ATS Pullers | `future_devs/archive/PROPRIETARY_ATS_PULLERS_SPEC.md` | P3 | `wrapped` | 9 |
 | Position Liveness | `future_devs/archive/POSITION_LIVENESS_SPEC.md` | P8 | `wrapped` | 4 |
 | App shell & account UX | `future_devs/archive/WEBAPP_APP_SHELL_ACCOUNT_SPEC.md` | P7 | `wrapped` | 4 |
+| First-run comprehension | `future_devs/archive/WEBAPP_FIRST_RUN_COMPREHENSION_SPEC.md` | P7 | `wrapped` | 5 |
 
 ---
 
