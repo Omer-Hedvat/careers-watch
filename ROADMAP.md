@@ -29,7 +29,14 @@
 
 ## Epics
 
-No active epics. See `ROADMAP_ARCHIVE.md`.
+| Slug | Title | Status | Effort | Children |
+|---|---|---|---|---|
+| [WEBAPP_FIRST_RUN_COMPREHENSION](future_devs/WEBAPP_FIRST_RUN_COMPREHENSION_SPEC.md) | First-run comprehension (what/why/what-you-get before & during onboarding) | `not-started` | L | 5 |
+| [WEBAPP_DIGEST_TRUST](future_devs/WEBAPP_DIGEST_TRUST_SPEC.md) | Digest legibility & trust (scores, flags, cadence, empty states) | `not-started` | M | 4 |
+| [WEBAPP_JOBSEEKER_WORKFLOW](future_devs/WEBAPP_JOBSEEKER_WORKFLOW_SPEC.md) | Job-seeker workspace (detail view, status tracker, hide, new, sort) | `not-started` | L | 5 |
+| [WEBAPP_APP_SHELL_ACCOUNT](future_devs/WEBAPP_APP_SHELL_ACCOUNT_SPEC.md) | App shell + account UX (nav, sign-out, help, auth recovery) | `not-started` | M | 4 |
+
+Run `/orchestrate_epic <slug>` to execute an epic's children in waves.
 
 ---
 
@@ -88,8 +95,7 @@ All Phase P2 tasks are wrapped. See `ROADMAP_ARCHIVE.md`.
 |---|---|---|---|---|
 | [WEBAPP_CV_SETTINGS_UPLOAD](future_devs/archive/WEBAPP_CV_SETTINGS_UPLOAD_SPEC.md) | CV re-upload section in Settings (outside onboarding) | `wrapped` | S | — |
 | [WEBAPP_PROFILE_UPLOAD_OR_PROMPT](future_devs/WEBAPP_PROFILE_UPLOAD_OR_PROMPT_SPEC.md) | Profile upload OR AI-prompt generator for building profile.md | `not-started` | M | — |
-| [WEBAPP_COMPANIES_VIEW](future_devs/WEBAPP_COMPANIES_VIEW_SPEC.md) | Companies page — inspect all tracked companies + metadata | `not-started` | S | — |
-| [WEBAPP_POSITIONS_VIEW](future_devs/WEBAPP_POSITIONS_VIEW_SPEC.md) | Positions page — browse all open roles from pipeline | `not-started` | S | WEBAPP_COMPANIES_VIEW |
+| [WEBAPP_POSITIONS_VIEW](future_devs/WEBAPP_POSITIONS_VIEW_SPEC.md) | Positions page — browse all open roles from pipeline | `not-started` | S | WEBAPP_COMPANIES_VIEW ✅ |
 | [PROFILE_CV_GAP_ANALYSIS](future_devs/PROFILE_CV_GAP_ANALYSIS_SPEC.md) | Gap analysis: profile vs CV, position vs CV, position vs profile | `not-started` | M | — |
 
 ---
@@ -100,6 +106,62 @@ All Phase P2 tasks are wrapped. See `ROADMAP_ARCHIVE.md`.
 |---|---|---|---|---|
 | [RAG_CHATBOT](future_devs/RAG_CHATBOT_SPEC.md) | RAG sandbox + "Chat with the Job Market" chatbot (next AI epic) | `not-started` | L | — |
 | [MULTI_AGENT_RESUME_TAILOR](future_devs/MULTI_AGENT_RESUME_TAILOR_SPEC.md) | Actor/critic multi-agent resume tailor for high-scoring jobs | `not-started` | M | RAG_CHATBOT |
+
+---
+
+## Phase P7 — Webapp UX & first-run experience
+
+First-time-user comprehension, digest trust, the job-seeker workspace, and the app shell. Filed from a UX review of the live webapp through a new job-seeker's eyes: what they need, what's missing, and which explanations a first-timer lacks.
+
+### Epic: First-run comprehension
+
+| Slug | Title | Status | Effort | Depends on |
+|---|---|---|---|---|
+| [WEBAPP_FIRST_RUN_COMPREHENSION](future_devs/WEBAPP_FIRST_RUN_COMPREHENSION_SPEC.md) | First-run comprehension (epic root) | `not-started` | L | — |
+| [WEBAPP_LANDING_REVAMP](future_devs/WEBAPP_LANDING_REVAMP_SPEC.md) | Landing revamp — value prop, BYO-key explainer, digest preview, FAQ | `not-started` | S | WEBAPP_FIRST_RUN_COMPREHENSION |
+| [WEBAPP_ONBOARDING_ORIENTATION](future_devs/WEBAPP_ONBOARDING_ORIENTATION_SPEC.md) | Onboarding orientation + why-this-matters copy + setup summary | `not-started` | S | WEBAPP_FIRST_RUN_COMPREHENSION |
+| [WEBAPP_PROFILE_EXAMPLE_GUIDANCE](future_devs/WEBAPP_PROFILE_EXAMPLE_GUIDANCE_SPEC.md) | Profile example + section guidance + completeness hint | `not-started` | S | WEBAPP_FIRST_RUN_COMPREHENSION |
+| [WEBAPP_FILTER_PLAIN_LANGUAGE_PREVIEW](future_devs/WEBAPP_FILTER_PLAIN_LANGUAGE_PREVIEW_SPEC.md) | Plain-language filters + live "X of Y jobs" preview | `not-started` | M | WEBAPP_FIRST_RUN_COMPREHENSION |
+| [WEBAPP_ONBOARDING_KEY_TEST](future_devs/WEBAPP_ONBOARDING_KEY_TEST_SPEC.md) | Inline "Test key" in onboarding Step 3 | `not-started` | XS | WEBAPP_FIRST_RUN_COMPREHENSION |
+
+### Epic: Digest legibility & trust
+
+| Slug | Title | Status | Effort | Depends on |
+|---|---|---|---|---|
+| [WEBAPP_DIGEST_TRUST](future_devs/WEBAPP_DIGEST_TRUST_SPEC.md) | Digest legibility & trust (epic root) | `not-started` | M | — |
+| [WEBAPP_SCORE_LEGEND](future_devs/WEBAPP_SCORE_LEGEND_SPEC.md) | Score legend & tier explainer | `not-started` | S | WEBAPP_DIGEST_TRUST |
+| [WEBAPP_FLAG_GLOSSARY](future_devs/WEBAPP_FLAG_GLOSSARY_SPEC.md) | Flag glossary & friendly labels | `not-started` | S | WEBAPP_DIGEST_TRUST |
+| [WEBAPP_CADENCE_RUN_LIMIT_EXPLAINER](future_devs/WEBAPP_CADENCE_RUN_LIMIT_EXPLAINER_SPEC.md) | Cadence & run-limit explainer | `not-started` | S | WEBAPP_DIGEST_TRUST |
+| [WEBAPP_DIAGNOSTIC_STATES](future_devs/WEBAPP_DIAGNOSTIC_STATES_SPEC.md) | Diagnostic empty states + scoring progress feedback | `not-started` | S | WEBAPP_DIGEST_TRUST |
+
+### Epic: Job-seeker workspace
+
+| Slug | Title | Status | Effort | Depends on |
+|---|---|---|---|---|
+| [WEBAPP_JOBSEEKER_WORKFLOW](future_devs/WEBAPP_JOBSEEKER_WORKFLOW_SPEC.md) | Job-seeker workspace (epic root) | `not-started` | L | — |
+| [WEBAPP_JOB_DETAIL_VIEW](future_devs/WEBAPP_JOB_DETAIL_VIEW_SPEC.md) | In-app job detail view (full reasoning + JD) | `not-started` | M | WEBAPP_FLAG_GLOSSARY |
+| [WEBAPP_APPLICATION_TRACKER](future_devs/WEBAPP_APPLICATION_TRACKER_SPEC.md) | Application status tracker (saved/applied/interviewing/...) | `not-started` | M | WEBAPP_JOBSEEKER_WORKFLOW |
+| [WEBAPP_HIDE_DISMISS_JOBS](future_devs/WEBAPP_HIDE_DISMISS_JOBS_SPEC.md) | Hide / dismiss irrelevant jobs | `not-started` | S | WEBAPP_JOBSEEKER_WORKFLOW |
+| [WEBAPP_NEW_SINCE_LAST_VISIT](future_devs/WEBAPP_NEW_SINCE_LAST_VISIT_SPEC.md) | "New since last visit" badges + filter | `not-started` | S | WEBAPP_JOBSEEKER_WORKFLOW |
+| [WEBAPP_DIGEST_SORT_PERSIST](future_devs/WEBAPP_DIGEST_SORT_PERSIST_SPEC.md) | Sort controls + persist filter/sort view + counts | `not-started` | S | WEBAPP_JOBSEEKER_WORKFLOW |
+
+### Epic: App shell & account UX
+
+| Slug | Title | Status | Effort | Depends on |
+|---|---|---|---|---|
+| [WEBAPP_APP_SHELL_ACCOUNT](future_devs/WEBAPP_APP_SHELL_ACCOUNT_SPEC.md) | App shell + account UX (epic root) | `not-started` | M | — |
+| [WEBAPP_GLOBAL_APP_SHELL_NAV](future_devs/WEBAPP_GLOBAL_APP_SHELL_NAV_SPEC.md) | Global nav shell + sign-out + auth guard | `not-started` | M | WEBAPP_APP_SHELL_ACCOUNT |
+| [WEBAPP_GETTING_STARTED_CHECKLIST](future_devs/WEBAPP_GETTING_STARTED_CHECKLIST_SPEC.md) | Getting-started checklist on the digest | `not-started` | S | WEBAPP_APP_SHELL_ACCOUNT |
+| [WEBAPP_IN_APP_HELP_FAQ](future_devs/WEBAPP_IN_APP_HELP_FAQ_SPEC.md) | In-app Help / FAQ page | `not-started` | S | WEBAPP_GLOBAL_APP_SHELL_NAV |
+| [WEBAPP_AUTH_RESET_CONFIRM_LEGAL](future_devs/WEBAPP_AUTH_RESET_CONFIRM_LEGAL_SPEC.md) | Auth: forgot-password + email-confirm + terms/privacy | `not-started` | M | WEBAPP_APP_SHELL_ACCOUNT |
+
+### Standalone
+
+| Slug | Title | Status | Effort | Depends on |
+|---|---|---|---|---|
+| [WEBAPP_ACCESSIBILITY_PASS](future_devs/WEBAPP_ACCESSIBILITY_PASS_SPEC.md) | Accessibility pass (color-blind-safe scores, focus, aria, keyboard) | `not-started` | S | — |
+
+> Bug: [BUG_LANDING_DEAD_GITHUB_LINKS](bugs_to_fix/BUG_LANDING_DEAD_GITHUB_LINKS.md) — dead `href="#"` GitHub links on landing (filed in `bugs_to_fix/`).
 
 ---
 
@@ -142,9 +204,32 @@ All Phase P2 tasks are wrapped. See `ROADMAP_ARCHIVE.md`.
 | `future_devs/archive/WEBAPP_FAVICON_SPEC.md` | P5 — Website favicon + Open Graph (wrapped) |
 | `future_devs/archive/WEBAPP_CV_SETTINGS_UPLOAD_SPEC.md` | P5 — CV re-upload in Settings (wrapped) |
 | `future_devs/WEBAPP_PROFILE_UPLOAD_OR_PROMPT_SPEC.md` | P5 — Profile upload or AI prompt generator |
-| `future_devs/WEBAPP_COMPANIES_VIEW_SPEC.md` | P5 — Companies page |
+| `future_devs/archive/WEBAPP_COMPANIES_VIEW_SPEC.md` | P5 — Companies page (wrapped) |
 | `future_devs/WEBAPP_POSITIONS_VIEW_SPEC.md` | P5 — Positions page |
 | `future_devs/archive/WEBAPP_MULTI_FILTER_SPEC.md` | P5 — Multi-value filters with ';' (wrapped) |
 | `future_devs/PROFILE_CV_GAP_ANALYSIS_SPEC.md` | P5 — Gap analysis: profile vs CV, positions vs CV |
 | `future_devs/RAG_CHATBOT_SPEC.md` | P6 — RAG sandbox + chat UI (next AI epic) |
 | `future_devs/MULTI_AGENT_RESUME_TAILOR_SPEC.md` | P6 — Multi-agent CV tailor |
+| `future_devs/WEBAPP_FIRST_RUN_COMPREHENSION_SPEC.md` | P7 — First-run comprehension (epic root) |
+| `future_devs/WEBAPP_LANDING_REVAMP_SPEC.md` | P7 — Landing revamp (value prop, BYO-key, digest preview, FAQ) |
+| `future_devs/WEBAPP_ONBOARDING_ORIENTATION_SPEC.md` | P7 — Onboarding orientation + setup summary |
+| `future_devs/WEBAPP_PROFILE_EXAMPLE_GUIDANCE_SPEC.md` | P7 — Profile example + section guidance |
+| `future_devs/WEBAPP_FILTER_PLAIN_LANGUAGE_PREVIEW_SPEC.md` | P7 — Plain-language filters + live preview |
+| `future_devs/WEBAPP_ONBOARDING_KEY_TEST_SPEC.md` | P7 — Inline key test in onboarding |
+| `future_devs/WEBAPP_DIGEST_TRUST_SPEC.md` | P7 — Digest legibility & trust (epic root) |
+| `future_devs/WEBAPP_SCORE_LEGEND_SPEC.md` | P7 — Score legend & tier explainer |
+| `future_devs/WEBAPP_FLAG_GLOSSARY_SPEC.md` | P7 — Flag glossary & friendly labels |
+| `future_devs/WEBAPP_CADENCE_RUN_LIMIT_EXPLAINER_SPEC.md` | P7 — Cadence & run-limit explainer |
+| `future_devs/WEBAPP_DIAGNOSTIC_STATES_SPEC.md` | P7 — Diagnostic empty & progress states |
+| `future_devs/WEBAPP_JOBSEEKER_WORKFLOW_SPEC.md` | P7 — Job-seeker workspace (epic root) |
+| `future_devs/WEBAPP_JOB_DETAIL_VIEW_SPEC.md` | P7 — In-app job detail view |
+| `future_devs/WEBAPP_APPLICATION_TRACKER_SPEC.md` | P7 — Application status tracker |
+| `future_devs/WEBAPP_HIDE_DISMISS_JOBS_SPEC.md` | P7 — Hide / dismiss jobs |
+| `future_devs/WEBAPP_NEW_SINCE_LAST_VISIT_SPEC.md` | P7 — New-since-last-visit badges |
+| `future_devs/WEBAPP_DIGEST_SORT_PERSIST_SPEC.md` | P7 — Digest sort + persist view |
+| `future_devs/WEBAPP_APP_SHELL_ACCOUNT_SPEC.md` | P7 — App shell + account UX (epic root) |
+| `future_devs/WEBAPP_GLOBAL_APP_SHELL_NAV_SPEC.md` | P7 — Global app shell + nav + sign-out |
+| `future_devs/WEBAPP_GETTING_STARTED_CHECKLIST_SPEC.md` | P7 — Getting-started checklist |
+| `future_devs/WEBAPP_IN_APP_HELP_FAQ_SPEC.md` | P7 — In-app Help / FAQ page |
+| `future_devs/WEBAPP_AUTH_RESET_CONFIRM_LEGAL_SPEC.md` | P7 — Auth reset / confirm / legal |
+| `future_devs/WEBAPP_ACCESSIBILITY_PASS_SPEC.md` | P7 — Accessibility pass |

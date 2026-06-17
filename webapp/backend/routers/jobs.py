@@ -1,7 +1,13 @@
 from fastapi import APIRouter, HTTPException, Header
+from pathlib import Path
+import json
+import os
 from db.supabase_client import supabase
 
 router = APIRouter(prefix="/jobs", tags=["jobs"])
+
+_companies_env = os.environ.get("COMPANIES_PATH")
+COMPANIES_PATH = Path(_companies_env) if _companies_env else Path(__file__).parent.parent.parent.parent / "companies.json"
 
 
 def _get_user(authorization: str) -> str:
@@ -10,6 +16,25 @@ def _get_user(authorization: str) -> str:
     if not resp.user:
         raise HTTPException(status_code=401, detail="Unauthorized")
     return resp.user.id
+
+
+@router.get("/companies")
+def list_companies(authorization: str = Header(...)):
+    _get_user(authorization)
+    if not COMPANIES_PATH.exists():
+        raise HTTPException(status_code=503, detail="companies.json not found")
+    companies = json.loads(COMPANIES_PATH.read_text(encoding="utf-8"))
+    result = []
+    for c in sorted(companies, key=lambda x: x.get("name", "").lower()):
+        result.append({
+            "name": c.get("name", ""),
+            "category": c.get("category", ""),
+            "ats": c.get("ats", ""),
+            "careers_url": c.get("careers_url", ""),
+            "last_verified_at": c.get("last_verified_at"),
+            "consecutive_failures": c.get("consecutive_failures", 0),
+        })
+    return result
 
 
 @router.get("/")
