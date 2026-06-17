@@ -87,3 +87,11 @@ Wrapped features only. Active work lives in `ROADMAP.md`.
 | Applied tracking in digest — Applied: 0/1 per position, synced to scored_jobs.json | `future_devs/archive/APPLIED_TRACKING_SPEC.md` | S | `wrapped` |
 | Location filter hardening — Israel-only, no remote, no hybrid | `future_devs/archive/LOCATION_FILTER_SPEC.md` | XS | `wrapped` |
 | Profile update — domain-agnostic scoring, cyber as small boost | `future_devs/archive/PROFILE_REWRITE_SPEC.md` | XS | `wrapped` |
+
+---
+
+## Phase P5 — Webapp v2 improvements
+
+| Feature | Spec | Effort | Status |
+|---|---|---|---|
+| [webapp] Favicon (briefcase SVG) + Open Graph meta tags | `future_devs/archive/WEBAPP_FAVICON_SPEC.md` | XS | `wrapped` |
