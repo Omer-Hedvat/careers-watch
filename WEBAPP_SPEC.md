@@ -18,8 +18,8 @@ Single persona: a job-seeking professional (primarily technical — data scienti
 
 1. Land on marketing page → understand what the product does in 10 seconds
 2. Sign up with email
-3. Generate a `profile.md` using an AI prompt (copy prompt → paste into ChatGPT/Claude/Gemini → paste result back)
-4. Upload CV (PDF or paste text)
+3. Generate a `profile.md` using an AI prompt (copy prompt → paste into ChatGPT/Claude/Gemini → paste result back) — optional, can be added later in Settings
+4. Upload CV (PDF or paste text) — optional, can be added later in Settings
 5. Enter Gemini API key
 6. Configure filters (location, title denylist/allowlist, company exclusions)
 7. Trigger first scoring run → see digest
@@ -45,8 +45,9 @@ Single persona: a job-seeking professional (primarily technical — data scienti
 
 ### 3. Onboarding Flow (first-time user, 4 steps)
 
-**Step 1 — Generate your profile**
+**Step 1 — Generate your profile (optional)**
 - Explanation: "Your profile tells the AI what you're looking for. The best way to create it is to use an AI assistant."
+- Optional: the user can skip and add a profile later in Settings. The Next button reads "Skip ->" when the field is empty and "Next ->" once filled. (Note: scoring still requires a profile, so a skipped profile means no results until one is added.)
 - A copyable prompt block:
   ```
   I'm setting up a job-matching tool that scores job postings against my profile.
@@ -60,15 +61,17 @@ Single persona: a job-seeking professional (primarily technical — data scienti
   
   Ask me one section at a time. When done, output a complete profile.md in markdown.
   ```
-- Paste result into a text area → validate it's non-empty → save
+- Paste result into a text area → save (no longer gated on non-empty content)
 - "Already have a profile.md?" — skip to paste
 
-**Step 2 — Upload your CV**
+**Step 2 — Upload your CV (optional)**
 - Upload PDF or paste plain text
 - CV is stored and used verbatim in scoring prompts
+- Optional: the user can skip and add a CV later in Settings. The Next button reads "Skip ->" when empty and "Next ->" once filled.
 
 **Step 3 — Gemini API key**
 - Input field (masked)
+- Prominent note: "It's fully free - Google's Gemini API has a free tier that's plenty for scoring jobs." with a direct "Get your free key here" link to https://aistudio.google.com/apikey
 - "How to get a Gemini API key" expandable explanation:
   - Go to [Google AI Studio](https://aistudio.google.com)
   - Sign in with your Google account
@@ -142,6 +145,7 @@ Tabs: **Profile** | **CV** | **Filters** | **API Key** | **Account**
 - Live preview count updates as user edits
 
 **API Key tab:**
+- "It's fully free" note + "Get your free key here" link + a numbered how-to-get-a-key list (Google AI Studio → sign in → Get/Create API key → paste)
 - Replace key
 - "Test key" — fires a single test call to verify it works
 - Delete key (pauses scoring)
