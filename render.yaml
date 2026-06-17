@@ -14,7 +14,7 @@ services:
         sync: false
       - key: FERNET_KEY
         sync: false
-      - key: JOBS_PATH
+      - key: NEW_JOBS_PATH
         value: /opt/render/project/src/new_jobs.json
       - key: COMPANIES_PATH
         value: /opt/render/project/src/companies.json
