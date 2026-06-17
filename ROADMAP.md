@@ -122,19 +122,19 @@ First-time-user comprehension, digest trust, the job-seeker workspace, and the a
 
 | Slug | Title | Status | Effort | Depends on |
 |---|---|---|---|---|
-| [WEBAPP_FIRST_RUN_COMPREHENSION](future_devs/WEBAPP_FIRST_RUN_COMPREHENSION_SPEC.md) | First-run comprehension (epic root) | `not-started` | L | — |
-| [WEBAPP_LANDING_REVAMP](future_devs/WEBAPP_LANDING_REVAMP_SPEC.md) | Landing revamp — value prop, BYO-key explainer, digest preview, FAQ | `not-started` | S | WEBAPP_FIRST_RUN_COMPREHENSION |
+| [WEBAPP_FIRST_RUN_COMPREHENSION](future_devs/WEBAPP_FIRST_RUN_COMPREHENSION_SPEC.md) | First-run comprehension (epic root) | `in-progress` | L | — |
+| [WEBAPP_LANDING_REVAMP](future_devs/WEBAPP_LANDING_REVAMP_SPEC.md) | Landing revamp — value prop, BYO-key explainer, digest preview, FAQ | `in-progress` | S | WEBAPP_FIRST_RUN_COMPREHENSION |
 | [WEBAPP_ONBOARDING_ORIENTATION](future_devs/WEBAPP_ONBOARDING_ORIENTATION_SPEC.md) | Onboarding orientation + why-this-matters copy + setup summary | `not-started` | S | WEBAPP_FIRST_RUN_COMPREHENSION |
 | [WEBAPP_PROFILE_EXAMPLE_GUIDANCE](future_devs/WEBAPP_PROFILE_EXAMPLE_GUIDANCE_SPEC.md) | Profile example + section guidance + completeness hint | `not-started` | S | WEBAPP_FIRST_RUN_COMPREHENSION |
 | [WEBAPP_FILTER_PLAIN_LANGUAGE_PREVIEW](future_devs/WEBAPP_FILTER_PLAIN_LANGUAGE_PREVIEW_SPEC.md) | Plain-language filters + live "X of Y jobs" preview | `not-started` | M | WEBAPP_FIRST_RUN_COMPREHENSION |
-| [WEBAPP_ONBOARDING_KEY_TEST](future_devs/WEBAPP_ONBOARDING_KEY_TEST_SPEC.md) | Inline "Test key" in onboarding Step 3 | `not-started` | XS | WEBAPP_FIRST_RUN_COMPREHENSION |
+| [WEBAPP_ONBOARDING_KEY_TEST](future_devs/WEBAPP_ONBOARDING_KEY_TEST_SPEC.md) | Inline "Test key" in onboarding Step 3 | `in-progress` | XS | WEBAPP_FIRST_RUN_COMPREHENSION |
 
 ### Epic: Digest legibility & trust
 
 | Slug | Title | Status | Effort | Depends on |
 |---|---|---|---|---|
 | [WEBAPP_DIGEST_TRUST](future_devs/WEBAPP_DIGEST_TRUST_SPEC.md) | Digest legibility & trust (epic root) | `not-started` | M | — |
-| [WEBAPP_SCORE_LEGEND](future_devs/WEBAPP_SCORE_LEGEND_SPEC.md) | Score legend & tier explainer | `not-started` | S | WEBAPP_DIGEST_TRUST |
+| [WEBAPP_SCORE_LEGEND](future_devs/WEBAPP_SCORE_LEGEND_SPEC.md) | Score legend & tier explainer | `wrapped` | S | WEBAPP_DIGEST_TRUST |
 | [WEBAPP_FLAG_GLOSSARY](future_devs/WEBAPP_FLAG_GLOSSARY_SPEC.md) | Flag glossary & friendly labels | `not-started` | S | WEBAPP_DIGEST_TRUST |
 | [WEBAPP_CADENCE_RUN_LIMIT_EXPLAINER](future_devs/WEBAPP_CADENCE_RUN_LIMIT_EXPLAINER_SPEC.md) | Cadence & run-limit explainer | `not-started` | S | WEBAPP_DIGEST_TRUST |
 | [WEBAPP_DIAGNOSTIC_STATES](future_devs/WEBAPP_DIAGNOSTIC_STATES_SPEC.md) | Diagnostic empty states + scoring progress feedback | `not-started` | S | WEBAPP_DIGEST_TRUST |
@@ -154,11 +154,11 @@ First-time-user comprehension, digest trust, the job-seeker workspace, and the a
 
 | Slug | Title | Status | Effort | Depends on |
 |---|---|---|---|---|
-| [WEBAPP_APP_SHELL_ACCOUNT](future_devs/WEBAPP_APP_SHELL_ACCOUNT_SPEC.md) | App shell + account UX (epic root) | `not-started` | M | — |
-| [WEBAPP_GLOBAL_APP_SHELL_NAV](future_devs/WEBAPP_GLOBAL_APP_SHELL_NAV_SPEC.md) | Global nav shell + sign-out + auth guard | `not-started` | M | WEBAPP_APP_SHELL_ACCOUNT |
+| [WEBAPP_APP_SHELL_ACCOUNT](future_devs/WEBAPP_APP_SHELL_ACCOUNT_SPEC.md) | App shell + account UX (epic root) | `in-progress` | M | — |
+| [WEBAPP_GLOBAL_APP_SHELL_NAV](future_devs/WEBAPP_GLOBAL_APP_SHELL_NAV_SPEC.md) | Global nav shell + sign-out + auth guard | `in-progress` | M | WEBAPP_APP_SHELL_ACCOUNT |
 | [WEBAPP_GETTING_STARTED_CHECKLIST](future_devs/WEBAPP_GETTING_STARTED_CHECKLIST_SPEC.md) | Getting-started checklist on the digest | `not-started` | S | WEBAPP_APP_SHELL_ACCOUNT |
 | [WEBAPP_IN_APP_HELP_FAQ](future_devs/WEBAPP_IN_APP_HELP_FAQ_SPEC.md) | In-app Help / FAQ page | `not-started` | S | WEBAPP_GLOBAL_APP_SHELL_NAV |
-| [WEBAPP_AUTH_RESET_CONFIRM_LEGAL](future_devs/WEBAPP_AUTH_RESET_CONFIRM_LEGAL_SPEC.md) | Auth: forgot-password + email-confirm + terms/privacy | `not-started` | M | WEBAPP_APP_SHELL_ACCOUNT |
+| [WEBAPP_AUTH_RESET_CONFIRM_LEGAL](future_devs/WEBAPP_AUTH_RESET_CONFIRM_LEGAL_SPEC.md) | Auth: forgot-password + email-confirm + terms/privacy | `in-progress` | M | WEBAPP_APP_SHELL_ACCOUNT |
 
 ### Standalone
 

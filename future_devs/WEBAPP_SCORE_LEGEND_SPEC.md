@@ -3,7 +3,7 @@
 | Field | Value |
 |---|---|
 | **Phase** | P7 |
-| **Status** | `not-started` |
+| **Status** | `wrapped` |
 | **Effort** | S |
 | **Epic** | WEBAPP_DIGEST_TRUST |
 | **Depends on** | — |
