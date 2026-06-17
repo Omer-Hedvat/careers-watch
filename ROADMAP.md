@@ -247,7 +247,7 @@ New ATS pullers for high-value companies currently stuck in `ats: other` or `ats
 | `future_devs/archive/WEBAPP_COUNTUP_ANIMATION_SPEC.md` | P5 — Count-up animation on Companies + Positions page load (wrapped) |
 | `future_devs/archive/WEBAPP_POSITIONS_VIEW_SPEC.md` | P5 — Positions page (wrapped) |
 | `future_devs/archive/WEBAPP_MULTI_FILTER_SPEC.md` | P5 — Multi-value filters with ';' (wrapped) |
-| `future_devs/PROFILE_CV_GAP_ANALYSIS_SPEC.md` | P5 — Gap analysis: profile vs CV, positions vs CV |
+| `future_devs/archive/PROFILE_CV_GAP_ANALYSIS_SPEC.md` | P5 — Gap analysis: profile vs CV, positions vs CV (wrapped) |
 | `future_devs/POSITION_FIRST_SEEN_SPEC.md` | P5 — Stamp first_seen date on each position; show in digest + webapp |
 | `future_devs/RAG_CHATBOT_SPEC.md` | P6 — RAG sandbox + chat UI (next AI epic) |
 | `future_devs/MULTI_AGENT_RESUME_TAILOR_SPEC.md` | P6 — Multi-agent CV tailor |
