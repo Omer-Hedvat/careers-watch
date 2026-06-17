@@ -135,7 +135,7 @@ First-time-user comprehension, digest trust, the job-seeker workspace, and the a
 |---|---|---|---|---|
 | [WEBAPP_DIGEST_TRUST](future_devs/WEBAPP_DIGEST_TRUST_SPEC.md) | Digest legibility & trust (epic root) | `not-started` | M | — |
 | [WEBAPP_SCORE_LEGEND](future_devs/WEBAPP_SCORE_LEGEND_SPEC.md) | Score legend & tier explainer | `wrapped` | S | WEBAPP_DIGEST_TRUST |
-| [WEBAPP_FLAG_GLOSSARY](future_devs/WEBAPP_FLAG_GLOSSARY_SPEC.md) | Flag glossary & friendly labels | `not-started` | S | WEBAPP_DIGEST_TRUST |
+| [WEBAPP_FLAG_GLOSSARY](future_devs/WEBAPP_FLAG_GLOSSARY_SPEC.md) | Flag glossary & friendly labels | `wrapped` | S | WEBAPP_DIGEST_TRUST |
 | [WEBAPP_CADENCE_RUN_LIMIT_EXPLAINER](future_devs/WEBAPP_CADENCE_RUN_LIMIT_EXPLAINER_SPEC.md) | Cadence & run-limit explainer | `not-started` | S | WEBAPP_DIGEST_TRUST |
 | [WEBAPP_DIAGNOSTIC_STATES](future_devs/WEBAPP_DIAGNOSTIC_STATES_SPEC.md) | Diagnostic empty states + scoring progress feedback | `not-started` | S | WEBAPP_DIGEST_TRUST |
 
