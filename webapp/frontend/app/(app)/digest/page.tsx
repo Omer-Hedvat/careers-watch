@@ -30,6 +30,43 @@ function timeAgo(iso: string): string {
   return `${d}d ago`
 }
 
+// Friendly "resets Monday" wording. If the backend gives us an ISO reset date,
+// append it (e.g. "resets Monday, Jun 22"); otherwise fall back to bare copy.
+function resetWording(iso: string | null): string {
+  if (!iso) return 'resets Monday'
+  const d = new Date(`${iso}T00:00:00`)
+  if (isNaN(d.getTime())) return 'resets Monday'
+  const date = d.toLocaleDateString(undefined, { month: 'short', day: 'numeric' })
+  return `resets Monday, ${date}`
+}
+
+// Small native-title popover trigger matching the existing "How scoring works"
+// / "What do these tags mean?" patterns in this file.
+function ScoreNowHelp() {
+  const [open, setOpen] = useState(false)
+  return (
+    <div className="relative inline-block">
+      <button
+        onClick={() => setOpen(v => !v)}
+        aria-label="What does scoring do?"
+        className="text-gray-400 hover:text-white text-sm w-5 h-5 rounded-full border border-gray-600 flex items-center justify-center"
+      >
+        ?
+      </button>
+      {open && (
+        <div className="absolute z-10 mt-2 right-0 w-72 bg-gray-900 border border-gray-700 rounded-lg p-3 space-y-2 shadow-lg text-xs text-left">
+          <p className="text-gray-300">
+            <span className="font-medium text-white">Score now</span> scores newly collected jobs against your profile using your Gemini key.
+          </p>
+          <p className="text-gray-300">
+            Limited to 2 runs per week. The limit resets Monday.
+          </p>
+        </div>
+      )}
+    </div>
+  )
+}
+
 // Single source of truth for score tiers. The legend, popover, and badge
 // tooltip all derive from this so copy and colors cannot drift. Ordered
 // high to low; the first band whose `min` the score meets is the match.
@@ -176,6 +213,7 @@ export default function DigestPage() {
   const [scoring, setScoring] = useState(false)
   const [scoreMsg, setScoreMsg] = useState('')
   const [runsUsed, setRunsUsed] = useState(0)
+  const [runLimitResetsOn, setRunLimitResetsOn] = useState<string | null>(null)
   const [currentProfileVersion, setCurrentProfileVersion] = useState(1)
   const [hasProfile, setHasProfile] = useState(false)
   const [hasCv, setHasCv] = useState(false)
@@ -208,6 +246,7 @@ export default function DigestPage() {
     if (res.ok) {
       const d = await res.json()
       setRunsUsed(d.scoring_runs_this_week ?? 0)
+      setRunLimitResetsOn(d.run_limit_resets_on ?? null)
       setCurrentProfileVersion(d.profile_version ?? 1)
       setHasProfile(!!d.profile_md)
       setHasCv(!!d.cv_text)
@@ -265,17 +304,29 @@ export default function DigestPage() {
     <div>
       {/* Digest toolbar */}
       <div className="border-b border-gray-800 px-6 py-3 flex items-center justify-between bg-gray-900">
-        <div>
-          {lastScored && <span className="text-sm text-gray-400">Last scored: {lastScored}</span>}
+        <div className="space-y-0.5">
+          {lastScored && <div className="text-sm text-gray-400">Last scored: {lastScored}</div>}
+          <div className="text-xs text-gray-500">New jobs collected Mon &amp; Thu</div>
         </div>
         <div className="flex items-center gap-3">
           {scoreMsg && <span className="text-sm text-gray-400">{scoreMsg}</span>}
+          {runsUsed >= 2 && (
+            <span className="text-xs text-gray-500" title="2 scoring runs per week. The limit resets at the start of the week (Monday).">
+              Run limit reached - {resetWording(runLimitResetsOn)}
+            </span>
+          )}
+          <ScoreNowHelp />
           <button
             onClick={triggerScoring}
             disabled={scoring || runsUsed >= 2}
+            title={
+              runsUsed >= 2
+                ? `2 of 2 weekly runs used - ${resetWording(runLimitResetsOn)}`
+                : 'Scores newly collected jobs against your profile using your Gemini key. 2 runs per week, resets Monday.'
+            }
             className="px-4 py-2 bg-green-600 hover:bg-green-700 disabled:bg-gray-700 disabled:text-gray-400 rounded-lg text-sm font-medium"
           >
-            {scoring ? 'Scoring...' : runsUsed >= 2 ? '2 of 2 runs used' : 'Score now'}
+            {scoring ? 'Scoring...' : runsUsed >= 2 ? 'Run limit reached' : 'Score now'}
           </button>
         </div>
       </div>
