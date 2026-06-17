@@ -9,5 +9,10 @@ export async function GET(request: Request) {
     const supabase = createRouteHandlerClient({ cookies })
     await supabase.auth.exchangeCodeForSession(code)
   }
-  return NextResponse.redirect(requestUrl.origin + '/digest')
+  // Behind Render's proxy requestUrl.origin resolves to the internal
+  // localhost:10000, so build the redirect from the forwarded public host.
+  const forwardedHost = request.headers.get('x-forwarded-host')
+  const forwardedProto = request.headers.get('x-forwarded-proto') ?? 'https'
+  const origin = forwardedHost ? `${forwardedProto}://${forwardedHost}` : requestUrl.origin
+  return NextResponse.redirect(`${origin}/digest`)
 }
