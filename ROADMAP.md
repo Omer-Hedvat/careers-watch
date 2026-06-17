@@ -99,7 +99,7 @@ All Phase P2 tasks are wrapped. See `ROADMAP_ARCHIVE.md`.
 | [WEBAPP_SETTINGS_STATE_VISIBILITY](future_devs/WEBAPP_SETTINGS_STATE_VISIBILITY_SPEC.md) | Settings shows current state: CV file/text, filters, API-key present/missing, account name+email | `completed` | S | — |
 | [WEBAPP_PROFILE_UPLOAD_OR_PROMPT](future_devs/WEBAPP_PROFILE_UPLOAD_OR_PROMPT_SPEC.md) | Profile upload OR AI-prompt generator for building profile.md | `completed` | M | — |
 | [WEBAPP_POSITIONS_VIEW](future_devs/archive/WEBAPP_POSITIONS_VIEW_SPEC.md) | Positions page — browse all open roles from pipeline | `wrapped` | S | WEBAPP_COMPANIES_VIEW ✅ |
-| [PROFILE_CV_GAP_ANALYSIS](future_devs/PROFILE_CV_GAP_ANALYSIS_SPEC.md) | Gap analysis: profile vs CV, position vs CV, position vs profile | `completed` | M | — |
+| [PROFILE_CV_GAP_ANALYSIS](future_devs/archive/PROFILE_CV_GAP_ANALYSIS_SPEC.md) | Gap analysis: profile vs CV, position vs CV, position vs profile | `wrapped` | M | — |
 | [WEBAPP_COUNTUP_ANIMATION](future_devs/archive/WEBAPP_COUNTUP_ANIMATION_SPEC.md) | Count-up animation on Companies + Positions page load | `wrapped` | XS | — |
 | [POSITION_FIRST_SEEN](future_devs/POSITION_FIRST_SEEN_SPEC.md) | Stamp first_seen date on each position — persist across daily runs, show in digest + webapp cards | `completed` | S | — |
 
