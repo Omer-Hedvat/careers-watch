@@ -26,6 +26,9 @@ function TagInput({ tags, onChange, placeholder }: { tags: string[]; onChange: (
   }
   return (
     <div className="flex flex-wrap gap-1 p-2 bg-gray-800 rounded-lg border border-gray-700 min-h-[42px]">
+      {tags.length === 0 && !input && (
+        <span className="text-sm text-gray-600 self-center px-1">None set</span>
+      )}
       {tags.map(t => (
         <span key={t} className="flex items-center gap-1 px-2 py-0.5 bg-gray-700 rounded text-sm text-white">
           {t}
@@ -34,7 +37,7 @@ function TagInput({ tags, onChange, placeholder }: { tags: string[]; onChange: (
       ))}
       <input
         value={input}
-        placeholder={placeholder}
+        placeholder={tags.length === 0 ? undefined : placeholder}
         onChange={e => setInput(e.target.value)}
         onKeyDown={e => { if (e.key === 'Enter' || e.key === ',') { e.preventDefault(); addTag(input) } }}
         onBlur={() => input && addTag(input)}
@@ -52,6 +55,7 @@ export default function SettingsPage() {
 
   // Profile tab
   const [profileMd, setProfileMd] = useState('')
+  const [profileVersion, setProfileVersion] = useState<number>(1)
   const [showPrompt, setShowPrompt] = useState(false)
   const [copiedPrompt, setCopiedPrompt] = useState(false)
 
@@ -71,11 +75,16 @@ export default function SettingsPage() {
   // API Key tab
   const [newKey, setNewKey] = useState('')
   const [testResult, setTestResult] = useState('')
+  const [hasApiKey, setHasApiKey] = useState<boolean | null>(null)
+  const [apiKeyLast4, setApiKeyLast4] = useState<string | null>(null)
 
   // Account tab
   const [newEmail, setNewEmail] = useState('')
   const [newPassword, setNewPassword] = useState('')
   const [deleteConfirm, setDeleteConfirm] = useState(false)
+  const [userIdentity, setUserIdentity] = useState<{
+    name: string; email: string; provider: string; memberSince: string
+  } | null>(null)
 
   async function getToken() {
     const { data: { session } } = await supabase.auth.getSession()
@@ -92,12 +101,19 @@ export default function SettingsPage() {
 
   function flash(m: string) { setMsg(m); setTimeout(() => setMsg(''), 3000) }
 
+  async function loadMe() {
+    const r = await api('/user/me')
+    const d = await r.json()
+    setProfileMd(d.profile_md ?? '')
+    setProfileVersion(d.profile_version ?? 1)
+    setCvText(d.cv_text ?? '')
+    setCvUpdatedAt(d.cv_updated_at ?? null)
+    setHasApiKey(d.has_api_key ?? false)
+    setApiKeyLast4(d.api_key_last4 ?? null)
+  }
+
   useEffect(() => {
-    api('/user/me').then(r => r.json()).then(d => {
-      setProfileMd(d.profile_md ?? '')
-      setCvText(d.cv_text ?? '')
-      setCvUpdatedAt(d.cv_updated_at ?? null)
-    })
+    loadMe()
     api('/user/filters').then(r => r.json()).then(d => {
       setLocationInput((d.location_terms ?? [])[0] ?? '')
       setSkipTitles(d.skip_title_terms ?? [])
@@ -105,12 +121,29 @@ export default function SettingsPage() {
       setSkipCompanies(d.skip_companies ?? [])
       setSkipIndustries(d.skip_industries ?? [])
     })
+    supabase.auth.getUser().then(({ data: { user } }) => {
+      if (!user) return
+      const meta = user.user_metadata ?? {}
+      const identities = user.identities ?? []
+      const provider = identities[0]?.provider ?? 'email'
+      setUserIdentity({
+        name: meta.full_name ?? meta.name ?? '—',
+        email: user.email ?? '—',
+        provider: provider === 'google' ? 'Google' : 'Email',
+        memberSince: user.created_at ? new Date(user.created_at).toLocaleDateString(undefined, { day: 'numeric', month: 'short', year: 'numeric' }) : '—',
+      })
+    })
   }, [])
 
   async function saveProfile() {
     setSaving(true)
     const r = await api('/user/profile', { method: 'PATCH', body: JSON.stringify({ profile_md: profileMd }) })
-    flash(r.ok ? 'Profile saved' : 'Save failed')
+    if (r.ok) {
+      setProfileVersion(v => v + 1)
+      flash('Profile saved')
+    } else {
+      flash('Save failed')
+    }
     setSaving(false)
   }
 
@@ -127,9 +160,18 @@ export default function SettingsPage() {
     setSaving(false)
   }
 
-  async function uploadCvPdf(file: File) {
-    if (file.type !== 'application/pdf') {
-      setPdfError('Only PDF files are supported')
+  function downloadCvText() {
+    const blob = new Blob([cvText], { type: 'text/plain' })
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url; a.download = 'cv.txt'; a.click()
+    URL.revokeObjectURL(url)
+  }
+
+  async function uploadCvFile(file: File) {
+    const allowed = ['application/pdf', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/msword', 'text/plain']
+    if (!allowed.includes(file.type)) {
+      setPdfError('Only PDF, DOCX, and TXT files are supported')
       return
     }
     if (file.size > 10 * 1024 * 1024) {
@@ -145,12 +187,11 @@ export default function SettingsPage() {
       const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/user/parse-cv`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
-        body: JSON.stringify({ pdf_b64: b64 }),
+        body: JSON.stringify({ pdf_b64: b64, mime_type: file.type }),
       })
       const data = await res.json()
       if (!res.ok) throw new Error(data.detail ?? 'Extraction failed')
       setCvText(data.text)
-      // auto-save after successful parse
       const saveRes = await api('/user/cv', { method: 'PATCH', body: JSON.stringify({ cv_text: data.text }) })
       if (saveRes.ok) {
         const saved = await saveRes.json()
@@ -185,8 +226,13 @@ export default function SettingsPage() {
   async function saveKey() {
     setSaving(true)
     const r = await api('/user/apikey', { method: 'PATCH', body: JSON.stringify({ gemini_api_key: newKey }) })
-    flash(r.ok ? 'API key updated' : 'Update failed')
-    setNewKey('')
+    if (r.ok) {
+      flash('API key updated')
+      setNewKey('')
+      await loadMe()
+    } else {
+      flash('Update failed')
+    }
     setSaving(false)
   }
 
@@ -200,10 +246,14 @@ export default function SettingsPage() {
   async function deleteKey() {
     await api('/user/apikey', { method: 'DELETE' })
     flash('API key deleted - scoring paused')
+    await loadMe()
   }
 
   async function saveEmail() {
     const { error } = await supabase.auth.updateUser({ email: newEmail })
+    if (!error) {
+      setUserIdentity(id => id ? { ...id, email: newEmail } : id)
+    }
     flash(error ? error.message : 'Email updated')
     setNewEmail('')
   }
@@ -238,6 +288,8 @@ export default function SettingsPage() {
     { id: 'account', label: 'Account' },
   ]
 
+  const cvWordCount = cvText ? cvText.split(/\s+/).filter(Boolean).length : 0
+
   return (
     <div className="min-h-screen bg-gray-950 text-white">
       <div className="max-w-3xl mx-auto px-4 py-8">
@@ -261,6 +313,12 @@ export default function SettingsPage() {
         {/* Profile tab */}
         {activeTab === 'profile' && (
           <div className="space-y-4">
+            <div className="text-sm text-gray-400">
+              {profileMd.trim()
+                ? <span className="text-green-400">Profile saved · v{profileVersion}</span>
+                : <span className="text-amber-400">No profile yet</span>
+              }
+            </div>
             <textarea value={profileMd} onChange={e => setProfileMd(e.target.value)} rows={20}
               className="w-full bg-gray-900 text-white p-4 rounded-xl border border-gray-700 font-mono text-sm resize-none focus:outline-none focus:border-green-500" />
             <div className="flex gap-3">
@@ -282,27 +340,31 @@ export default function SettingsPage() {
         {/* CV tab */}
         {activeTab === 'cv' && (
           <div className="space-y-4">
+            {/* Current state header */}
+            {cvText ? (
+              <div className="flex items-center justify-between text-xs text-gray-500">
+                <span>
+                  {cvText.length.toLocaleString()} chars · {cvWordCount.toLocaleString()} words
+                  {cvUpdatedAt && ` · updated ${new Date(cvUpdatedAt).toLocaleDateString(undefined, { day: 'numeric', month: 'short', year: 'numeric' })}`}
+                </span>
+                <button onClick={downloadCvText} className="text-green-400 hover:text-green-300 underline">Download as .txt</button>
+              </div>
+            ) : (
+              <p className="text-sm text-gray-500">No CV on file yet. Upload a file or paste text below.</p>
+            )}
             <div className="flex items-center justify-between">
               <div>
-                <label className="text-sm text-gray-400 block mb-1">Upload PDF (replaces current CV)</label>
+                <label className="text-sm text-gray-400 block mb-1">Upload CV (PDF, DOCX, TXT)</label>
                 <input
                   type="file"
-                  accept=".pdf"
-                  onChange={e => { const f = e.target.files?.[0]; if (f) uploadCvPdf(f); e.target.value = '' }}
+                  accept=".pdf,.docx,.doc,.txt"
+                  onChange={e => { const f = e.target.files?.[0]; if (f) uploadCvFile(f); e.target.value = '' }}
                   className="block text-sm text-gray-400 file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:bg-gray-700 file:text-white file:text-sm hover:file:bg-gray-600 cursor-pointer"
                 />
               </div>
-              {cvUpdatedAt && (
-                <span className="text-xs text-gray-500 whitespace-nowrap">
-                  Last updated {new Date(cvUpdatedAt).toLocaleDateString(undefined, { day: 'numeric', month: 'short', year: 'numeric' })}
-                </span>
-              )}
             </div>
             {pdfLoading && <p className="text-sm text-gray-400">Extracting text...</p>}
             {pdfError && <p className="text-sm text-red-400">{pdfError}</p>}
-            {!cvText && !pdfLoading && (
-              <p className="text-sm text-gray-500">No CV on file yet. Upload a PDF or paste text below.</p>
-            )}
             <textarea value={cvText} onChange={e => setCvText(e.target.value)} rows={18}
               placeholder="Or paste your CV text here..."
               className="w-full bg-gray-900 text-white p-4 rounded-xl border border-gray-700 text-sm resize-none focus:outline-none focus:border-green-500" />
@@ -313,6 +375,14 @@ export default function SettingsPage() {
         {/* Filters tab */}
         {activeTab === 'filters' && (
           <div className="space-y-4">
+            {/* Active filters summary */}
+            <div className="text-xs text-gray-500 bg-gray-800/50 px-3 py-2 rounded-lg">
+              Location: {locationInput || 'none'}
+              {' · '}{skipTitles.length} skip-title{skipTitles.length !== 1 ? 's' : ''}
+              {' · '}{keepTitles.length} keep-title{keepTitles.length !== 1 ? 's' : ''}
+              {' · '}{skipCompanies.length} excluded {skipCompanies.length !== 1 ? 'companies' : 'company'}
+              {' · '}{skipIndustries.length} excluded {skipIndustries.length !== 1 ? 'industries' : 'industry'}
+            </div>
             <div>
               <label className="text-sm text-gray-400 block mb-1">Location (leave blank for no filter)</label>
               <input value={locationInput} onChange={e => setLocationInput(e.target.value)} placeholder="e.g. israel"
@@ -341,6 +411,15 @@ export default function SettingsPage() {
         {/* API Key tab */}
         {activeTab === 'apikey' && (
           <div className="space-y-4">
+            {/* Status pill */}
+            {hasApiKey !== null && (
+              <div className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm ${hasApiKey ? 'bg-green-900/30 text-green-400' : 'bg-amber-900/30 text-amber-400'}`}>
+                {hasApiKey
+                  ? <span>✓ Gemini key configured{apiKeyLast4 ? ` · AIza••••••••${apiKeyLast4}` : ''}</span>
+                  : <span>⚠ No API key - scoring is paused</span>
+                }
+              </div>
+            )}
             <p className="text-sm text-gray-400">Replace your Gemini API key. The current key is never shown.</p>
             <p className="text-sm text-green-400">It&apos;s fully free - Google&apos;s Gemini API has a free tier that&apos;s plenty for scoring jobs. <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener noreferrer" className="underline">Get your free key here</a>.</p>
             <ol className="text-sm text-gray-400 space-y-1 list-decimal list-inside bg-gray-800 p-4 rounded-lg">
@@ -363,6 +442,27 @@ export default function SettingsPage() {
         {/* Account tab */}
         {activeTab === 'account' && (
           <div className="space-y-6">
+            {/* Read-only identity block */}
+            {userIdentity && (
+              <div className="bg-gray-800 rounded-lg p-4 space-y-2 text-sm">
+                <div className="flex justify-between">
+                  <span className="text-gray-400">Name</span>
+                  <span>{userIdentity.name}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-400">Email</span>
+                  <span>{userIdentity.email}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-400">Sign-in</span>
+                  <span>{userIdentity.provider}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-400">Member since</span>
+                  <span>{userIdentity.memberSince}</span>
+                </div>
+              </div>
+            )}
             <div className="space-y-2">
               <label className="text-sm text-gray-400 block">New email</label>
               <div className="flex gap-2">

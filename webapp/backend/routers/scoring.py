@@ -131,6 +131,7 @@ def trigger_score(authorization: str = Header(...)):
             "reasoning": result.get("reasoning", ""),
             "flags": result.get("flags", []),
             "profile_version": profile_version,
+            "first_seen": job.get("first_seen"),
         })
 
     if rows:

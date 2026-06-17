@@ -153,10 +153,10 @@ export default function OnboardingPage() {
             <h2 className="text-2xl font-bold">Upload your CV <span className="text-sm font-normal text-gray-500">(optional)</span></h2>
             <p className="text-gray-400 text-sm">Your CV is used verbatim in scoring prompts. You can skip this and add it later in settings.</p>
             <div>
-              <label className="text-sm text-gray-400 block mb-1">Upload PDF</label>
+              <label className="text-sm text-gray-400 block mb-1">Upload CV (PDF, DOCX, TXT)</label>
               <input
                 type="file"
-                accept=".pdf"
+                accept=".pdf,.docx,.doc,.txt"
                 onChange={async (e) => {
                   const file = e.target.files?.[0]
                   if (!file) return
@@ -170,7 +170,7 @@ export default function OnboardingPage() {
                     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/user/parse-cv`, {
                       method: 'POST',
                       headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
-                      body: JSON.stringify({ pdf_b64: b64 }),
+                      body: JSON.stringify({ pdf_b64: b64, mime_type: file.type || 'application/pdf' }),
                     })
                     const data = await res.json()
                     if (!res.ok) throw new Error(data.detail ?? 'Extraction failed')

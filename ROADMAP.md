@@ -86,7 +86,7 @@ All Phase P2 tasks are wrapped. See `ROADMAP_ARCHIVE.md`.
 |---|---|---|---|---|
 | [DS_ANALYSIS_NOTEBOOK](future_devs/archive/DS_ANALYSIS_NOTEBOOK_SPEC.md) | DS analysis notebook — score distribution, VC tier signal, top companies | `wrapped` | S | — |
 | [REPO_SHOWCASE](future_devs/archive/REPO_SHOWCASE_SPEC.md) | README rewrite — engineering showcase with architecture diagram and scale callouts | `wrapped` | S | — |
-| [SCORING_RUBRIC_ABLATION](future_devs/SCORING_RUBRIC_ABLATION_SPEC.md) | Scoring calibration doc — rubric design, spot-check, failure modes | `not-started` | S | — |
+| [SCORING_RUBRIC_ABLATION](future_devs/SCORING_RUBRIC_ABLATION_SPEC.md) | Scoring calibration doc — rubric design, spot-check, failure modes | `completed` | S | — |
 
 ---
 
@@ -95,10 +95,13 @@ All Phase P2 tasks are wrapped. See `ROADMAP_ARCHIVE.md`.
 | Slug | Title | Status | Effort | Depends on |
 |---|---|---|---|---|
 | [WEBAPP_CV_SETTINGS_UPLOAD](future_devs/archive/WEBAPP_CV_SETTINGS_UPLOAD_SPEC.md) | CV re-upload section in Settings (outside onboarding) | `wrapped` | S | — |
+| [WEBAPP_CV_UPLOAD_FORMATS](future_devs/WEBAPP_CV_UPLOAD_FORMATS_SPEC.md) | CV upload: add DOCX + TXT support alongside PDF | `completed` | S | WEBAPP_PDF_CV_UPLOAD ✅ |
+| [WEBAPP_SETTINGS_STATE_VISIBILITY](future_devs/WEBAPP_SETTINGS_STATE_VISIBILITY_SPEC.md) | Settings shows current state: CV file/text, filters, API-key present/missing, account name+email | `completed` | S | — |
 | [WEBAPP_PROFILE_UPLOAD_OR_PROMPT](future_devs/WEBAPP_PROFILE_UPLOAD_OR_PROMPT_SPEC.md) | Profile upload OR AI-prompt generator for building profile.md | `not-started` | M | — |
 | [WEBAPP_POSITIONS_VIEW](future_devs/archive/WEBAPP_POSITIONS_VIEW_SPEC.md) | Positions page — browse all open roles from pipeline | `wrapped` | S | WEBAPP_COMPANIES_VIEW ✅ |
 | [PROFILE_CV_GAP_ANALYSIS](future_devs/PROFILE_CV_GAP_ANALYSIS_SPEC.md) | Gap analysis: profile vs CV, position vs CV, position vs profile | `not-started` | M | — |
 | [WEBAPP_COUNTUP_ANIMATION](future_devs/archive/WEBAPP_COUNTUP_ANIMATION_SPEC.md) | Count-up animation on Companies + Positions page load | `wrapped` | XS | — |
+| [POSITION_FIRST_SEEN](future_devs/POSITION_FIRST_SEEN_SPEC.md) | Stamp first_seen date on each position — persist across daily runs, show in digest + webapp cards | `completed` | S | — |
 
 ---
 
@@ -183,6 +186,22 @@ Track open/closed liveness on the scored digest so postings taken down get marke
 
 ---
 
+---
+
+## Phase P9 — ATS expansion II
+
+New ATS pullers for high-value companies currently stuck in `ats: other` or `ats: unknown`. Ordered by company impact.
+
+| Slug | Title | Status | Effort | Depends on |
+|---|---|---|---|---|
+| [ATS_SMARTRECRUITERS](future_devs/ATS_SMARTRECRUITERS_SPEC.md) | SmartRecruiters puller - CyberArk + Palo Alto Networks | `not-started` | S | — |
+| [ATS_BAMBOOHR](future_devs/ATS_BAMBOOHR_SPEC.md) | BambooHR puller - Nilus + 4 others | `not-started` | S | — |
+| [ATS_CHECKPOINT_CAREERS](future_devs/ATS_CHECKPOINT_CAREERS_SPEC.md) | Check Point custom careers puller (single-tenant) | `not-started` | S | — |
+| [ATS_TALEO](future_devs/ATS_TALEO_SPEC.md) | Oracle Taleo puller - Radware | `not-started` | M | — |
+| [ATS_ORACLE_HCM](future_devs/ATS_ORACLE_HCM_SPEC.md) | Oracle HCM puller - Dell Technologies Israel | `not-started` | M | — |
+
+---
+
 ## Spec Index
 
 | Spec | Domain |
@@ -221,12 +240,15 @@ Track open/closed liveness on the scored digest so postings taken down get marke
 | `future_devs/SCORING_RUBRIC_ABLATION_SPEC.md` | P4 — Scoring calibration doc |
 | `future_devs/archive/WEBAPP_FAVICON_SPEC.md` | P5 — Website favicon + Open Graph (wrapped) |
 | `future_devs/archive/WEBAPP_CV_SETTINGS_UPLOAD_SPEC.md` | P5 — CV re-upload in Settings (wrapped) |
+| `future_devs/WEBAPP_CV_UPLOAD_FORMATS_SPEC.md` | P5 — CV upload: DOCX + TXT support alongside PDF |
+| `future_devs/WEBAPP_SETTINGS_STATE_VISIBILITY_SPEC.md` | P5 — Settings reflects current state (CV, filters, API-key status, account identity) |
 | `future_devs/WEBAPP_PROFILE_UPLOAD_OR_PROMPT_SPEC.md` | P5 — Profile upload or AI prompt generator |
 | `future_devs/archive/WEBAPP_COMPANIES_VIEW_SPEC.md` | P5 — Companies page (wrapped) |
 | `future_devs/archive/WEBAPP_COUNTUP_ANIMATION_SPEC.md` | P5 — Count-up animation on Companies + Positions page load (wrapped) |
 | `future_devs/archive/WEBAPP_POSITIONS_VIEW_SPEC.md` | P5 — Positions page (wrapped) |
 | `future_devs/archive/WEBAPP_MULTI_FILTER_SPEC.md` | P5 — Multi-value filters with ';' (wrapped) |
 | `future_devs/PROFILE_CV_GAP_ANALYSIS_SPEC.md` | P5 — Gap analysis: profile vs CV, positions vs CV |
+| `future_devs/POSITION_FIRST_SEEN_SPEC.md` | P5 — Stamp first_seen date on each position; show in digest + webapp |
 | `future_devs/RAG_CHATBOT_SPEC.md` | P6 — RAG sandbox + chat UI (next AI epic) |
 | `future_devs/MULTI_AGENT_RESUME_TAILOR_SPEC.md` | P6 — Multi-agent CV tailor |
 | `future_devs/WEBAPP_FIRST_RUN_COMPREHENSION_SPEC.md` | P7 — First-run comprehension (epic root) |
@@ -257,3 +279,8 @@ Track open/closed liveness on the scored digest so postings taken down get marke
 | `future_devs/archive/POSITION_LIVENESS_STATUS_DIFF_SPEC.md` | P8 — Status diff: scored jobs vs live set (wrapped) |
 | `future_devs/archive/POSITION_LIVENESS_DIGEST_RENDER_SPEC.md` | P8 — Render closed jobs in digest.md (wrapped) |
 | `future_devs/archive/POSITION_LIVENESS_WEBAPP_SPEC.md` | P8 — Reflect status in webapp digest (wrapped) |
+| `future_devs/ATS_SMARTRECRUITERS_SPEC.md` | P9 — SmartRecruiters puller (CyberArk + PAN) |
+| `future_devs/ATS_BAMBOOHR_SPEC.md` | P9 — BambooHR puller (Nilus + 4 others) |
+| `future_devs/ATS_CHECKPOINT_CAREERS_SPEC.md` | P9 — Check Point custom careers (single-tenant) |
+| `future_devs/ATS_TALEO_SPEC.md` | P9 — Oracle Taleo puller (Radware) |
+| `future_devs/ATS_ORACLE_HCM_SPEC.md` | P9 — Oracle HCM puller (Dell Technologies Israel) |
