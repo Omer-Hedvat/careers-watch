@@ -331,14 +331,10 @@ export default function SettingsPage() {
   const cvWordCount = cvText ? cvText.split(/\s+/).filter(Boolean).length : 0
 
   return (
-    <div className="min-h-screen bg-gray-950 text-white">
-      <div className="max-w-3xl mx-auto px-4 py-8">
-        <div className="flex items-center justify-between mb-6">
-          <h1 className="text-2xl font-bold">Settings</h1>
-          <a href="/digest" className="text-sm text-gray-400 hover:text-white">← Back to digest</a>
-        </div>
+    <div className="max-w-3xl mx-auto px-4 py-8">
+      <h1 className="text-2xl font-bold mb-6">Settings</h1>
 
-        {msg && <div className="mb-4 px-4 py-2 bg-gray-800 rounded-lg text-sm">{msg}</div>}
+      {msg && <div className="mb-4 px-4 py-2 bg-gray-800 rounded-lg text-sm">{msg}</div>}
 
         {/* Tab bar */}
         <div className="flex border-b border-gray-700 mb-6 overflow-x-auto">
@@ -567,7 +563,6 @@ export default function SettingsPage() {
             </div>
           </div>
         )}
-      </div>
     </div>
   )
 }

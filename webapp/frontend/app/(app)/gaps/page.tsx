@@ -301,13 +301,8 @@ export default function GapsPage() {
   ) ?? []
 
   return (
-    <div className="min-h-screen bg-gray-950 text-white">
-      <div className="max-w-3xl mx-auto px-4 py-8">
-        {/* Header */}
-        <div className="flex items-center justify-between mb-8">
-          <h1 className="text-2xl font-bold">Gap Analysis</h1>
-          <Link href="/digest" className="text-sm text-gray-400 hover:text-white">← Back to digest</Link>
-        </div>
+    <div className="max-w-3xl mx-auto px-4 py-8">
+        <h1 className="text-2xl font-bold mb-8">Gap Analysis</h1>
 
         {/* Section 1: Profile vs CV */}
         <section className="mb-10">
@@ -406,7 +401,6 @@ export default function GapsPage() {
             </div>
           )}
         </section>
-      </div>
     </div>
   )
 }
