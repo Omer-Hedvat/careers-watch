@@ -35,6 +35,7 @@
 | [WEBAPP_DIGEST_TRUST](future_devs/WEBAPP_DIGEST_TRUST_SPEC.md) | Digest legibility & trust (scores, flags, cadence, empty states) | `not-started` | M | 4 |
 | [WEBAPP_JOBSEEKER_WORKFLOW](future_devs/WEBAPP_JOBSEEKER_WORKFLOW_SPEC.md) | Job-seeker workspace (detail view, status tracker, hide, new, sort) | `not-started` | L | 5 |
 | [WEBAPP_APP_SHELL_ACCOUNT](future_devs/WEBAPP_APP_SHELL_ACCOUNT_SPEC.md) | App shell + account UX (nav, sign-out, help, auth recovery) | `not-started` | M | 4 |
+| [POSITION_LIVENESS](future_devs/POSITION_LIVENESS_SPEC.md) | Position liveness — mark & surface closed postings in the scored digest | `in-progress` | M | 4 |
 
 Run `/orchestrate_epic <slug>` to execute an epic's children in waves.
 
@@ -165,6 +166,22 @@ First-time-user comprehension, digest trust, the job-seeker workspace, and the a
 
 ---
 
+## Phase P8 — Position liveness
+
+Track open/closed liveness on the scored digest so postings taken down get marked `closed` and surfaced distinctly instead of sitting as live links that 404. The `new`/`seen` states already exist (`scored_at` recency + `_load_seen_keys` skip); only `closed` is missing.
+
+### Epic: Position liveness
+
+| Slug | Title | Status | Effort | Depends on |
+|---|---|---|---|---|
+| [POSITION_LIVENESS](future_devs/POSITION_LIVENESS_SPEC.md) | Position liveness (epic root) | `in-progress` | M | — |
+| [POSITION_LIVENESS_LIVE_SET](future_devs/archive/POSITION_LIVENESS_LIVE_SET_SPEC.md) | Persist live `apply_url` set from successful pulls | `wrapped` | S | POSITION_LIVENESS ✅ |
+| [POSITION_LIVENESS_STATUS_DIFF](future_devs/POSITION_LIVENESS_STATUS_DIFF_SPEC.md) | Diff scored jobs vs live set → `status` + `closed_at` | `not-started` | S | POSITION_LIVENESS_LIVE_SET ✅ |
+| [POSITION_LIVENESS_DIGEST_RENDER](future_devs/POSITION_LIVENESS_DIGEST_RENDER_SPEC.md) | Render closed jobs distinctly in `digest.md` | `not-started` | S | POSITION_LIVENESS_STATUS_DIFF |
+| [POSITION_LIVENESS_WEBAPP](future_devs/POSITION_LIVENESS_WEBAPP_SPEC.md) | Reflect `status` in webapp digest API + cards | `not-started` | S | POSITION_LIVENESS_STATUS_DIFF |
+
+---
+
 ## Spec Index
 
 | Spec | Domain |
@@ -233,3 +250,8 @@ First-time-user comprehension, digest trust, the job-seeker workspace, and the a
 | `future_devs/WEBAPP_IN_APP_HELP_FAQ_SPEC.md` | P7 — In-app Help / FAQ page |
 | `future_devs/WEBAPP_AUTH_RESET_CONFIRM_LEGAL_SPEC.md` | P7 — Auth reset / confirm / legal |
 | `future_devs/WEBAPP_ACCESSIBILITY_PASS_SPEC.md` | P7 — Accessibility pass |
+| `future_devs/POSITION_LIVENESS_SPEC.md` | P8 — Position liveness (epic root) |
+| `future_devs/archive/POSITION_LIVENESS_LIVE_SET_SPEC.md` | P8 — Persist live apply_url set from successful pulls (wrapped) |
+| `future_devs/POSITION_LIVENESS_STATUS_DIFF_SPEC.md` | P8 — Status diff: scored jobs vs live set |
+| `future_devs/POSITION_LIVENESS_DIGEST_RENDER_SPEC.md` | P8 — Render closed jobs in digest.md |
+| `future_devs/POSITION_LIVENESS_WEBAPP_SPEC.md` | P8 — Reflect status in webapp digest |

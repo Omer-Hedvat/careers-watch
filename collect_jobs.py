@@ -32,10 +32,15 @@ def save_companies(entries: list[dict]) -> None:
         json.dump(entries, f, ensure_ascii=False, indent=2)
 
 
+LIVE_POSITIONS_FILE = Path("live_positions.json")
+
+
 def collect():
     companies = load_companies()
     all_jobs = []
     companies_with_jobs = 0
+    successful_companies: list[str] = []
+    live_apply_urls: list[str] = []
 
     for entry in companies:
         name = entry["name"]
@@ -59,6 +64,8 @@ def collect():
             positions = puller(ats_params)
             entry["consecutive_failures"] = 0
             entry["last_jobs_pulled_at"] = now_iso()
+            # Company pulled successfully — record it regardless of position count
+            successful_companies.append(name)
 
             if not positions:
                 print(f"  {name}: 0 open positions")
@@ -91,6 +98,9 @@ def collect():
                         "ats": ats,
                     }
                 )
+                url = (pos.get("apply_url") or "").strip()
+                if url:
+                    live_apply_urls.append(url)
             print(f"  {name}: {len(positions)} open positions")
             companies_with_jobs += 1
 
@@ -99,6 +109,19 @@ def collect():
             print(f"  {name}: ERROR — {e} (failures={entry['consecutive_failures']})")
 
     save_companies(companies)
+
+    with LIVE_POSITIONS_FILE.open("w", encoding="utf-8") as f:
+        json.dump(
+            {
+                "generated_at": now_iso(),
+                "successful_companies": successful_companies,
+                "live_apply_urls": live_apply_urls,
+            },
+            f,
+            ensure_ascii=False,
+            indent=2,
+        )
+    print(f"Live positions: {len(live_apply_urls)} URLs across {len(successful_companies)} successful companies")
 
     before = len(all_jobs)
     seen_urls: set[str] = set()

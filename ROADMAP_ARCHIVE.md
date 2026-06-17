@@ -99,3 +99,11 @@ Wrapped features only. Active work lives in `ROADMAP.md`.
 | [webapp] CV re-upload section in Settings — PDF upload + last-updated timestamp | `future_devs/archive/WEBAPP_CV_SETTINGS_UPLOAD_SPEC.md` | S | `wrapped` |
 | [webapp] Companies page — all tracked companies, metadata, failure badges, careers link | `future_devs/archive/WEBAPP_COMPANIES_VIEW_SPEC.md` | S | `wrapped` |
 | [webapp] Positions page — browse all open roles from pipeline, client-side search + pagination | `future_devs/archive/WEBAPP_POSITIONS_VIEW_SPEC.md` | S | `wrapped` |
+
+---
+
+## Phase P8 — Position liveness
+
+| Feature | Spec | Effort | Status |
+|---|---|---|---|
+| Persist live `apply_url` set from successful pulls | `future_devs/archive/POSITION_LIVENESS_LIVE_SET_SPEC.md` | S | `wrapped` |
