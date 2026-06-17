@@ -82,6 +82,28 @@ All Phase P2 tasks are wrapped. See `ROADMAP_ARCHIVE.md`.
 
 ---
 
+## Phase P5 — Webapp v2 improvements
+
+| Slug | Title | Status | Effort | Depends on |
+|---|---|---|---|---|
+| [WEBAPP_CV_SETTINGS_UPLOAD](future_devs/WEBAPP_CV_SETTINGS_UPLOAD_SPEC.md) | CV re-upload section in Settings (outside onboarding) | `not-started` | S | — |
+| [WEBAPP_PROFILE_UPLOAD_OR_PROMPT](future_devs/WEBAPP_PROFILE_UPLOAD_OR_PROMPT_SPEC.md) | Profile upload OR AI-prompt generator for building profile.md | `not-started` | M | — |
+| [WEBAPP_COMPANIES_VIEW](future_devs/WEBAPP_COMPANIES_VIEW_SPEC.md) | Companies page — inspect all tracked companies + metadata | `not-started` | S | — |
+| [WEBAPP_POSITIONS_VIEW](future_devs/WEBAPP_POSITIONS_VIEW_SPEC.md) | Positions page — browse all open roles from pipeline | `not-started` | S | WEBAPP_COMPANIES_VIEW |
+| [WEBAPP_MULTI_FILTER](future_devs/WEBAPP_MULTI_FILTER_SPEC.md) | Multi-value filters using ';' + example placeholders in filter inputs | `not-started` | S | — |
+| [PROFILE_CV_GAP_ANALYSIS](future_devs/PROFILE_CV_GAP_ANALYSIS_SPEC.md) | Gap analysis: profile vs CV, position vs CV, position vs profile | `not-started` | M | — |
+
+---
+
+## Phase P6 — AI / Experimental
+
+| Slug | Title | Status | Effort | Depends on |
+|---|---|---|---|---|
+| [RAG_CHATBOT](future_devs/RAG_CHATBOT_SPEC.md) | RAG sandbox + "Chat with the Job Market" chatbot (next AI epic) | `not-started` | L | — |
+| [MULTI_AGENT_RESUME_TAILOR](future_devs/MULTI_AGENT_RESUME_TAILOR_SPEC.md) | Actor/critic multi-agent resume tailor for high-scoring jobs | `not-started` | M | RAG_CHATBOT |
+
+---
+
 ## Spec Index
 
 | Spec | Domain |
@@ -118,3 +140,12 @@ All Phase P2 tasks are wrapped. See `ROADMAP_ARCHIVE.md`.
 | `future_devs/archive/DS_ANALYSIS_NOTEBOOK_SPEC.md` | P4 — DS analysis notebook (wrapped) |
 | `future_devs/archive/REPO_SHOWCASE_SPEC.md` | P4 — README rewrite / engineering showcase (wrapped) |
 | `future_devs/SCORING_RUBRIC_ABLATION_SPEC.md` | P4 — Scoring calibration doc |
+| `future_devs/archive/WEBAPP_FAVICON_SPEC.md` | P5 — Website favicon + Open Graph (wrapped) |
+| `future_devs/WEBAPP_CV_SETTINGS_UPLOAD_SPEC.md` | P5 — CV re-upload in Settings |
+| `future_devs/WEBAPP_PROFILE_UPLOAD_OR_PROMPT_SPEC.md` | P5 — Profile upload or AI prompt generator |
+| `future_devs/WEBAPP_COMPANIES_VIEW_SPEC.md` | P5 — Companies page |
+| `future_devs/WEBAPP_POSITIONS_VIEW_SPEC.md` | P5 — Positions page |
+| `future_devs/WEBAPP_MULTI_FILTER_SPEC.md` | P5 — Multi-value filters with ';' |
+| `future_devs/PROFILE_CV_GAP_ANALYSIS_SPEC.md` | P5 — Gap analysis: profile vs CV, positions vs CV |
+| `future_devs/RAG_CHATBOT_SPEC.md` | P6 — RAG sandbox + chat UI (next AI epic) |
+| `future_devs/MULTI_AGENT_RESUME_TAILOR_SPEC.md` | P6 — Multi-agent CV tailor |
