@@ -284,6 +284,39 @@ def _merge_new_results(existing: dict, new_scored: list[dict], today: str) -> tu
     return merged, added
 
 
+def _load_live_positions(root: Path = Path(".")) -> tuple[set[str], set[str]]:
+    """Load live_positions.json → (live_urls, successful_companies). Returns empty sets if missing."""
+    path = root / "live_positions.json"
+    if not path.exists():
+        return set(), set()
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+        live = {u.strip() for u in data.get("live_apply_urls", []) if u.strip()}
+        successful = {c.lower() for c in data.get("successful_companies", [])}
+        return live, successful
+    except (json.JSONDecodeError, KeyError):
+        return set(), set()
+
+
+def _reconcile_status(jobs_by_key: dict, live: set[str], successful: set[str], today: str) -> None:
+    """Stamp status=open/closed on each job in-place. Skips reconciliation if live/successful are empty."""
+    if not live and not successful:
+        return
+    for key, job in jobs_by_key.items():
+        url = (job.get("apply_url") or "").strip()
+        company_lower = (job.get("company") or "").lower()
+        if url in live:
+            job["status"] = "open"
+            job.pop("closed_at", None)
+        elif company_lower in successful:
+            job["status"] = "closed"
+            if "closed_at" not in job:
+                job["closed_at"] = today
+        else:
+            if "status" not in job:
+                job["status"] = "open"
+
+
 def _write_digest(jobs_by_key: dict, out_path: Path) -> None:
     """Write digest.md grouped by date (newest first), score desc within each date.
     Applied jobs (applied=True in scored_jobs.json) are hidden with a count shown."""
@@ -402,6 +435,13 @@ def _score_one_profile(profile_dir: Path, jobs: list, args) -> None:
     store_path = profile_dir / "scored_jobs.json"
     existing = _load_scored_jobs(store_path)
     merged, added = _merge_new_results(existing, scored, date.today().isoformat())
+
+    if not args.dry_run:
+        live, successful = _load_live_positions()
+        _reconcile_status(merged, live, successful, date.today().isoformat())
+        closed_count = sum(1 for j in merged.values() if j.get("status") == "closed")
+        if live or successful:
+            print(f"[{name}] Status reconciled: {closed_count} closed / {len(merged)} total")
 
     # Sync applied status from digest before saving
     out_path = profile_dir / "digest.md"
@@ -580,6 +620,13 @@ def _run_root_profile(jobs: list, args) -> None:
     store_path = Path("scored_jobs.json")
     existing = _load_scored_jobs(store_path)
     merged, added = _merge_new_results(existing, scored, date.today().isoformat())
+
+    if not args.dry_run:
+        live, successful = _load_live_positions()
+        _reconcile_status(merged, live, successful, date.today().isoformat())
+        closed_count = sum(1 for j in merged.values() if j.get("status") == "closed")
+        if live or successful:
+            print(f"[root] Status reconciled: {closed_count} closed / {len(merged)} total")
 
     out_path = Path("digest.md")
     synced = _sync_applied_from_digest(out_path, merged)
