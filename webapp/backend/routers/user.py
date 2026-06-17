@@ -2,6 +2,7 @@ from fastapi import APIRouter, HTTPException, Header, Request
 from pydantic import BaseModel
 from typing import List, Optional
 import os
+from datetime import datetime, timezone
 from cryptography.fernet import Fernet
 from db.supabase_client import supabase
 
@@ -54,7 +55,7 @@ def get_me(authorization: str = Header(...)):
     resp = supabase.auth.get_user(token)
     if not resp.user:
         raise HTTPException(status_code=401, detail="Unauthorized")
-    row = supabase.table("users").select("scoring_runs_this_week,last_week_reset,profile_md,cv_text,profile_version").eq("id", resp.user.id).maybe_single().execute().data
+    row = supabase.table("users").select("scoring_runs_this_week,last_week_reset,profile_md,cv_text,profile_version,cv_updated_at").eq("id", resp.user.id).maybe_single().execute().data
     return row or {}
 
 
@@ -93,8 +94,9 @@ def update_cv(body: CvUpdate, authorization: str = Header(...)):
     resp = supabase.auth.get_user(token)
     if not resp.user:
         raise HTTPException(status_code=401, detail="Unauthorized")
-    supabase.table("users").update({"cv_text": body.cv_text}).eq("id", resp.user.id).execute()
-    return {"status": "ok"}
+    now = datetime.now(timezone.utc).isoformat()
+    supabase.table("users").update({"cv_text": body.cv_text, "cv_updated_at": now}).eq("id", resp.user.id).execute()
+    return {"status": "ok", "cv_updated_at": now}
 
 
 @router.get("/filters")

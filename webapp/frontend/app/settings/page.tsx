@@ -57,6 +57,9 @@ export default function SettingsPage() {
 
   // CV tab
   const [cvText, setCvText] = useState('')
+  const [cvUpdatedAt, setCvUpdatedAt] = useState<string | null>(null)
+  const [pdfLoading, setPdfLoading] = useState(false)
+  const [pdfError, setPdfError] = useState('')
 
   // Filters tab
   const [locationInput, setLocationInput] = useState('')
@@ -93,6 +96,7 @@ export default function SettingsPage() {
     api('/user/me').then(r => r.json()).then(d => {
       setProfileMd(d.profile_md ?? '')
       setCvText(d.cv_text ?? '')
+      setCvUpdatedAt(d.cv_updated_at ?? null)
     })
     api('/user/filters').then(r => r.json()).then(d => {
       setLocationInput((d.location_terms ?? [])[0] ?? '')
@@ -113,8 +117,53 @@ export default function SettingsPage() {
   async function saveCv() {
     setSaving(true)
     const r = await api('/user/cv', { method: 'PATCH', body: JSON.stringify({ cv_text: cvText }) })
-    flash(r.ok ? 'CV saved' : 'Save failed')
+    if (r.ok) {
+      const d = await r.json()
+      setCvUpdatedAt(d.cv_updated_at ?? null)
+      flash('CV saved')
+    } else {
+      flash('Save failed')
+    }
     setSaving(false)
+  }
+
+  async function uploadCvPdf(file: File) {
+    if (file.type !== 'application/pdf') {
+      setPdfError('Only PDF files are supported')
+      return
+    }
+    if (file.size > 10 * 1024 * 1024) {
+      setPdfError('File must be under 10 MB')
+      return
+    }
+    setPdfLoading(true)
+    setPdfError('')
+    try {
+      const buf = await file.arrayBuffer()
+      const b64 = btoa(String.fromCharCode(...new Uint8Array(buf)))
+      const token = await getToken()
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/user/parse-cv`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+        body: JSON.stringify({ pdf_b64: b64 }),
+      })
+      const data = await res.json()
+      if (!res.ok) throw new Error(data.detail ?? 'Extraction failed')
+      setCvText(data.text)
+      // auto-save after successful parse
+      const saveRes = await api('/user/cv', { method: 'PATCH', body: JSON.stringify({ cv_text: data.text }) })
+      if (saveRes.ok) {
+        const saved = await saveRes.json()
+        setCvUpdatedAt(saved.cv_updated_at ?? null)
+        flash('CV uploaded and saved')
+      } else {
+        flash('CV parsed - click Save CV to store it')
+      }
+    } catch (err: unknown) {
+      setPdfError(err instanceof Error ? err.message : 'Could not extract text - please paste manually')
+    } finally {
+      setPdfLoading(false)
+    }
   }
 
   async function saveFilters() {
@@ -233,7 +282,29 @@ export default function SettingsPage() {
         {/* CV tab */}
         {activeTab === 'cv' && (
           <div className="space-y-4">
-            <textarea value={cvText} onChange={e => setCvText(e.target.value)} rows={20}
+            <div className="flex items-center justify-between">
+              <div>
+                <label className="text-sm text-gray-400 block mb-1">Upload PDF (replaces current CV)</label>
+                <input
+                  type="file"
+                  accept=".pdf"
+                  onChange={e => { const f = e.target.files?.[0]; if (f) uploadCvPdf(f); e.target.value = '' }}
+                  className="block text-sm text-gray-400 file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:bg-gray-700 file:text-white file:text-sm hover:file:bg-gray-600 cursor-pointer"
+                />
+              </div>
+              {cvUpdatedAt && (
+                <span className="text-xs text-gray-500 whitespace-nowrap">
+                  Last updated {new Date(cvUpdatedAt).toLocaleDateString(undefined, { day: 'numeric', month: 'short', year: 'numeric' })}
+                </span>
+              )}
+            </div>
+            {pdfLoading && <p className="text-sm text-gray-400">Extracting text...</p>}
+            {pdfError && <p className="text-sm text-red-400">{pdfError}</p>}
+            {!cvText && !pdfLoading && (
+              <p className="text-sm text-gray-500">No CV on file yet. Upload a PDF or paste text below.</p>
+            )}
+            <textarea value={cvText} onChange={e => setCvText(e.target.value)} rows={18}
+              placeholder="Or paste your CV text here..."
               className="w-full bg-gray-900 text-white p-4 rounded-xl border border-gray-700 text-sm resize-none focus:outline-none focus:border-green-500" />
             <button onClick={saveCv} disabled={saving} className="px-4 py-2 bg-green-600 hover:bg-green-700 disabled:opacity-50 rounded-lg text-sm font-medium">Save CV</button>
           </div>

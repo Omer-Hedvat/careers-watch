@@ -96,3 +96,4 @@ Wrapped features only. Active work lives in `ROADMAP.md`.
 |---|---|---|---|
 | [webapp] Favicon (briefcase SVG) + Open Graph meta tags | `future_devs/archive/WEBAPP_FAVICON_SPEC.md` | XS | `wrapped` |
 | [webapp] Multi-value `;`-split filters (title, company, location) + placeholder text on digest page | `future_devs/archive/WEBAPP_MULTI_FILTER_SPEC.md` | S | `wrapped` |
+| [webapp] CV re-upload section in Settings — PDF upload + last-updated timestamp | `future_devs/archive/WEBAPP_CV_SETTINGS_UPLOAD_SPEC.md` | S | `wrapped` |
