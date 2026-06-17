@@ -317,16 +317,25 @@ def _reconcile_status(jobs_by_key: dict, live: set[str], successful: set[str], t
                 job["status"] = "open"
 
 
+_CLOSED_CAP = 30
+
+
 def _write_digest(jobs_by_key: dict, out_path: Path) -> None:
     """Write digest.md grouped by date (newest first), score desc within each date.
-    Applied jobs (applied=True in scored_jobs.json) are hidden with a count shown."""
+    Applied jobs (applied=True in scored_jobs.json) are hidden with a count shown.
+    Closed jobs (status=closed) are collected in a trailing section."""
     all_jobs = list(jobs_by_key.values())
     visible = [j for j in all_jobs if not j.get("applied")]
     hidden = len(all_jobs) - len(visible)
-    visible.sort(key=lambda j: (j.get("scored_at", ""), j.get("score", 0)), reverse=True)
+
+    open_jobs = [j for j in visible if j.get("status", "open") != "closed"]
+    closed_jobs = [j for j in visible if j.get("status") == "closed"]
+
+    open_jobs.sort(key=lambda j: (j.get("scored_at", ""), j.get("score", 0)), reverse=True)
+    closed_jobs.sort(key=lambda j: (j.get("closed_at", ""), j.get("score", 0)), reverse=True)
 
     dates: dict[str, list[dict]] = {}
-    for job in visible:
+    for job in open_jobs:
         d = job.get("scored_at", "unknown")
         dates.setdefault(d, []).append(job)
 
@@ -352,6 +361,32 @@ def _write_digest(jobs_by_key: dict, out_path: Path) -> None:
             lines.append(f"**Score:** {score}/10 | **Location:** {location} | **Applied:** 0")
             lines.append(f"**Reasoning:** {reasoning}{flag_str}")
             lines.append("")
+
+    if closed_jobs:
+        shown = closed_jobs[:_CLOSED_CAP]
+        dropped = len(closed_jobs) - len(shown)
+        lines.append(f"## Recently closed ({len(closed_jobs)})\n")
+        if dropped:
+            print(f"Closed section: showing {len(shown)}, hiding {dropped} older entries")
+        for job in shown:
+            title = job.get("title", "")
+            company = job.get("company", "")
+            apply_url = job.get("apply_url", "")
+            location = job.get("location", "unknown location")
+            score = job.get("score", 0)
+            closed_at = job.get("closed_at", "")
+            flags = job.get("flags", [])
+
+            title_link = f"[~~{title}~~]({apply_url})" if apply_url else f"~~{title}~~"
+            flag_str = f" `{'` `'.join(flags)}`" if flags else ""
+            closed_label = f" (closed {closed_at})" if closed_at else ""
+
+            lines.append(f"### **{company}** - {title_link}{closed_label}")
+            lines.append(f"**Score:** {score}/10 | **Location:** {location}")
+            lines.append(f"**Reasoning:** {job.get('reasoning', '')}{flag_str}")
+            lines.append("")
+        if dropped:
+            lines.append(f"*(+{dropped} older closed hidden)*\n")
 
     out_path.write_text("\n".join(lines), encoding="utf-8")
 

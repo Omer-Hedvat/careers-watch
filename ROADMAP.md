@@ -177,7 +177,7 @@ Track open/closed liveness on the scored digest so postings taken down get marke
 | [POSITION_LIVENESS](future_devs/POSITION_LIVENESS_SPEC.md) | Position liveness (epic root) | `in-progress` | M | — |
 | [POSITION_LIVENESS_LIVE_SET](future_devs/archive/POSITION_LIVENESS_LIVE_SET_SPEC.md) | Persist live `apply_url` set from successful pulls | `wrapped` | S | POSITION_LIVENESS ✅ |
 | [POSITION_LIVENESS_STATUS_DIFF](future_devs/archive/POSITION_LIVENESS_STATUS_DIFF_SPEC.md) | Diff scored jobs vs live set → `status` + `closed_at` | `wrapped` | S | POSITION_LIVENESS_LIVE_SET ✅ |
-| [POSITION_LIVENESS_DIGEST_RENDER](future_devs/POSITION_LIVENESS_DIGEST_RENDER_SPEC.md) | Render closed jobs distinctly in `digest.md` | `not-started` | S | POSITION_LIVENESS_STATUS_DIFF ✅ |
+| [POSITION_LIVENESS_DIGEST_RENDER](future_devs/archive/POSITION_LIVENESS_DIGEST_RENDER_SPEC.md) | Render closed jobs distinctly in `digest.md` | `wrapped` | S | POSITION_LIVENESS_STATUS_DIFF ✅ |
 | [POSITION_LIVENESS_WEBAPP](future_devs/POSITION_LIVENESS_WEBAPP_SPEC.md) | Reflect `status` in webapp digest API + cards | `not-started` | S | POSITION_LIVENESS_STATUS_DIFF ✅ |
 
 ---
@@ -253,5 +253,5 @@ Track open/closed liveness on the scored digest so postings taken down get marke
 | `future_devs/POSITION_LIVENESS_SPEC.md` | P8 — Position liveness (epic root) |
 | `future_devs/archive/POSITION_LIVENESS_LIVE_SET_SPEC.md` | P8 — Persist live apply_url set from successful pulls (wrapped) |
 | `future_devs/archive/POSITION_LIVENESS_STATUS_DIFF_SPEC.md` | P8 — Status diff: scored jobs vs live set (wrapped) |
-| `future_devs/POSITION_LIVENESS_DIGEST_RENDER_SPEC.md` | P8 — Render closed jobs in digest.md |
+| `future_devs/archive/POSITION_LIVENESS_DIGEST_RENDER_SPEC.md` | P8 — Render closed jobs in digest.md (wrapped) |
 | `future_devs/POSITION_LIVENESS_WEBAPP_SPEC.md` | P8 — Reflect status in webapp digest |

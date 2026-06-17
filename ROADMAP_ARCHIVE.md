@@ -108,3 +108,4 @@ Wrapped features only. Active work lives in `ROADMAP.md`.
 |---|---|---|---|
 | Persist live `apply_url` set from successful pulls | `future_devs/archive/POSITION_LIVENESS_LIVE_SET_SPEC.md` | S | `wrapped` |
 | Diff scored jobs vs live set → `status` + `closed_at` in `scored_jobs.json` | `future_devs/archive/POSITION_LIVENESS_STATUS_DIFF_SPEC.md` | S | `wrapped` |
+| Render closed jobs distinctly in `digest.md` (strikethrough, closed date, trailing section) | `future_devs/archive/POSITION_LIVENESS_DIGEST_RENDER_SPEC.md` | S | `wrapped` |
