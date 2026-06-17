@@ -100,6 +100,7 @@ Wrapped features only. Active work lives in `ROADMAP.md`.
 | [webapp] CV re-upload section in Settings — PDF upload + last-updated timestamp | `future_devs/archive/WEBAPP_CV_SETTINGS_UPLOAD_SPEC.md` | S | `wrapped` |
 | [webapp] Companies page — all tracked companies, metadata, failure badges, careers link | `future_devs/archive/WEBAPP_COMPANIES_VIEW_SPEC.md` | S | `wrapped` |
 | [webapp] Positions page — browse all open roles from pipeline, client-side search + pagination | `future_devs/archive/WEBAPP_POSITIONS_VIEW_SPEC.md` | S | `wrapped` |
+| [webapp] Count-up animation on Companies + Positions page load | `future_devs/archive/WEBAPP_COUNTUP_ANIMATION_SPEC.md` | XS | `wrapped` |
 
 ---
 

@@ -3,6 +3,7 @@
 import { useEffect, useState, useMemo } from 'react'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabaseClient'
+import { useCountUp } from '@/hooks/useCountUp'
 
 const PAGE_SIZE = 50
 
@@ -20,6 +21,7 @@ export default function PositionsPage() {
   const [loading, setLoading] = useState(true)
   const [search, setSearch] = useState('')
   const [page, setPage] = useState(0)
+  const animatedTotal = useCountUp(loading ? 0 : positions.length)
 
   useEffect(() => {
     async function load() {
@@ -70,7 +72,10 @@ export default function PositionsPage() {
             Open positions
             {!loading && (
               <span className="text-gray-400 font-normal text-base ml-2">
-                ({filtered.length.toLocaleString()}{search.trim() ? ` of ${positions.length.toLocaleString()}` : ''})
+                ({search.trim()
+                  ? `${filtered.length.toLocaleString()} of ${animatedTotal.toLocaleString()}`
+                  : animatedTotal.toLocaleString()
+                })
               </span>
             )}
           </h1>
