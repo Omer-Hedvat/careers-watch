@@ -110,7 +110,7 @@ export default function CompaniesPage() {
               <div className="flex items-center gap-2 flex-wrap">
                 <span className="font-semibold text-white">{c.name}</span>
                 <CategoryBadge category={c.category} />
-                {c.ats && <span className="text-xs text-gray-500 bg-gray-800 px-2 py-0.5 rounded">{c.ats}</span>}
+                {c.ats && c.ats !== 'unknown' && <span className="text-xs text-gray-500 bg-gray-800 px-2 py-0.5 rounded">{c.ats}</span>}
                 <FailureBadge count={c.consecutive_failures} />
               </div>
               <div className="text-xs text-gray-500 mt-1">
