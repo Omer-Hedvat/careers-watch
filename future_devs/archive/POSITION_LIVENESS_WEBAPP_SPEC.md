@@ -1,7 +1,7 @@
 | Field | Value |
 |---|---|
 | **Phase** | P8 |
-| **Status** | `not-started` |
+| **Status** | `wrapped` |
 | **Effort** | S |
 | **Epic** | POSITION_LIVENESS |
 | **Depends on** | POSITION_LIVENESS_STATUS_DIFF |
