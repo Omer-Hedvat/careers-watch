@@ -56,7 +56,7 @@ def get_me(authorization: str = Header(...)):
     if not resp.user:
         raise HTTPException(status_code=401, detail="Unauthorized")
     row = supabase.table("users").select(
-        "scoring_runs_this_week,last_week_reset,profile_md,cv_text,profile_version,cv_updated_at,gemini_api_key_encrypted"
+        "scoring_runs_this_week,last_week_reset,profile_md,cv_text,profile_version,profile_updated_at,cv_updated_at,gemini_api_key_encrypted"
     ).eq("id", resp.user.id).maybe_single().execute().data
     if not row:
         return {}
@@ -101,8 +101,9 @@ def update_profile(body: ProfileUpdate, authorization: str = Header(...)):
         raise HTTPException(status_code=401, detail="Unauthorized")
     current = supabase.table("users").select("profile_version").eq("id", resp.user.id).maybe_single().execute().data
     new_version = ((current or {}).get("profile_version") or 1) + 1
-    supabase.table("users").update({"profile_md": body.profile_md, "profile_version": new_version}).eq("id", resp.user.id).execute()
-    return {"status": "ok"}
+    now = datetime.now(timezone.utc).isoformat()
+    supabase.table("users").update({"profile_md": body.profile_md, "profile_version": new_version, "profile_updated_at": now}).eq("id", resp.user.id).execute()
+    return {"status": "ok", "profile_version": new_version, "profile_updated_at": now}
 
 
 @router.patch("/cv")
