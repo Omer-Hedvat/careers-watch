@@ -32,7 +32,6 @@
 | Slug | Title | Status | Effort | Children |
 |---|---|---|---|---|
 | [WEBAPP_FIRST_RUN_COMPREHENSION](future_devs/archive/WEBAPP_FIRST_RUN_COMPREHENSION_SPEC.md) | First-run comprehension (what/why/what-you-get before & during onboarding) | `wrapped` | L | 5 |
-| [WEBAPP_DIGEST_TRUST](future_devs/WEBAPP_DIGEST_TRUST_SPEC.md) | Digest legibility & trust (scores, flags, cadence, empty states) | `not-started` | M | 4 |
 | [WEBAPP_JOBSEEKER_WORKFLOW](future_devs/WEBAPP_JOBSEEKER_WORKFLOW_SPEC.md) | Job-seeker workspace (detail view, status tracker, hide, new, sort) | `not-started` | L | 5 |
 | [WEBAPP_APP_SHELL_ACCOUNT](future_devs/archive/WEBAPP_APP_SHELL_ACCOUNT_SPEC.md) | App shell + account UX (nav, sign-out, help, auth recovery) | `wrapped` | M | 4 |
 | [POSITION_LIVENESS](future_devs/archive/POSITION_LIVENESS_SPEC.md) | Position liveness — mark & surface closed postings in the scored digest | `wrapped` | M | 4 |
@@ -129,22 +128,12 @@ First-time-user comprehension, digest trust, the job-seeker workspace, and the a
 | [WEBAPP_FILTER_PLAIN_LANGUAGE_PREVIEW](future_devs/archive/WEBAPP_FILTER_PLAIN_LANGUAGE_PREVIEW_SPEC.md) | Plain-language filters + live "X of Y jobs" preview | `wrapped` | M | WEBAPP_FIRST_RUN_COMPREHENSION ✅ |
 | [WEBAPP_ONBOARDING_KEY_TEST](future_devs/archive/WEBAPP_ONBOARDING_KEY_TEST_SPEC.md) | Inline "Test key" in onboarding Step 3 | `wrapped` | XS | WEBAPP_FIRST_RUN_COMPREHENSION ✅ |
 
-### Epic: Digest legibility & trust
-
-| Slug | Title | Status | Effort | Depends on |
-|---|---|---|---|---|
-| [WEBAPP_DIGEST_TRUST](future_devs/WEBAPP_DIGEST_TRUST_SPEC.md) | Digest legibility & trust (epic root) | `not-started` | M | — |
-| [WEBAPP_SCORE_LEGEND](future_devs/WEBAPP_SCORE_LEGEND_SPEC.md) | Score legend & tier explainer | `wrapped` | S | WEBAPP_DIGEST_TRUST |
-| [WEBAPP_FLAG_GLOSSARY](future_devs/WEBAPP_FLAG_GLOSSARY_SPEC.md) | Flag glossary & friendly labels | `wrapped` | S | WEBAPP_DIGEST_TRUST |
-| [WEBAPP_CADENCE_RUN_LIMIT_EXPLAINER](future_devs/WEBAPP_CADENCE_RUN_LIMIT_EXPLAINER_SPEC.md) | Cadence & run-limit explainer | `wrapped` | S | WEBAPP_DIGEST_TRUST |
-| [WEBAPP_DIAGNOSTIC_STATES](future_devs/WEBAPP_DIAGNOSTIC_STATES_SPEC.md) | Diagnostic empty states + scoring progress feedback | `wrapped` | S | WEBAPP_DIGEST_TRUST |
-
 ### Epic: Job-seeker workspace
 
 | Slug | Title | Status | Effort | Depends on |
 |---|---|---|---|---|
 | [WEBAPP_JOBSEEKER_WORKFLOW](future_devs/WEBAPP_JOBSEEKER_WORKFLOW_SPEC.md) | Job-seeker workspace (epic root) | `not-started` | L | — |
-| [WEBAPP_JOB_DETAIL_VIEW](future_devs/WEBAPP_JOB_DETAIL_VIEW_SPEC.md) | In-app job detail view (full reasoning + JD) | `not-started` | M | WEBAPP_FLAG_GLOSSARY |
+| [WEBAPP_JOB_DETAIL_VIEW](future_devs/WEBAPP_JOB_DETAIL_VIEW_SPEC.md) | In-app job detail view (full reasoning + JD) | `not-started` | M | WEBAPP_FLAG_GLOSSARY ✅ |
 | [WEBAPP_APPLICATION_TRACKER](future_devs/WEBAPP_APPLICATION_TRACKER_SPEC.md) | Application status tracker (saved/applied/interviewing/...) | `not-started` | M | WEBAPP_JOBSEEKER_WORKFLOW |
 | [WEBAPP_HIDE_DISMISS_JOBS](future_devs/WEBAPP_HIDE_DISMISS_JOBS_SPEC.md) | Hide / dismiss irrelevant jobs | `not-started` | S | WEBAPP_JOBSEEKER_WORKFLOW |
 | [WEBAPP_NEW_SINCE_LAST_VISIT](future_devs/WEBAPP_NEW_SINCE_LAST_VISIT_SPEC.md) | "New since last visit" badges + filter | `not-started` | S | WEBAPP_JOBSEEKER_WORKFLOW |
@@ -257,11 +246,11 @@ New ATS pullers for high-value companies currently stuck in `ats: other` or `ats
 | `future_devs/WEBAPP_PROFILE_EXAMPLE_GUIDANCE_SPEC.md` | P7 — Profile example + section guidance |
 | `future_devs/WEBAPP_FILTER_PLAIN_LANGUAGE_PREVIEW_SPEC.md` | P7 — Plain-language filters + live preview |
 | `future_devs/WEBAPP_ONBOARDING_KEY_TEST_SPEC.md` | P7 — Inline key test in onboarding |
-| `future_devs/WEBAPP_DIGEST_TRUST_SPEC.md` | P7 — Digest legibility & trust (epic root) |
-| `future_devs/WEBAPP_SCORE_LEGEND_SPEC.md` | P7 — Score legend & tier explainer |
-| `future_devs/WEBAPP_FLAG_GLOSSARY_SPEC.md` | P7 — Flag glossary & friendly labels |
-| `future_devs/WEBAPP_CADENCE_RUN_LIMIT_EXPLAINER_SPEC.md` | P7 — Cadence & run-limit explainer |
-| `future_devs/WEBAPP_DIAGNOSTIC_STATES_SPEC.md` | P7 — Diagnostic empty & progress states |
+| `future_devs/archive/WEBAPP_DIGEST_TRUST_SPEC.md` | P7 — Digest legibility & trust (epic root, wrapped) |
+| `future_devs/archive/WEBAPP_SCORE_LEGEND_SPEC.md` | P7 — Score legend & tier explainer (wrapped) |
+| `future_devs/archive/WEBAPP_FLAG_GLOSSARY_SPEC.md` | P7 — Flag glossary & friendly labels (wrapped) |
+| `future_devs/archive/WEBAPP_CADENCE_RUN_LIMIT_EXPLAINER_SPEC.md` | P7 — Cadence & run-limit explainer (wrapped) |
+| `future_devs/archive/WEBAPP_DIAGNOSTIC_STATES_SPEC.md` | P7 — Diagnostic empty & progress states (wrapped) |
 | `future_devs/WEBAPP_JOBSEEKER_WORKFLOW_SPEC.md` | P7 — Job-seeker workspace (epic root) |
 | `future_devs/WEBAPP_JOB_DETAIL_VIEW_SPEC.md` | P7 — In-app job detail view |
 | `future_devs/WEBAPP_APPLICATION_TRACKER_SPEC.md` | P7 — Application status tracker |
