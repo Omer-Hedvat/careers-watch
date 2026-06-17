@@ -1,6 +1,8 @@
-import { createClient } from "@supabase/supabase-js";
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
-
-export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+// Cookie-based client (PKCE flow) so the browser session is shared with the
+// middleware and the /auth/callback route handler, which also use auth-helpers
+// cookie storage. A plain createClient() uses localStorage + implicit flow,
+// which the server-side middleware cannot read - that mismatch bounced every
+// protected page back to /auth and broke the OAuth redirect.
+export const supabase = createClientComponentClient();
