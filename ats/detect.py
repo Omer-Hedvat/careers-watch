@@ -42,6 +42,15 @@ ASHBY_JOBS = re.compile(r"jobs\.ashbyhq\.com/([a-zA-Z0-9_.-]+)", re.IGNORECASE)
 # BambooHR: <slug>.bamboohr.com
 BAMBOOHR_RE = re.compile(r"([a-zA-Z0-9_-]+)\.bamboohr\.com", re.IGNORECASE)
 
+# Taleo: {company}.taleo.net/careersection/{section}/jobsearch.ftl
+TALEO_RE = re.compile(r"([a-zA-Z0-9_-]+)\.taleo\.net/careersection/([^/\s\"'#?]+)", re.IGNORECASE)
+
+# SmartRecruiters: jobs.smartrecruiters.com/<slug> or careers.smartrecruiters.com/<slug>
+SMARTRECRUITERS_RE = re.compile(
+    r"(?:jobs|careers)\.smartrecruiters\.com/([A-Za-z0-9_-]+)",
+    re.IGNORECASE,
+)
+
 # Breezy HR: <slug>.breezy.hr
 BREEZY_RE = re.compile(r"([a-zA-Z0-9_-]+)\.breezy\.hr", re.IGNORECASE)
 
@@ -287,6 +296,23 @@ def detect_ats(careers_url: str) -> tuple[str, dict]:
         m = ASHBY_JOBS.search(text)
         if m:
             return "ashby", {"org_name": m.group(1)}
+
+    # Check for Taleo signature in careers URL or final URL
+    for text in (careers_url, final_url):
+        m = TALEO_RE.search(text)
+        if m:
+            host = f"{m.group(1)}.taleo.net"
+            section = m.group(2).split("/")[0]  # strip any trailing path
+            return "taleo", {"host": host, "careers_section": section}
+
+    # Check for SmartRecruiters signature in careers URL, final URL, or page HTML
+    for text in (careers_url, final_url, html):
+        m = SMARTRECRUITERS_RE.search(text)
+        if m:
+            slug = m.group(1)
+            # Skip generic paths like 'api', 'static', 'search'
+            if slug.lower() not in {"api", "static", "search", "cdn", "assets"}:
+                return "smartrecruiters", {"company_slug": slug}
 
     # Check for BambooHR signature in careers URL, final URL, or page HTML
     for text in (careers_url, final_url, html):
