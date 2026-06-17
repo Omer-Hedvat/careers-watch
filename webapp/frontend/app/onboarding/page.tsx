@@ -3,6 +3,94 @@
 import { useState } from 'react'
 import { supabase } from '@/lib/supabaseClient'
 
+const EXAMPLE_PROFILE = `# Candidate Profile
+
+## Who I am, in one paragraph
+Senior data scientist with 8 years experience, specialized in adversarial ML and anomaly detection. Background spans fraud detection at a fintech and threat hunting at a cybersecurity company. I prefer applied roles over pure research, and I thrive in small teams where I can own models end to end.
+
+## What I'm looking for, in priority order
+1. Team Lead DS or Lead Data Scientist - managing 2-4 people while staying hands-on
+2. Senior DS / Senior ML Engineer in cyber or fraud domain
+3. Staff-level applied science roles at late-stage startups
+
+## Location
+Tel Aviv metro area. Commute up to 60 minutes. Open to hybrid (2-3 days office). Not open to relocation or fully remote.
+
+## Strong fit signals (boost the score)
+- Fraud detection, anomaly detection, or threat intelligence ML
+- Team lead scope or technical lead mentioned in the JD
+- Stack: Python, XGBoost/LightGBM, Spark, Kafka, real-time inference
+- Company stage: Series B-D, 50-300 people
+- Domain: cybersecurity, fintech, fraud-as-a-service
+
+## Weak fit / skip (drop the score)
+- Pure MLOps or platform engineering (no modeling)
+- Consumer/e-commerce without fraud angle
+- Roles requiring US/EU relocation
+- Big tech (FAANG) - culture mismatch
+
+## Dealbreakers (score = 0, do not surface)
+- Gaming, adtech, gambling, crypto
+- Pure data engineering or BI roles
+- Companies with active legal/regulatory issues
+
+## Notes for the matcher
+- I have informal team lead experience (mentored 2 juniors) but no formal "manager" title - treat partial leadership as a positive signal, not a gap
+- Titles like "ML Engineer" are fine if the JD shows model ownership; titles like "Data Scientist" are fine if there is a leadership component
+- Hebrew job descriptions are fine - score them as-is
+
+## Scoring rubric for the matcher
+9-10: Fraud/cyber domain + team lead or senior scope + Israel location + Python/ML stack
+7-8: Cyber-adjacent or fintech domain + senior IC scope + Israel + missing one strong signal
+5-6: Interesting domain but weak fit on scope or location; or right scope but wrong domain
+0-2: Dealbreaker domain, pure data engineering, relocation required, or no ML in the role`
+
+const PROFILE_SECTIONS_GUIDE = [
+  { section: '## Who I am', why: 'Sets seniority and specialization - the AI uses this to calibrate what "senior" means for you.' },
+  { section: "## What I'm looking for", why: 'Priority-ordered targets - the AI uses this to rank title fit.' },
+  { section: '## Location', why: 'Commute and hybrid preferences - prevents surfacing out-of-range roles.' },
+  { section: '## Strong fit signals', why: 'Explicit boosts - the AI looks for these in the JD to raise the score.' },
+  { section: '## Weak fit / skip', why: 'Explicit penalties - the AI lowers the score when these appear.' },
+  { section: '## Dealbreakers', why: 'Hard zeroes - the AI scores these 0 regardless of everything else.' },
+  { section: '## Notes for the matcher', why: 'Nuances that are easy to get wrong - e.g. partial signals that look like gaps.' },
+  { section: '## Scoring rubric', why: 'Explicit score bands - without this the AI invents its own rubric, which is less reliable.' },
+]
+
+function checkProfileCompleteness(md: string): string[] {
+  const required = ['## Who I am', "## What I'm looking for", '## Location', '## Strong fit', '## Weak fit', '## Dealbreakers', '## Notes for the matcher', '## Scoring rubric']
+  return required.filter(h => !md.toLowerCase().includes(h.toLowerCase()))
+}
+
+function ProfileExampleGuidance() {
+  const [showExample, setShowExample] = useState(false)
+  const [showGuide, setShowGuide] = useState(false)
+  return (
+    <div className="space-y-2">
+      <button onClick={() => setShowExample(v => !v)} className="text-sm text-green-400 hover:text-green-300">
+        {showExample ? '▾' : '▸'} See an example profile
+      </button>
+      {showExample && (
+        <div className="bg-gray-800 rounded-lg p-4 border border-gray-700">
+          <pre className="text-xs text-gray-300 whitespace-pre-wrap font-mono overflow-auto max-h-64">{EXAMPLE_PROFILE}</pre>
+        </div>
+      )}
+      <button onClick={() => setShowGuide(v => !v)} className="text-sm text-green-400 hover:text-green-300">
+        {showGuide ? '▾' : '▸'} Required sections guide
+      </button>
+      {showGuide && (
+        <div className="bg-gray-800 rounded-lg p-4 border border-gray-700 space-y-2">
+          {PROFILE_SECTIONS_GUIDE.map(({ section, why }) => (
+            <div key={section}>
+              <span className="text-xs font-mono text-white">{section}</span>
+              <span className="text-xs text-gray-400 ml-2">- {why}</span>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  )
+}
+
 const PROFILE_PROMPT = `You are helping me create a job-matching profile file. I will answer your questions and you will produce a structured Markdown document called profile.md that a job-scoring AI will use to evaluate job postings for me.
 
 Ask me the following questions one at a time (or ask them all at once and I will answer):
@@ -89,6 +177,28 @@ export default function OnboardingPage() {
   const [copied, setCopied] = useState(false)
   const [mdUploadError, setMdUploadError] = useState('')
   const [profileSkipWarned, setProfileSkipWarned] = useState(false)
+  const [keyTestResult, setKeyTestResult] = useState('')
+  const [keyTesting, setKeyTesting] = useState(false)
+
+  async function testKeyInline() {
+    setKeyTesting(true)
+    setKeyTestResult('')
+    try {
+      const { data: { session } } = await supabase.auth.getSession()
+      const token = session?.access_token ?? ''
+      const r = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/user/test-key-inline`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+        body: JSON.stringify({ gemini_api_key: geminiKey }),
+      })
+      const d = await r.json()
+      setKeyTestResult(r.ok ? 'Key works!' : (d.detail ?? 'Test failed'))
+    } catch {
+      setKeyTestResult('Test failed - check your connection')
+    } finally {
+      setKeyTesting(false)
+    }
+  }
 
   function copyPrompt() {
     navigator.clipboard.writeText(PROFILE_PROMPT)
@@ -199,6 +309,9 @@ export default function OnboardingPage() {
               {mdUploadError && <p className="text-sm text-red-400 mt-1">{mdUploadError}</p>}
             </div>
 
+            {/* Example + guidance */}
+            <ProfileExampleGuidance />
+
             {/* Path B: Generate with AI */}
             <div className="space-y-2 bg-gray-800/50 rounded-xl p-4 border border-gray-700">
               <p className="text-sm font-medium text-white">Or generate one with AI</p>
@@ -214,6 +327,16 @@ export default function OnboardingPage() {
             <textarea value={profileMd} onChange={e => { setProfileMd(e.target.value); if (e.target.value.trim()) setProfileSkipWarned(false) }} rows={8}
               placeholder="Paste the LLM output here (or your profile.md content)..."
               className="w-full bg-gray-800 text-white p-3 rounded-lg border border-gray-700 resize-none focus:outline-none focus:border-green-500" />
+
+            {/* Completeness hint */}
+            {(() => {
+              const missing = checkProfileCompleteness(profileMd)
+              return missing.length > 0 && profileMd.trim() ? (
+                <div className="text-xs text-amber-400 bg-amber-900/20 border border-amber-700/30 rounded p-2">
+                  Missing sections: {missing.join(', ')}
+                </div>
+              ) : null
+            })()}
 
             {profileSkipWarned && !profileMd.trim() && (
               <div className="bg-amber-900/30 border border-amber-700/50 rounded-lg p-3 text-amber-400 text-sm">
@@ -290,7 +413,18 @@ export default function OnboardingPage() {
             </div>
             <p className="text-gray-400 text-sm">Used only for scoring. Never logged or shared.</p>
             <p className="text-sm text-green-400">It&apos;s fully free - Google&apos;s Gemini API has a free tier that&apos;s plenty for scoring jobs. <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener noreferrer" className="underline">Get your free key here</a>.</p>
-            <input type="password" value={geminiKey} onChange={e => setGeminiKey(e.target.value)} placeholder="AIza..." className="w-full bg-gray-800 text-white px-3 py-2 rounded-lg border border-gray-700 focus:outline-none focus:border-green-500" />
+            <input type="password" value={geminiKey} onChange={e => { setGeminiKey(e.target.value); setKeyTestResult('') }} placeholder="AIza..." className="w-full bg-gray-800 text-white px-3 py-2 rounded-lg border border-gray-700 focus:outline-none focus:border-green-500" />
+            <div className="flex items-center gap-3">
+              <button onClick={testKeyInline} disabled={!geminiKey.trim() || keyTesting}
+                className="px-4 py-2 bg-gray-700 hover:bg-gray-600 disabled:opacity-40 rounded-lg text-sm">
+                {keyTesting ? 'Testing...' : 'Test key'}
+              </button>
+              {keyTestResult && (
+                <span className={`text-sm ${keyTestResult === 'Key works!' ? 'text-green-400' : 'text-red-400'}`}>
+                  {keyTestResult}
+                </span>
+              )}
+            </div>
             <button onClick={() => setShowKeyHelp(!showKeyHelp)} className="text-sm text-green-400 hover:text-green-300">
               {showKeyHelp ? '▾' : '▸'} How to get a key
             </button>
