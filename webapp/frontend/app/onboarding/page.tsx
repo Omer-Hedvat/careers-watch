@@ -88,28 +88,7 @@ export default function OnboardingPage() {
   const [showKeyHelp, setShowKeyHelp] = useState(false)
   const [copied, setCopied] = useState(false)
   const [mdUploadError, setMdUploadError] = useState('')
-  const [keyTestResult, setKeyTestResult] = useState('')
-  const [keyTesting, setKeyTesting] = useState(false)
-
-  async function testKeyInline() {
-    setKeyTesting(true)
-    setKeyTestResult('')
-    try {
-      const { data: { session } } = await supabase.auth.getSession()
-      const token = session?.access_token ?? ''
-      const r = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/user/test-key-inline`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
-        body: JSON.stringify({ gemini_api_key: geminiKey }),
-      })
-      const d = await r.json()
-      setKeyTestResult(r.ok ? 'Key works!' : (d.detail ?? 'Test failed'))
-    } catch {
-      setKeyTestResult('Test failed - check your connection')
-    } finally {
-      setKeyTesting(false)
-    }
-  }
+  const [profileSkipWarned, setProfileSkipWarned] = useState(false)
 
   function copyPrompt() {
     navigator.clipboard.writeText(PROFILE_PROMPT)
@@ -133,6 +112,14 @@ export default function OnboardingPage() {
       setProfileMd(text)
     }
     reader.readAsText(file, 'utf-8')
+  }
+
+  function handleStep1Next() {
+    if (!profileMd.trim() && !profileSkipWarned) {
+      setProfileSkipWarned(true)
+      return
+    }
+    setStep(2)
   }
 
   async function finish() {
@@ -173,7 +160,7 @@ export default function OnboardingPage() {
   return (
     <div className="min-h-screen bg-gray-950 text-white flex flex-col items-center justify-center px-4 py-12">
       {/* Progress */}
-      <div className="flex gap-3 mb-8">
+      <div className="flex gap-3 mb-4">
         {steps.map((label, i) => (
           <div key={label} className="flex items-center gap-2">
             <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${i + 1 <= step ? 'bg-green-600' : 'bg-gray-700'}`}>
@@ -184,12 +171,20 @@ export default function OnboardingPage() {
         ))}
       </div>
 
+      {/* Orientation intro */}
+      <p className="text-sm text-gray-400 mb-6 text-center max-w-lg">
+        Set up in 4 steps - Profile, CV, API key, and Filters - then we run your first scan and show you a ranked digest.
+      </p>
+
       <div className="bg-gray-900 rounded-xl p-8 w-full max-w-2xl">
 
         {/* Step 1 */}
         {step === 1 && (
           <div className="space-y-4">
-            <h2 className="text-2xl font-bold">Set up your profile <span className="text-sm font-normal text-gray-500">(optional)</span></h2>
+            <div>
+              <h2 className="text-2xl font-bold">Set up your profile <span className="text-sm font-normal text-gray-500">(optional)</span></h2>
+              <p className="text-sm text-gray-500 mt-1">Your profile tells the AI what to look for - without it, scoring is generic.</p>
+            </div>
             <p className="text-gray-400 text-sm">Your profile tells the AI what to look for - roles, domains, location, dealbreakers, and a scoring rubric. You can skip this and add it later in settings.</p>
 
             {/* Path A: Upload */}
@@ -216,11 +211,18 @@ export default function OnboardingPage() {
               </div>
             </div>
 
-            <textarea value={profileMd} onChange={e => setProfileMd(e.target.value)} rows={8}
+            <textarea value={profileMd} onChange={e => { setProfileMd(e.target.value); if (e.target.value.trim()) setProfileSkipWarned(false) }} rows={8}
               placeholder="Paste the LLM output here (or your profile.md content)..."
               className="w-full bg-gray-800 text-white p-3 rounded-lg border border-gray-700 resize-none focus:outline-none focus:border-green-500" />
+
+            {profileSkipWarned && !profileMd.trim() && (
+              <div className="bg-amber-900/30 border border-amber-700/50 rounded-lg p-3 text-amber-400 text-sm">
+                Without a profile the AI scores all jobs generically - you&apos;ll likely see an empty or irrelevant digest until you add one in Settings.
+              </div>
+            )}
+
             <div className="flex justify-end">
-              <button onClick={() => setStep(2)} className="px-6 py-2 bg-green-600 hover:bg-green-700 rounded-lg font-medium">{profileMd.trim() ? 'Next ->' : 'Skip ->'}</button>
+              <button onClick={handleStep1Next} className="px-6 py-2 bg-green-600 hover:bg-green-700 rounded-lg font-medium">{profileMd.trim() ? 'Next ->' : 'Skip ->'}</button>
             </div>
           </div>
         )}
@@ -228,7 +230,10 @@ export default function OnboardingPage() {
         {/* Step 2 */}
         {step === 2 && (
           <div className="space-y-4">
-            <h2 className="text-2xl font-bold">Upload your CV <span className="text-sm font-normal text-gray-500">(optional)</span></h2>
+            <div>
+              <h2 className="text-2xl font-bold">Upload your CV <span className="text-sm font-normal text-gray-500">(optional)</span></h2>
+              <p className="text-sm text-gray-500 mt-1">Your CV is the ground truth of what you&apos;ve done - it sharpens every score.</p>
+            </div>
             <p className="text-gray-400 text-sm">Your CV is used verbatim in scoring prompts. You can skip this and add it later in settings.</p>
             <div>
               <label className="text-sm text-gray-400 block mb-1">Upload CV (PDF, DOCX, TXT)</label>
@@ -266,6 +271,9 @@ export default function OnboardingPage() {
               <p className="text-xs text-gray-500 mt-1">Or paste text directly below</p>
             </div>
             <textarea value={cvText} onChange={e => setCvText(e.target.value)} rows={12} placeholder="Paste your CV text here..." className="w-full bg-gray-800 text-white p-3 rounded-lg border border-gray-700 resize-none focus:outline-none focus:border-green-500" />
+            {!cvText.trim() && (
+              <p className="text-xs text-gray-500">Scoring quality drops without a CV - the AI has less context about your background.</p>
+            )}
             <div className="flex justify-between">
               <button onClick={() => setStep(1)} className="px-6 py-2 bg-gray-700 hover:bg-gray-600 rounded-lg">&lt;- Back</button>
               <button onClick={() => setStep(3)} className="px-6 py-2 bg-green-600 hover:bg-green-700 rounded-lg font-medium">{cvText.trim() ? 'Next ->' : 'Skip ->'}</button>
@@ -276,21 +284,13 @@ export default function OnboardingPage() {
         {/* Step 3 */}
         {step === 3 && (
           <div className="space-y-4">
-            <h2 className="text-2xl font-bold">Your Gemini API key</h2>
+            <div>
+              <h2 className="text-2xl font-bold">Your Gemini API key</h2>
+              <p className="text-sm text-gray-500 mt-1">Scoring runs on your own free Gemini quota - your data never leaves your key.</p>
+            </div>
             <p className="text-gray-400 text-sm">Used only for scoring. Never logged or shared.</p>
             <p className="text-sm text-green-400">It&apos;s fully free - Google&apos;s Gemini API has a free tier that&apos;s plenty for scoring jobs. <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener noreferrer" className="underline">Get your free key here</a>.</p>
-            <input type="password" value={geminiKey} onChange={e => { setGeminiKey(e.target.value); setKeyTestResult('') }} placeholder="AIza..." className="w-full bg-gray-800 text-white px-3 py-2 rounded-lg border border-gray-700 focus:outline-none focus:border-green-500" />
-            <div className="flex items-center gap-3">
-              <button onClick={testKeyInline} disabled={!geminiKey.trim() || keyTesting}
-                className="px-4 py-2 bg-gray-700 hover:bg-gray-600 disabled:opacity-40 rounded-lg text-sm">
-                {keyTesting ? 'Testing...' : 'Test key'}
-              </button>
-              {keyTestResult && (
-                <span className={`text-sm ${keyTestResult === 'Key works!' ? 'text-green-400' : 'text-red-400'}`}>
-                  {keyTestResult}
-                </span>
-              )}
-            </div>
+            <input type="password" value={geminiKey} onChange={e => setGeminiKey(e.target.value)} placeholder="AIza..." className="w-full bg-gray-800 text-white px-3 py-2 rounded-lg border border-gray-700 focus:outline-none focus:border-green-500" />
             <button onClick={() => setShowKeyHelp(!showKeyHelp)} className="text-sm text-green-400 hover:text-green-300">
               {showKeyHelp ? '▾' : '▸'} How to get a key
             </button>
@@ -314,7 +314,10 @@ export default function OnboardingPage() {
         {/* Step 4 */}
         {step === 4 && (
           <div className="space-y-4">
-            <h2 className="text-2xl font-bold">Configure filters</h2>
+            <div>
+              <h2 className="text-2xl font-bold">Configure filters</h2>
+              <p className="text-sm text-gray-500 mt-1">Filters drop the noise before scoring - saves you reading irrelevant results.</p>
+            </div>
             <p className="text-gray-400 text-sm">Jobs not matching these filters are dropped before scoring.</p>
 
             <div>
@@ -338,13 +341,39 @@ export default function OnboardingPage() {
               <TagInput tags={filters.skip_industries} onChange={v => setFilters(f => ({ ...f, skip_industries: v }))} placeholder="industry, press Enter" />
             </div>
 
+            {/* Setup summary */}
+            <div className="bg-gray-800 rounded-lg p-3 text-sm space-y-1">
+              <p className="text-gray-400 text-xs font-medium uppercase tracking-wide mb-2">Setup summary</p>
+              <div className="flex gap-2">
+                <span className="text-gray-400 w-16">Profile</span>
+                <span className={profileMd.trim() ? 'text-green-400' : 'text-amber-400'}>{profileMd.trim() ? 'Added' : 'Skipped'}</span>
+              </div>
+              <div className="flex gap-2">
+                <span className="text-gray-400 w-16">CV</span>
+                <span className={cvText.trim() ? 'text-green-400' : 'text-amber-400'}>{cvText.trim() ? 'Added' : 'Skipped'}</span>
+              </div>
+              <div className="flex gap-2">
+                <span className="text-gray-400 w-16">Key</span>
+                <span className="text-green-400">Set</span>
+              </div>
+              <div className="flex gap-2">
+                <span className="text-gray-400 w-16">Location</span>
+                <span className="text-gray-300">{locationInput.trim() || 'none'}</span>
+              </div>
+              <div className="flex gap-2">
+                <span className="text-gray-400 w-16">Denylist</span>
+                <span className="text-gray-300">{filters.skip_title_terms.length} terms</span>
+              </div>
+            </div>
+
             {error && <p className="text-red-400 text-sm">{error}</p>}
             <div className="flex justify-between">
               <button onClick={() => setStep(3)} className="px-6 py-2 bg-gray-700 hover:bg-gray-600 rounded-lg">&lt;- Back</button>
               <button onClick={finish} disabled={saving} className="px-6 py-2 bg-green-600 hover:bg-green-700 disabled:opacity-40 rounded-lg font-medium">
-                {saving ? 'Starting...' : 'Start scoring ->'}
+                {saving ? 'Starting...' : 'Start my first scan'}
               </button>
             </div>
+            <p className="text-xs text-gray-500 text-right">Your first scan runs in the background - the digest may take a moment to populate.</p>
           </div>
         )}
       </div>
