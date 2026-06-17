@@ -101,6 +101,7 @@ Wrapped features only. Active work lives in `ROADMAP.md`.
 | [webapp] Companies page — all tracked companies, metadata, failure badges, careers link | `future_devs/archive/WEBAPP_COMPANIES_VIEW_SPEC.md` | S | `wrapped` |
 | [webapp] Positions page — browse all open roles from pipeline, client-side search + pagination | `future_devs/archive/WEBAPP_POSITIONS_VIEW_SPEC.md` | S | `wrapped` |
 | [webapp] Count-up animation on Companies + Positions page load | `future_devs/archive/WEBAPP_COUNTUP_ANIMATION_SPEC.md` | XS | `wrapped` |
+| [webapp] Gap analysis — profile vs CV, position vs CV, position vs profile | `future_devs/archive/PROFILE_CV_GAP_ANALYSIS_SPEC.md` | M | `wrapped` |
 
 ---
 
