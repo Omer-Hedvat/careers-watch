@@ -72,6 +72,17 @@
   location_filter: israel
   notes: "Consider platform - returns all portfolio jobs. JVP is a top-tier Israeli cyber VC."
 
+- name: "Team8 Portfolio (Comeet)"
+  website: https://team8.vc
+  careers_url: https://www.comeet.com/jobs/team8/61.003
+  ats: comeet
+  ats_params:
+    company_uid: "61.003"
+    token: "16358C6EF2C61631639B558C0429"
+  category: cyber
+  location_filter: israel
+  notes: "Team8 portfolio companies post jobs through Team8's Comeet board (job titles include company name prefix). Team8 is a top-tier Israeli cyber VC. Token verified 2026-06-17 (76 jobs)."
+
 # ─── Cyber / Security ────────────────────────────────────────────────────────
 
 - name: Wiz
@@ -1663,3 +1674,423 @@
   category: general
   location_filter: israel
   notes: "Cloud FinOps / cost management platform."
+
+# ─── Added 2026-06-17 (second batch) ─────────────────────────────────────────
+
+- name: Zafran
+  website: https://www.zafran.io
+  careers_url: https://www.comeet.com/jobs/zafran_io/49.009
+  ats: comeet
+  ats_params:
+    company_uid: "49.009"
+    token: "94940FF0129212929492524252453914A48"
+  category: cyber
+  location_filter: israel
+  notes: "Exposure management / vulnerability prioritization. Token verified 2026-06-17 (34 jobs)."
+
+- name: Grain Finance
+  website: https://www.grainfinance.com
+  careers_url: https://www.grainfinance.com/careers-grain
+  ats: comeet
+  ats_params:
+    company_uid: "4A.000"
+    token: "A4047C0290005C4014803340A401EC05C40"
+  category: fintech
+  location_filter: israel
+  notes: "Working capital / revenue-based financing for SMBs. Israeli fintech. Token verified 2026-06-17 (5 jobs)."
+
+- name: Anecdotes
+  website: https://www.anecdotes.ai
+  careers_url: https://www.comeet.com/jobs/anecdotes/F9.00B
+  ats: comeet
+  ats_params:
+    company_uid: "F9.00B"
+    token: "9FB45DD1DF11DF113F69FB59D345DD13F61DF1"
+  category: security
+  location_filter: israel
+  notes: "GRC/compliance automation platform. Israeli company. Token verified 2026-06-17 (8 jobs)."
+
+- name: Doorloop
+  website: https://www.doorloop.com
+  careers_url: https://www.comeet.com/jobs/doorloop/0A.006
+  ats: comeet
+  ats_params:
+    company_uid: "0A.006"
+    token: "A06462A1E122818321EA061E12028181E12"
+  category: general
+  location_filter: israel
+  notes: "Property management SaaS. Israeli-founded. Token verified 2026-06-17 (7 jobs)."
+
+- name: Vega
+  website: https://vega.io
+  careers_url: https://www.comeet.com/jobs/vega/C9.009
+  ats: comeet
+  ats_params:
+    company_uid: "C9.009"
+    token: "9C9447F139227241392272430ED30ED04E48"
+  category: fintech
+  location_filter: israel
+  notes: "Israeli fintech. Token verified 2026-06-17 (15 jobs, multiple Israel roles)."
+
+- name: Oligo Security
+  website: https://www.oligosecurity.com
+  careers_url: https://www.comeet.com/jobs/oligosecurity/5A.00B
+  ats: comeet
+  ats_params:
+    company_uid: "5A.00B"
+    token: "A5B487D296C487D01F1152D852D852D8487D"
+  category: cyber
+  location_filter: israel
+  notes: "Runtime application security / open-source dependency monitoring. Israeli company. Token verified 2026-06-17 (9 jobs)."
+
+- name: Second Nature
+  website: https://www.secondnature.com
+  careers_url: https://jobs.ashbyhq.com/second-nature
+  ats: ashby
+  ats_params:
+    org_name: second-nature
+  category: general
+  location_filter: israel
+  notes: "AI-powered sales coaching platform. Ashby board verified 2026-06-17 (14 jobs total, 0 Israel currently)."
+
+- name: DeepCure
+  website: https://www.deepcure.ai
+  careers_url: https://www.comeet.com/jobs/deepcure/B7.003
+  ats: comeet
+  ats_params:
+    company_uid: "B7.003"
+    token: "7B32E321ECC171901ECC0267F2E32454B"
+  category: general
+  location_filter: israel
+  notes: "AI drug discovery. Israeli biotech. Token verified 2026-06-17 (1 job)."
+
+- name: Stigg
+  website: https://www.stigg.io
+  careers_url: https://jobs.ashbyhq.com/stigg
+  ats: ashby
+  ats_params:
+    org_name: stigg
+  category: general
+  location_filter: israel
+  notes: "Developer-first product monetization / pricing platform. Israeli company. Ashby verified 2026-06-17 (1 job)."
+
+- name: Nilus
+  website: https://www.nilus.com
+  careers_url: https://nilus.bamboohr.com/careers
+  ats: other
+  ats_params: {}
+  category: fintech
+  location_filter: israel
+  notes: "Financial operations / spend management platform. Israeli company. BambooHR ATS - no puller implemented."
+
+- name: Entro Security
+  website: https://entro.security
+  careers_url: https://entro.security/careers/
+  ats: other
+  ats_params: {}
+  category: cyber
+  location_filter: israel
+  notes: "Non-human identity (NHI) security platform. Israeli company. ATS type not identified - custom WP jobs page at /career/. TODO: identify ATS and wire params."
+
+- name: Apono
+  website: https://www.apono.io
+  careers_url: https://www.apono.io/careers/
+  ats: comeet
+  ats_params:
+    company_uid: "1B.00A"
+    token: "B1A4DB64DB62C6863EA2C684DB6B1A58D02C68"
+  category: cyber
+  location_filter: israel
+  notes: "Just-in-time access management / privileged access. Israeli company. Token verified 2026-06-17 (3 jobs)."
+
+- name: Mentee Robotics
+  website: https://www.menteerobotics.com
+  careers_url: https://www.comeet.com/jobs/mentee_robotics/6A.002
+  ats: comeet
+  ats_params:
+    company_uid: "6A.002"
+    token: "A6248AE298853101F2614C45D7214C433EA5310"
+  category: general
+  location_filter: israel
+  notes: "Israeli humanoid robotics company (ex-Meta AI founders). Token verified 2026-06-17 (10 jobs)."
+
+- name: Nagish
+  website: https://nagish.com
+  careers_url: https://www.comeet.com/jobs/nagish/D8.007
+  ats: comeet
+  ats_params:
+    company_uid: "D8.007"
+    token: "8D7350A46B88D73DE111AE235C4F8F02C33"
+  category: general
+  location_filter: israel
+  notes: "AI-powered real-time captions for phone calls / accessibility tech. Israeli company. Token verified 2026-06-17 (8 jobs)."
+
+- name: Capow Energy
+  website: https://capow.energy
+  careers_url: https://capow.energy/careers/
+  ats: other
+  ats_params: {}
+  category: general
+  location_filter: israel
+  notes: "Israeli clean energy / EV charging. ATS is dueto.io (employer.dueto.io/position/1940/capow) - no puller implemented."
+
+- name: Port
+  website: https://www.getport.io
+  careers_url: https://www.comeet.com/jobs/port/59.004
+  ats: comeet
+  ats_params:
+    company_uid: "59.004"
+    token: "954414C02550414C4AA01BFC12A81BFC2550"
+  category: general
+  location_filter: israel
+  notes: "Developer portal / internal developer platform. Israeli company. Token verified 2026-06-17 (48 jobs)."
+
+- name: ScaleOps
+  website: https://www.scaleops.com
+  careers_url: https://www.comeet.com/jobs/scaleops/99.003
+  ats: comeet
+  ats_params:
+    company_uid: "99.003"
+    token: "99343059931CB999339721CB9264C1CB9993"
+  category: general
+  location_filter: israel
+  notes: "Kubernetes resource optimization / cloud cost reduction. Israeli company. Token verified 2026-06-17 (57 jobs)."
+
+- name: Qedma
+  website: https://www.qedma.com
+  careers_url: https://www.comeet.com/jobs/qedma/7A.006
+  ats: comeet
+  ats_params:
+    company_uid: "7A.006"
+    token: "A76493A344E14EC029D853B01F621F62A76"
+  category: general
+  location_filter: israel
+  notes: "Quantum computing error mitigation. Israeli company. Token verified 2026-06-17 (5 jobs)."
+
+- name: Factify
+  website: https://www.factify.ai
+  careers_url: https://www.comeet.com/jobs/factify/A9.00F
+  ats: comeet
+  ats_params:
+    company_uid: "A9.00F"
+    token: "9AF43C9135E09AF5727306B043C93A1A"
+  category: general
+  location_filter: israel
+  notes: "AI fact-checking / content verification. Israeli company. Token verified 2026-06-17 (2 jobs)."
+
+- name: Brandlight
+  website: https://brandlight.com
+  careers_url: https://jobs.ashbyhq.com/brandlight
+  ats: ashby
+  ats_params:
+    org_name: brandlight
+  category: general
+  location_filter: israel
+  notes: "Brand intelligence / digital shelf analytics. Ashby verified 2026-06-17 (9 jobs)."
+
+- name: Quantum Art
+  website: https://www.quantum-art.tech
+  careers_url: https://www.quantum-art.tech/careers
+  ats: other
+  ats_params: {}
+  category: general
+  location_filter: israel
+  notes: "Israeli company. Uses Comeet embed but company_uid/token not extractable via static HTML. TODO: find params via browser."
+
+- name: Novee Security
+  website: https://novee.security
+  careers_url: https://novee.security/careers/
+  ats: comeet
+  ats_params:
+    company_uid: "AA.008"
+    token: "AA84A983FF0002AA01FF8155035483FF0"
+  category: cyber
+  location_filter: israel
+  notes: "Israeli cyber startup. Token verified 2026-06-17 (7 jobs including AI Engineer in Tel Aviv)."
+
+- name: Blinkops
+  website: https://www.blinkops.com
+  careers_url: https://www.comeet.com/jobs/blinkops/c7.004
+  ats: comeet
+  ats_params:
+    company_uid: "c7.004"
+    token: "7C42E981F101F10365C174C2E98F88F880"
+  category: cyber
+  location_filter: israel
+  notes: "Security automation / SOAR platform. Israeli company. Token verified 2026-06-17 (11 jobs)."
+
+- name: Line5.ai
+  website: https://line5.ai
+  careers_url: https://line5.ai/Hiring
+  ats: other
+  ats_params: {}
+  category: cyber
+  location_filter: israel
+  notes: "Israeli AI/cyber startup. Custom hiring page - ATS not identified. TODO: find ATS params."
+
+- name: Utila
+  website: https://utila.io
+  careers_url: https://www.comeet.com/jobs/utila/D9.00F
+  ats: comeet
+  ats_params:
+    company_uid: "D9.00F"
+    token: "9DF451913BE4EF84EF858D713BE4EF804EF8"
+  category: cyber
+  location_filter: israel
+  notes: "Cloud security / cloud native security. Israeli company. Token verified 2026-06-17 (10 jobs)."
+
+- name: Sett
+  website: https://www.sett.ai
+  careers_url: https://www.comeet.com/jobs/sett/4A.00B
+  ats: comeet
+  ats_params:
+    company_uid: "4A.00B"
+    token: "A4B480D292C149652585CA333775CA35CA33377"
+  category: general
+  location_filter: israel
+  notes: "AI productivity / communication platform. Israeli company. Token verified 2026-06-17 (9 jobs)."
+
+- name: Notch
+  website: https://www.notch.cx
+  careers_url: https://www.comeet.com/jobs/notch/CA.003
+  ats: comeet
+  ats_params:
+    company_uid: "CA.003"
+    token: "AC34B5540922B0C4B5535CF35CFAC32B0C2B0C"
+  category: fintech
+  location_filter: israel
+  notes: "B2B embedded payment terms / working capital. Israeli fintech. Token verified 2026-06-17 (9 jobs)."
+
+- name: Clover Security
+  website: https://cloversec.io
+  careers_url: https://www.comeet.com/jobs/clover_security/7A.00A
+  ats: comeet
+  ats_params:
+    company_uid: "7A.00A"
+    token: "A7A4956346214F429E849561F6E1F6E014F4"
+  category: cyber
+  location_filter: israel
+  notes: "Israeli cyber startup. Token verified 2026-06-17 (11 jobs)."
+
+- name: Tenzai
+  website: https://tenzai.com
+  careers_url: https://www.comeet.com/jobs/tenzai/1B.002
+  ats: comeet
+  ats_params:
+    company_uid: "1B.002"
+    token: "B124D7E4D7E213663A2B122136375A375A375A"
+  category: general
+  location_filter: israel
+  notes: "Israeli AI company. Token verified 2026-06-17 (12 jobs)."
+
+- name: Matia
+  website: https://matia.ai
+  careers_url: https://jobs.ashbyhq.com/matia
+  ats: ashby
+  ats_params:
+    org_name: matia
+  category: general
+  location_filter: israel
+  notes: "Israeli AI company. Ashby verified 2026-06-17 (8 jobs)."
+
+- name: Lumana
+  website: https://www.lumana.ai
+  careers_url: https://jobs.ashbyhq.com/lumana
+  ats: ashby
+  ats_params:
+    org_name: lumana
+  category: general
+  location_filter: israel
+  notes: "Israeli AI company. Ashby verified 2026-06-17 (5 jobs)."
+
+- name: Loora
+  website: https://www.loora.com
+  careers_url: https://jobs.ashbyhq.com/loora
+  ats: ashby
+  ats_params:
+    org_name: loora
+  category: general
+  location_filter: israel
+  notes: "AI English speaking coach. Israeli company. Ashby verified 2026-06-17 (7 jobs)."
+
+- name: Remepy
+  website: https://www.remepy.com
+  careers_url: https://www.remepy.com/careers
+  ats: other
+  ats_params: {}
+  category: general
+  location_filter: israel
+  notes: "Israeli healthtech / digital therapeutics. ATS not identified - custom WP careers page. TODO: find ATS."
+
+- name: Voltify
+  website: https://www.voltify.com
+  careers_url: https://careers.voltify.com
+  ats: other
+  ats_params: {}
+  category: general
+  location_filter: israel
+  notes: "Israeli energy tech. ATS is PeopleFluent/PF_RECRUITING (careers.voltify.com) - no puller implemented."
+
+- name: Memcyco
+  website: https://www.memcyco.com
+  careers_url: https://www.memcyco.com/careers-at-memcyco/
+  ats: other
+  ats_params: {}
+  category: cyber
+  location_filter: israel
+  notes: "Digital impersonation / brandjacking protection. Israeli cyber. Custom WP careers page - ATS not identified. TODO: find ATS params."
+
+- name: ACT Security
+  website: https://act.security
+  careers_url: https://www.comeet.com/jobs/actsecurity/8A.009
+  ats: comeet
+  ats_params:
+    company_uid: "8A.009"
+    token: "A8949BF34AD2A24544805ED13F3634AD49BF"
+  category: cyber
+  location_filter: israel
+  notes: "Cloud security / Israeli cyber startup. Token verified 2026-06-17 (3 jobs including Cloud Security Researcher)."
+
+- name: Opti.ai
+  website: https://www.opti.ai
+  careers_url: https://www.opti.ai/careers
+  ats: comeet
+  ats_params:
+    company_uid: "CA.005"
+    token: "AC54B63409E35D9060ED409E2B14158A2B14"
+  category: general
+  location_filter: israel
+  notes: "AI optimization platform. Israeli company. Token verified 2026-06-17 (3 jobs)."
+
+- name: Echo Software
+  website: https://www.echohq.com
+  careers_url: https://www.comeet.com/jobs/echosoftware/9A.006
+  ats: comeet
+  ats_params:
+    company_uid: "9A.006"
+    token: "A964A1A34EE3F845F4654B02A5834EE5F462A58"
+  category: general
+  location_filter: israel
+  notes: "Israeli software company. Token verified 2026-06-17 (13 jobs)."
+
+- name: Daylight Security
+  website: https://daylight.security
+  careers_url: https://www.comeet.com/jobs/daylightsecurity/7A.00D
+  ats: comeet
+  ats_params:
+    company_uid: "7A.00D"
+    token: "A7D496B347114FA3EEE29F4A7D3EEE496B1F77"
+  category: cyber
+  location_filter: israel
+  notes: "Israeli cyber startup. Token verified 2026-06-17 (12 jobs). Also has a Greenhouse board (job-boards.greenhouse.io/daylight) with 6 jobs - using Comeet as primary."
+
+- name: Onyx Security
+  website: https://onyx.security
+  careers_url: https://www.comeet.com/jobs/onyxsecurity/BA.005
+  ats: comeet
+  ats_params:
+    company_uid: "BA.005"
+    token: "AB54AF3403E156A55A8605D156A2AD44AF3605D"
+  category: cyber
+  location_filter: israel
+  notes: "Israeli cyber startup. Token verified 2026-06-17 (8 jobs)."
