@@ -155,10 +155,10 @@ First-time-user comprehension, digest trust, the job-seeker workspace, and the a
 | Slug | Title | Status | Effort | Depends on |
 |---|---|---|---|---|
 | [WEBAPP_APP_SHELL_ACCOUNT](future_devs/WEBAPP_APP_SHELL_ACCOUNT_SPEC.md) | App shell + account UX (epic root) | `in-progress` | M | — |
-| [WEBAPP_GLOBAL_APP_SHELL_NAV](future_devs/WEBAPP_GLOBAL_APP_SHELL_NAV_SPEC.md) | Global nav shell + sign-out + auth guard | `in-progress` | M | WEBAPP_APP_SHELL_ACCOUNT |
-| [WEBAPP_GETTING_STARTED_CHECKLIST](future_devs/WEBAPP_GETTING_STARTED_CHECKLIST_SPEC.md) | Getting-started checklist on the digest | `not-started` | S | WEBAPP_APP_SHELL_ACCOUNT |
-| [WEBAPP_IN_APP_HELP_FAQ](future_devs/WEBAPP_IN_APP_HELP_FAQ_SPEC.md) | In-app Help / FAQ page | `not-started` | S | WEBAPP_GLOBAL_APP_SHELL_NAV |
-| [WEBAPP_AUTH_RESET_CONFIRM_LEGAL](future_devs/WEBAPP_AUTH_RESET_CONFIRM_LEGAL_SPEC.md) | Auth: forgot-password + email-confirm + terms/privacy | `in-progress` | M | WEBAPP_APP_SHELL_ACCOUNT |
+| [WEBAPP_GLOBAL_APP_SHELL_NAV](future_devs/WEBAPP_GLOBAL_APP_SHELL_NAV_SPEC.md) | Global nav shell + sign-out + auth guard | `completed` | M | WEBAPP_APP_SHELL_ACCOUNT |
+| [WEBAPP_GETTING_STARTED_CHECKLIST](future_devs/WEBAPP_GETTING_STARTED_CHECKLIST_SPEC.md) | Getting-started checklist on the digest | `completed` | S | WEBAPP_APP_SHELL_ACCOUNT |
+| [WEBAPP_IN_APP_HELP_FAQ](future_devs/WEBAPP_IN_APP_HELP_FAQ_SPEC.md) | In-app Help / FAQ page | `completed` | S | WEBAPP_GLOBAL_APP_SHELL_NAV ✅ |
+| [WEBAPP_AUTH_RESET_CONFIRM_LEGAL](future_devs/WEBAPP_AUTH_RESET_CONFIRM_LEGAL_SPEC.md) | Auth: forgot-password + email-confirm + terms/privacy | `completed` | M | WEBAPP_APP_SHELL_ACCOUNT |
 
 ### Standalone
 
