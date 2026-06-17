@@ -1,5 +1,6 @@
 from ats.amazon_jobs import fetch_positions as _fetch_amazon_jobs
 from ats.ashby import fetch_positions as _fetch_ashby
+from ats.bamboohr import fetch_positions as _fetch_bamboohr
 from ats.breezy import fetch_positions as _fetch_breezy
 from ats.comeet import fetch_positions as _fetch_comeet
 from ats.consider import fetch_positions as _fetch_consider
@@ -11,6 +12,7 @@ from ats.jobvite import fetch_positions as _fetch_jobvite
 from ats.lemonade import fetch_positions as _fetch_lemonade
 from ats.lever import fetch_positions as _fetch_lever
 from ats.microsoft_careers import fetch_positions as _fetch_microsoft_careers
+from ats.oracle_hcm import fetch_positions as _fetch_oracle_hcm
 from ats.privya import fetch_positions as _fetch_privya
 from ats.successfactors import fetch_positions as _fetch_successfactors
 from ats.talentbrew import fetch_positions as _fetch_talentbrew
@@ -22,6 +24,7 @@ from ats.workday import fetch_positions as _fetch_workday
 ATS_PULLERS = {
     "amazon_jobs": lambda p: _fetch_amazon_jobs(p.get("country_code", "ISR")),
     "ashby": lambda params: _fetch_ashby(params["org_name"]),
+    "bamboohr": lambda params: _fetch_bamboohr(params["company_slug"]),
     "breezy": lambda params: _fetch_breezy(params["company_slug"]),
     "comeet": lambda params: _fetch_comeet(params["company_uid"], params["token"]),
     "consider": lambda params: _fetch_consider(params["board_id"]),
@@ -37,6 +40,7 @@ ATS_PULLERS = {
     "lemonade": lambda params: _fetch_lemonade(),
     "lever": lambda params: _fetch_lever(params["company_slug"]),
     "microsoft_careers": lambda p: _fetch_microsoft_careers(p.get("location_query", "Israel")),
+    "oracle_hcm": lambda p: _fetch_oracle_hcm(p["host"], p["site"], p.get("location_query", "Israel")),
     "privya": lambda params: _fetch_privya(),
     "successfactors": lambda p: _fetch_successfactors(
         p["tenant"], p.get("branded_host"), p.get("location_query")

@@ -35,8 +35,25 @@ def save_companies(entries: list[dict]) -> None:
 LIVE_POSITIONS_FILE = Path("live_positions.json")
 
 
+def _load_first_seen_lookup() -> dict[str, str]:
+    """Return {apply_url: first_seen} from the existing new_jobs.json for carry-forward."""
+    if not JOBS_FILE.exists():
+        return {}
+    try:
+        with JOBS_FILE.open(encoding="utf-8") as f:
+            jobs = json.load(f)
+        return {
+            j["apply_url"]: j["first_seen"]
+            for j in jobs
+            if j.get("apply_url") and j.get("first_seen")
+        }
+    except (json.JSONDecodeError, KeyError):
+        return {}
+
+
 def collect():
     companies = load_companies()
+    first_seen_lookup = _load_first_seen_lookup()
     all_jobs = []
     companies_with_jobs = 0
     successful_companies: list[str] = []
@@ -137,6 +154,11 @@ def collect():
     all_jobs = deduped
     if len(all_jobs) < before:
         print(f"Dedup: {before} → {len(all_jobs)} jobs ({before - len(all_jobs)} duplicates removed)")
+
+    today = datetime.now(timezone.utc).date().isoformat()
+    for job in all_jobs:
+        url = (job.get("apply_url") or "").strip()
+        job["first_seen"] = first_seen_lookup.get(url, today) if url else today
 
     with JOBS_FILE.open("w", encoding="utf-8") as f:
         json.dump(all_jobs, f, ensure_ascii=False, indent=2)

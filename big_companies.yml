@@ -172,12 +172,14 @@
 
 - name: Akamai
   website: https://www.akamai.com
-  careers_url: https://jobs.akamai.com
-  ats: other
-  ats_params: {}  # Oracle HCM - no standard puller
+  careers_url: https://fa-extu-saasfaprod1.fa.ocs.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/jobs
+  ats: oracle_hcm
+  ats_params:
+    host: fa-extu-saasfaprod1.fa.ocs.oraclecloud.com
+    site: CX_1
   category: security
   location_filter: israel
-  notes: "Migrated from Workday to Oracle HCM (Mar 2025). Oracle endpoint: fa-extu-saasfaprod1.fa.ocs.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/jobs. Not pullable without Oracle HCM puller."
+  notes: "Migrated from Workday to Oracle HCM (Mar 2025). 214+ total jobs but none tagged Israel as of 2026-06-17 — puller wired, will surface IL jobs if/when they appear."
 
 - name: Cato Networks
   website: https://www.catonetworks.com
@@ -1116,11 +1118,13 @@
 - name: Dell Technologies Israel
   website: https://dell.com
   careers_url: https://iawmqy.fa.ocs.oraclecloud.com/hcmUI/CandidateExperience/en/sites/careers
-  ats: other
-  ats_params: {}
+  ats: oracle_hcm
+  ats_params:
+    host: iawmqy.fa.ocs.oraclecloud.com
+    site: careers
   category: general
   location_filter: israel
-  notes: "Dell Israel R&D. Uses Oracle Fusion HCM - not a supported ATS. Stub only."
+  notes: "Dell Israel R&D. Oracle HCM puller wired 2026-06-17. 400 total jobs, none tagged IL in current board — puller will surface Israel jobs if/when they appear."
 
 - name: NetApp Israel
   website: https://netapp.com
@@ -1777,11 +1781,12 @@
 - name: Nilus
   website: https://www.nilus.com
   careers_url: https://nilus.bamboohr.com/careers
-  ats: other
-  ats_params: {}
+  ats: bamboohr
+  ats_params:
+    company_slug: nilus
   category: fintech
   location_filter: israel
-  notes: "Financial operations / spend management platform. Israeli company. BambooHR ATS - no puller implemented."
+  notes: "Financial operations / spend management platform. Israeli company. BambooHR ATS - puller implemented 2026-06-17."
 
 - name: Entro Security
   website: https://entro.security

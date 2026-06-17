@@ -39,6 +39,9 @@ COMEET_INIT_NAME  = re.compile(r"""["']company[-_]name["']\s*:\s*["']([^"']+)["'
 # Ashby hosted job boards: jobs.ashbyhq.com/<org_name>
 ASHBY_JOBS = re.compile(r"jobs\.ashbyhq\.com/([a-zA-Z0-9_.-]+)", re.IGNORECASE)
 
+# BambooHR: <slug>.bamboohr.com
+BAMBOOHR_RE = re.compile(r"([a-zA-Z0-9_-]+)\.bamboohr\.com", re.IGNORECASE)
+
 # Breezy HR: <slug>.breezy.hr
 BREEZY_RE = re.compile(r"([a-zA-Z0-9_-]+)\.breezy\.hr", re.IGNORECASE)
 
@@ -285,6 +288,12 @@ def detect_ats(careers_url: str) -> tuple[str, dict]:
         if m:
             return "ashby", {"org_name": m.group(1)}
 
+    # Check for BambooHR signature in careers URL, final URL, or page HTML
+    for text in (careers_url, final_url, html):
+        m = BAMBOOHR_RE.search(text)
+        if m:
+            return "bamboohr", {"company_slug": m.group(1)}
+
     # Check for Breezy HR signature in careers URL, final URL, or page HTML
     for text in (careers_url, final_url, html):
         m = BREEZY_RE.search(text)
@@ -361,5 +370,21 @@ def detect_ats(careers_url: str) -> tuple[str, dict]:
                 "branded_host": host,
                 "location_query": "Israel",
             }
+
+    # Oracle Fusion HCM Candidate Experience: {host}/hcmUI/CandidateExperience/en/sites/{site}
+    if "hcmUI/CandidateExperience" in (careers_url + final_url + html):
+        for text in (careers_url, final_url):
+            import re as _re
+            m = _re.search(
+                r"([\w.-]+\.(?:ocs\.oraclecloud|fa\.oraclecloud)\.com)/hcmUI/CandidateExperience/en/sites/([^/?#\s]+)",
+                text,
+                _re.IGNORECASE,
+            )
+            if m:
+                return "oracle_hcm", {
+                    "host": m.group(1),
+                    "site": m.group(2),
+                    "location_query": "Israel",
+                }
 
     return "unknown", {}

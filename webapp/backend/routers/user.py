@@ -55,8 +55,25 @@ def get_me(authorization: str = Header(...)):
     resp = supabase.auth.get_user(token)
     if not resp.user:
         raise HTTPException(status_code=401, detail="Unauthorized")
-    row = supabase.table("users").select("scoring_runs_this_week,last_week_reset,profile_md,cv_text,profile_version,cv_updated_at").eq("id", resp.user.id).maybe_single().execute().data
-    return row or {}
+    row = supabase.table("users").select(
+        "scoring_runs_this_week,last_week_reset,profile_md,cv_text,profile_version,cv_updated_at,gemini_api_key_encrypted"
+    ).eq("id", resp.user.id).maybe_single().execute().data
+    if not row:
+        return {}
+    has_api_key = bool(row.get("gemini_api_key_encrypted"))
+    api_key_last4 = None
+    if has_api_key and FERNET_KEY:
+        try:
+            f = Fernet(FERNET_KEY.encode())
+            decrypted = f.decrypt(row["gemini_api_key_encrypted"].encode()).decode()
+            api_key_last4 = decrypted[-4:] if len(decrypted) >= 4 else None
+        except Exception:
+            pass
+    row = {k: v for k, v in row.items() if k != "gemini_api_key_encrypted"}
+    row["has_api_key"] = has_api_key
+    if api_key_last4:
+        row["api_key_last4"] = api_key_last4
+    return row
 
 
 class ProfileUpdate(BaseModel):
@@ -199,17 +216,30 @@ async def parse_cv(request: Request, authorization: str = Header(...)):
     if not resp.user:
         raise HTTPException(status_code=401, detail="Unauthorized")
     body = await request.json()
-    pdf_b64 = body.get("pdf_b64", "")
+    file_b64 = body.get("pdf_b64", "")
+    mime_type = body.get("mime_type", "application/pdf")
     import base64, io
-    from pypdf import PdfReader
+    file_bytes = base64.b64decode(file_b64)
     try:
-        pdf_bytes = base64.b64decode(pdf_b64)
-        reader = PdfReader(io.BytesIO(pdf_bytes))
-        text = "\n".join(page.extract_text() or "" for page in reader.pages)
+        if mime_type == "application/pdf":
+            from pypdf import PdfReader
+            reader = PdfReader(io.BytesIO(file_bytes))
+            text = "\n".join(page.extract_text() or "" for page in reader.pages)
+        elif mime_type in (
+            "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+            "application/msword",
+        ):
+            from docx import Document
+            doc = Document(io.BytesIO(file_bytes))
+            text = "\n".join(p.text for p in doc.paragraphs)
+        elif mime_type == "text/plain":
+            text = file_bytes.decode("utf-8", errors="replace")
+        else:
+            raise HTTPException(status_code=422, detail="Unsupported file type")
         if not text.strip():
             raise HTTPException(status_code=422, detail="Could not extract text - please paste manually")
     except HTTPException:
         raise
-    except Exception as e:
-        raise HTTPException(status_code=422, detail=f"Could not extract text - please paste manually")
+    except Exception:
+        raise HTTPException(status_code=422, detail="Could not extract text - please paste manually")
     return {"text": text}

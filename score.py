@@ -279,6 +279,7 @@ def _merge_new_results(existing: dict, new_scored: list[dict], today: str) -> tu
             "reasoning": job.get("reasoning", ""),
             "flags": job.get("flags", []),
             "scored_at": today,
+            "first_seen": job.get("first_seen"),
         }
         added += 1
     return merged, added
@@ -356,9 +357,11 @@ def _write_digest(jobs_by_key: dict, out_path: Path) -> None:
 
             title_link = f"[{title}]({apply_url})" if apply_url else title
             flag_str = f" `{'` `'.join(flags)}`" if flags else ""
+            first_seen = job.get("first_seen")
+            first_seen_str = f" | **First seen:** {first_seen}" if first_seen else ""
 
             lines.append(f"### **{company}** - {title_link}")
-            lines.append(f"**Score:** {score}/10 | **Location:** {location} | **Applied:** 0")
+            lines.append(f"**Score:** {score}/10 | **Location:** {location} | **Applied:** 0{first_seen_str}")
             lines.append(f"**Reasoning:** {reasoning}{flag_str}")
             lines.append("")
 
