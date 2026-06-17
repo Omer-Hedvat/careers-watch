@@ -1,7 +1,7 @@
 | Field | Value |
 |---|---|
 | **Phase** | P7 |
-| **Status** | `not-started` |
+| **Status** | `wrapped` |
 | **Effort** | S |
 | **Epic** | WEBAPP_APP_SHELL_ACCOUNT |
 | **Depends on** | [WEBAPP_GLOBAL_APP_SHELL_NAV](WEBAPP_GLOBAL_APP_SHELL_NAV_SPEC.md) |

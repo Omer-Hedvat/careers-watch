@@ -11,6 +11,7 @@ Wrapped features only. Active work lives in `ROADMAP.md`.
 | Web App v1 | `WEBAPP_SPEC.md` | P2 | `wrapped` | 9 |
 | Proprietary ATS Pullers | `future_devs/archive/PROPRIETARY_ATS_PULLERS_SPEC.md` | P3 | `wrapped` | 9 |
 | Position Liveness | `future_devs/archive/POSITION_LIVENESS_SPEC.md` | P8 | `wrapped` | 4 |
+| App shell & account UX | `future_devs/archive/WEBAPP_APP_SHELL_ACCOUNT_SPEC.md` | P7 | `wrapped` | 4 |
 
 ---
 
@@ -102,6 +103,17 @@ Wrapped features only. Active work lives in `ROADMAP.md`.
 | [webapp] Positions page — browse all open roles from pipeline, client-side search + pagination | `future_devs/archive/WEBAPP_POSITIONS_VIEW_SPEC.md` | S | `wrapped` |
 | [webapp] Count-up animation on Companies + Positions page load | `future_devs/archive/WEBAPP_COUNTUP_ANIMATION_SPEC.md` | XS | `wrapped` |
 | [webapp] Gap analysis — profile vs CV, position vs CV, position vs profile | `future_devs/archive/PROFILE_CV_GAP_ANALYSIS_SPEC.md` | M | `wrapped` |
+
+---
+
+## Phase P7 — App shell & account UX
+
+| Feature | Spec | Effort | Status |
+|---|---|---|---|
+| Global nav shell — shared header, Digest/Companies/Positions/Gaps/Settings/Help links, sign-out, mobile hamburger | `future_devs/archive/WEBAPP_GLOBAL_APP_SHELL_NAV_SPEC.md` | M | `wrapped` |
+| Getting-started checklist — 4-item dismissible checklist on digest; auto-hides when complete | `future_devs/archive/WEBAPP_GETTING_STARTED_CHECKLIST_SPEC.md` | S | `wrapped` |
+| In-app Help / FAQ — `/help` page with anchored sections (scoring, flags, cadence, privacy, improve) | `future_devs/archive/WEBAPP_IN_APP_HELP_FAQ_SPEC.md` | S | `wrapped` |
+| Auth: forgot-password + email-confirm state + password requirements + Terms/Privacy stubs | `future_devs/archive/WEBAPP_AUTH_RESET_CONFIRM_LEGAL_SPEC.md` | M | `wrapped` |
 
 ---
 
