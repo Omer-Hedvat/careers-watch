@@ -11,6 +11,7 @@ type Company = {
   careers_url: string
   last_verified_at: string | null
   consecutive_failures: number
+  open_positions: number
 }
 
 function timeAgo(iso: string): string {
@@ -111,6 +112,11 @@ export default function CompaniesPage() {
                 <span className="font-semibold text-white">{c.name}</span>
                 <CategoryBadge category={c.category} />
                 {c.ats && c.ats !== 'unknown' && <span className="text-xs text-gray-500 bg-gray-800 px-2 py-0.5 rounded">{c.ats}</span>}
+                {c.open_positions > 0 && (
+                  <span className="text-xs text-green-400 bg-green-900/40 px-2 py-0.5 rounded">
+                    {c.open_positions} open
+                  </span>
+                )}
                 <FailureBadge count={c.consecutive_failures} />
               </div>
               <div className="text-xs text-gray-500 mt-1">

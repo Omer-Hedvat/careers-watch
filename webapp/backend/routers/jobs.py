@@ -27,6 +27,11 @@ def list_companies(authorization: str = Header(...)):
     if not COMPANIES_PATH.exists():
         return []
     companies = json.loads(COMPANIES_PATH.read_text(encoding="utf-8"))
+    jobs = json.loads(NEW_JOBS_PATH.read_text(encoding="utf-8")) if NEW_JOBS_PATH.exists() else []
+    counts: dict[str, int] = {}
+    for j in jobs:
+        name = j.get("company", "")
+        counts[name] = counts.get(name, 0) + 1
     result = []
     for c in sorted(companies, key=lambda x: x.get("name", "").lower()):
         result.append({
@@ -36,6 +41,7 @@ def list_companies(authorization: str = Header(...)):
             "careers_url": c.get("careers_url", ""),
             "last_verified_at": c.get("last_verified_at"),
             "consecutive_failures": c.get("consecutive_failures", 0),
+            "open_positions": counts.get(c.get("name", ""), 0),
         })
     return result
 
