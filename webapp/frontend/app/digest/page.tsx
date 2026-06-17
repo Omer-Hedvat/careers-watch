@@ -165,6 +165,7 @@ export default function DigestPage() {
             {scoring ? 'Scoring...' : runsUsed >= 2 ? '2 of 2 runs used' : 'Score now'}
           </button>
           <Link href="/companies" className="text-sm text-gray-400 hover:text-white">Companies</Link>
+          <Link href="/positions" className="text-sm text-gray-400 hover:text-white">Positions</Link>
           <Link href="/settings" className="p-2 text-gray-400 hover:text-white rounded-lg">⚙</Link>
         </div>
       </div>

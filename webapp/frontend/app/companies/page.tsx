@@ -73,6 +73,7 @@ export default function CompaniesPage() {
         <div className="flex items-center gap-4">
           <Link href="/digest" className="text-sm text-gray-400 hover:text-white">Digest</Link>
           <Link href="/companies" className="text-sm text-white font-medium">Companies</Link>
+          <Link href="/positions" className="text-sm text-gray-400 hover:text-white">Positions</Link>
           <Link href="/settings" className="p-2 text-gray-400 hover:text-white rounded-lg">⚙</Link>
         </div>
       </div>

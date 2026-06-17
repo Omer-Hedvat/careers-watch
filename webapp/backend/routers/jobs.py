@@ -9,6 +9,9 @@ router = APIRouter(prefix="/jobs", tags=["jobs"])
 _companies_env = os.environ.get("COMPANIES_PATH")
 COMPANIES_PATH = Path(_companies_env) if _companies_env else Path(__file__).parent.parent.parent.parent / "companies.json"
 
+_jobs_env = os.environ.get("NEW_JOBS_PATH")
+NEW_JOBS_PATH = Path(_jobs_env) if _jobs_env else Path(__file__).parent.parent.parent.parent / "new_jobs.json"
+
 
 def _get_user(authorization: str) -> str:
     token = authorization.removeprefix("Bearer ")
@@ -34,6 +37,27 @@ def list_companies(authorization: str = Header(...)):
             "last_verified_at": c.get("last_verified_at"),
             "consecutive_failures": c.get("consecutive_failures", 0),
         })
+    return result
+
+
+@router.get("/positions")
+def list_positions(authorization: str = Header(...)):
+    _get_user(authorization)
+    if not NEW_JOBS_PATH.exists():
+        return []
+    jobs = json.loads(NEW_JOBS_PATH.read_text(encoding="utf-8"))
+    result = sorted(
+        [
+            {
+                "company": j.get("company", ""),
+                "title": j.get("title", ""),
+                "location": j.get("location", ""),
+                "apply_url": j.get("apply_url", ""),
+            }
+            for j in jobs
+        ],
+        key=lambda j: (j["company"].lower(), j["title"].lower()),
+    )
     return result
 
 

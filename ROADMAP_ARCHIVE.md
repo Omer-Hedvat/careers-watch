@@ -98,3 +98,4 @@ Wrapped features only. Active work lives in `ROADMAP.md`.
 | [webapp] Multi-value `;`-split filters (title, company, location) + placeholder text on digest page | `future_devs/archive/WEBAPP_MULTI_FILTER_SPEC.md` | S | `wrapped` |
 | [webapp] CV re-upload section in Settings — PDF upload + last-updated timestamp | `future_devs/archive/WEBAPP_CV_SETTINGS_UPLOAD_SPEC.md` | S | `wrapped` |
 | [webapp] Companies page — all tracked companies, metadata, failure badges, careers link | `future_devs/archive/WEBAPP_COMPANIES_VIEW_SPEC.md` | S | `wrapped` |
+| [webapp] Positions page — browse all open roles from pipeline, client-side search + pagination | `future_devs/archive/WEBAPP_POSITIONS_VIEW_SPEC.md` | S | `wrapped` |
