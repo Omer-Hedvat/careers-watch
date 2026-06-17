@@ -271,6 +271,13 @@ export default function SettingsPage() {
         {activeTab === 'apikey' && (
           <div className="space-y-4">
             <p className="text-sm text-gray-400">Replace your Gemini API key. The current key is never shown.</p>
+            <p className="text-sm text-green-400">It&apos;s fully free - Google&apos;s Gemini API has a free tier that&apos;s plenty for scoring jobs. <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener noreferrer" className="underline">Get your free key here</a>.</p>
+            <ol className="text-sm text-gray-400 space-y-1 list-decimal list-inside bg-gray-800 p-4 rounded-lg">
+              <li>Go to <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener noreferrer" className="text-green-400 underline">Google AI Studio</a></li>
+              <li>Sign in with your Google account</li>
+              <li>Click &quot;Get API key&quot; then &quot;Create API key&quot;</li>
+              <li>Copy and paste the key below</li>
+            </ol>
             <input type="password" value={newKey} onChange={e => setNewKey(e.target.value)} placeholder="AIza..."
               className="w-full bg-gray-800 text-white px-3 py-2 rounded-lg border border-gray-700 focus:outline-none focus:border-green-500" />
             <div className="flex gap-3">
