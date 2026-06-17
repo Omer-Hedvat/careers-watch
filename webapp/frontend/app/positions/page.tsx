@@ -11,6 +11,8 @@ type Position = {
   title: string
   location: string
   apply_url: string
+  score: number | null
+  status: string | null
 }
 
 export default function PositionsPage() {
@@ -87,27 +89,36 @@ export default function PositionsPage() {
         )}
 
         <div className="space-y-1.5">
-          {visible.map((p, i) => (
-            <a
-              key={`${p.company}-${p.title}-${i}`}
-              href={p.apply_url || '#'}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`flex items-start gap-3 bg-gray-900 rounded-xl px-5 py-3 hover:bg-gray-800 transition-colors ${!p.apply_url ? 'pointer-events-none opacity-50' : ''}`}
-            >
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-2 flex-wrap">
-                  <span className="font-semibold text-white text-sm">{p.company}</span>
-                  <span className="text-gray-500 text-sm">—</span>
-                  <span className="text-gray-200 text-sm">{p.title}</span>
+          {visible.map((p, i) => {
+            const isClosed = p.status === 'closed'
+            return (
+              <a
+                key={`${p.company}-${p.title}-${i}`}
+                href={isClosed ? undefined : (p.apply_url || '#')}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`flex items-start gap-3 bg-gray-900 rounded-xl px-5 py-3 transition-colors ${isClosed ? 'opacity-40 pointer-events-none' : 'hover:bg-gray-800'} ${!p.apply_url ? 'pointer-events-none opacity-50' : ''}`}
+              >
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <span className={`font-semibold text-sm ${isClosed ? 'text-gray-400 line-through' : 'text-white'}`}>{p.company}</span>
+                    <span className="text-gray-500 text-sm">—</span>
+                    <span className={`text-sm ${isClosed ? 'text-gray-500 line-through' : 'text-gray-200'}`}>{p.title}</span>
+                    {isClosed && <span className="text-xs text-red-500 no-underline" style={{textDecoration: 'none'}}>Closed</span>}
+                  </div>
+                  {p.location && (
+                    <div className="text-xs text-gray-500 mt-0.5">{p.location}</div>
+                  )}
                 </div>
-                {p.location && (
-                  <div className="text-xs text-gray-500 mt-0.5">{p.location}</div>
+                {!isClosed && <span className="text-xs text-green-500 shrink-0 mt-0.5">Apply →</span>}
+                {p.score != null && (
+                  <span className={`text-xs shrink-0 mt-0.5 font-medium ${p.score >= 9 ? 'text-green-400' : p.score >= 7 ? 'text-yellow-400' : 'text-gray-500'}`}>
+                    {p.score}/10
+                  </span>
                 )}
-              </div>
-              <span className="text-xs text-green-500 shrink-0 mt-0.5">Apply →</span>
-            </a>
-          ))}
+              </a>
+            )
+          })}
         </div>
 
         {totalPages > 1 && (

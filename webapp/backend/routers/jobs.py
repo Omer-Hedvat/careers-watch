@@ -48,19 +48,25 @@ def list_companies(authorization: str = Header(...)):
 
 @router.get("/positions")
 def list_positions(authorization: str = Header(...)):
-    _get_user(authorization)
-    if not NEW_JOBS_PATH.exists():
-        return []
-    jobs = json.loads(NEW_JOBS_PATH.read_text(encoding="utf-8"))
+    user_id = _get_user(authorization)
+    rows = (
+        supabase.table("scored_jobs")
+        .select("company,title,location,apply_url,score,status")
+        .eq("user_id", user_id)
+        .execute()
+        .data
+    )
     result = sorted(
         [
             {
-                "company": j.get("company", ""),
-                "title": j.get("title", ""),
-                "location": j.get("location", ""),
-                "apply_url": j.get("apply_url", ""),
+                "company": r.get("company", ""),
+                "title": r.get("title", ""),
+                "location": r.get("location", ""),
+                "apply_url": r.get("apply_url", ""),
+                "score": r.get("score"),
+                "status": r.get("status"),
             }
-            for j in jobs
+            for r in rows
         ],
         key=lambda j: (j["company"].lower(), j["title"].lower()),
     )
