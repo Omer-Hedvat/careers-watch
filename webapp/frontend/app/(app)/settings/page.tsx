@@ -34,94 +34,6 @@ After I answer, produce a profile.md with these exact sections:
 
 Write the scoring rubric as explicit score bands: what a 9-10 looks like, what a 7-8 looks like, what a 5-6 looks like, and what 0-2 means. Be specific - reference the role types and signals I described.`
 
-const EXAMPLE_PROFILE = `# Candidate Profile
-
-## Who I am, in one paragraph
-Senior data scientist with 8 years experience, specialized in adversarial ML and anomaly detection. Background spans fraud detection at a fintech and threat hunting at a cybersecurity company. I prefer applied roles over pure research, and I thrive in small teams where I can own models end to end.
-
-## What I'm looking for, in priority order
-1. Team Lead DS or Lead Data Scientist - managing 2-4 people while staying hands-on
-2. Senior DS / Senior ML Engineer in cyber or fraud domain
-3. Staff-level applied science roles at late-stage startups
-
-## Location
-Tel Aviv metro area. Commute up to 60 minutes. Open to hybrid (2-3 days office). Not open to relocation or fully remote.
-
-## Strong fit signals (boost the score)
-- Fraud detection, anomaly detection, or threat intelligence ML
-- Team lead scope or technical lead mentioned in the JD
-- Stack: Python, XGBoost/LightGBM, Spark, Kafka, real-time inference
-- Company stage: Series B-D, 50-300 people
-- Domain: cybersecurity, fintech, fraud-as-a-service
-
-## Weak fit / skip (drop the score)
-- Pure MLOps or platform engineering (no modeling)
-- Consumer/e-commerce without fraud angle
-- Roles requiring US/EU relocation
-- Big tech (FAANG) - culture mismatch
-
-## Dealbreakers (score = 0, do not surface)
-- Gaming, adtech, gambling, crypto
-- Pure data engineering or BI roles
-- Companies with active legal/regulatory issues
-
-## Notes for the matcher
-- I have informal team lead experience (mentored 2 juniors) but no formal "manager" title - treat partial leadership as a positive signal, not a gap
-- Titles like "ML Engineer" are fine if the JD shows model ownership; titles like "Data Scientist" are fine if there is a leadership component
-- Hebrew job descriptions are fine - score them as-is
-
-## Scoring rubric for the matcher
-9-10: Fraud/cyber domain + team lead or senior scope + Israel location + Python/ML stack
-7-8: Cyber-adjacent or fintech domain + senior IC scope + Israel + missing one strong signal
-5-6: Interesting domain but weak fit on scope or location; or right scope but wrong domain
-0-2: Dealbreaker domain, pure data engineering, relocation required, or no ML in the role`
-
-const PROFILE_SECTIONS_GUIDE = [
-  { section: '## Who I am', why: 'Sets seniority and specialization - the AI uses this to calibrate what "senior" means for you.' },
-  { section: "## What I'm looking for", why: 'Priority-ordered targets - the AI uses this to rank title fit.' },
-  { section: '## Location', why: 'Commute and hybrid preferences - prevents surfacing out-of-range roles.' },
-  { section: '## Strong fit signals', why: 'Explicit boosts - the AI looks for these in the JD to raise the score.' },
-  { section: '## Weak fit / skip', why: 'Explicit penalties - the AI lowers the score when these appear.' },
-  { section: '## Dealbreakers', why: 'Hard zeroes - the AI scores these 0 regardless of everything else.' },
-  { section: '## Notes for the matcher', why: 'Nuances that are easy to get wrong - e.g. partial signals that look like gaps.' },
-  { section: '## Scoring rubric', why: 'Explicit score bands - without this the AI invents its own rubric, which is less reliable.' },
-]
-
-function checkProfileCompleteness(md: string): string[] {
-  const required = ['## Who I am', "## What I'm looking for", '## Location', '## Strong fit', '## Weak fit', '## Dealbreakers', '## Notes for the matcher', '## Scoring rubric']
-  return required.filter(h => !md.toLowerCase().includes(h.toLowerCase()))
-}
-
-function ProfileExampleGuidance() {
-  const [showExample, setShowExample] = useState(false)
-  const [showGuide, setShowGuide] = useState(false)
-  return (
-    <div className="space-y-2">
-      <button onClick={() => setShowExample(v => !v)} className="text-sm text-green-400 hover:text-green-300">
-        {showExample ? '▾' : '▸'} See an example profile
-      </button>
-      {showExample && (
-        <div className="bg-gray-800 rounded-lg p-4 border border-gray-700">
-          <pre className="text-xs text-gray-300 whitespace-pre-wrap font-mono overflow-auto max-h-64">{EXAMPLE_PROFILE}</pre>
-        </div>
-      )}
-      <button onClick={() => setShowGuide(v => !v)} className="text-sm text-green-400 hover:text-green-300">
-        {showGuide ? '▾' : '▸'} Required sections guide
-      </button>
-      {showGuide && (
-        <div className="bg-gray-800 rounded-lg p-4 border border-gray-700 space-y-2">
-          {PROFILE_SECTIONS_GUIDE.map(({ section, why }) => (
-            <div key={section}>
-              <span className="text-xs font-mono text-white">{section}</span>
-              <span className="text-xs text-gray-400 ml-2">- {why}</span>
-            </div>
-          ))}
-        </div>
-      )}
-    </div>
-  )
-}
-
 function TagInput({ tags, onChange, placeholder }: { tags: string[]; onChange: (t: string[]) => void; placeholder?: string }) {
   const [input, setInput] = useState('')
   function addTag(val: string) {
@@ -148,6 +60,70 @@ function TagInput({ tags, onChange, placeholder }: { tags: string[]; onChange: (
         onBlur={() => input && addTag(input)}
         className="flex-1 min-w-[120px] bg-transparent text-white text-sm outline-none placeholder-gray-500"
       />
+    </div>
+  )
+}
+
+type FilterPanelProps = {
+  locationInput: string
+  onLocationChange: (v: string) => void
+  skipTitles: string[]
+  onSkipTitlesChange: (v: string[]) => void
+  keepTitles: string[]
+  onKeepTitlesChange: (v: string[]) => void
+  skipCompanies: string[]
+  onSkipCompaniesChange: (v: string[]) => void
+  skipIndustries: string[]
+  onSkipIndustriesChange: (v: string[]) => void
+  preview: { passing: number; total: number; empty: boolean } | null
+  previewLoading: boolean
+}
+
+function FilterPanel({ locationInput, onLocationChange, skipTitles, onSkipTitlesChange, keepTitles, onKeepTitlesChange, skipCompanies, onSkipCompaniesChange, skipIndustries, onSkipIndustriesChange, preview, previewLoading }: FilterPanelProps) {
+  return (
+    <div className="space-y-4">
+      <div>
+        <label className="text-sm text-gray-400 block mb-1">
+          Location filter <span title="Only score jobs whose location contains this text (e.g. 'israel')" className="text-gray-500 cursor-help">(?)</span>
+        </label>
+        <input value={locationInput} onChange={e => onLocationChange(e.target.value)} placeholder="e.g. israel (leave blank for no filter)"
+          className="w-full bg-gray-800 text-white px-3 py-2 rounded-lg border border-gray-700 focus:outline-none focus:border-green-500" />
+      </div>
+      <div>
+        <label className="text-sm text-gray-400 block mb-1">
+          Skip jobs whose title contains... <span title="Jobs with these words in the title are dropped before scoring (e.g. 'data engineer, analyst')" className="text-gray-500 cursor-help">(?)</span>
+        </label>
+        <p className="text-xs text-gray-500 mb-1">e.g. data engineer, analyst, bi developer</p>
+        <TagInput tags={skipTitles} onChange={onSkipTitlesChange} placeholder="add term, press Enter" />
+      </div>
+      <div>
+        <label className="text-sm text-gray-400 block mb-1">
+          Only score jobs whose title contains at least one of... <span title="Leave blank to score all titles. Add terms to score only matching titles (e.g. 'data scientist, ml engineer')" className="text-gray-500 cursor-help">(?)</span>
+        </label>
+        <p className="text-xs text-gray-500 mb-1">Leave blank to score all titles</p>
+        <TagInput tags={keepTitles} onChange={onKeepTitlesChange} placeholder="add term, press Enter" />
+      </div>
+      <div>
+        <label className="text-sm text-gray-400 block mb-1">
+          Skip these companies <span title="Jobs from these companies are dropped before scoring" className="text-gray-500 cursor-help">(?)</span>
+        </label>
+        <TagInput tags={skipCompanies} onChange={onSkipCompaniesChange} placeholder="company name, press Enter" />
+      </div>
+      <div>
+        <label className="text-sm text-gray-400 block mb-1">
+          Skip these industries <span title="Jobs tagged with these industries are dropped before scoring" className="text-gray-500 cursor-help">(?)</span>
+        </label>
+        <p className="text-xs text-gray-500 mb-1">e.g. gaming, adtech, gambling</p>
+        <TagInput tags={skipIndustries} onChange={onSkipIndustriesChange} placeholder="industry, press Enter" />
+      </div>
+      {/* Live preview */}
+      <div className="text-sm text-gray-400 bg-gray-800/50 rounded-lg px-3 py-2">
+        {previewLoading ? 'Calculating preview...' :
+          preview === null ? '' :
+          preview.empty ? 'No collected jobs yet - run the pipeline first.' :
+          `With these filters, ${preview.passing} of today's ${preview.total} collected jobs will be sent for scoring.`
+        }
+      </div>
     </div>
   )
 }
@@ -179,6 +155,10 @@ export default function SettingsPage() {
   const [skipCompanies, setSkipCompanies] = useState<string[]>([])
   const [skipIndustries, setSkipIndustries] = useState<string[]>([])
 
+  // Filter preview
+  const [filterPreview, setFilterPreview] = useState<{ passing: number; total: number; empty: boolean } | null>(null)
+  const [filterPreviewLoading, setFilterPreviewLoading] = useState(false)
+
   // API Key tab
   const [newKey, setNewKey] = useState('')
   const [testResult, setTestResult] = useState('')
@@ -207,6 +187,27 @@ export default function SettingsPage() {
   }
 
   function flash(m: string) { setMsg(m); setTimeout(() => setMsg(''), 3000) }
+
+  async function fetchFilterPreview(loc: string, st: string[], kt: string[], sc: string[], si: string[]) {
+    setFilterPreviewLoading(true)
+    try {
+      const token = await getToken()
+      const r = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/jobs/filter-preview`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+        body: JSON.stringify({
+          location_terms: loc.trim() ? [loc.trim()] : [],
+          skip_title_terms: st,
+          keep_title_terms: kt,
+          skip_companies: sc,
+          skip_industries: si,
+        }),
+      })
+      if (r.ok) setFilterPreview(await r.json())
+    } catch { /* silent */ } finally {
+      setFilterPreviewLoading(false)
+    }
+  }
 
   async function loadMe() {
     const r = await api('/user/me')
@@ -242,6 +243,12 @@ export default function SettingsPage() {
       })
     })
   }, [])
+
+  useEffect(() => {
+    if (activeTab !== 'filters') return
+    const t = setTimeout(() => fetchFilterPreview(locationInput, skipTitles, keepTitles, skipCompanies, skipIndustries), 400)
+    return () => clearTimeout(t)
+  }, [activeTab, locationInput, skipTitles, keepTitles, skipCompanies, skipIndustries])
 
   async function saveProfile() {
     setSaving(true)
@@ -485,24 +492,10 @@ export default function SettingsPage() {
               </div>
             )}
 
-            {/* Example + guidance */}
-            <ProfileExampleGuidance />
-
             {/* Profile editor */}
             <textarea value={profileMd} onChange={e => setProfileMd(e.target.value)} rows={20}
               placeholder="Paste your profile.md here..."
               className="w-full bg-gray-900 text-white p-4 rounded-xl border border-gray-700 font-mono text-sm resize-none focus:outline-none focus:border-green-500" />
-
-            {/* Completeness hint */}
-            {(() => {
-              const missing = checkProfileCompleteness(profileMd)
-              return missing.length > 0 && profileMd.trim() ? (
-                <div className="text-xs text-amber-400 bg-amber-900/20 border border-amber-700/30 rounded p-2">
-                  Missing sections: {missing.join(', ')}
-                </div>
-              ) : null
-            })()}
-
             <button onClick={saveProfile} disabled={saving} className="px-4 py-2 bg-green-600 hover:bg-green-700 disabled:opacity-50 rounded-lg text-sm font-medium">Save profile</button>
           </div>
         )}
@@ -553,27 +546,20 @@ export default function SettingsPage() {
               {' · '}{skipCompanies.length} excluded {skipCompanies.length !== 1 ? 'companies' : 'company'}
               {' · '}{skipIndustries.length} excluded {skipIndustries.length !== 1 ? 'industries' : 'industry'}
             </div>
-            <div>
-              <label className="text-sm text-gray-400 block mb-1">Location (leave blank for no filter)</label>
-              <input value={locationInput} onChange={e => setLocationInput(e.target.value)} placeholder="e.g. israel"
-                className="w-full bg-gray-800 text-white px-3 py-2 rounded-lg border border-gray-700 focus:outline-none focus:border-green-500" />
-            </div>
-            <div>
-              <label className="text-sm text-gray-400 block mb-1">Title denylist</label>
-              <TagInput tags={skipTitles} onChange={setSkipTitles} placeholder="add term, press Enter" />
-            </div>
-            <div>
-              <label className="text-sm text-gray-400 block mb-1">Title allowlist</label>
-              <TagInput tags={keepTitles} onChange={setKeepTitles} placeholder="add term, press Enter" />
-            </div>
-            <div>
-              <label className="text-sm text-gray-400 block mb-1">Excluded companies</label>
-              <TagInput tags={skipCompanies} onChange={setSkipCompanies} placeholder="company name" />
-            </div>
-            <div>
-              <label className="text-sm text-gray-400 block mb-1">Excluded industries</label>
-              <TagInput tags={skipIndustries} onChange={setSkipIndustries} placeholder="industry" />
-            </div>
+            <FilterPanel
+              locationInput={locationInput}
+              onLocationChange={v => setLocationInput(v)}
+              skipTitles={skipTitles}
+              onSkipTitlesChange={setSkipTitles}
+              keepTitles={keepTitles}
+              onKeepTitlesChange={setKeepTitles}
+              skipCompanies={skipCompanies}
+              onSkipCompaniesChange={setSkipCompanies}
+              skipIndustries={skipIndustries}
+              onSkipIndustriesChange={setSkipIndustries}
+              preview={filterPreview}
+              previewLoading={filterPreviewLoading}
+            />
             <button onClick={saveFilters} disabled={saving} className="px-4 py-2 bg-green-600 hover:bg-green-700 disabled:opacity-50 rounded-lg text-sm font-medium">Save filters</button>
           </div>
         )}

@@ -2,6 +2,8 @@ from fastapi import APIRouter, HTTPException, Header
 from pathlib import Path
 import json
 import os
+from typing import List
+from pydantic import BaseModel
 from db.supabase_client import supabase
 
 router = APIRouter(prefix="/jobs", tags=["jobs"])
@@ -86,6 +88,42 @@ def list_jobs(authorization: str = Header(...)):
         .data
     )
     return rows
+
+
+class FilterPreviewRequest(BaseModel):
+    location_terms: List[str] = []
+    skip_title_terms: List[str] = []
+    keep_title_terms: List[str] = []
+    skip_companies: List[str] = []
+    skip_industries: List[str] = []
+
+
+@router.post("/filter-preview")
+def filter_preview(body: FilterPreviewRequest, authorization: str = Header(...)):
+    _get_user(authorization)
+    if not NEW_JOBS_PATH.exists():
+        return {"empty": True, "passing": 0, "total": 0}
+    jobs = json.loads(NEW_JOBS_PATH.read_text(encoding="utf-8"))
+    total = len(jobs)
+    passing = 0
+    for job in jobs:
+        title = job.get("title", "").lower()
+        location = job.get("location", "").lower()
+        company = job.get("company", "").lower()
+        # location filter
+        if body.location_terms and not any(t.lower() in location for t in body.location_terms):
+            continue
+        # skip title filter
+        if any(t.lower() in title for t in body.skip_title_terms):
+            continue
+        # keep title filter
+        if body.keep_title_terms and not any(t.lower() in title for t in body.keep_title_terms):
+            continue
+        # skip company filter
+        if any(t.lower() in company for t in body.skip_companies):
+            continue
+        passing += 1
+    return {"passing": passing, "total": total, "empty": False}
 
 
 @router.post("/{job_id}/applied")

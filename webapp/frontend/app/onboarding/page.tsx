@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { supabase } from '@/lib/supabaseClient'
 
 const EXAMPLE_PROFILE = `# Candidate Profile
@@ -139,7 +139,7 @@ function TagInput({ tags, onChange, placeholder }: { tags: string[]; onChange: (
       {tags.map(t => (
         <span key={t} className="flex items-center gap-1 px-2 py-0.5 bg-gray-700 rounded text-sm text-white">
           {t}
-          <button onClick={() => onChange(tags.filter(x => x !== t))} className="text-gray-400 hover:text-white">×</button>
+          <button onClick={() => onChange(tags.filter(x => x !== t))} className="text-gray-400 hover:text-white">&times;</button>
         </span>
       ))}
       <input
@@ -152,6 +152,69 @@ function TagInput({ tags, onChange, placeholder }: { tags: string[]; onChange: (
         onBlur={() => input && addTag(input)}
         className="flex-1 min-w-[120px] bg-transparent text-white text-sm outline-none placeholder-gray-500"
       />
+    </div>
+  )
+}
+
+type FilterPanelProps = {
+  locationInput: string
+  onLocationChange: (v: string) => void
+  skipTitles: string[]
+  onSkipTitlesChange: (v: string[]) => void
+  keepTitles: string[]
+  onKeepTitlesChange: (v: string[]) => void
+  skipCompanies: string[]
+  onSkipCompaniesChange: (v: string[]) => void
+  skipIndustries: string[]
+  onSkipIndustriesChange: (v: string[]) => void
+  preview: { passing: number; total: number; empty: boolean } | null
+  previewLoading: boolean
+}
+
+function FilterPanel({ locationInput, onLocationChange, skipTitles, onSkipTitlesChange, keepTitles, onKeepTitlesChange, skipCompanies, onSkipCompaniesChange, skipIndustries, onSkipIndustriesChange, preview, previewLoading }: FilterPanelProps) {
+  return (
+    <div className="space-y-4">
+      <div>
+        <label className="text-sm text-gray-400 block mb-1">
+          Location filter <span title="Only score jobs whose location contains this text (e.g. 'israel')" className="text-gray-500 cursor-help">(?)</span>
+        </label>
+        <input value={locationInput} onChange={e => onLocationChange(e.target.value)} placeholder="e.g. israel (leave blank for no filter)"
+          className="w-full bg-gray-800 text-white px-3 py-2 rounded-lg border border-gray-700 focus:outline-none focus:border-green-500" />
+      </div>
+      <div>
+        <label className="text-sm text-gray-400 block mb-1">
+          Skip jobs whose title contains... <span title="Jobs with these words in the title are dropped before scoring (e.g. data engineer, analyst)" className="text-gray-500 cursor-help">(?)</span>
+        </label>
+        <p className="text-xs text-gray-500 mb-1">e.g. data engineer, analyst, bi developer</p>
+        <TagInput tags={skipTitles} onChange={onSkipTitlesChange} placeholder="add term, press Enter" />
+      </div>
+      <div>
+        <label className="text-sm text-gray-400 block mb-1">
+          Only score jobs whose title contains at least one of... <span title="Leave blank to score all titles. Add terms to score only matching titles (e.g. data scientist, ml engineer)" className="text-gray-500 cursor-help">(?)</span>
+        </label>
+        <p className="text-xs text-gray-500 mb-1">Leave blank to score all titles</p>
+        <TagInput tags={keepTitles} onChange={onKeepTitlesChange} placeholder="add term, press Enter" />
+      </div>
+      <div>
+        <label className="text-sm text-gray-400 block mb-1">
+          Skip these companies <span title="Jobs from these companies are dropped before scoring" className="text-gray-500 cursor-help">(?)</span>
+        </label>
+        <TagInput tags={skipCompanies} onChange={onSkipCompaniesChange} placeholder="company name, press Enter" />
+      </div>
+      <div>
+        <label className="text-sm text-gray-400 block mb-1">
+          Skip these industries <span title="Jobs tagged with these industries are dropped before scoring" className="text-gray-500 cursor-help">(?)</span>
+        </label>
+        <p className="text-xs text-gray-500 mb-1">e.g. gaming, adtech, gambling</p>
+        <TagInput tags={skipIndustries} onChange={onSkipIndustriesChange} placeholder="industry, press Enter" />
+      </div>
+      <div className="text-sm text-gray-400 bg-gray-800/50 rounded-lg px-3 py-2">
+        {previewLoading ? 'Calculating preview...' :
+          preview === null ? '' :
+          preview.empty ? 'No collected jobs yet - run the pipeline first.' :
+          `With these filters, ${preview.passing} of today's ${preview.total} collected jobs will be sent for scoring.`
+        }
+      </div>
     </div>
   )
 }
@@ -179,6 +242,36 @@ export default function OnboardingPage() {
   const [profileSkipWarned, setProfileSkipWarned] = useState(false)
   const [keyTestResult, setKeyTestResult] = useState('')
   const [keyTesting, setKeyTesting] = useState(false)
+  const [filterPreview, setFilterPreview] = useState<{ passing: number; total: number; empty: boolean } | null>(null)
+  const [filterPreviewLoading, setFilterPreviewLoading] = useState(false)
+
+  async function fetchFilterPreview(loc: string, st: string[], kt: string[], sc: string[], si: string[]) {
+    setFilterPreviewLoading(true)
+    try {
+      const { data: { session } } = await supabase.auth.getSession()
+      const token = session?.access_token ?? ''
+      const r = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/jobs/filter-preview`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+        body: JSON.stringify({
+          location_terms: loc.trim() ? [loc.trim()] : [],
+          skip_title_terms: st,
+          keep_title_terms: kt,
+          skip_companies: sc,
+          skip_industries: si,
+        }),
+      })
+      if (r.ok) setFilterPreview(await r.json())
+    } catch { /* silent */ } finally {
+      setFilterPreviewLoading(false)
+    }
+  }
+
+  useEffect(() => {
+    if (step !== 4) return
+    const t = setTimeout(() => fetchFilterPreview(locationInput, filters.skip_title_terms, filters.keep_title_terms, filters.skip_companies, filters.skip_industries), 400)
+    return () => clearTimeout(t)
+  }, [step, locationInput, filters.skip_title_terms, filters.keep_title_terms, filters.skip_companies, filters.skip_industries])
 
   async function testKeyInline() {
     setKeyTesting(true)
@@ -252,7 +345,6 @@ export default function OnboardingPage() {
       })
       if (!r.ok) throw new Error('Setup failed')
 
-      // Trigger first scoring run (ignore errors - user can retry)
       await fetch(`${process.env.NEXT_PUBLIC_API_URL}/score/`, {
         method: 'POST',
         headers: { Authorization: `Bearer ${token}` },
@@ -295,7 +387,9 @@ export default function OnboardingPage() {
               <h2 className="text-2xl font-bold">Set up your profile <span className="text-sm font-normal text-gray-500">(optional)</span></h2>
               <p className="text-sm text-gray-500 mt-1">Your profile tells the AI what to look for - without it, scoring is generic.</p>
             </div>
-            <p className="text-gray-400 text-sm">Your profile tells the AI what to look for - roles, domains, location, dealbreakers, and a scoring rubric. You can skip this and add it later in settings.</p>
+            <p className="text-gray-400 text-sm">Describe your target roles, domains, location, and dealbreakers. You can skip this and add it later in Settings.</p>
+
+            <ProfileExampleGuidance />
 
             {/* Path A: Upload */}
             <div>
@@ -308,9 +402,6 @@ export default function OnboardingPage() {
               />
               {mdUploadError && <p className="text-sm text-red-400 mt-1">{mdUploadError}</p>}
             </div>
-
-            {/* Example + guidance */}
-            <ProfileExampleGuidance />
 
             {/* Path B: Generate with AI */}
             <div className="space-y-2 bg-gray-800/50 rounded-xl p-4 border border-gray-700">
@@ -328,7 +419,6 @@ export default function OnboardingPage() {
               placeholder="Paste the LLM output here (or your profile.md content)..."
               className="w-full bg-gray-800 text-white p-3 rounded-lg border border-gray-700 resize-none focus:outline-none focus:border-green-500" />
 
-            {/* Completeness hint */}
             {(() => {
               const missing = checkProfileCompleteness(profileMd)
               return missing.length > 0 && profileMd.trim() ? (
@@ -357,7 +447,7 @@ export default function OnboardingPage() {
               <h2 className="text-2xl font-bold">Upload your CV <span className="text-sm font-normal text-gray-500">(optional)</span></h2>
               <p className="text-sm text-gray-500 mt-1">Your CV is the ground truth of what you&apos;ve done - it sharpens every score.</p>
             </div>
-            <p className="text-gray-400 text-sm">Your CV is used verbatim in scoring prompts. You can skip this and add it later in settings.</p>
+            <p className="text-gray-400 text-sm">Your CV is used verbatim in scoring prompts. You can skip this and add it later in Settings.</p>
             <div>
               <label className="text-sm text-gray-400 block mb-1">Upload CV (PDF, DOCX, TXT)</label>
               <input
@@ -452,28 +542,21 @@ export default function OnboardingPage() {
               <h2 className="text-2xl font-bold">Configure filters</h2>
               <p className="text-sm text-gray-500 mt-1">Filters drop the noise before scoring - saves you reading irrelevant results.</p>
             </div>
-            <p className="text-gray-400 text-sm">Jobs not matching these filters are dropped before scoring.</p>
 
-            <div>
-              <label className="text-sm text-gray-400 block mb-1">Location (leave blank for no filter)</label>
-              <input value={locationInput} onChange={e => setLocationInput(e.target.value)} placeholder="e.g. israel" className="w-full bg-gray-800 text-white px-3 py-2 rounded-lg border border-gray-700 focus:outline-none focus:border-green-500" />
-            </div>
-            <div>
-              <label className="text-sm text-gray-400 block mb-1">Title denylist (auto-excluded titles)</label>
-              <TagInput tags={filters.skip_title_terms} onChange={v => setFilters(f => ({ ...f, skip_title_terms: v }))} placeholder="add term, press Enter" />
-            </div>
-            <div>
-              <label className="text-sm text-gray-400 block mb-1">Title allowlist (leave blank to score everything)</label>
-              <TagInput tags={filters.keep_title_terms} onChange={v => setFilters(f => ({ ...f, keep_title_terms: v }))} placeholder="add term, press Enter" />
-            </div>
-            <div>
-              <label className="text-sm text-gray-400 block mb-1">Excluded companies</label>
-              <TagInput tags={filters.skip_companies} onChange={v => setFilters(f => ({ ...f, skip_companies: v }))} placeholder="company name, press Enter" />
-            </div>
-            <div>
-              <label className="text-sm text-gray-400 block mb-1">Excluded industries</label>
-              <TagInput tags={filters.skip_industries} onChange={v => setFilters(f => ({ ...f, skip_industries: v }))} placeholder="industry, press Enter" />
-            </div>
+            <FilterPanel
+              locationInput={locationInput}
+              onLocationChange={v => setLocationInput(v)}
+              skipTitles={filters.skip_title_terms}
+              onSkipTitlesChange={v => setFilters(f => ({ ...f, skip_title_terms: v }))}
+              keepTitles={filters.keep_title_terms}
+              onKeepTitlesChange={v => setFilters(f => ({ ...f, keep_title_terms: v }))}
+              skipCompanies={filters.skip_companies}
+              onSkipCompaniesChange={v => setFilters(f => ({ ...f, skip_companies: v }))}
+              skipIndustries={filters.skip_industries}
+              onSkipIndustriesChange={v => setFilters(f => ({ ...f, skip_industries: v }))}
+              preview={filterPreview}
+              previewLoading={filterPreviewLoading}
+            />
 
             {/* Setup summary */}
             <div className="bg-gray-800 rounded-lg p-3 text-sm space-y-1">
