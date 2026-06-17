@@ -244,6 +244,8 @@ export default function OnboardingPage() {
   const [keyTesting, setKeyTesting] = useState(false)
   const [filterPreview, setFilterPreview] = useState<{ passing: number; total: number; empty: boolean } | null>(null)
   const [filterPreviewLoading, setFilterPreviewLoading] = useState(false)
+  const [scoringStage, setScoringStage] = useState<'idle' | 'scoring' | 'done'>('idle')
+  const [scoredCount, setScoredCount] = useState<number | null>(null)
 
   async function fetchFilterPreview(loc: string, st: string[], kt: string[], sc: string[], si: string[]) {
     setFilterPreviewLoading(true)
@@ -345,16 +347,28 @@ export default function OnboardingPage() {
       })
       if (!r.ok) throw new Error('Setup failed')
 
-      await fetch(`${process.env.NEXT_PUBLIC_API_URL}/score/`, {
-        method: 'POST',
-        headers: { Authorization: `Bearer ${token}` },
-      }).catch(() => {})
+      // Trigger the first scan and wait for the result so we can show a count
+      // instead of redirecting silently.
+      setScoringStage('scoring')
+      try {
+        const scoreRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/score/`, {
+          method: 'POST',
+          headers: { Authorization: `Bearer ${token}` },
+        })
+        const scoreData = await scoreRes.json().catch(() => ({}))
+        setScoredCount(scoreRes.ok ? (scoreData.scored ?? 0) : null)
+      } catch {
+        setScoredCount(null)
+      }
+      setScoringStage('done')
     } catch (e: unknown) {
       setError(e instanceof Error ? e.message : 'Something went wrong')
       setSaving(false)
+      setScoringStage('idle')
       return
     }
-    window.location.href = '/digest'
+    // Brief pause so the result count is visible before navigating.
+    setTimeout(() => { window.location.href = '/digest' }, 1500)
   }
 
   const steps = ['Profile', 'CV', 'API Key', 'Filters']
@@ -587,13 +601,28 @@ export default function OnboardingPage() {
             </div>
 
             {error && <p className="text-red-400 text-sm">{error}</p>}
+
+            {scoringStage === 'scoring' && (
+              <div className="flex items-center gap-2 text-sm text-gray-300 bg-gray-800/50 rounded-lg px-3 py-2">
+                <span className="w-4 h-4 rounded-full border-2 border-gray-600 border-t-green-500 animate-spin inline-block" />
+                Scoring your first batch of jobs...
+              </div>
+            )}
+            {scoringStage === 'done' && (
+              <div className="flex items-center gap-2 text-sm text-green-400 bg-green-900/20 border border-green-700/30 rounded-lg px-3 py-2">
+                {scoredCount === null
+                  ? 'Setup complete - taking you to your digest...'
+                  : `Scored ${scoredCount} new jobs - taking you to your digest...`}
+              </div>
+            )}
+
             <div className="flex justify-between">
-              <button onClick={() => setStep(3)} className="px-6 py-2 bg-gray-700 hover:bg-gray-600 rounded-lg">&lt;- Back</button>
+              <button onClick={() => setStep(3)} disabled={saving} className="px-6 py-2 bg-gray-700 hover:bg-gray-600 disabled:opacity-40 rounded-lg">&lt;- Back</button>
               <button onClick={finish} disabled={saving} className="px-6 py-2 bg-green-600 hover:bg-green-700 disabled:opacity-40 rounded-lg font-medium">
-                {saving ? 'Starting...' : 'Start my first scan'}
+                {scoringStage === 'scoring' ? 'Scoring...' : saving ? 'Starting...' : 'Start my first scan'}
               </button>
             </div>
-            <p className="text-xs text-gray-500 text-right">Your first scan runs in the background - the digest may take a moment to populate.</p>
+            <p className="text-xs text-gray-500 text-right">Your first scan runs now - we will show the result before opening your digest.</p>
           </div>
         )}
       </div>
