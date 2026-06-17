@@ -143,6 +143,67 @@ function FlagGlossary() {
   )
 }
 
+function JobCardSkeleton() {
+  return (
+    <div className="bg-gray-900 rounded-xl p-5 flex gap-4 animate-pulse">
+      <div className="w-8 h-8 rounded-full bg-gray-800 flex-shrink-0" />
+      <div className="flex-1 min-w-0 space-y-3">
+        <div className="h-4 bg-gray-800 rounded w-2/3" />
+        <div className="h-3 bg-gray-800 rounded w-1/3" />
+        <div className="h-3 bg-gray-800 rounded w-full" />
+        <div className="h-8 bg-gray-800 rounded w-24" />
+      </div>
+    </div>
+  )
+}
+
+// Diagnostic empty state shown when there are no jobs to render. The variant is
+// keyed on account state (profile, key) plus whether anything has been scored,
+// so the copy points at the real blocker instead of always saying "Score now".
+function EmptyState({
+  hasProfile, hasApiKey, scoredAny, onResetFilters,
+}: {
+  hasProfile: boolean
+  hasApiKey: boolean
+  scoredAny: boolean
+  onResetFilters: () => void
+}) {
+  if (!hasProfile) {
+    return (
+      <div className="text-center py-12 space-y-3">
+        <p className="text-gray-400">Add a profile in Settings to start scoring.</p>
+        <a href="/settings" className="inline-block px-4 py-2 bg-green-600 hover:bg-green-700 rounded-lg text-sm font-medium">
+          Go to Settings
+        </a>
+      </div>
+    )
+  }
+  if (!hasApiKey) {
+    return (
+      <div className="text-center py-12 space-y-3">
+        <p className="text-gray-400">Add your Gemini key in Settings to start scoring.</p>
+        <a href="/settings" className="inline-block px-4 py-2 bg-green-600 hover:bg-green-700 rounded-lg text-sm font-medium">
+          Go to Settings
+        </a>
+      </div>
+    )
+  }
+  if (!scoredAny) {
+    return (
+      <p className="text-gray-400 text-center py-12">Run your first scan - click "Score now" above to score newly collected jobs.</p>
+    )
+  }
+  // Scored, but the current filters hide everything.
+  return (
+    <div className="text-center py-12 space-y-3">
+      <p className="text-gray-400">No jobs match your filters.</p>
+      <button onClick={onResetFilters} className="inline-block px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded-lg text-sm font-medium">
+        Reset filters
+      </button>
+    </div>
+  )
+}
+
 function JobCard({ job, onToggleApplied, currentProfileVersion }: { job: Job; onToggleApplied: (j: Job) => void; currentProfileVersion: number }) {
   const staleProfile = job.profile_version !== undefined && job.profile_version < currentProfileVersion
   return (
@@ -298,6 +359,13 @@ export default function DigestPage() {
   const active = openJobs.filter(j => !j.applied)
   const applied = openJobs.filter(j => j.applied)
 
+  function resetFilters() {
+    setMinScore(5)
+    setTitleFilter('')
+    setCompanyFilter('')
+    setLocationFilter('')
+  }
+
   const lastScored = jobs.length > 0 ? timeAgo(jobs.reduce((a, b) => a.scored_at > b.scored_at ? a : b).scored_at) : null
 
   return (
@@ -309,7 +377,13 @@ export default function DigestPage() {
           <div className="text-xs text-gray-500">New jobs collected Mon &amp; Thu</div>
         </div>
         <div className="flex items-center gap-3">
-          {scoreMsg && <span className="text-sm text-gray-400">{scoreMsg}</span>}
+          {scoring && (
+            <span className="flex items-center gap-2 text-sm text-gray-400">
+              <span className="w-3 h-3 rounded-full border-2 border-gray-600 border-t-green-500 animate-spin inline-block" />
+              Scoring your jobs...
+            </span>
+          )}
+          {!scoring && scoreMsg && <span className="text-sm text-gray-400">{scoreMsg}</span>}
           {runsUsed >= 2 && (
             <span className="text-xs text-gray-500" title="2 scoring runs per week. The limit resets at the start of the week (Monday).">
               Run limit reached - {resetWording(runLimitResetsOn)}
@@ -364,14 +438,20 @@ export default function DigestPage() {
         </div>
 
         {/* Job list */}
-        {loading && <p className="text-gray-400">Loading...</p>}
-        {!loading && active.length === 0 && applied.length === 0 && (
-          <p className="text-gray-400 text-center py-12">No jobs scored yet. Click "Score now" to run your first scoring.</p>
+        {loading && (
+          <div className="space-y-4">
+            {[0, 1, 2].map(i => <JobCardSkeleton key={i} />)}
+          </div>
         )}
-        {!loading && active.length === 0 && applied.length > 0 && (
-          <p className="text-gray-400 text-center py-6">No jobs match your current filters.</p>
+        {!loading && active.length === 0 && (
+          <EmptyState
+            hasProfile={hasProfile}
+            hasApiKey={hasApiKey}
+            scoredAny={jobs.length > 0}
+            onResetFilters={resetFilters}
+          />
         )}
-        {active.map(job => <JobCard key={job.id} job={job} onToggleApplied={toggleApplied} currentProfileVersion={currentProfileVersion} />)}
+        {!loading && active.map(job => <JobCard key={job.id} job={job} onToggleApplied={toggleApplied} currentProfileVersion={currentProfileVersion} />)}
 
         {/* Applied section */}
         {applied.length > 0 && (
