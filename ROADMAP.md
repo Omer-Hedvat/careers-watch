@@ -90,7 +90,6 @@ All Phase P2 tasks are wrapped. See `ROADMAP_ARCHIVE.md`.
 | [WEBAPP_PROFILE_UPLOAD_OR_PROMPT](future_devs/WEBAPP_PROFILE_UPLOAD_OR_PROMPT_SPEC.md) | Profile upload OR AI-prompt generator for building profile.md | `not-started` | M | — |
 | [WEBAPP_COMPANIES_VIEW](future_devs/WEBAPP_COMPANIES_VIEW_SPEC.md) | Companies page — inspect all tracked companies + metadata | `not-started` | S | — |
 | [WEBAPP_POSITIONS_VIEW](future_devs/WEBAPP_POSITIONS_VIEW_SPEC.md) | Positions page — browse all open roles from pipeline | `not-started` | S | WEBAPP_COMPANIES_VIEW |
-| [WEBAPP_MULTI_FILTER](future_devs/WEBAPP_MULTI_FILTER_SPEC.md) | Multi-value filters using ';' + example placeholders in filter inputs | `not-started` | S | — |
 | [PROFILE_CV_GAP_ANALYSIS](future_devs/PROFILE_CV_GAP_ANALYSIS_SPEC.md) | Gap analysis: profile vs CV, position vs CV, position vs profile | `not-started` | M | — |
 
 ---
@@ -145,7 +144,7 @@ All Phase P2 tasks are wrapped. See `ROADMAP_ARCHIVE.md`.
 | `future_devs/WEBAPP_PROFILE_UPLOAD_OR_PROMPT_SPEC.md` | P5 — Profile upload or AI prompt generator |
 | `future_devs/WEBAPP_COMPANIES_VIEW_SPEC.md` | P5 — Companies page |
 | `future_devs/WEBAPP_POSITIONS_VIEW_SPEC.md` | P5 — Positions page |
-| `future_devs/WEBAPP_MULTI_FILTER_SPEC.md` | P5 — Multi-value filters with ';' |
+| `future_devs/archive/WEBAPP_MULTI_FILTER_SPEC.md` | P5 — Multi-value filters with ';' (wrapped) |
 | `future_devs/PROFILE_CV_GAP_ANALYSIS_SPEC.md` | P5 — Gap analysis: profile vs CV, positions vs CV |
 | `future_devs/RAG_CHATBOT_SPEC.md` | P6 — RAG sandbox + chat UI (next AI epic) |
 | `future_devs/MULTI_AGENT_RESUME_TAILOR_SPEC.md` | P6 — Multi-agent CV tailor |

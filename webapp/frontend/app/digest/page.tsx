@@ -72,7 +72,9 @@ export default function DigestPage() {
   const [runsUsed, setRunsUsed] = useState(0)
   const [currentProfileVersion, setCurrentProfileVersion] = useState(1)
   const [minScore, setMinScore] = useState(5)
-  const [search, setSearch] = useState('')
+  const [titleFilter, setTitleFilter] = useState('')
+  const [companyFilter, setCompanyFilter] = useState('')
+  const [locationFilter, setLocationFilter] = useState('')
   const [showApplied, setShowApplied] = useState(false)
 
   async function getToken() {
@@ -128,9 +130,17 @@ export default function DigestPage() {
     setJobs(prev => prev.map(j => j.id === job.id ? { ...j, applied: !j.applied } : j))
   }
 
+  function matchesMultiFilter(value: string, filter: string): boolean {
+    if (!filter.trim()) return true
+    const terms = filter.split(';').map(t => t.trim()).filter(Boolean)
+    return terms.some(t => value.toLowerCase().includes(t.toLowerCase()))
+  }
+
   const filtered = jobs
     .filter(j => j.score >= minScore)
-    .filter(j => !search || j.company.toLowerCase().includes(search.toLowerCase()) || j.title.toLowerCase().includes(search.toLowerCase()))
+    .filter(j => matchesMultiFilter(j.title, titleFilter))
+    .filter(j => matchesMultiFilter(j.company, companyFilter))
+    .filter(j => matchesMultiFilter(j.location, locationFilter))
 
   const active = filtered.filter(j => !j.applied)
   const applied = filtered.filter(j => j.applied)
@@ -160,14 +170,23 @@ export default function DigestPage() {
 
       <div className="max-w-3xl mx-auto px-4 py-6 space-y-4">
         {/* Filters */}
-        <div className="flex gap-3 flex-wrap">
+        <div className="space-y-2">
           <div className="flex items-center gap-2">
             <label className="text-sm text-gray-400">Min score:</label>
             <input type="range" min={0} max={10} value={minScore} onChange={e => setMinScore(+e.target.value)} className="w-24" />
             <span className="text-sm w-4">{minScore}</span>
           </div>
-          <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Search company or title..."
-            className="flex-1 min-w-[200px] px-3 py-1.5 bg-gray-800 rounded-lg border border-gray-700 text-sm focus:outline-none focus:border-green-500" />
+          <div className="flex gap-2 flex-wrap">
+            <input value={titleFilter} onChange={e => setTitleFilter(e.target.value)}
+              placeholder="e.g. Data Scientist; Machine Learning; Applied Scientist"
+              className="flex-1 min-w-[200px] px-3 py-1.5 bg-gray-800 rounded-lg border border-gray-700 text-sm focus:outline-none focus:border-green-500" />
+            <input value={companyFilter} onChange={e => setCompanyFilter(e.target.value)}
+              placeholder="e.g. Wiz; CrowdStrike; Palo Alto"
+              className="flex-1 min-w-[160px] px-3 py-1.5 bg-gray-800 rounded-lg border border-gray-700 text-sm focus:outline-none focus:border-green-500" />
+            <input value={locationFilter} onChange={e => setLocationFilter(e.target.value)}
+              placeholder="e.g. Tel Aviv; Herzliya; Remote"
+              className="flex-1 min-w-[160px] px-3 py-1.5 bg-gray-800 rounded-lg border border-gray-700 text-sm focus:outline-none focus:border-green-500" />
+          </div>
         </div>
 
         {/* Job list */}

@@ -95,3 +95,4 @@ Wrapped features only. Active work lives in `ROADMAP.md`.
 | Feature | Spec | Effort | Status |
 |---|---|---|---|
 | [webapp] Favicon (briefcase SVG) + Open Graph meta tags | `future_devs/archive/WEBAPP_FAVICON_SPEC.md` | XS | `wrapped` |
+| [webapp] Multi-value `;`-split filters (title, company, location) + placeholder text on digest page | `future_devs/archive/WEBAPP_MULTI_FILTER_SPEC.md` | S | `wrapped` |
