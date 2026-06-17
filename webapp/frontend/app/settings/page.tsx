@@ -6,16 +6,33 @@ import { supabase } from '@/lib/supabaseClient'
 
 type Tab = 'profile' | 'cv' | 'filters' | 'apikey' | 'account'
 
-const PROFILE_PROMPT = `I'm setting up a job-matching tool that scores job postings against my profile.
-I need you to create a profile.md file for me by asking me questions about:
-- My background and years of experience
-- My target roles (title, seniority)
-- My preferred domains/industries
-- What I consider a strong fit vs. a dealbreaker
-- My location and commute constraints
-- What I explicitly don't want
+const PROFILE_PROMPT = `You are helping me create a job-matching profile file. I will answer your questions and you will produce a structured Markdown document called profile.md that a job-scoring AI will use to evaluate job postings for me.
 
-Ask me one section at a time. When done, output a complete profile.md in markdown.`
+Ask me the following questions one at a time (or ask them all at once and I will answer):
+
+1. What is your current title and how many years of experience do you have?
+2. What is your primary specialization - the area where you are stronger than most people at your level?
+3. What job titles are you targeting, in priority order? (e.g. "Team Lead DS first, Senior DS second")
+4. What domains do you want to work in? (e.g. cyber security, fraud, fintech, healthcare, general SaaS). Which are required vs. preferred?
+5. Where are you located and what is your maximum commute time? Are you open to hybrid, fully remote, or relocation?
+6. What are your absolute dealbreakers - roles or companies you will not consider no matter how good the title looks?
+7. What specific technologies, methodologies, or company stages are a strong signal that a role is right for you?
+8. What kinds of roles look good on paper but are actually wrong for you? (e.g. "MLOps-heavy roles", "pure research", "customer-facing")
+9. What nuances should the scorer know that are easy to get wrong? (e.g. "I have military leadership but no formal DS manager title - treat it as a partial fit, not a miss")
+10. What does a 9-10 role look like for you? What does a 5-6 look like?
+
+After I answer, produce a profile.md with these exact sections:
+- # Candidate Profile
+- ## Who I am, in one paragraph
+- ## What I'm looking for, in priority order
+- ## Location
+- ## Strong fit signals (boost the score)
+- ## Weak fit / skip (drop the score)
+- ## Dealbreakers (score = 0, do not surface)
+- ## Notes for the matcher
+- ## Scoring rubric for the matcher
+
+Write the scoring rubric as explicit score bands: what a 9-10 looks like, what a 7-8 looks like, what a 5-6 looks like, and what 0-2 means. Be specific - reference the role types and signals I described.`
 
 function TagInput({ tags, onChange, placeholder }: { tags: string[]; onChange: (t: string[]) => void; placeholder?: string }) {
   const [input, setInput] = useState('')
@@ -56,8 +73,10 @@ export default function SettingsPage() {
   // Profile tab
   const [profileMd, setProfileMd] = useState('')
   const [profileVersion, setProfileVersion] = useState<number>(1)
+  const [profileUpdatedAt, setProfileUpdatedAt] = useState<string | null>(null)
   const [showPrompt, setShowPrompt] = useState(false)
   const [copiedPrompt, setCopiedPrompt] = useState(false)
+  const [mdUploadError, setMdUploadError] = useState('')
 
   // CV tab
   const [cvText, setCvText] = useState('')
@@ -106,6 +125,7 @@ export default function SettingsPage() {
     const d = await r.json()
     setProfileMd(d.profile_md ?? '')
     setProfileVersion(d.profile_version ?? 1)
+    setProfileUpdatedAt(d.profile_updated_at ?? null)
     setCvText(d.cv_text ?? '')
     setCvUpdatedAt(d.cv_updated_at ?? null)
     setHasApiKey(d.has_api_key ?? false)
@@ -139,12 +159,32 @@ export default function SettingsPage() {
     setSaving(true)
     const r = await api('/user/profile', { method: 'PATCH', body: JSON.stringify({ profile_md: profileMd }) })
     if (r.ok) {
-      setProfileVersion(v => v + 1)
+      const d = await r.json()
+      setProfileVersion(d.profile_version ?? (profileVersion + 1))
+      setProfileUpdatedAt(d.profile_updated_at ?? null)
       flash('Profile saved')
     } else {
       flash('Save failed')
     }
     setSaving(false)
+  }
+
+  function uploadMdFile(file: File) {
+    setMdUploadError('')
+    if (!file.name.endsWith('.md') && file.type !== 'text/markdown' && file.type !== 'text/plain') {
+      setMdUploadError('Only .md files are supported')
+      return
+    }
+    if (file.size > 1024 * 1024) {
+      setMdUploadError('File must be under 1 MB')
+      return
+    }
+    const reader = new FileReader()
+    reader.onload = e => {
+      const text = e.target?.result as string
+      setProfileMd(text)
+    }
+    reader.readAsText(file, 'utf-8')
   }
 
   async function saveCv() {
@@ -313,27 +353,59 @@ export default function SettingsPage() {
         {/* Profile tab */}
         {activeTab === 'profile' && (
           <div className="space-y-4">
+            {/* Status */}
             <div className="text-sm text-gray-400">
               {profileMd.trim()
-                ? <span className="text-green-400">Profile saved · v{profileVersion}</span>
-                : <span className="text-amber-400">No profile yet</span>
+                ? <span className="text-green-400">
+                    Profile saved · v{profileVersion}
+                    {profileUpdatedAt && ` · updated ${new Date(profileUpdatedAt).toLocaleDateString(undefined, { day: 'numeric', month: 'short', year: 'numeric' })}`}
+                  </span>
+                : <span className="text-amber-400">No profile yet - upload a file or generate one with AI below</span>
               }
             </div>
-            <textarea value={profileMd} onChange={e => setProfileMd(e.target.value)} rows={20}
-              className="w-full bg-gray-900 text-white p-4 rounded-xl border border-gray-700 font-mono text-sm resize-none focus:outline-none focus:border-green-500" />
-            <div className="flex gap-3">
-              <button onClick={saveProfile} disabled={saving} className="px-4 py-2 bg-green-600 hover:bg-green-700 disabled:opacity-50 rounded-lg text-sm font-medium">Save profile</button>
-              <button onClick={() => setShowPrompt(v => !v)} className="px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded-lg text-sm">Regenerate with AI</button>
+
+            {/* Path A: Upload .md */}
+            <div>
+              <label className="text-sm text-gray-400 block mb-1">Upload profile.md</label>
+              <input
+                type="file"
+                accept=".md"
+                onChange={e => { const f = e.target.files?.[0]; if (f) uploadMdFile(f); e.target.value = '' }}
+                className="block text-sm text-gray-400 file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:bg-gray-700 file:text-white file:text-sm hover:file:bg-gray-600 cursor-pointer"
+              />
+              {mdUploadError && <p className="text-sm text-red-400 mt-1">{mdUploadError}</p>}
             </div>
+
+            {/* Path B: Generate with AI */}
+            <button onClick={() => setShowPrompt(v => !v)} className="px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded-lg text-sm">
+              {showPrompt ? '▾' : '▸'} Generate with AI
+            </button>
             {showPrompt && (
-              <div className="relative">
-                <textarea readOnly value={PROFILE_PROMPT} rows={8} className="w-full bg-gray-800 font-mono text-xs p-3 rounded-lg border border-gray-700 resize-none text-gray-300" />
-                <button onClick={() => { navigator.clipboard.writeText(PROFILE_PROMPT); setCopiedPrompt(true); setTimeout(() => setCopiedPrompt(false), 2000) }}
-                  className="absolute top-2 right-2 px-2 py-1 bg-gray-700 hover:bg-gray-600 text-xs rounded">
-                  {copiedPrompt ? 'Copied!' : 'Copy'}
-                </button>
+              <div className="space-y-3 bg-gray-800/50 rounded-xl p-4 border border-gray-700">
+                <p className="text-sm font-medium text-white">Step 1 - Copy this prompt</p>
+                <div className="relative">
+                  <textarea readOnly value={PROFILE_PROMPT} rows={10}
+                    className="w-full bg-gray-800 font-mono text-xs p-3 rounded-lg border border-gray-700 resize-none text-gray-300" />
+                  <button
+                    onClick={() => { navigator.clipboard.writeText(PROFILE_PROMPT); setCopiedPrompt(true); setTimeout(() => setCopiedPrompt(false), 2000) }}
+                    className="absolute top-2 right-2 px-2 py-1 bg-gray-700 hover:bg-gray-600 text-xs rounded">
+                    {copiedPrompt ? 'Copied!' : 'Copy'}
+                  </button>
+                </div>
+                <p className="text-sm text-gray-400">
+                  <span className="font-medium text-white">Step 2</span> - Open ChatGPT, Claude, Gemini, or any LLM you prefer. Paste this prompt and answer the questions it asks. The LLM will output a ready-to-use profile.md file.
+                </p>
+                <p className="text-sm text-gray-400">
+                  <span className="font-medium text-white">Step 3</span> - Paste the LLM output into the editor below and click Save profile.
+                </p>
               </div>
             )}
+
+            {/* Profile editor */}
+            <textarea value={profileMd} onChange={e => setProfileMd(e.target.value)} rows={20}
+              placeholder="Paste your profile.md here..."
+              className="w-full bg-gray-900 text-white p-4 rounded-xl border border-gray-700 font-mono text-sm resize-none focus:outline-none focus:border-green-500" />
+            <button onClick={saveProfile} disabled={saving} className="px-4 py-2 bg-green-600 hover:bg-green-700 disabled:opacity-50 rounded-lg text-sm font-medium">Save profile</button>
           </div>
         )}
 
