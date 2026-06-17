@@ -1,7 +1,7 @@
 | Field | Value |
 |---|---|
 | **Phase** | P7 |
-| **Status** | `not-started` |
+| **Status** | `completed` |
 | **Effort** | XS |
 | **Epic** | WEBAPP_FIRST_RUN_COMPREHENSION |
 | **Depends on** | — |
