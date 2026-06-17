@@ -14,7 +14,9 @@ from ats.lever import fetch_positions as _fetch_lever
 from ats.microsoft_careers import fetch_positions as _fetch_microsoft_careers
 from ats.oracle_hcm import fetch_positions as _fetch_oracle_hcm
 from ats.privya import fetch_positions as _fetch_privya
+from ats.smartrecruiters import fetch_positions as _fetch_smartrecruiters
 from ats.successfactors import fetch_positions as _fetch_successfactors
+from ats.taleo import fetch_positions as _fetch_taleo
 from ats.talentbrew import fetch_positions as _fetch_talentbrew
 from ats.teamme import fetch_positions as _fetch_teamme
 from ats.teamtailor import fetch_positions as _fetch_teamtailor
@@ -42,10 +44,15 @@ ATS_PULLERS = {
     "microsoft_careers": lambda p: _fetch_microsoft_careers(p.get("location_query", "Israel")),
     "oracle_hcm": lambda p: _fetch_oracle_hcm(p["host"], p["site"], p.get("location_query", "Israel")),
     "privya": lambda params: _fetch_privya(),
+    # company_slug is canonical; 'company' is the legacy key used in early big_companies.yml entries
+    "smartrecruiters": lambda p: _fetch_smartrecruiters(
+        p.get("company_slug") or p.get("company", "")
+    ),
     "successfactors": lambda p: _fetch_successfactors(
         p["tenant"], p.get("branded_host"), p.get("location_query")
     ),
     "talentbrew": lambda params: _fetch_talentbrew(params["host"], params.get("facet", "israel")),
+    "taleo": lambda p: _fetch_taleo(p["host"], p.get("careers_section", "ex")),
     "teamme": lambda p: _fetch_teamme(p["tenant"]),
     "teamtailor": lambda params: _fetch_teamtailor(params["subdomain"], params.get("custom_host_url")),
     "workable": lambda params: _fetch_workable(params["company_slug"]),

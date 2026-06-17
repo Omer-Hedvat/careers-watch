@@ -99,7 +99,7 @@ All Phase P2 tasks are wrapped. See `ROADMAP_ARCHIVE.md`.
 | [WEBAPP_SETTINGS_STATE_VISIBILITY](future_devs/WEBAPP_SETTINGS_STATE_VISIBILITY_SPEC.md) | Settings shows current state: CV file/text, filters, API-key present/missing, account name+email | `completed` | S | — |
 | [WEBAPP_PROFILE_UPLOAD_OR_PROMPT](future_devs/WEBAPP_PROFILE_UPLOAD_OR_PROMPT_SPEC.md) | Profile upload OR AI-prompt generator for building profile.md | `completed` | M | — |
 | [WEBAPP_POSITIONS_VIEW](future_devs/archive/WEBAPP_POSITIONS_VIEW_SPEC.md) | Positions page — browse all open roles from pipeline | `wrapped` | S | WEBAPP_COMPANIES_VIEW ✅ |
-| [PROFILE_CV_GAP_ANALYSIS](future_devs/PROFILE_CV_GAP_ANALYSIS_SPEC.md) | Gap analysis: profile vs CV, position vs CV, position vs profile | `not-started` | M | — |
+| [PROFILE_CV_GAP_ANALYSIS](future_devs/PROFILE_CV_GAP_ANALYSIS_SPEC.md) | Gap analysis: profile vs CV, position vs CV, position vs profile | `completed` | M | — |
 | [WEBAPP_COUNTUP_ANIMATION](future_devs/archive/WEBAPP_COUNTUP_ANIMATION_SPEC.md) | Count-up animation on Companies + Positions page load | `wrapped` | XS | — |
 | [POSITION_FIRST_SEEN](future_devs/POSITION_FIRST_SEEN_SPEC.md) | Stamp first_seen date on each position — persist across daily runs, show in digest + webapp cards | `completed` | S | — |
 
@@ -194,11 +194,11 @@ New ATS pullers for high-value companies currently stuck in `ats: other` or `ats
 
 | Slug | Title | Status | Effort | Depends on |
 |---|---|---|---|---|
-| [ATS_SMARTRECRUITERS](future_devs/ATS_SMARTRECRUITERS_SPEC.md) | SmartRecruiters puller - CyberArk + Palo Alto Networks | `not-started` | S | — |
-| [ATS_BAMBOOHR](future_devs/ATS_BAMBOOHR_SPEC.md) | BambooHR puller - Nilus + 4 others | `not-started` | S | — |
-| [ATS_CHECKPOINT_CAREERS](future_devs/ATS_CHECKPOINT_CAREERS_SPEC.md) | Check Point custom careers puller (single-tenant) | `not-started` | S | — |
-| [ATS_TALEO](future_devs/ATS_TALEO_SPEC.md) | Oracle Taleo puller - Radware | `not-started` | M | — |
-| [ATS_ORACLE_HCM](future_devs/ATS_ORACLE_HCM_SPEC.md) | Oracle HCM puller - Dell Technologies Israel | `not-started` | M | — |
+| [ATS_SMARTRECRUITERS](future_devs/ATS_SMARTRECRUITERS_SPEC.md) | SmartRecruiters puller - CyberArk + Palo Alto Networks | `completed` | S | — |
+| [ATS_BAMBOOHR](future_devs/ATS_BAMBOOHR_SPEC.md) | BambooHR puller - Nilus + 4 others | `completed` | S | — |
+| [ATS_CHECKPOINT_CAREERS](future_devs/ATS_CHECKPOINT_CAREERS_SPEC.md) | Check Point custom careers puller (single-tenant) | `completed` | S | — |
+| [ATS_TALEO](future_devs/ATS_TALEO_SPEC.md) | Oracle Taleo puller - Radware | `completed` | M | — |
+| [ATS_ORACLE_HCM](future_devs/ATS_ORACLE_HCM_SPEC.md) | Oracle HCM puller - Dell Technologies Israel | `completed` | M | — |
 
 ---
 

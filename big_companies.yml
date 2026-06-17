@@ -96,12 +96,13 @@
 
 - name: CyberArk
   website: https://www.cyberark.com
-  careers_url: https://jobs.smartrecruiters.com/Cyberark1
-  ats: other
-  ats_params: {}  # TODO: needs a SmartRecruiters puller (api.smartrecruiters.com/v1/companies/Cyberark1/postings) - NOT SuccessFactors
+  careers_url: https://careers.smartrecruiters.com/Cyberark1
+  ats: smartrecruiters
+  ats_params:
+    company_slug: Cyberark1
   category: cyber
   location_filter: israel
-  notes: "Reconfirmed 2026-05-17: CyberArk is on SmartRecruiters, not SuccessFactors. www.cyberark.com/careers/ redirects to Palo Alto Workday post-acquisition, but the residual /careers/all-job-openings/job-post/ template links to jobs.smartrecruiters.com/Cyberark1, which is the live board with 14+ Israel postings. Activate once a smartrecruiters puller exists."
+  notes: "Post-acquisition by PAN (2026): board at careers.smartrecruiters.com/Cyberark1 is currently 0 jobs — likely all hiring moved to PAN's Workday. Puller wired 2026-06-17; will surface jobs if board is re-activated."
 
 - name: SentinelOne
   website: https://www.sentinelone.com
@@ -153,13 +154,13 @@
 
 - name: Palo Alto Networks
   website: https://www.paloaltonetworks.com
-  careers_url: https://jobs.smartrecruiters.com/PaloAltoNetworks2
+  careers_url: https://careers.smartrecruiters.com/PaloAltoNetworks2
   ats: smartrecruiters
   ats_params:
-    company: PaloAltoNetworks2
+    company_slug: PaloAltoNetworks2
   category: cyber
   location_filter: israel
-  notes: "SmartRecruiters company: PaloAltoNetworks2 (verified 2026-05-17 - 75+ Israel jobs). Activate once smartrecruiters puller exists."
+  notes: "SmartRecruiters board careers.smartrecruiters.com/PaloAltoNetworks2 - currently 0 jobs (redirects to global board). Puller wired 2026-06-17. May need to verify if PAN moved hiring fully to Workday post-CyberArk acquisition."
 
 - name: Check Point
   website: https://www.checkpoint.com
@@ -212,11 +213,13 @@
 - name: Radware
   website: https://www.radware.com
   careers_url: https://radware.taleo.net/careersection/ex/jobsearch.ftl
-  ats: other
-  ats_params: {}  # Taleo (Oracle legacy) - no clean JSON API
+  ats: taleo
+  ats_params:
+    host: radware.taleo.net
+    careers_section: ex
   category: security
   location_filter: israel
-  notes: "Taleo (Oracle legacy ATS) at radware.taleo.net. No clean JSON API - not pullable without a Taleo scraper."
+  notes: "Taleo puller wired 2026-06-17. 44 total jobs (25 Israel), confirmed working."
 
 - name: Imperva
   website: https://www.imperva.com
