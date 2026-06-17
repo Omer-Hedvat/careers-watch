@@ -1,7 +1,6 @@
 'use client'
 
 import { useEffect, useState, useMemo } from 'react'
-import Link from 'next/link'
 import { supabase } from '@/lib/supabaseClient'
 import { useCountUp } from '@/hooks/useCountUp'
 
@@ -54,19 +53,7 @@ export default function PositionsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-950 text-white">
-      {/* Header */}
-      <div className="border-b border-gray-800 px-6 py-4 flex items-center justify-between">
-        <span className="font-bold text-lg">CareerWatch</span>
-        <div className="flex items-center gap-4">
-          <Link href="/digest" className="text-sm text-gray-400 hover:text-white">Digest</Link>
-          <Link href="/companies" className="text-sm text-gray-400 hover:text-white">Companies</Link>
-          <Link href="/positions" className="text-sm text-white font-medium">Positions</Link>
-          <Link href="/settings" className="p-2 text-gray-400 hover:text-white rounded-lg">⚙</Link>
-        </div>
-      </div>
-
-      <div className="max-w-3xl mx-auto px-4 py-6 space-y-4">
+    <div className="max-w-3xl mx-auto px-4 py-6 space-y-4">
         <div className="flex items-center justify-between">
           <h1 className="text-xl font-semibold">
             Open positions
@@ -147,7 +134,6 @@ export default function PositionsPage() {
             </button>
           </div>
         )}
-      </div>
     </div>
   )
 }
