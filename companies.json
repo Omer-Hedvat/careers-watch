@@ -466,7 +466,7 @@
     "category": "cyber",
     "location_filter": "israel",
     "discovered_at": "2026-05-04T18:54:33.370404+00:00",
-    "last_verified_at": "2026-06-17T11:14:22.441897+00:00",
+    "last_verified_at": "2026-06-17T19:34:21.587690+00:00",
     "last_jobs_pulled_at": "2026-05-04T18:54:39.592896+00:00",
     "consecutive_failures": 0
   },
@@ -749,7 +749,7 @@
     "category": "fintech",
     "location_filter": "israel",
     "discovered_at": "2026-05-04T18:54:33.370404+00:00",
-    "last_verified_at": "2026-06-17T11:14:22.441897+00:00",
+    "last_verified_at": "2026-06-17T19:34:21.587690+00:00",
     "last_jobs_pulled_at": "2026-06-17T17:21:27.485291+00:00",
     "consecutive_failures": 0
   },
@@ -767,7 +767,7 @@
     "category": "fintech",
     "location_filter": "israel",
     "discovered_at": "2026-05-04T18:54:33.370404+00:00",
-    "last_verified_at": "2026-06-17T11:14:22.441897+00:00",
+    "last_verified_at": "2026-06-17T19:34:21.587690+00:00",
     "last_jobs_pulled_at": "2026-06-17T17:21:27.776849+00:00",
     "consecutive_failures": 0
   },
@@ -899,7 +899,7 @@
   },
   {
     "name": "BAND",
-    "website": "https://www.band.ai",
+    "website": "https://scripts.clarity.ms",
     "source_vc": "Team8",
     "vc_tier": 1,
     "careers_url": null,
@@ -915,7 +915,7 @@
   },
   {
     "name": "FlowRx",
-    "website": "https://www.flowrx.ai",
+    "website": "https://js.hs-analytics.net",
     "source_vc": "Team8",
     "vc_tier": 1,
     "careers_url": null,
@@ -965,7 +965,7 @@
   },
   {
     "name": "Fig",
-    "website": "https://www.fig.security",
+    "website": "https://scripts.clarity.ms",
     "source_vc": "Team8",
     "vc_tier": 1,
     "careers_url": null,
@@ -981,7 +981,7 @@
   },
   {
     "name": "Astelia",
-    "website": "https://www.astelia.io",
+    "website": "https://scripts.clarity.ms",
     "source_vc": "Team8",
     "vc_tier": 1,
     "careers_url": null,
@@ -996,7 +996,7 @@
   },
   {
     "name": "Lema",
-    "website": "https://www.lema.ai",
+    "website": "https://scripts.clarity.ms",
     "source_vc": "Team8",
     "vc_tier": 1,
     "careers_url": null,
@@ -1011,7 +1011,7 @@
   },
   {
     "name": "Solid",
-    "website": "https://www.getsolid.ai",
+    "website": "https://js.hsadspixel.net",
     "source_vc": "Team8",
     "vc_tier": 1,
     "careers_url": null,
@@ -1029,7 +1029,7 @@
   },
   {
     "name": "Lumia",
-    "website": "https://www.lumia.security",
+    "website": "https://scripts.clarity.ms",
     "source_vc": "Team8",
     "vc_tier": 1,
     "careers_url": null,
@@ -1047,7 +1047,7 @@
   },
   {
     "name": "Clover",
-    "website": "https://clover.security",
+    "website": "https://scripts.clarity.ms",
     "source_vc": "Team8",
     "vc_tier": 1,
     "careers_url": null,
@@ -1120,17 +1120,23 @@
     "website": "https://www.anecdotes.ai",
     "source_vc": "Red Dot Capital",
     "vc_tier": 2,
-    "careers_url": "https://www.anecdotes.ai/careers",
-    "ats": "unknown",
-    "ats_params": {},
+    "careers_url": "https://www.comeet.com/jobs/anecdotes/F9.00B",
+    "ats": "comeet",
+    "ats_params": {
+      "company_uid": "F9.00B",
+      "token": "9FB45DD1DF11DF113F69FB59D345DD13F61DF1"
+    },
     "discovered_at": "2026-05-04T22:12:01.123286+00:00",
-    "last_verified_at": "2026-06-07T08:43:15.175125+00:00",
+    "last_verified_at": "2026-06-17T19:24:20.421465+00:00",
     "last_jobs_pulled_at": null,
     "consecutive_failures": 0,
     "ats_source": "gemini-2.5-pro",
     "ats_source_reverted": "gemini-comeet-hallucinated-url",
     "skip_discovery": true,
-    "skip_reason": "unknown_ats"
+    "skip_reason": "unknown_ats",
+    "category": "security",
+    "location_filter": "israel",
+    "source": "big_companies_list"
   },
   {
     "name": "Appcharge",
@@ -1586,13 +1592,15 @@
     "ats": "comeet",
     "ats_params": {
       "company_uid": "7A.006",
-      "company_name": "qedma",
       "token": "A76493A344E14EC029D853B01F621F62A76"
     },
     "discovered_at": "2026-05-04T22:12:41.006500+00:00",
-    "last_verified_at": "2026-06-07T08:44:23.642739+00:00",
+    "last_verified_at": "2026-06-17T19:24:20.421465+00:00",
     "last_jobs_pulled_at": "2026-06-17T17:21:44.369971+00:00",
-    "consecutive_failures": 0
+    "consecutive_failures": 0,
+    "category": "general",
+    "location_filter": "israel",
+    "source": "big_companies_list"
   },
   {
     "name": "Refineintelligence",
@@ -1832,20 +1840,22 @@
   },
   {
     "name": "Blockaid",
-    "website": "https://www.blockaid.io",
+    "website": "https://blockaid.io",
     "source_vc": "Sequoia Israel",
     "vc_tier": 2,
-    "careers_url": "https://blockaid.io/careers",
+    "careers_url": "https://www.comeet.com/jobs/blockaid/69.00B",
     "ats": "comeet",
     "ats_params": {
       "company_uid": "69.00B",
-      "company_name": "blockaid",
       "token": "96B41ED041ED12D654C3388241ED12D654C3"
     },
     "discovered_at": "2026-05-04T22:13:14.592767+00:00",
-    "last_verified_at": "2026-06-07T08:45:11.542253+00:00",
+    "last_verified_at": "2026-06-17T19:34:21.587690+00:00",
     "last_jobs_pulled_at": "2026-06-17T17:21:45.493240+00:00",
-    "consecutive_failures": 0
+    "consecutive_failures": 0,
+    "category": "cyber",
+    "location_filter": "israel",
+    "source": "big_companies_list"
   },
   {
     "name": "Cyera",
@@ -1999,17 +2009,23 @@
     "website": "https://onyx.security",
     "source_vc": "Cyberstarts",
     "vc_tier": 1,
-    "careers_url": "https://onyx.security/careers",
-    "ats": "unknown",
-    "ats_params": {},
+    "careers_url": "https://www.comeet.com/jobs/onyxsecurity/BA.005",
+    "ats": "comeet",
+    "ats_params": {
+      "company_uid": "BA.005",
+      "token": "AB54AF3403E156A55A8605D156A2AD44AF3605D"
+    },
     "discovered_at": "2026-05-04T22:13:30.285347+00:00",
-    "last_verified_at": "2026-06-07T08:45:25.613893+00:00",
+    "last_verified_at": "2026-06-17T19:34:21.587690+00:00",
     "last_jobs_pulled_at": null,
     "consecutive_failures": 0,
     "ats_source": "gemini-2.5-pro",
     "ats_source_reverted": "gemini-comeet-hallucinated-url",
     "skip_discovery": true,
-    "skip_reason": "unknown_ats"
+    "skip_reason": "unknown_ats",
+    "category": "cyber",
+    "location_filter": "israel",
+    "source": "big_companies_list"
   },
   {
     "name": "Surf Ai",
@@ -2107,7 +2123,7 @@
       "token": "94440DC0944094401BCC12882510"
     },
     "discovered_at": "2026-05-04T22:13:39.140529+00:00",
-    "last_verified_at": "2026-06-17T11:14:22.441897+00:00",
+    "last_verified_at": "2026-06-17T19:34:21.587690+00:00",
     "last_jobs_pulled_at": "2026-06-17T17:21:49.651941+00:00",
     "consecutive_failures": 0,
     "ats_source": "gemini-2.5-pro",
@@ -2121,32 +2137,40 @@
     "website": "https://vega.io",
     "source_vc": "Cyberstarts",
     "vc_tier": 1,
-    "careers_url": "https://vega.io/careers",
+    "careers_url": "https://www.comeet.com/jobs/vega/C9.009",
     "ats": "comeet",
     "ats_params": {
       "company_uid": "C9.009",
-      "company_name": "vega",
       "token": "9C9447F139227241392272430ED30ED04E48"
     },
     "discovered_at": "2026-05-04T22:13:40.467588+00:00",
-    "last_verified_at": "2026-06-07T08:45:31.408865+00:00",
+    "last_verified_at": "2026-06-17T19:24:20.421465+00:00",
     "last_jobs_pulled_at": "2026-06-17T17:21:50.089701+00:00",
-    "consecutive_failures": 0
+    "consecutive_failures": 0,
+    "category": "fintech",
+    "location_filter": "israel",
+    "source": "big_companies_list"
   },
   {
     "name": "Zafran",
     "website": "https://www.zafran.io",
     "source_vc": "Cyberstarts",
     "vc_tier": 1,
-    "careers_url": "https://www.zafran.io/careers",
-    "ats": "unknown",
-    "ats_params": {},
+    "careers_url": "https://www.comeet.com/jobs/zafran_io/49.009",
+    "ats": "comeet",
+    "ats_params": {
+      "company_uid": "49.009",
+      "token": "94940FF0129212929492524252453914A48"
+    },
     "discovered_at": "2026-05-04T22:13:41.309820+00:00",
-    "last_verified_at": "2026-06-07T08:45:32.254104+00:00",
+    "last_verified_at": "2026-06-17T19:24:20.421465+00:00",
     "last_jobs_pulled_at": "2026-06-04T10:34:43.458570+00:00",
     "consecutive_failures": 0,
     "skip_discovery": true,
-    "skip_reason": "unknown_ats"
+    "skip_reason": "unknown_ats",
+    "category": "cyber",
+    "location_filter": "israel",
+    "source": "big_companies_list"
   },
   {
     "name": "Pontera",
@@ -3157,7 +3181,7 @@
       "token": "37.009"
     },
     "discovered_at": "2026-05-04T22:15:11.920308+00:00",
-    "last_verified_at": "2026-06-17T11:14:22.441897+00:00",
+    "last_verified_at": "2026-06-17T19:34:21.587690+00:00",
     "last_jobs_pulled_at": "2026-06-17T17:21:56.311083+00:00",
     "consecutive_failures": 0,
     "category": "general",
@@ -3176,7 +3200,7 @@
       "token": "B6.00F"
     },
     "discovered_at": "2026-05-04T22:15:12.743648+00:00",
-    "last_verified_at": "2026-06-17T11:14:22.441897+00:00",
+    "last_verified_at": "2026-06-17T19:34:21.587690+00:00",
     "last_jobs_pulled_at": "2026-06-17T17:21:56.644227+00:00",
     "consecutive_failures": 0,
     "category": "general",
@@ -3480,7 +3504,7 @@
       "token": "8A.00C"
     },
     "discovered_at": "2026-05-04T22:15:31.314789+00:00",
-    "last_verified_at": "2026-06-17T11:14:22.441897+00:00",
+    "last_verified_at": "2026-06-17T19:34:21.587690+00:00",
     "last_jobs_pulled_at": "2026-06-17T17:21:57.511617+00:00",
     "consecutive_failures": 0,
     "category": "general",
@@ -3979,7 +4003,7 @@
       "token": "72.006"
     },
     "discovered_at": "2026-05-04T22:17:14.176324+00:00",
-    "last_verified_at": "2026-06-17T11:14:22.441897+00:00",
+    "last_verified_at": "2026-06-17T19:34:21.587690+00:00",
     "last_jobs_pulled_at": "2026-06-17T17:21:58.743975+00:00",
     "consecutive_failures": 0,
     "ats_source": "gemini-2.5-pro",
@@ -4017,7 +4041,7 @@
       "board_token": "appsflyer"
     },
     "discovered_at": "2026-05-04T22:17:16.871044+00:00",
-    "last_verified_at": "2026-06-17T11:14:22.441897+00:00",
+    "last_verified_at": "2026-06-17T19:34:21.587690+00:00",
     "last_jobs_pulled_at": "2026-06-17T17:21:58.856644+00:00",
     "consecutive_failures": 0,
     "category": "general",
@@ -4097,15 +4121,18 @@
     "website": "https://www.finout.io",
     "source_vc": "Red Dot Capital",
     "vc_tier": 2,
-    "careers_url": "https://www.finout.io/careers",
+    "careers_url": "https://jobs.ashbyhq.com/finout",
     "ats": "ashby",
     "ats_params": {
       "org_name": "finout"
     },
     "discovered_at": "2026-05-04T22:17:22.470907+00:00",
-    "last_verified_at": "2026-06-07T08:49:19.777672+00:00",
+    "last_verified_at": "2026-06-17T19:24:20.421465+00:00",
     "last_jobs_pulled_at": "2026-06-17T17:21:58.928036+00:00",
-    "consecutive_failures": 0
+    "consecutive_failures": 0,
+    "category": "general",
+    "location_filter": "israel",
+    "source": "big_companies_list"
   },
   {
     "name": "Frontegg",
@@ -5241,15 +5268,17 @@
     "ats": "comeet",
     "ats_params": {
       "company_uid": "59.004",
-      "company_name": "port",
       "token": "954414C02550414C4AA01BFC12A81BFC2550"
     },
     "discovered_at": "2026-05-04T22:19:38.506974+00:00",
-    "last_verified_at": "2026-06-07T08:51:07.222941+00:00",
+    "last_verified_at": "2026-06-17T19:24:20.421465+00:00",
     "last_jobs_pulled_at": "2026-06-04T10:35:05.970211+00:00",
     "consecutive_failures": 0,
     "skip_discovery": true,
-    "skip_reason": "unknown_ats"
+    "skip_reason": "unknown_ats",
+    "category": "general",
+    "location_filter": "israel",
+    "source": "big_companies_list"
   },
   {
     "name": "Onfire",
@@ -5302,20 +5331,26 @@
   },
   {
     "name": "Apono",
-    "website": "",
+    "website": "https://www.apono.io",
     "source_vc": "Vertex Israel",
     "vc_tier": 2,
     "careers_url": "https://www.apono.io/careers/",
-    "ats": "unknown",
-    "ats_params": {},
+    "ats": "comeet",
+    "ats_params": {
+      "company_uid": "1B.00A",
+      "token": "B1A4DB64DB62C6863EA2C684DB6B1A58D02C68"
+    },
     "discovered_at": "2026-05-04T22:20:41.425159+00:00",
-    "last_verified_at": "2026-06-07T08:51:23.228274+00:00",
+    "last_verified_at": "2026-06-17T19:34:21.587690+00:00",
     "last_jobs_pulled_at": "2026-05-06T12:42:07.629941+00:00",
     "consecutive_failures": 0,
     "ats_source": "gemini-2.5-pro",
     "ats_source_reverted": "gemini-comeet-hallucinated-url",
     "skip_discovery": true,
-    "skip_reason": "unknown_ats"
+    "skip_reason": "unknown_ats",
+    "category": "cyber",
+    "location_filter": "israel",
+    "source": "big_companies_list"
   },
   {
     "name": "Classiq",
@@ -5551,7 +5586,7 @@
       "token": "9103660519012202D5024401B3091024403660"
     },
     "discovered_at": "2026-05-04T22:20:45.737333+00:00",
-    "last_verified_at": "2026-06-17T11:14:22.441897+00:00",
+    "last_verified_at": "2026-06-17T19:34:21.587690+00:00",
     "last_jobs_pulled_at": "2026-06-17T17:22:03.883865+00:00",
     "consecutive_failures": 0,
     "careers_url_source": "gemini-2.5-pro",
@@ -9501,16 +9536,19 @@
     "source_vc": "NFX",
     "vc_tier": 3,
     "careers_url": "https://www.remepy.com/careers",
-    "ats": "unknown",
+    "ats": "other",
     "ats_params": {},
     "discovered_at": "2026-05-04T22:27:05.560050+00:00",
-    "last_verified_at": "2026-06-07T09:27:28.480447+00:00",
+    "last_verified_at": "2026-06-17T19:24:20.421465+00:00",
     "last_jobs_pulled_at": "2026-05-06T12:42:59.141465+00:00",
     "consecutive_failures": 0,
     "ats_source": "gemini-2.5-pro",
     "ats_source_reverted": "gemini-comeet-hallucinated-url",
     "skip_discovery": true,
-    "skip_reason": "unknown_ats"
+    "skip_reason": "unknown_ats",
+    "category": "general",
+    "location_filter": "israel",
+    "source": "big_companies_list"
   },
   {
     "name": "Renegade",
@@ -9576,19 +9614,25 @@
   },
   {
     "name": "ScaleOps",
-    "website": "https://scaleops.com",
+    "website": "https://www.scaleops.com",
     "source_vc": "NFX",
     "vc_tier": 3,
-    "careers_url": "https://scaleops.com/careers/",
-    "ats": "unknown",
-    "ats_params": {},
+    "careers_url": "https://www.comeet.com/jobs/scaleops/99.003",
+    "ats": "comeet",
+    "ats_params": {
+      "company_uid": "99.003",
+      "token": "99343059931CB999339721CB9264C1CB9993"
+    },
     "discovered_at": "2026-05-04T22:27:12.611224+00:00",
-    "last_verified_at": "2026-06-07T08:57:14.968972+00:00",
+    "last_verified_at": "2026-06-17T19:34:21.587690+00:00",
     "last_jobs_pulled_at": "2026-06-04T10:35:33.377136+00:00",
     "consecutive_failures": 0,
     "ats_source": "gemini-2.5-pro",
     "skip_discovery": true,
-    "skip_reason": "unknown_ats"
+    "skip_reason": "unknown_ats",
+    "category": "general",
+    "location_filter": "israel",
+    "source": "big_companies_list"
   },
   {
     "name": "Second Life",
@@ -10125,17 +10169,19 @@
     "website": "https://utila.io",
     "source_vc": "Red Dot Capital",
     "vc_tier": 2,
-    "careers_url": "https://utila.io/careers",
+    "careers_url": "https://www.comeet.com/jobs/utila/D9.00F",
     "ats": "comeet",
     "ats_params": {
       "company_uid": "D9.00F",
-      "company_name": "utila",
       "token": "9DF451913BE4EF84EF858D713BE4EF804EF8"
     },
     "discovered_at": "2026-05-04T22:27:57.033569+00:00",
-    "last_verified_at": "2026-06-07T09:28:46.084142+00:00",
+    "last_verified_at": "2026-06-17T19:24:20.421465+00:00",
     "last_jobs_pulled_at": "2026-06-17T17:22:14.547134+00:00",
-    "consecutive_failures": 0
+    "consecutive_failures": 0,
+    "category": "cyber",
+    "location_filter": "israel",
+    "source": "big_companies_list"
   },
   {
     "name": "Valora",
@@ -11886,7 +11932,7 @@
     "category": "cyber",
     "location_filter": "israel",
     "discovered_at": "2026-05-04T22:31:35.530163+00:00",
-    "last_verified_at": "2026-06-17T11:14:22.441897+00:00",
+    "last_verified_at": "2026-06-17T19:34:21.587690+00:00",
     "last_jobs_pulled_at": "2026-06-17T17:22:17.965843+00:00",
     "consecutive_failures": 0
   },
@@ -12206,16 +12252,19 @@
     "website": "https://www.nilus.com",
     "source_vc": "Bessemer",
     "vc_tier": 2,
-    "careers_url": "https://www.nilus.com/careers",
-    "ats": "unknown",
+    "careers_url": "https://nilus.bamboohr.com/careers",
+    "ats": "other",
     "ats_params": {},
     "discovered_at": "2026-05-05T14:22:08.443256+00:00",
-    "last_verified_at": "2026-06-07T09:00:23.814127+00:00",
+    "last_verified_at": "2026-06-17T19:24:20.421465+00:00",
     "last_jobs_pulled_at": "2026-06-04T10:35:46.858987+00:00",
     "consecutive_failures": 0,
     "ats_source": "gemini-2.5-pro",
     "skip_discovery": true,
-    "skip_reason": "unknown_ats"
+    "skip_reason": "unknown_ats",
+    "category": "fintech",
+    "location_filter": "israel",
+    "source": "big_companies_list"
   },
   {
     "name": "Nym",
@@ -12444,7 +12493,7 @@
     "ats": "other",
     "ats_params": {},
     "discovered_at": "2026-05-05T14:22:31.835830+00:00",
-    "last_verified_at": "2026-06-17T11:14:22.441897+00:00",
+    "last_verified_at": "2026-06-17T19:34:21.587690+00:00",
     "last_jobs_pulled_at": null,
     "consecutive_failures": 0,
     "ats_hint": "custom",
@@ -25285,7 +25334,7 @@
   },
   {
     "name": "Vesta",
-    "website": "https://usevesta.com",
+    "website": "https://vesta.com",
     "source_vc": "a16z",
     "vc_tier": 2,
     "careers_url": "https://www.vesta.com/careers",
@@ -31618,16 +31667,21 @@
     "name": "Factify",
     "website": "https://www.factify.ai",
     "source_vc": "whatsapp",
-    "careers_url": null,
-    "ats": "unknown",
-    "ats_params": {},
+    "careers_url": "https://www.comeet.com/jobs/factify/A9.00F",
+    "ats": "comeet",
+    "ats_params": {
+      "company_uid": "A9.00F",
+      "token": "9AF43C9135E09AF5727306B043C93A1A"
+    },
     "discovered_at": "2026-05-05T18:22:27.539038Z",
-    "last_verified_at": "2026-06-07T09:41:44.310910+00:00",
+    "last_verified_at": "2026-06-17T19:24:20.421465+00:00",
     "consecutive_failures": 0,
     "location_filter": "israel",
     "last_jobs_pulled_at": "2026-06-04T10:38:12.648264+00:00",
     "skip_discovery": true,
-    "skip_reason": "no_careers"
+    "skip_reason": "no_careers",
+    "category": "general",
+    "source": "big_companies_list"
   },
   {
     "name": "DraftKings",
@@ -31966,7 +32020,7 @@
     "category": "fintech",
     "location_filter": "israel",
     "discovered_at": "2026-05-07T11:24:33.472448+00:00",
-    "last_verified_at": "2026-06-17T11:14:22.441897+00:00",
+    "last_verified_at": "2026-06-17T19:34:21.587690+00:00",
     "last_jobs_pulled_at": "2026-06-17T17:23:45.614908+00:00",
     "consecutive_failures": 0
   },
@@ -32124,15 +32178,16 @@
     "source": "big_companies_list",
     "source_vc": "Red Dot Capital",
     "vc_tier": 2,
-    "careers_url": "https://qm.teamme.link",
-    "ats": "teamme",
+    "careers_url": "https://www.comeet.com/jobs/quantummachines/D6.000",
+    "ats": "comeet",
     "ats_params": {
-      "tenant": "qm"
+      "company_uid": "D6.000",
+      "token": "6D028E0DA022106D01470221036803D502210"
     },
     "category": "general",
     "location_filter": "israel",
     "discovered_at": "2026-05-07T11:24:33.472448+00:00",
-    "last_verified_at": "2026-06-17T11:14:22.441897+00:00",
+    "last_verified_at": "2026-06-17T19:34:21.587690+00:00",
     "last_jobs_pulled_at": "2026-06-17T17:23:48.826299+00:00",
     "consecutive_failures": 0
   },
@@ -32224,7 +32279,7 @@
       "token": "AF24C9E4C9E015E457906282579036BA36BA"
     },
     "discovered_at": "2026-05-17T11:24:29.799753+00:00",
-    "last_verified_at": "2026-06-14T09:23:15.389636+00:00",
+    "last_verified_at": "2026-06-17T19:34:21.587690+00:00",
     "last_jobs_pulled_at": "2026-06-17T17:24:41.627351+00:00",
     "consecutive_failures": 0,
     "category": "cyber",
@@ -32662,7 +32717,7 @@
     "category": "general",
     "location_filter": "israel",
     "discovered_at": "2026-05-17T11:32:14.759406+00:00",
-    "last_verified_at": "2026-06-17T11:14:22.441897+00:00",
+    "last_verified_at": "2026-06-17T19:34:21.587690+00:00",
     "last_jobs_pulled_at": null,
     "consecutive_failures": 0
   },
@@ -32684,18 +32739,22 @@
   },
   {
     "name": "Buildots",
-    "website": "https://www.viola-group.com/project/buildots",
+    "website": "https://buildots.com",
     "source_vc": "Viola Growth",
     "vc_tier": 2,
-    "careers_url": "https://careers.viola-group.com/companies",
-    "ats": "getro",
+    "careers_url": "https://www.comeet.com/jobs/buildots/36.004",
+    "ats": "comeet",
     "ats_params": {
-      "board_host": "careers.viola-group.com"
+      "company_uid": "36.004",
+      "token": "6342538634037D42B6C129C18D0129CC68"
     },
     "discovered_at": "2026-05-17T11:54:39.783582+00:00",
-    "last_verified_at": "2026-06-17T11:03:04.830841+00:00",
+    "last_verified_at": "2026-06-17T19:34:21.587690+00:00",
     "last_jobs_pulled_at": "2026-06-17T17:24:48.560729+00:00",
-    "consecutive_failures": 0
+    "consecutive_failures": 0,
+    "category": "general",
+    "location_filter": "israel",
+    "source": "big_companies_list"
   },
   {
     "name": "Aidoc",
@@ -32752,18 +32811,24 @@
   },
   {
     "name": "Oligo Security",
-    "website": "https://oligo.security",
+    "website": "https://www.oligosecurity.com",
     "source_vc": "TLV Partners",
     "vc_tier": 2,
-    "careers_url": "https://www.oligo.security/company/careers",
-    "ats": "unknown",
-    "ats_params": {},
+    "careers_url": "https://www.comeet.com/jobs/oligosecurity/5A.00B",
+    "ats": "comeet",
+    "ats_params": {
+      "company_uid": "5A.00B",
+      "token": "A5B487D296C487D01F1152D852D852D8487D"
+    },
     "discovered_at": "2026-05-17T11:56:25.782767+00:00",
-    "last_verified_at": "2026-05-17T11:56:25.782785+00:00",
+    "last_verified_at": "2026-06-17T19:34:21.587690+00:00",
     "last_jobs_pulled_at": null,
     "consecutive_failures": 0,
     "skip_discovery": true,
-    "skip_reason": "unknown_ats"
+    "skip_reason": "unknown_ats",
+    "category": "cyber",
+    "location_filter": "israel",
+    "source": "big_companies_list"
   },
   {
     "name": "CodiumAI",
@@ -32791,7 +32856,7 @@
       "company_slug": "real"
     },
     "discovered_at": "2026-05-17T11:56:29.641392+00:00",
-    "last_verified_at": "2026-06-17T11:14:22.441897+00:00",
+    "last_verified_at": "2026-06-17T19:34:21.587690+00:00",
     "last_jobs_pulled_at": "2026-06-17T17:24:50.429882+00:00",
     "consecutive_failures": 0,
     "category": "general",
@@ -34269,7 +34334,7 @@
     "ats": "other",
     "ats_params": {},
     "discovered_at": "2026-05-24T08:20:29.979365+00:00",
-    "last_verified_at": "2026-06-17T11:14:22.441897+00:00",
+    "last_verified_at": "2026-06-17T19:34:21.587690+00:00",
     "last_jobs_pulled_at": null,
     "consecutive_failures": 0,
     "skip_discovery": true,
@@ -34681,15 +34746,16 @@
     "website": "https://www.voltify.com",
     "source_vc": "Aleph",
     "vc_tier": 2,
-    "careers_url": "https://www.voltify.com/careers",
-    "ats": "breezy",
-    "ats_params": {
-      "company_slug": "voltify"
-    },
+    "careers_url": "https://careers.voltify.com",
+    "ats": "other",
+    "ats_params": {},
     "discovered_at": "2026-05-24T08:20:52.329551+00:00",
-    "last_verified_at": "2026-05-24T08:20:52.329559+00:00",
+    "last_verified_at": "2026-06-17T19:24:20.421465+00:00",
     "last_jobs_pulled_at": "2026-06-17T17:24:57.757643+00:00",
-    "consecutive_failures": 0
+    "consecutive_failures": 0,
+    "category": "general",
+    "location_filter": "israel",
+    "source": "big_companies_list"
   },
   {
     "name": "Getwaltz",
@@ -36217,18 +36283,24 @@
   },
   {
     "name": "Tenzai",
-    "website": "https://www.tenzai.com",
+    "website": "https://tenzai.com",
     "source_vc": "Greylock",
     "vc_tier": 2,
-    "careers_url": "https://www.tenzai.com/careers",
-    "ats": "unknown",
-    "ats_params": {},
+    "careers_url": "https://www.comeet.com/jobs/tenzai/1B.002",
+    "ats": "comeet",
+    "ats_params": {
+      "company_uid": "1B.002",
+      "token": "B124D7E4D7E213663A2B122136375A375A375A"
+    },
     "discovered_at": "2026-05-24T08:25:29.217757+00:00",
-    "last_verified_at": "2026-05-24T08:25:29.217766+00:00",
+    "last_verified_at": "2026-06-17T19:34:21.587690+00:00",
     "last_jobs_pulled_at": null,
     "consecutive_failures": 0,
     "skip_discovery": true,
-    "skip_reason": "unknown_ats"
+    "skip_reason": "unknown_ats",
+    "category": "general",
+    "location_filter": "israel",
+    "source": "big_companies_list"
   },
   {
     "name": "Tin Can",
@@ -37415,13 +37487,19 @@
     "website": "https://www.sett.ai",
     "source_vc": "Greenfield Partners",
     "vc_tier": 1,
-    "careers_url": "https://www.sett.ai/careers/",
-    "ats": "unknown",
-    "ats_params": {},
+    "careers_url": "https://www.comeet.com/jobs/sett/4A.00B",
+    "ats": "comeet",
+    "ats_params": {
+      "company_uid": "4A.00B",
+      "token": "A4B480D292C149652585CA333775CA35CA33377"
+    },
     "discovered_at": "2026-06-14T09:08:40.474643+00:00",
-    "last_verified_at": "2026-06-14T09:08:40.474663+00:00",
+    "last_verified_at": "2026-06-17T19:24:20.421465+00:00",
     "last_jobs_pulled_at": null,
-    "consecutive_failures": 0
+    "consecutive_failures": 0,
+    "category": "general",
+    "location_filter": "israel",
+    "source": "big_companies_list"
   },
   {
     "name": "Vastdata",
@@ -37507,20 +37585,22 @@
   },
   {
     "name": "Blinkops",
-    "website": "https://blinkops.com",
+    "website": "https://www.blinkops.com",
     "source_vc": "Hetz Ventures",
     "vc_tier": 1,
-    "careers_url": "https://www.blinkops.com/careers",
+    "careers_url": "https://www.comeet.com/jobs/blinkops/c7.004",
     "ats": "comeet",
     "ats_params": {
-      "company_uid": "C7.004",
-      "company_name": "",
+      "company_uid": "c7.004",
       "token": "7C42E981F101F10365C174C2E98F88F880"
     },
     "discovered_at": "2026-06-14T09:08:50.748930+00:00",
-    "last_verified_at": "2026-06-14T09:08:50.748940+00:00",
+    "last_verified_at": "2026-06-17T19:34:21.587690+00:00",
     "last_jobs_pulled_at": "2026-06-17T17:25:07.085376+00:00",
-    "consecutive_failures": 0
+    "consecutive_failures": 0,
+    "category": "cyber",
+    "location_filter": "israel",
+    "source": "big_companies_list"
   },
   {
     "name": "Clyr",
@@ -38539,7 +38619,7 @@
     "ats": "other",
     "ats_params": {},
     "discovered_at": "2026-06-14T09:11:22.403436+00:00",
-    "last_verified_at": "2026-06-17T11:14:22.441897+00:00",
+    "last_verified_at": "2026-06-17T19:34:21.587690+00:00",
     "last_jobs_pulled_at": null,
     "consecutive_failures": 0,
     "category": "cyber",
@@ -38613,16 +38693,19 @@
   },
   {
     "name": "Entro Security",
-    "website": "https://gmpg.org",
+    "website": "https://entro.security",
     "source_vc": "StageOne Ventures",
     "vc_tier": 2,
-    "careers_url": null,
-    "ats": "unknown",
+    "careers_url": "https://entro.security/careers/",
+    "ats": "other",
     "ats_params": {},
     "discovered_at": "2026-06-14T09:11:24.278118+00:00",
-    "last_verified_at": "2026-06-14T09:11:24.278127+00:00",
+    "last_verified_at": "2026-06-17T19:34:21.587690+00:00",
     "last_jobs_pulled_at": null,
-    "consecutive_failures": 0
+    "consecutive_failures": 0,
+    "category": "cyber",
+    "location_filter": "israel",
+    "source": "big_companies_list"
   },
   {
     "name": "Gain",
@@ -39383,31 +39466,39 @@
   },
   {
     "name": "Matia",
-    "website": "https://www.matia.io",
+    "website": "https://matia.ai",
     "source_vc": "Red Dot Capital",
     "vc_tier": 2,
-    "careers_url": "https://luma.com/4pmzkppv",
-    "ats": "unknown",
-    "ats_params": {},
+    "careers_url": "https://jobs.ashbyhq.com/matia",
+    "ats": "ashby",
+    "ats_params": {
+      "org_name": "matia"
+    },
     "discovered_at": "2026-06-14T09:12:16.662624+00:00",
-    "last_verified_at": "2026-06-14T09:12:16.662642+00:00",
+    "last_verified_at": "2026-06-17T19:34:21.587690+00:00",
     "last_jobs_pulled_at": null,
-    "consecutive_failures": 0
+    "consecutive_failures": 0,
+    "category": "general",
+    "location_filter": "israel",
+    "source": "big_companies_list"
   },
   {
     "name": "Stigg",
     "website": "https://www.stigg.io",
     "source_vc": "Red Dot Capital",
     "vc_tier": 2,
-    "careers_url": "https://www.stigg.io/careers",
+    "careers_url": "https://jobs.ashbyhq.com/stigg",
     "ats": "ashby",
     "ats_params": {
       "org_name": "stigg"
     },
     "discovered_at": "2026-06-14T09:12:16.801504+00:00",
-    "last_verified_at": "2026-06-14T09:12:16.801517+00:00",
+    "last_verified_at": "2026-06-17T19:24:20.421465+00:00",
     "last_jobs_pulled_at": "2026-06-17T17:25:11.442735+00:00",
-    "consecutive_failures": 0
+    "consecutive_failures": 0,
+    "category": "general",
+    "location_filter": "israel",
+    "source": "big_companies_list"
   },
   {
     "name": "Supplant",
@@ -41494,12 +41585,15 @@
     "source_vc": "Amiti Ventures",
     "vc_tier": 3,
     "careers_url": "https://www.quantum-art.tech/careers",
-    "ats": "unknown",
+    "ats": "other",
     "ats_params": {},
     "discovered_at": "2026-06-14T09:15:50.189594+00:00",
-    "last_verified_at": "2026-06-14T09:15:50.189607+00:00",
+    "last_verified_at": "2026-06-17T19:24:20.421465+00:00",
     "last_jobs_pulled_at": null,
-    "consecutive_failures": 0
+    "consecutive_failures": 0,
+    "category": "general",
+    "location_filter": "israel",
+    "source": "big_companies_list"
   },
   {
     "name": "Quantumpulse",
@@ -44719,6 +44813,392 @@
     "ats_params": {},
     "discovered_at": "2026-06-17T11:07:15.294588+00:00",
     "last_verified_at": "2026-06-17T11:07:15.294625+00:00",
+    "last_jobs_pulled_at": null,
+    "consecutive_failures": 0
+  },
+  {
+    "name": "Team8 Portfolio (Comeet)",
+    "website": "https://team8.vc",
+    "source": "big_companies_list",
+    "source_vc": null,
+    "vc_tier": null,
+    "careers_url": "https://www.comeet.com/jobs/team8/61.003",
+    "ats": "comeet",
+    "ats_params": {
+      "company_uid": "61.003",
+      "token": "16358C6EF2C61631639B558C0429"
+    },
+    "category": "cyber",
+    "location_filter": "israel",
+    "discovered_at": "2026-06-17T19:24:20.421465+00:00",
+    "last_verified_at": "2026-06-17T19:24:20.421465+00:00",
+    "last_jobs_pulled_at": null,
+    "consecutive_failures": 0
+  },
+  {
+    "name": "Fetcherr",
+    "website": "https://www.fetcherr.io",
+    "source": "big_companies_list",
+    "source_vc": null,
+    "vc_tier": null,
+    "careers_url": "https://www.fetcherr.io/career",
+    "ats": "comeet",
+    "ats_params": {
+      "company_uid": "68.006",
+      "token": "866326432643ACA866219829FE10CC193229FE"
+    },
+    "category": "general",
+    "location_filter": "israel",
+    "discovered_at": "2026-06-17T19:24:20.421465+00:00",
+    "last_verified_at": "2026-06-17T19:24:20.421465+00:00",
+    "last_jobs_pulled_at": null,
+    "consecutive_failures": 0
+  },
+  {
+    "name": "Grain Finance",
+    "website": "https://www.grainfinance.com",
+    "source": "big_companies_list",
+    "source_vc": null,
+    "vc_tier": null,
+    "careers_url": "https://www.grainfinance.com/careers-grain",
+    "ats": "comeet",
+    "ats_params": {
+      "company_uid": "4A.000",
+      "token": "A4047C0290005C4014803340A401EC05C40"
+    },
+    "category": "fintech",
+    "location_filter": "israel",
+    "discovered_at": "2026-06-17T19:24:20.421465+00:00",
+    "last_verified_at": "2026-06-17T19:24:20.421465+00:00",
+    "last_jobs_pulled_at": null,
+    "consecutive_failures": 0
+  },
+  {
+    "name": "Doorloop",
+    "website": "https://www.doorloop.com",
+    "source": "big_companies_list",
+    "source_vc": null,
+    "vc_tier": null,
+    "careers_url": "https://www.comeet.com/jobs/doorloop/0A.006",
+    "ats": "comeet",
+    "ats_params": {
+      "company_uid": "0A.006",
+      "token": "A06462A1E122818321EA061E12028181E12"
+    },
+    "category": "general",
+    "location_filter": "israel",
+    "discovered_at": "2026-06-17T19:24:20.421465+00:00",
+    "last_verified_at": "2026-06-17T19:24:20.421465+00:00",
+    "last_jobs_pulled_at": null,
+    "consecutive_failures": 0
+  },
+  {
+    "name": "Second Nature",
+    "website": "https://www.secondnature.com",
+    "source": "big_companies_list",
+    "source_vc": null,
+    "vc_tier": null,
+    "careers_url": "https://jobs.ashbyhq.com/second-nature",
+    "ats": "ashby",
+    "ats_params": {
+      "org_name": "second-nature"
+    },
+    "category": "general",
+    "location_filter": "israel",
+    "discovered_at": "2026-06-17T19:24:20.421465+00:00",
+    "last_verified_at": "2026-06-17T19:24:20.421465+00:00",
+    "last_jobs_pulled_at": null,
+    "consecutive_failures": 0
+  },
+  {
+    "name": "DeepCure",
+    "website": "https://www.deepcure.ai",
+    "source": "big_companies_list",
+    "source_vc": null,
+    "vc_tier": null,
+    "careers_url": "https://www.comeet.com/jobs/deepcure/B7.003",
+    "ats": "comeet",
+    "ats_params": {
+      "company_uid": "B7.003",
+      "token": "7B32E321ECC171901ECC0267F2E32454B"
+    },
+    "category": "general",
+    "location_filter": "israel",
+    "discovered_at": "2026-06-17T19:24:20.421465+00:00",
+    "last_verified_at": "2026-06-17T19:24:20.421465+00:00",
+    "last_jobs_pulled_at": null,
+    "consecutive_failures": 0
+  },
+  {
+    "name": "Mentee Robotics",
+    "website": "https://www.menteerobotics.com",
+    "source": "big_companies_list",
+    "source_vc": null,
+    "vc_tier": null,
+    "careers_url": "https://www.comeet.com/jobs/mentee_robotics/6A.002",
+    "ats": "comeet",
+    "ats_params": {
+      "company_uid": "6A.002",
+      "token": "A6248AE298853101F2614C45D7214C433EA5310"
+    },
+    "category": "general",
+    "location_filter": "israel",
+    "discovered_at": "2026-06-17T19:24:20.421465+00:00",
+    "last_verified_at": "2026-06-17T19:24:20.421465+00:00",
+    "last_jobs_pulled_at": null,
+    "consecutive_failures": 0
+  },
+  {
+    "name": "Nagish",
+    "website": "https://nagish.com",
+    "source": "big_companies_list",
+    "source_vc": null,
+    "vc_tier": null,
+    "careers_url": "https://www.comeet.com/jobs/nagish/D8.007",
+    "ats": "comeet",
+    "ats_params": {
+      "company_uid": "D8.007",
+      "token": "8D7350A46B88D73DE111AE235C4F8F02C33"
+    },
+    "category": "general",
+    "location_filter": "israel",
+    "discovered_at": "2026-06-17T19:24:20.421465+00:00",
+    "last_verified_at": "2026-06-17T19:24:20.421465+00:00",
+    "last_jobs_pulled_at": null,
+    "consecutive_failures": 0
+  },
+  {
+    "name": "Capow Energy",
+    "website": "https://capow.energy",
+    "source": "big_companies_list",
+    "source_vc": null,
+    "vc_tier": null,
+    "careers_url": "https://capow.energy/careers/",
+    "ats": "other",
+    "ats_params": {},
+    "category": "general",
+    "location_filter": "israel",
+    "discovered_at": "2026-06-17T19:24:20.421465+00:00",
+    "last_verified_at": "2026-06-17T19:24:20.421465+00:00",
+    "last_jobs_pulled_at": null,
+    "consecutive_failures": 0
+  },
+  {
+    "name": "Brandlight",
+    "website": "https://brandlight.com",
+    "source": "big_companies_list",
+    "source_vc": null,
+    "vc_tier": null,
+    "careers_url": "https://jobs.ashbyhq.com/brandlight",
+    "ats": "ashby",
+    "ats_params": {
+      "org_name": "brandlight"
+    },
+    "category": "general",
+    "location_filter": "israel",
+    "discovered_at": "2026-06-17T19:24:20.421465+00:00",
+    "last_verified_at": "2026-06-17T19:24:20.421465+00:00",
+    "last_jobs_pulled_at": null,
+    "consecutive_failures": 0
+  },
+  {
+    "name": "Novee Security",
+    "website": "https://novee.security",
+    "source": "big_companies_list",
+    "source_vc": null,
+    "vc_tier": null,
+    "careers_url": "https://novee.security/careers/",
+    "ats": "comeet",
+    "ats_params": {
+      "company_uid": "AA.008",
+      "token": "AA84A983FF0002AA01FF8155035483FF0"
+    },
+    "category": "cyber",
+    "location_filter": "israel",
+    "discovered_at": "2026-06-17T19:24:20.421465+00:00",
+    "last_verified_at": "2026-06-17T19:24:20.421465+00:00",
+    "last_jobs_pulled_at": null,
+    "consecutive_failures": 0
+  },
+  {
+    "name": "Line5.ai",
+    "website": "https://line5.ai",
+    "source": "big_companies_list",
+    "source_vc": null,
+    "vc_tier": null,
+    "careers_url": "https://line5.ai/Hiring",
+    "ats": "other",
+    "ats_params": {},
+    "category": "cyber",
+    "location_filter": "israel",
+    "discovered_at": "2026-06-17T19:24:20.421465+00:00",
+    "last_verified_at": "2026-06-17T19:24:20.421465+00:00",
+    "last_jobs_pulled_at": null,
+    "consecutive_failures": 0
+  },
+  {
+    "name": "Notch",
+    "website": "https://www.notch.cx",
+    "source": "big_companies_list",
+    "source_vc": null,
+    "vc_tier": null,
+    "careers_url": "https://www.comeet.com/jobs/notch/CA.003",
+    "ats": "comeet",
+    "ats_params": {
+      "company_uid": "CA.003",
+      "token": "AC34B5540922B0C4B5535CF35CFAC32B0C2B0C"
+    },
+    "category": "fintech",
+    "location_filter": "israel",
+    "discovered_at": "2026-06-17T19:24:20.421465+00:00",
+    "last_verified_at": "2026-06-17T19:24:20.421465+00:00",
+    "last_jobs_pulled_at": null,
+    "consecutive_failures": 0
+  },
+  {
+    "name": "Clover Security",
+    "website": "https://cloversec.io",
+    "source": "big_companies_list",
+    "source_vc": null,
+    "vc_tier": null,
+    "careers_url": "https://www.comeet.com/jobs/clover_security/7A.00A",
+    "ats": "comeet",
+    "ats_params": {
+      "company_uid": "7A.00A",
+      "token": "A7A4956346214F429E849561F6E1F6E014F4"
+    },
+    "category": "cyber",
+    "location_filter": "israel",
+    "discovered_at": "2026-06-17T19:24:20.421465+00:00",
+    "last_verified_at": "2026-06-17T19:24:20.421465+00:00",
+    "last_jobs_pulled_at": null,
+    "consecutive_failures": 0
+  },
+  {
+    "name": "Lumana",
+    "website": "https://www.lumana.ai",
+    "source": "big_companies_list",
+    "source_vc": null,
+    "vc_tier": null,
+    "careers_url": "https://jobs.ashbyhq.com/lumana",
+    "ats": "ashby",
+    "ats_params": {
+      "org_name": "lumana"
+    },
+    "category": "general",
+    "location_filter": "israel",
+    "discovered_at": "2026-06-17T19:24:20.421465+00:00",
+    "last_verified_at": "2026-06-17T19:24:20.421465+00:00",
+    "last_jobs_pulled_at": null,
+    "consecutive_failures": 0
+  },
+  {
+    "name": "Loora",
+    "website": "https://www.loora.com",
+    "source": "big_companies_list",
+    "source_vc": null,
+    "vc_tier": null,
+    "careers_url": "https://jobs.ashbyhq.com/loora",
+    "ats": "ashby",
+    "ats_params": {
+      "org_name": "loora"
+    },
+    "category": "general",
+    "location_filter": "israel",
+    "discovered_at": "2026-06-17T19:24:20.421465+00:00",
+    "last_verified_at": "2026-06-17T19:24:20.421465+00:00",
+    "last_jobs_pulled_at": null,
+    "consecutive_failures": 0
+  },
+  {
+    "name": "Memcyco",
+    "website": "https://www.memcyco.com",
+    "source": "big_companies_list",
+    "source_vc": null,
+    "vc_tier": null,
+    "careers_url": "https://www.memcyco.com/careers-at-memcyco/",
+    "ats": "other",
+    "ats_params": {},
+    "category": "cyber",
+    "location_filter": "israel",
+    "discovered_at": "2026-06-17T19:24:20.421465+00:00",
+    "last_verified_at": "2026-06-17T19:24:20.421465+00:00",
+    "last_jobs_pulled_at": null,
+    "consecutive_failures": 0
+  },
+  {
+    "name": "ACT Security",
+    "website": "https://act.security",
+    "source": "big_companies_list",
+    "source_vc": null,
+    "vc_tier": null,
+    "careers_url": "https://www.comeet.com/jobs/actsecurity/8A.009",
+    "ats": "comeet",
+    "ats_params": {
+      "company_uid": "8A.009",
+      "token": "A8949BF34AD2A24544805ED13F3634AD49BF"
+    },
+    "category": "cyber",
+    "location_filter": "israel",
+    "discovered_at": "2026-06-17T19:24:20.421465+00:00",
+    "last_verified_at": "2026-06-17T19:24:20.421465+00:00",
+    "last_jobs_pulled_at": null,
+    "consecutive_failures": 0
+  },
+  {
+    "name": "Opti.ai",
+    "website": "https://www.opti.ai",
+    "source": "big_companies_list",
+    "source_vc": null,
+    "vc_tier": null,
+    "careers_url": "https://www.opti.ai/careers",
+    "ats": "comeet",
+    "ats_params": {
+      "company_uid": "CA.005",
+      "token": "AC54B63409E35D9060ED409E2B14158A2B14"
+    },
+    "category": "general",
+    "location_filter": "israel",
+    "discovered_at": "2026-06-17T19:24:20.421465+00:00",
+    "last_verified_at": "2026-06-17T19:24:20.421465+00:00",
+    "last_jobs_pulled_at": null,
+    "consecutive_failures": 0
+  },
+  {
+    "name": "Echo Software",
+    "website": "https://www.echohq.com",
+    "source": "big_companies_list",
+    "source_vc": null,
+    "vc_tier": null,
+    "careers_url": "https://www.comeet.com/jobs/echosoftware/9A.006",
+    "ats": "comeet",
+    "ats_params": {
+      "company_uid": "9A.006",
+      "token": "A964A1A34EE3F845F4654B02A5834EE5F462A58"
+    },
+    "category": "general",
+    "location_filter": "israel",
+    "discovered_at": "2026-06-17T19:24:20.421465+00:00",
+    "last_verified_at": "2026-06-17T19:24:20.421465+00:00",
+    "last_jobs_pulled_at": null,
+    "consecutive_failures": 0
+  },
+  {
+    "name": "Daylight Security",
+    "website": "https://daylight.security",
+    "source": "big_companies_list",
+    "source_vc": null,
+    "vc_tier": null,
+    "careers_url": "https://www.comeet.com/jobs/daylightsecurity/7A.00D",
+    "ats": "comeet",
+    "ats_params": {
+      "company_uid": "7A.00D",
+      "token": "A7D496B347114FA3EEE29F4A7D3EEE496B1F77"
+    },
+    "category": "cyber",
+    "location_filter": "israel",
+    "discovered_at": "2026-06-17T19:34:21.587690+00:00",
+    "last_verified_at": "2026-06-17T19:34:21.587690+00:00",
     "last_jobs_pulled_at": null,
     "consecutive_failures": 0
   }
