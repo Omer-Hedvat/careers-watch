@@ -1,7 +1,7 @@
 | Field | Value |
 |---|---|
 | **Phase** | P7 |
-| **Status** | `in-progress` |
+| **Status** | `wrapped` |
 | **Effort** | M |
 | **Epic** | WEBAPP_APP_SHELL_ACCOUNT |
 | **Depends on** | — |

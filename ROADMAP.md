@@ -34,7 +34,7 @@
 | [WEBAPP_FIRST_RUN_COMPREHENSION](future_devs/WEBAPP_FIRST_RUN_COMPREHENSION_SPEC.md) | First-run comprehension (what/why/what-you-get before & during onboarding) | `in-progress` | L | 5 |
 | [WEBAPP_DIGEST_TRUST](future_devs/WEBAPP_DIGEST_TRUST_SPEC.md) | Digest legibility & trust (scores, flags, cadence, empty states) | `not-started` | M | 4 |
 | [WEBAPP_JOBSEEKER_WORKFLOW](future_devs/WEBAPP_JOBSEEKER_WORKFLOW_SPEC.md) | Job-seeker workspace (detail view, status tracker, hide, new, sort) | `not-started` | L | 5 |
-| [WEBAPP_APP_SHELL_ACCOUNT](future_devs/WEBAPP_APP_SHELL_ACCOUNT_SPEC.md) | App shell + account UX (nav, sign-out, help, auth recovery) | `not-started` | M | 4 |
+| [WEBAPP_APP_SHELL_ACCOUNT](future_devs/archive/WEBAPP_APP_SHELL_ACCOUNT_SPEC.md) | App shell + account UX (nav, sign-out, help, auth recovery) | `wrapped` | M | 4 |
 | [POSITION_LIVENESS](future_devs/archive/POSITION_LIVENESS_SPEC.md) | Position liveness — mark & surface closed postings in the scored digest | `wrapped` | M | 4 |
 
 Run `/orchestrate_epic <slug>` to execute an epic's children in waves.
@@ -154,11 +154,11 @@ First-time-user comprehension, digest trust, the job-seeker workspace, and the a
 
 | Slug | Title | Status | Effort | Depends on |
 |---|---|---|---|---|
-| [WEBAPP_APP_SHELL_ACCOUNT](future_devs/WEBAPP_APP_SHELL_ACCOUNT_SPEC.md) | App shell + account UX (epic root) | `in-progress` | M | — |
-| [WEBAPP_GLOBAL_APP_SHELL_NAV](future_devs/WEBAPP_GLOBAL_APP_SHELL_NAV_SPEC.md) | Global nav shell + sign-out + auth guard | `completed` | M | WEBAPP_APP_SHELL_ACCOUNT |
-| [WEBAPP_GETTING_STARTED_CHECKLIST](future_devs/WEBAPP_GETTING_STARTED_CHECKLIST_SPEC.md) | Getting-started checklist on the digest | `completed` | S | WEBAPP_APP_SHELL_ACCOUNT |
-| [WEBAPP_IN_APP_HELP_FAQ](future_devs/WEBAPP_IN_APP_HELP_FAQ_SPEC.md) | In-app Help / FAQ page | `completed` | S | WEBAPP_GLOBAL_APP_SHELL_NAV ✅ |
-| [WEBAPP_AUTH_RESET_CONFIRM_LEGAL](future_devs/WEBAPP_AUTH_RESET_CONFIRM_LEGAL_SPEC.md) | Auth: forgot-password + email-confirm + terms/privacy | `completed` | M | WEBAPP_APP_SHELL_ACCOUNT |
+| [WEBAPP_APP_SHELL_ACCOUNT](future_devs/archive/WEBAPP_APP_SHELL_ACCOUNT_SPEC.md) | App shell + account UX (epic root) | `wrapped` | M | — |
+| [WEBAPP_GLOBAL_APP_SHELL_NAV](future_devs/archive/WEBAPP_GLOBAL_APP_SHELL_NAV_SPEC.md) | Global nav shell + sign-out + auth guard | `wrapped` | M | WEBAPP_APP_SHELL_ACCOUNT ✅ |
+| [WEBAPP_GETTING_STARTED_CHECKLIST](future_devs/archive/WEBAPP_GETTING_STARTED_CHECKLIST_SPEC.md) | Getting-started checklist on the digest | `wrapped` | S | WEBAPP_APP_SHELL_ACCOUNT ✅ |
+| [WEBAPP_IN_APP_HELP_FAQ](future_devs/archive/WEBAPP_IN_APP_HELP_FAQ_SPEC.md) | In-app Help / FAQ page | `wrapped` | S | WEBAPP_GLOBAL_APP_SHELL_NAV ✅ |
+| [WEBAPP_AUTH_RESET_CONFIRM_LEGAL](future_devs/archive/WEBAPP_AUTH_RESET_CONFIRM_LEGAL_SPEC.md) | Auth: forgot-password + email-confirm + terms/privacy | `wrapped` | M | WEBAPP_APP_SHELL_ACCOUNT ✅ |
 
 ### Standalone
 
@@ -268,11 +268,11 @@ New ATS pullers for high-value companies currently stuck in `ats: other` or `ats
 | `future_devs/WEBAPP_HIDE_DISMISS_JOBS_SPEC.md` | P7 — Hide / dismiss jobs |
 | `future_devs/WEBAPP_NEW_SINCE_LAST_VISIT_SPEC.md` | P7 — New-since-last-visit badges |
 | `future_devs/WEBAPP_DIGEST_SORT_PERSIST_SPEC.md` | P7 — Digest sort + persist view |
-| `future_devs/WEBAPP_APP_SHELL_ACCOUNT_SPEC.md` | P7 — App shell + account UX (epic root) |
-| `future_devs/WEBAPP_GLOBAL_APP_SHELL_NAV_SPEC.md` | P7 — Global app shell + nav + sign-out |
-| `future_devs/WEBAPP_GETTING_STARTED_CHECKLIST_SPEC.md` | P7 — Getting-started checklist |
-| `future_devs/WEBAPP_IN_APP_HELP_FAQ_SPEC.md` | P7 — In-app Help / FAQ page |
-| `future_devs/WEBAPP_AUTH_RESET_CONFIRM_LEGAL_SPEC.md` | P7 — Auth reset / confirm / legal |
+| `future_devs/archive/WEBAPP_APP_SHELL_ACCOUNT_SPEC.md` | P7 — App shell + account UX (epic root, wrapped) |
+| `future_devs/archive/WEBAPP_GLOBAL_APP_SHELL_NAV_SPEC.md` | P7 — Global app shell + nav + sign-out (wrapped) |
+| `future_devs/archive/WEBAPP_GETTING_STARTED_CHECKLIST_SPEC.md` | P7 — Getting-started checklist (wrapped) |
+| `future_devs/archive/WEBAPP_IN_APP_HELP_FAQ_SPEC.md` | P7 — In-app Help / FAQ page (wrapped) |
+| `future_devs/archive/WEBAPP_AUTH_RESET_CONFIRM_LEGAL_SPEC.md` | P7 — Auth reset / confirm / legal (wrapped) |
 | `future_devs/WEBAPP_ACCESSIBILITY_PASS_SPEC.md` | P7 — Accessibility pass |
 | `future_devs/archive/POSITION_LIVENESS_SPEC.md` | P8 — Position liveness (epic root, wrapped) |
 | `future_devs/archive/POSITION_LIVENESS_LIVE_SET_SPEC.md` | P8 — Persist live apply_url set from successful pulls (wrapped) |
