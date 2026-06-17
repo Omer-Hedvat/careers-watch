@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import { supabase } from '@/lib/supabaseClient'
 import { FLAG_GLOSSARY, flagInfo } from '@/lib/flags'
+import GettingStartedChecklist from '@/app/components/GettingStartedChecklist'
 
 type Job = {
   id: string
@@ -176,6 +177,9 @@ export default function DigestPage() {
   const [scoreMsg, setScoreMsg] = useState('')
   const [runsUsed, setRunsUsed] = useState(0)
   const [currentProfileVersion, setCurrentProfileVersion] = useState(1)
+  const [hasProfile, setHasProfile] = useState(false)
+  const [hasCv, setHasCv] = useState(false)
+  const [hasApiKey, setHasApiKey] = useState(false)
   const [minScore, setMinScore] = useState(5)
   const [titleFilter, setTitleFilter] = useState('')
   const [companyFilter, setCompanyFilter] = useState('')
@@ -205,6 +209,9 @@ export default function DigestPage() {
       const d = await res.json()
       setRunsUsed(d.scoring_runs_this_week ?? 0)
       setCurrentProfileVersion(d.profile_version ?? 1)
+      setHasProfile(!!d.profile_md)
+      setHasCv(!!d.cv_text)
+      setHasApiKey(d.has_api_key === true)
     }
   }
 
@@ -274,6 +281,14 @@ export default function DigestPage() {
       </div>
 
       <div className="max-w-3xl mx-auto px-4 py-6 space-y-4">
+        {/* Getting started checklist */}
+        <GettingStartedChecklist
+          profile={hasProfile}
+          cv={hasCv}
+          apiKey={hasApiKey}
+          hasJobs={jobs.length > 0}
+        />
+
         {/* Score legend */}
         <ScoreLegend />
 
