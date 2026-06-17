@@ -41,6 +41,12 @@ Render) that was built out in Phase P2 — see `WEBAPP_SPEC.md`.
 - Active/open: `SCORING_RUBRIC_ABLATION` (scoring calibration doc), a few
   webapp post-launch polish items, and the long tail of VC/ATS coverage.
 - No active epics. The bug tracker is essentially empty.
+- Recent webapp UX polish (2026-06-17): onboarding now makes the Profile and CV
+  steps optional (skippable, addable later in Settings), and both the onboarding
+  API-key step and the Settings API Key tab now stress that Gemini's API is fully
+  free with a direct AI Studio key link and how-to-get-a-key steps. Intent: lower
+  signup friction for the multi-user web app. (Scoring still requires a profile,
+  so a skipped profile means no results until one is added.)
 
 So the interesting question is **what the next epic should be**, not finishing
 an in-flight one.
