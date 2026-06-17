@@ -2,6 +2,64 @@
 
 *27 applied positions hidden.*
 
+## 2026-06-17
+
+### **Melio** - [Senior Data Scientist ](https://job-boards.greenhouse.io/melio/jobs/7765818003)
+**Score:** 10/10 | **Location:** Tel Aviv-Yafo, Tel Aviv District, Israel | **Applied:** 0
+**Reasoning:** Exceptional fit with strong production ML ownership in the risk/fraud domain, direct experience with adversarial data, and technical leadership in applied AI agents, perfectly matching the candidate's profile. `lead-path-implied`
+
+### **Reco** - [Engineering Team Lead](https://www.comeet.com/jobs/reco/3A.00D/engineering-team-lead/1E.450)
+**Score:** 9/10 | **Location:** Tel Aviv, Israel | **Applied:** 0
+**Reasoning:** This is a strong Team Lead role in cybersecurity with clear production ML ownership and E2E system delivery, aligning perfectly with the candidate's primary target. `cybersecurity-domain` `llm-as-tool` `location-match`
+
+### **Voyantis** - [Data Science Team Leader](https://www.comeet.com/jobs/voyantis/86.00B/data-science-team-leader/5D.869)
+**Score:** 9/10 | **Location:** Tel Aviv, Israel | **Applied:** 0
+**Reasoning:** This Data Science Team Leader role directly aligns with the candidate's primary goal of leading a DS team and driving production ML impact in a growing company. `lead-path-implied` `e2e-ml-ownership` `location-match`
+
+### **Tipalti** - [Applied AI Scientist](https://tipalti.com/jobs/?gh_jid=6011644004)
+**Score:** 9/10 | **Location:** Tel Aviv District, Israel | **Applied:** 0
+**Reasoning:** Excellent fit for an Applied AI Scientist role, emphasizing hands-on development and deployment of production AI agents in a fintech environment, directly aligning with the candidate's skills and experience.
+
+### **Surf Ai** - [AI Engineer - AI Agents Team](https://job-boards.eu.greenhouse.io/surfai/jobs/4704150101)
+**Score:** 9/10 | **Location:** Tel Aviv | **Applied:** 0
+**Reasoning:** Excellent fit for an AI Engineer role in security, focusing on building and deploying production-grade LLM-powered AI agents as tools for the product, directly aligning with the candidate's applied ML expertise.
+
+### **Surf Ai** - [Senior Data Scientist - AI Agents Team](https://job-boards.eu.greenhouse.io/surfai/jobs/4704149101)
+**Score:** 9/10 | **Location:** Tel Aviv | **Applied:** 0
+**Reasoning:** Strong match with production ML ownership, cybersecurity domain, and lead-like responsibilities, with LLMs used as a tool for the security product. `lead-path-implied`
+
+### **Vega** - [Security Researcher - R&D](https://www.comeet.com/jobs/vega/C9.009/security-researcher---rd/15.C6C)
+**Score:** 9/10 | **Location:** On -Site, Israel | **Applied:** 0
+**Reasoning:** Excellent fit for candidate's adversarial ML expertise, production-first approach, and desire for technical leadership within the cybersecurity domain, using AI as a tool.
+
+### **A Security** - [Security Researcher](https://www.comeet.com/jobs/a_security/EA.007/security-researcher/65.56A)
+**Score:** 9/10 | **Location:** Tel Aviv, Israel | **Applied:** 0
+**Reasoning:** Excellent fit given the candidate's specialization in adversarial ML and cybersecurity, with a strong focus on applying AI to build production-grade attack simulation platforms.
+
+### **Ironscales** - [Security Researcher](https://www.comeet.com/jobs/ironscales/1A.007/security-researcher/35.C6F)
+**Score:** 9/10 | **Location:** Tel Aviv, Israel | **Applied:** 0
+**Reasoning:** Excellent match for the candidate's deep specialization in adversarial ML and fraud detection, with a clear focus on owning and driving production-impacting detection research in cybersecurity.
+
+### **Cycode** - [Senior Security Researcher - AI Team](https://www.comeet.com/jobs/cycode/A8.00D/senior-security-researcher---ai-team/E2.C69)
+**Score:** 8/10 | **Location:** Tel Aviv, Israel | **Applied:** 0
+**Reasoning:** Strong domain match in cloud security and adversarial ML, with a focus on building and evaluating production AI agents for security, aligning with applied ML expertise.
+
+### **Kiva Systems (Amazon Robotics since 2012)** - [Applied Scientist, Personalization, Personalization Strategic Initiatives Science](https://www.amazon.jobs/en/jobs/10442965/applied-scientist-personalization-personalization-strategic-initiatives-science)
+**Score:** 8/10 | **Location:** Tel Aviv-Yafo, Tel Aviv, ISR | **Applied:** 0
+**Reasoning:** Good fit for a Senior Applied Scientist at a large company with a focus on production ML and E2E ownership, although without explicit lead responsibilities.
+
+### **Kiva Systems (Amazon Robotics since 2012)** - [Applied Scientist, Personalization, Personalization Strategic Initiatives Science](https://www.amazon.jobs/en/jobs/10442966/applied-scientist-personalization-personalization-strategic-initiatives-science)
+**Score:** 8/10 | **Location:** Tel Aviv-Yafo, Tel Aviv, ISR | **Applied:** 0
+**Reasoning:** Good fit for a Senior Applied Scientist at a large company with a focus on production ML and E2E ownership, although without explicit lead responsibilities.
+
+### **SentinelOne** - [Windows Detection Engineering Manager](https://www.sentinelone.com/jobs/7763509003?gh_jid=7763509003)
+**Score:** 7/10 | **Location:** Tel Aviv-Yafo, Tel Aviv District, Israel | **Applied:** 0
+**Reasoning:** Strong fit for a management role in a top security company, aligning with the candidate's leadership aspirations and adversarial ML expertise, though there's a gap in direct engineering management experience. `management-gap`
+
+### **Microsoft Israel** - [Senior Security Research- Microsoft Security](https://apply.careers.microsoft.com/careers/job/1970393556874376)
+**Score:** 6/10 | **Location:** Israel, Multiple Locations, Multiple Locations | **Applied:** 0
+**Reasoning:** Good company and security domain with applied AI, but the role appears more focused on deep security research and low-level system knowledge for detections rather than end-to-end ML model development. `location-unclear` `not-core-ml`
+
 ## 2026-06-07
 
 ### **Linx** - [AI Engineer](https://www.comeet.com/jobs/linxsecurity/99.00C/ai-engineer/5E.B67)
