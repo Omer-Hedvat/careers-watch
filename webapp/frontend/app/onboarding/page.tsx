@@ -88,6 +88,28 @@ export default function OnboardingPage() {
   const [showKeyHelp, setShowKeyHelp] = useState(false)
   const [copied, setCopied] = useState(false)
   const [mdUploadError, setMdUploadError] = useState('')
+  const [keyTestResult, setKeyTestResult] = useState('')
+  const [keyTesting, setKeyTesting] = useState(false)
+
+  async function testKeyInline() {
+    setKeyTesting(true)
+    setKeyTestResult('')
+    try {
+      const { data: { session } } = await supabase.auth.getSession()
+      const token = session?.access_token ?? ''
+      const r = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/user/test-key-inline`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+        body: JSON.stringify({ gemini_api_key: geminiKey }),
+      })
+      const d = await r.json()
+      setKeyTestResult(r.ok ? 'Key works!' : (d.detail ?? 'Test failed'))
+    } catch {
+      setKeyTestResult('Test failed - check your connection')
+    } finally {
+      setKeyTesting(false)
+    }
+  }
 
   function copyPrompt() {
     navigator.clipboard.writeText(PROFILE_PROMPT)
@@ -257,7 +279,18 @@ export default function OnboardingPage() {
             <h2 className="text-2xl font-bold">Your Gemini API key</h2>
             <p className="text-gray-400 text-sm">Used only for scoring. Never logged or shared.</p>
             <p className="text-sm text-green-400">It&apos;s fully free - Google&apos;s Gemini API has a free tier that&apos;s plenty for scoring jobs. <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener noreferrer" className="underline">Get your free key here</a>.</p>
-            <input type="password" value={geminiKey} onChange={e => setGeminiKey(e.target.value)} placeholder="AIza..." className="w-full bg-gray-800 text-white px-3 py-2 rounded-lg border border-gray-700 focus:outline-none focus:border-green-500" />
+            <input type="password" value={geminiKey} onChange={e => { setGeminiKey(e.target.value); setKeyTestResult('') }} placeholder="AIza..." className="w-full bg-gray-800 text-white px-3 py-2 rounded-lg border border-gray-700 focus:outline-none focus:border-green-500" />
+            <div className="flex items-center gap-3">
+              <button onClick={testKeyInline} disabled={!geminiKey.trim() || keyTesting}
+                className="px-4 py-2 bg-gray-700 hover:bg-gray-600 disabled:opacity-40 rounded-lg text-sm">
+                {keyTesting ? 'Testing...' : 'Test key'}
+              </button>
+              {keyTestResult && (
+                <span className={`text-sm ${keyTestResult === 'Key works!' ? 'text-green-400' : 'text-red-400'}`}>
+                  {keyTestResult}
+                </span>
+              )}
+            </div>
             <button onClick={() => setShowKeyHelp(!showKeyHelp)} className="text-sm text-green-400 hover:text-green-300">
               {showKeyHelp ? '▾' : '▸'} How to get a key
             </button>

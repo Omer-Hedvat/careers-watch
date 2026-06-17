@@ -153,6 +153,24 @@ def update_apikey(body: ApiKeyUpdate, authorization: str = Header(...)):
     return {"status": "ok"}
 
 
+class TestKeyRequest(BaseModel):
+    gemini_api_key: str
+
+@router.post("/test-key-inline")
+def test_apikey_inline(body: TestKeyRequest, authorization: str = Header(...)):
+    token = authorization.removeprefix("Bearer ")
+    resp = supabase.auth.get_user(token)
+    if not resp.user:
+        raise HTTPException(status_code=401, detail="Unauthorized")
+    try:
+        import google.genai as genai
+        client = genai.Client(api_key=body.gemini_api_key)
+        client.models.generate_content(model="gemini-2.0-flash", contents="ping")
+        return {"ok": True}
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=str(e))
+
+
 @router.post("/test-key")
 def test_apikey(authorization: str = Header(...)):
     token = authorization.removeprefix("Bearer ")

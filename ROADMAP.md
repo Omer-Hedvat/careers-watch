@@ -31,7 +31,7 @@
 
 | Slug | Title | Status | Effort | Children |
 |---|---|---|---|---|
-| [WEBAPP_FIRST_RUN_COMPREHENSION](future_devs/WEBAPP_FIRST_RUN_COMPREHENSION_SPEC.md) | First-run comprehension (what/why/what-you-get before & during onboarding) | `not-started` | L | 5 |
+| [WEBAPP_FIRST_RUN_COMPREHENSION](future_devs/WEBAPP_FIRST_RUN_COMPREHENSION_SPEC.md) | First-run comprehension (what/why/what-you-get before & during onboarding) | `in-progress` | L | 5 |
 | [WEBAPP_DIGEST_TRUST](future_devs/WEBAPP_DIGEST_TRUST_SPEC.md) | Digest legibility & trust (scores, flags, cadence, empty states) | `not-started` | M | 4 |
 | [WEBAPP_JOBSEEKER_WORKFLOW](future_devs/WEBAPP_JOBSEEKER_WORKFLOW_SPEC.md) | Job-seeker workspace (detail view, status tracker, hide, new, sort) | `not-started` | L | 5 |
 | [WEBAPP_APP_SHELL_ACCOUNT](future_devs/WEBAPP_APP_SHELL_ACCOUNT_SPEC.md) | App shell + account UX (nav, sign-out, help, auth recovery) | `not-started` | M | 4 |
@@ -123,11 +123,11 @@ First-time-user comprehension, digest trust, the job-seeker workspace, and the a
 | Slug | Title | Status | Effort | Depends on |
 |---|---|---|---|---|
 | [WEBAPP_FIRST_RUN_COMPREHENSION](future_devs/WEBAPP_FIRST_RUN_COMPREHENSION_SPEC.md) | First-run comprehension (epic root) | `in-progress` | L | — |
-| [WEBAPP_LANDING_REVAMP](future_devs/WEBAPP_LANDING_REVAMP_SPEC.md) | Landing revamp — value prop, BYO-key explainer, digest preview, FAQ | `in-progress` | S | WEBAPP_FIRST_RUN_COMPREHENSION |
-| [WEBAPP_ONBOARDING_ORIENTATION](future_devs/WEBAPP_ONBOARDING_ORIENTATION_SPEC.md) | Onboarding orientation + why-this-matters copy + setup summary | `not-started` | S | WEBAPP_FIRST_RUN_COMPREHENSION |
+| [WEBAPP_LANDING_REVAMP](future_devs/WEBAPP_LANDING_REVAMP_SPEC.md) | Landing revamp — value prop, BYO-key explainer, digest preview, FAQ | `completed` | S | WEBAPP_FIRST_RUN_COMPREHENSION |
+| [WEBAPP_ONBOARDING_ORIENTATION](future_devs/WEBAPP_ONBOARDING_ORIENTATION_SPEC.md) | Onboarding orientation + why-this-matters copy + setup summary | `in-progress` | S | WEBAPP_FIRST_RUN_COMPREHENSION |
 | [WEBAPP_PROFILE_EXAMPLE_GUIDANCE](future_devs/WEBAPP_PROFILE_EXAMPLE_GUIDANCE_SPEC.md) | Profile example + section guidance + completeness hint | `not-started` | S | WEBAPP_FIRST_RUN_COMPREHENSION |
 | [WEBAPP_FILTER_PLAIN_LANGUAGE_PREVIEW](future_devs/WEBAPP_FILTER_PLAIN_LANGUAGE_PREVIEW_SPEC.md) | Plain-language filters + live "X of Y jobs" preview | `not-started` | M | WEBAPP_FIRST_RUN_COMPREHENSION |
-| [WEBAPP_ONBOARDING_KEY_TEST](future_devs/WEBAPP_ONBOARDING_KEY_TEST_SPEC.md) | Inline "Test key" in onboarding Step 3 | `in-progress` | XS | WEBAPP_FIRST_RUN_COMPREHENSION |
+| [WEBAPP_ONBOARDING_KEY_TEST](future_devs/WEBAPP_ONBOARDING_KEY_TEST_SPEC.md) | Inline "Test key" in onboarding Step 3 | `completed` | XS | WEBAPP_FIRST_RUN_COMPREHENSION |
 
 ### Epic: Digest legibility & trust
 
