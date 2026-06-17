@@ -47,19 +47,17 @@ an in-flight one.
 
 ## Hard constraints — do not propose anything that violates these
 
-The project has deliberate scope discipline. These are intentionally OUT of
-scope unless there's an overwhelming reason:
+**Experimental Phase:** the project is now also a learning sandbox for RAG and
+Agentic systems. Vector databases (e.g. Chroma, FAISS), multi-agent frameworks,
+automated resume tailoring, and LLM calls anywhere in the pipeline (upstream or
+downstream of scoring) are explicitly permitted and actively wanted.
 
-- No SQLite / database for the pipeline — `companies.json` + `new_jobs.json` +
-  `digest.md` are the only persistent pipeline state.
+The project still has deliberate scope discipline. These remain intentionally
+OUT of scope unless there's an overwhelming reason:
+
 - No email / Slack / Telegram delivery — Omer reads `digest.md` directly.
 - No generic scraping framework or plugin system — per-VC and per-ATS adapters
   are the chosen design; don't refactor to a generic engine.
-- No auto-apply, no per-job resume tailoring.
-- LLM calls live ONLY in the scoring step (`matcher/`). Discovery and collection
-  are deterministic by design — do not propose LLM-based careers-page discovery.
-- Dependency tree is intentionally minimal (playwright, httpx, google-genai,
-  python-dotenv). Adding a dependency needs justification.
 - User-facing output uses hyphens, never em-dashes.
 
 If a proposal would cross one of these lines, flag it explicitly and explain

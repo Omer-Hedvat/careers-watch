@@ -21,6 +21,8 @@ These are the source of truth for matching. When in doubt about whether somethin
 
 ## Architecture
 
+> **Experimental Phase:** We are actively extending this project with RAG and Agentic modules. Vector databases, multi-agent frameworks, and upstream/downstream LLM calls are explicitly permitted.
+
 Three scripts, three cadences. They must remain independently runnable.
 
 ```
@@ -110,7 +112,6 @@ This is a persistent cache, not a throwaway. Treat it as the project's state of 
 - `ats/__init__.py` owns the `ATS_PULLERS` dispatch dict - `collect_jobs.py` imports from there
 - Each adapter/puller fails per-company; orchestrators never crash on a single company error
 - Print clear progress at every stage so manual runs are inspectable
-- LLM calls only happen inside `matcher/`. Anywhere else calling an LLM is a code smell.
 - Hyphens, not em-dashes, in any user-facing output (Omer's preference)
 
 ## Dependencies (intentionally minimal)
@@ -132,13 +133,10 @@ If you need something else, ask first. The simpler this dependency tree stays, t
 
 These are intentionally out of scope for the current iteration. Do not add them unless explicitly asked:
 
-- SQLite or any database (companies.json is sufficient state)
 - Email, Slack, or Telegram delivery (Omer reads `digest.md` directly)
 - A generic scraping framework or plugin system (per-X adapters are the right choice here)
 - VCs not already implemented (add one at a time, end-to-end, with verification)
 - ATSes not already implemented (same)
-- Any "auto-apply" functionality (out of scope)
-- Resume tailoring per-job (out of scope)
 
 If a user request would add any of these, confirm explicitly before building.
 
