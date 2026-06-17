@@ -16,6 +16,8 @@ type Job = {
   applied: boolean
   apply_url: string
   profile_version?: number
+  status?: 'open' | 'closed'
+  closed_at?: string
 }
 
 function timeAgo(iso: string): string {
@@ -39,7 +41,7 @@ function JobCard({ job, onToggleApplied, currentProfileVersion }: { job: Job; on
       <ScoreBadge score={job.score} />
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-2 flex-wrap">
-          <span className="font-semibold text-white">{job.company} — {job.title}</span>
+          <span className="font-semibold text-white">{job.company} - {job.title}</span>
           {staleProfile && <span className="px-2 py-0.5 bg-gray-800 text-gray-500 text-xs rounded border border-gray-700">scored with old profile</span>}
         </div>
         <div className="text-sm text-gray-400 mt-0.5">{job.location} · scored {timeAgo(job.scored_at)}</div>
@@ -59,6 +61,30 @@ function JobCard({ job, onToggleApplied, currentProfileVersion }: { job: Job; on
             {job.applied ? 'Undo applied' : 'Mark applied'}
           </button>
         </div>
+      </div>
+    </div>
+  )
+}
+
+function ClosedJobCard({ job }: { job: Job }) {
+  return (
+    <div className="bg-gray-900/50 rounded-xl p-4 flex gap-4 opacity-60">
+      <ScoreBadge score={job.score} />
+      <div className="flex-1 min-w-0">
+        <div className="flex items-center gap-2 flex-wrap">
+          <span className="font-semibold text-gray-400 line-through">{job.company} - {job.title}</span>
+          <span className="px-2 py-0.5 bg-red-900/40 text-red-400 text-xs rounded border border-red-800/40">
+            Closed{job.closed_at ? ` ${job.closed_at}` : ''}
+          </span>
+        </div>
+        <div className="text-sm text-gray-500 mt-0.5">{job.location}</div>
+        {job.reasoning && <p className="text-sm text-gray-500 mt-1 line-clamp-1">"{job.reasoning}"</p>}
+        {job.apply_url && (
+          <a href={job.apply_url} target="_blank" rel="noopener noreferrer"
+            className="text-xs text-gray-600 hover:text-gray-400 mt-2 inline-block">
+            View posting
+          </a>
+        )}
       </div>
     </div>
   )
@@ -142,8 +168,10 @@ export default function DigestPage() {
     .filter(j => matchesMultiFilter(j.company, companyFilter))
     .filter(j => matchesMultiFilter(j.location, locationFilter))
 
-  const active = filtered.filter(j => !j.applied)
-  const applied = filtered.filter(j => j.applied)
+  const openJobs = filtered.filter(j => (j.status ?? 'open') !== 'closed')
+  const closedJobs = filtered.filter(j => j.status === 'closed')
+  const active = openJobs.filter(j => !j.applied)
+  const applied = openJobs.filter(j => j.applied)
 
   const lastScored = jobs.length > 0 ? timeAgo(jobs.reduce((a, b) => a.scored_at > b.scored_at ? a : b).scored_at) : null
 
@@ -208,6 +236,16 @@ export default function DigestPage() {
               {showApplied ? `Hide ${applied.length} applied` : `Show ${applied.length} applied`}
             </button>
             {showApplied && applied.map(job => <JobCard key={job.id} job={job} onToggleApplied={toggleApplied} currentProfileVersion={currentProfileVersion} />)}
+          </div>
+        )}
+
+        {/* Closed section */}
+        {closedJobs.length > 0 && (
+          <div className="pt-4 border-t border-gray-800">
+            <h2 className="text-sm font-medium text-gray-500 mb-3">Recently closed ({closedJobs.length})</h2>
+            <div className="space-y-2">
+              {closedJobs.map(job => <ClosedJobCard key={job.id} job={job} />)}
+            </div>
           </div>
         )}
       </div>
