@@ -86,7 +86,7 @@ All Phase P2 tasks are wrapped. See `ROADMAP_ARCHIVE.md`.
 
 | Slug | Title | Status | Effort | Depends on |
 |---|---|---|---|---|
-| [WEBAPP_CV_SETTINGS_UPLOAD](future_devs/WEBAPP_CV_SETTINGS_UPLOAD_SPEC.md) | CV re-upload section in Settings (outside onboarding) | `not-started` | S | — |
+| [WEBAPP_CV_SETTINGS_UPLOAD](future_devs/archive/WEBAPP_CV_SETTINGS_UPLOAD_SPEC.md) | CV re-upload section in Settings (outside onboarding) | `wrapped` | S | — |
 | [WEBAPP_PROFILE_UPLOAD_OR_PROMPT](future_devs/WEBAPP_PROFILE_UPLOAD_OR_PROMPT_SPEC.md) | Profile upload OR AI-prompt generator for building profile.md | `not-started` | M | — |
 | [WEBAPP_COMPANIES_VIEW](future_devs/WEBAPP_COMPANIES_VIEW_SPEC.md) | Companies page — inspect all tracked companies + metadata | `not-started` | S | — |
 | [WEBAPP_POSITIONS_VIEW](future_devs/WEBAPP_POSITIONS_VIEW_SPEC.md) | Positions page — browse all open roles from pipeline | `not-started` | S | WEBAPP_COMPANIES_VIEW |
@@ -140,7 +140,7 @@ All Phase P2 tasks are wrapped. See `ROADMAP_ARCHIVE.md`.
 | `future_devs/archive/REPO_SHOWCASE_SPEC.md` | P4 — README rewrite / engineering showcase (wrapped) |
 | `future_devs/SCORING_RUBRIC_ABLATION_SPEC.md` | P4 — Scoring calibration doc |
 | `future_devs/archive/WEBAPP_FAVICON_SPEC.md` | P5 — Website favicon + Open Graph (wrapped) |
-| `future_devs/WEBAPP_CV_SETTINGS_UPLOAD_SPEC.md` | P5 — CV re-upload in Settings |
+| `future_devs/archive/WEBAPP_CV_SETTINGS_UPLOAD_SPEC.md` | P5 — CV re-upload in Settings (wrapped) |
 | `future_devs/WEBAPP_PROFILE_UPLOAD_OR_PROMPT_SPEC.md` | P5 — Profile upload or AI prompt generator |
 | `future_devs/WEBAPP_COMPANIES_VIEW_SPEC.md` | P5 — Companies page |
 | `future_devs/WEBAPP_POSITIONS_VIEW_SPEC.md` | P5 — Positions page |
