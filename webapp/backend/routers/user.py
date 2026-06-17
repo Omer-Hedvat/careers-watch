@@ -2,7 +2,7 @@ from fastapi import APIRouter, HTTPException, Header, Request
 from pydantic import BaseModel
 from typing import List, Optional
 import os
-from datetime import datetime, timezone
+from datetime import datetime, timezone, date, timedelta
 from cryptography.fernet import Fernet
 from db.supabase_client import supabase
 
@@ -73,6 +73,12 @@ def get_me(authorization: str = Header(...)):
     row["has_api_key"] = has_api_key
     if api_key_last4:
         row["api_key_last4"] = api_key_last4
+    # The weekly scoring run limit resets at the start of the ISO week (Monday).
+    # Mirror scoring._reset_if_new_week's notion of "week" by reporting the next
+    # upcoming Monday. If today is Monday, the next reset is 7 days out.
+    today = date.today()
+    days_until_monday = (7 - today.weekday()) % 7 or 7
+    row["run_limit_resets_on"] = (today + timedelta(days=days_until_monday)).isoformat()
     return row
 
 
