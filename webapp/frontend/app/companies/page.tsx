@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabaseClient'
+import { useCountUp } from '@/hooks/useCountUp'
 
 type Company = {
   name: string
@@ -48,6 +49,7 @@ export default function CompaniesPage() {
   const [companies, setCompanies] = useState<Company[]>([])
   const [loading, setLoading] = useState(true)
   const [search, setSearch] = useState('')
+  const animatedCount = useCountUp(loading ? 0 : companies.length)
 
   useEffect(() => {
     async function load() {
@@ -83,7 +85,7 @@ export default function CompaniesPage() {
         <div className="flex items-center justify-between">
           <h1 className="text-xl font-semibold">
             Tracked companies
-            {!loading && <span className="text-gray-400 font-normal text-base ml-2">({companies.length})</span>}
+            {!loading && <span className="text-gray-400 font-normal text-base ml-2">({animatedCount})</span>}
           </h1>
           <input
             value={search}
