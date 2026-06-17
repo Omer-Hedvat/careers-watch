@@ -317,7 +317,10 @@ export default function SettingsPage() {
     setPdfError('')
     try {
       const buf = await file.arrayBuffer()
-      const b64 = btoa(String.fromCharCode(...new Uint8Array(buf)))
+      const bytes = new Uint8Array(buf)
+      let binary = ''
+      for (let i = 0; i < bytes.length; i++) binary += String.fromCharCode(bytes[i])
+      const b64 = btoa(binary)
       const token = await getToken()
       const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/user/parse-cv`, {
         method: 'POST',
