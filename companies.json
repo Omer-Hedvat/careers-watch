@@ -5237,9 +5237,13 @@
     "website": "https://www.getport.io",
     "source_vc": "Bessemer",
     "vc_tier": 2,
-    "careers_url": "https://x.com/ghumare64/status/1907389716653048048",
-    "ats": "unknown",
-    "ats_params": {},
+    "careers_url": "https://www.comeet.com/jobs/port/59.004",
+    "ats": "comeet",
+    "ats_params": {
+      "company_uid": "59.004",
+      "company_name": "port",
+      "token": "954414C02550414C4AA01BFC12A81BFC2550"
+    },
     "discovered_at": "2026-05-04T22:19:38.506974+00:00",
     "last_verified_at": "2026-06-07T08:51:07.222941+00:00",
     "last_jobs_pulled_at": "2026-06-04T10:35:05.970211+00:00",
@@ -6848,8 +6852,12 @@
     "source_vc": "Grove",
     "vc_tier": 2,
     "careers_url": "https://www.notraffic.com/careers/",
-    "ats": "unknown",
-    "ats_params": {},
+    "ats": "comeet",
+    "ats_params": {
+      "company_uid": "1A.00F",
+      "company_name": "notraffic",
+      "token": "A1F46D91E5D46D9329B287C0287CA1FA1F"
+    },
     "discovered_at": "2026-05-04T22:24:04.585784+00:00",
     "last_verified_at": "2026-06-07T08:55:03.826197+00:00",
     "last_jobs_pulled_at": "2026-05-06T12:42:26.948833+00:00",
@@ -37638,9 +37646,13 @@
     "website": "https://majestic-labs.ai",
     "source_vc": "Hetz Ventures",
     "vc_tier": 1,
-    "careers_url": "https://majestic-labs.ai/careers",
-    "ats": "unknown",
-    "ats_params": {},
+    "careers_url": "https://www.comeet.com/jobs/majesticlabs/AA.004",
+    "ats": "comeet",
+    "ats_params": {
+      "company_uid": "AA.004",
+      "company_name": "majesticlabs",
+      "token": "AA44A7C35345FC44A7C5FC4055205FC42A90"
+    },
     "discovered_at": "2026-06-14T09:08:53.809411+00:00",
     "last_verified_at": "2026-06-14T09:08:53.809421+00:00",
     "last_jobs_pulled_at": null,

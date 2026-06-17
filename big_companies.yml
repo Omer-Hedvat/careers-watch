@@ -856,10 +856,11 @@
 
 - name: Quantum Machines
   website: https://www.quantum-machines.co
-  careers_url: https://qm.teamme.link
-  ats: teamme
+  careers_url: https://www.comeet.com/jobs/quantummachines/D6.000
+  ats: comeet
   ats_params:
-    tenant: qm
+    company_uid: "D6.000"
+    token: "6D028E0DA022106D01470221036803D502210"
   category: general
   location_filter: israel
   notes: "Quantum computing hardware/software."
@@ -1617,3 +1618,48 @@
   category: general
   location_filter: israel
   notes: "GenAI lab for life sciences/drug discovery, Tel Aviv. $25M Series A (Bessemer, TLV Partners). Globes 2026 list. Verified 2026-05-31."
+
+# ─── Added 2026-06-17 ────────────────────────────────────────────────────────
+
+- name: Buildots
+  website: https://buildots.com
+  careers_url: https://www.comeet.com/jobs/buildots/36.004
+  ats: comeet
+  ats_params:
+    company_uid: "36.004"
+    token: "6342538634037D42B6C129C18D0129CC68"
+  category: general
+  location_filter: israel
+  notes: "Construction intelligence platform - AI/computer vision for site monitoring. Token verified 2026-06-17."
+
+- name: Fetcherr
+  website: https://www.fetcherr.io
+  careers_url: https://www.fetcherr.io/career
+  ats: comeet
+  ats_params:
+    company_uid: "68.006"
+    token: "866326432643ACA866219829FE10CC193229FE"
+  category: general
+  location_filter: israel
+  notes: "AI-based autonomous pricing for airlines. Comeet self-hosted embed; credentials extracted 2026-06-17."
+
+- name: Blockaid
+  website: https://blockaid.io
+  careers_url: https://www.comeet.com/jobs/blockaid/69.00B
+  ats: comeet
+  ats_params:
+    company_uid: "69.00B"
+    token: "96B41ED041ED12D654C3388241ED12D654C3"
+  category: cyber
+  location_filter: israel
+  notes: "Web3 security platform - real-time scam, fraud and exploit prevention. Token verified 2026-06-17."
+
+- name: Finout
+  website: https://www.finout.io
+  careers_url: https://jobs.ashbyhq.com/finout
+  ats: ashby
+  ats_params:
+    org_name: finout
+  category: general
+  location_filter: israel
+  notes: "Cloud FinOps / cost management platform."
