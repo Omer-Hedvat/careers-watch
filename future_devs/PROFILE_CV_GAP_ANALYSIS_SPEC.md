@@ -1,12 +1,12 @@
 | Field | Value |
 |---|---|
 | **Phase** | P5 |
-| **Status** | `not-started` |
+| **Status** | `completed` |
 | **Effort** | M |
 | **Epic** | — |
 | **Depends on** | — |
 | **Blocks** | — |
-| **Touches** | `webapp/frontend/app/gaps/page.tsx` (new), `webapp/backend/routers/gaps.py` (new), `matcher/gap_analyzer.py` (new) |
+| **Touches** | `webapp/frontend/app/gaps/page.tsx` (new), `webapp/backend/routers/gaps.py` (new), `matcher/gap_analyzer.py` (new), `webapp/backend/main.py`, `webapp/frontend/app/digest/page.tsx` |
 
 ## Overview
 
@@ -124,7 +124,7 @@ Navigation: "Gaps" link added to the main nav.
 - `webapp/backend/routers/gaps.py` — new: two endpoints
 - `webapp/backend/main.py` — register gaps router
 - `webapp/frontend/app/gaps/page.tsx` — new page
-- `webapp/frontend/app/layout.tsx` — add "Gaps" nav link
+- `webapp/frontend/app/digest/page.tsx` — add "Gaps" nav link (nav lives here, not in layout.tsx)
 
 ## How to QA
 

@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from routers.gaps import router as gaps_router
 from routers.jobs import router as jobs_router
 from routers.scoring import router as scoring_router
 from routers.user import router as user_router
@@ -14,6 +15,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+app.include_router(gaps_router)
 app.include_router(jobs_router)
 app.include_router(scoring_router)
 app.include_router(user_router)
