@@ -222,10 +222,12 @@ This project uses a lightweight task system modeled on the PowerME project. Read
 ### Task lifecycle
 
 ```
-not-started → in-progress (/start_task)
-            → completed   (exit gate passes)
-            → wrapped     (/qa_task + /wrap_task)
+not-started → in-progress (/start_task Phase A)
+            → completed   (/start_task Phase B — exit gate passes; STOPS HERE)
+            → wrapped     (user runs /qa_task, then /wrap_task — commits + pushes)
 ```
+
+**Rule: `/start_task` always stops at `completed`. Never auto-chains to QA or wrap. The user must explicitly run `/wrap_task <slug>` to land changes.**
 
 ### Exit gate (required before marking completed)
 
