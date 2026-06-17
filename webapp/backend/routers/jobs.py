@@ -25,7 +25,7 @@ def _get_user(authorization: str) -> str:
 def list_companies(authorization: str = Header(...)):
     _get_user(authorization)
     if not COMPANIES_PATH.exists():
-        raise HTTPException(status_code=503, detail="companies.json not found")
+        return []
     companies = json.loads(COMPANIES_PATH.read_text(encoding="utf-8"))
     result = []
     for c in sorted(companies, key=lambda x: x.get("name", "").lower()):
