@@ -460,13 +460,15 @@
     "source": "big_companies_list",
     "source_vc": "Vertex Israel",
     "vc_tier": 2,
-    "careers_url": "https://jobs.smartrecruiters.com/Cyberark1",
-    "ats": "other",
-    "ats_params": {},
+    "careers_url": "https://careers.smartrecruiters.com/Cyberark1",
+    "ats": "smartrecruiters",
+    "ats_params": {
+      "company_slug": "Cyberark1"
+    },
     "category": "cyber",
     "location_filter": "israel",
     "discovered_at": "2026-05-04T18:54:33.370404+00:00",
-    "last_verified_at": "2026-06-17T19:34:21.587690+00:00",
+    "last_verified_at": "2026-06-21T09:43:21.587009+00:00",
     "last_jobs_pulled_at": "2026-05-04T18:54:39.592896+00:00",
     "consecutive_failures": 0
   },
@@ -568,15 +570,15 @@
     "source": "big_companies_list",
     "source_vc": null,
     "vc_tier": null,
-    "careers_url": "https://jobs.smartrecruiters.com/PaloAltoNetworks2",
+    "careers_url": "https://careers.smartrecruiters.com/PaloAltoNetworks2",
     "ats": "smartrecruiters",
     "ats_params": {
-      "company": "PaloAltoNetworks2"
+      "company_slug": "PaloAltoNetworks2"
     },
     "category": "cyber",
     "location_filter": "israel",
     "discovered_at": "2026-05-04T18:54:33.370404+00:00",
-    "last_verified_at": "2026-05-17T15:21:36.730337+00:00",
+    "last_verified_at": "2026-06-21T09:43:21.587009+00:00",
     "last_jobs_pulled_at": "2026-06-18T11:05:26.638562+00:00",
     "consecutive_failures": 0
   },
@@ -602,13 +604,16 @@
     "source": "big_companies_list",
     "source_vc": null,
     "vc_tier": null,
-    "careers_url": "https://jobs.akamai.com",
-    "ats": "other",
-    "ats_params": {},
+    "careers_url": "https://fa-extu-saasfaprod1.fa.ocs.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/jobs",
+    "ats": "oracle_hcm",
+    "ats_params": {
+      "host": "fa-extu-saasfaprod1.fa.ocs.oraclecloud.com",
+      "site": "CX_1"
+    },
     "category": "security",
     "location_filter": "israel",
     "discovered_at": "2026-05-04T18:54:33.370404+00:00",
-    "last_verified_at": "2026-05-17T15:21:36.730337+00:00",
+    "last_verified_at": "2026-06-21T09:43:21.587009+00:00",
     "last_jobs_pulled_at": null,
     "consecutive_failures": 0
   },
@@ -626,7 +631,7 @@
     "category": "cyber",
     "location_filter": "israel",
     "discovered_at": "2026-05-04T18:54:33.370404+00:00",
-    "last_verified_at": "2026-06-14T09:23:15.389636+00:00",
+    "last_verified_at": "2026-06-21T09:43:21.587009+00:00",
     "last_jobs_pulled_at": "2026-06-18T11:05:26.902709+00:00",
     "consecutive_failures": 0
   },
@@ -674,12 +679,15 @@
     "source_vc": null,
     "vc_tier": null,
     "careers_url": "https://radware.taleo.net/careersection/ex/jobsearch.ftl",
-    "ats": "other",
-    "ats_params": {},
+    "ats": "taleo",
+    "ats_params": {
+      "host": "radware.taleo.net",
+      "careers_section": "ex"
+    },
     "category": "security",
     "location_filter": "israel",
     "discovered_at": "2026-05-04T18:54:33.370404+00:00",
-    "last_verified_at": "2026-05-17T15:21:36.730337+00:00",
+    "last_verified_at": "2026-06-21T09:43:21.587009+00:00",
     "last_jobs_pulled_at": null,
     "consecutive_failures": 0
   },
@@ -749,7 +757,7 @@
     "category": "fintech",
     "location_filter": "israel",
     "discovered_at": "2026-05-04T18:54:33.370404+00:00",
-    "last_verified_at": "2026-06-17T19:34:21.587690+00:00",
+    "last_verified_at": "2026-06-21T09:43:21.587009+00:00",
     "last_jobs_pulled_at": "2026-06-18T11:05:28.214573+00:00",
     "consecutive_failures": 0
   },
@@ -767,7 +775,7 @@
     "category": "fintech",
     "location_filter": "israel",
     "discovered_at": "2026-05-04T18:54:33.370404+00:00",
-    "last_verified_at": "2026-06-17T19:34:21.587690+00:00",
+    "last_verified_at": "2026-06-21T09:43:21.587009+00:00",
     "last_jobs_pulled_at": "2026-06-18T11:05:28.285737+00:00",
     "consecutive_failures": 0
   },
@@ -1850,7 +1858,7 @@
       "token": "96B41ED041ED12D654C3388241ED12D654C3"
     },
     "discovered_at": "2026-05-04T22:13:14.592767+00:00",
-    "last_verified_at": "2026-06-17T19:34:21.587690+00:00",
+    "last_verified_at": "2026-06-21T09:43:21.587009+00:00",
     "last_jobs_pulled_at": "2026-06-18T11:05:43.586697+00:00",
     "consecutive_failures": 0,
     "category": "cyber",
@@ -2123,7 +2131,7 @@
       "token": "94440DC0944094401BCC12882510"
     },
     "discovered_at": "2026-05-04T22:13:39.140529+00:00",
-    "last_verified_at": "2026-06-17T19:34:21.587690+00:00",
+    "last_verified_at": "2026-06-21T09:43:21.587009+00:00",
     "last_jobs_pulled_at": "2026-06-18T11:05:48.574232+00:00",
     "consecutive_failures": 0,
     "ats_source": "gemini-2.5-pro",
@@ -3181,7 +3189,7 @@
       "token": "37.009"
     },
     "discovered_at": "2026-05-04T22:15:11.920308+00:00",
-    "last_verified_at": "2026-06-17T19:34:21.587690+00:00",
+    "last_verified_at": "2026-06-21T09:43:21.587009+00:00",
     "last_jobs_pulled_at": "2026-06-18T11:06:00.502077+00:00",
     "consecutive_failures": 0,
     "category": "general",
@@ -3200,7 +3208,7 @@
       "token": "B6.00F"
     },
     "discovered_at": "2026-05-04T22:15:12.743648+00:00",
-    "last_verified_at": "2026-06-17T19:34:21.587690+00:00",
+    "last_verified_at": "2026-06-21T09:43:21.587009+00:00",
     "last_jobs_pulled_at": "2026-06-18T11:06:00.791628+00:00",
     "consecutive_failures": 0,
     "category": "general",
@@ -3269,8 +3277,8 @@
   },
   {
     "name": "Personetics",
-    "website": "https://www.viola-group.com/portfolio/personetics",
-    "source_vc": "Viola",
+    "website": "https://personetics.com",
+    "source_vc": "Lightspeed Israel",
     "vc_tier": 2,
     "careers_url": "https://careers.viola-group.com/companies",
     "ats": "getro",
@@ -3374,8 +3382,8 @@
   },
   {
     "name": "Outbrain",
-    "website": "https://www.viola-group.com/portfolio/outbrain",
-    "source_vc": "Viola",
+    "website": "https://outbrain.com",
+    "source_vc": "Lightspeed Israel",
     "vc_tier": 2,
     "careers_url": "https://careers.viola-group.com/companies",
     "ats": "getro",
@@ -3504,7 +3512,7 @@
       "token": "8A.00C"
     },
     "discovered_at": "2026-05-04T22:15:31.314789+00:00",
-    "last_verified_at": "2026-06-17T19:34:21.587690+00:00",
+    "last_verified_at": "2026-06-21T09:43:21.587009+00:00",
     "last_jobs_pulled_at": "2026-06-18T11:06:06.873908+00:00",
     "consecutive_failures": 0,
     "category": "general",
@@ -4003,7 +4011,7 @@
       "token": "72.006"
     },
     "discovered_at": "2026-05-04T22:17:14.176324+00:00",
-    "last_verified_at": "2026-06-17T19:34:21.587690+00:00",
+    "last_verified_at": "2026-06-21T09:43:21.587009+00:00",
     "last_jobs_pulled_at": "2026-06-18T11:06:16.076900+00:00",
     "consecutive_failures": 0,
     "ats_source": "gemini-2.5-pro",
@@ -4041,7 +4049,7 @@
       "board_token": "appsflyer"
     },
     "discovered_at": "2026-05-04T22:17:16.871044+00:00",
-    "last_verified_at": "2026-06-17T19:34:21.587690+00:00",
+    "last_verified_at": "2026-06-21T09:43:21.587009+00:00",
     "last_jobs_pulled_at": "2026-06-18T11:06:16.216215+00:00",
     "consecutive_failures": 0,
     "category": "general",
@@ -5341,7 +5349,7 @@
       "token": "B1A4DB64DB62C6863EA2C684DB6B1A58D02C68"
     },
     "discovered_at": "2026-05-04T22:20:41.425159+00:00",
-    "last_verified_at": "2026-06-17T19:34:21.587690+00:00",
+    "last_verified_at": "2026-06-21T09:43:21.587009+00:00",
     "last_jobs_pulled_at": "2026-06-18T11:06:22.446945+00:00",
     "consecutive_failures": 0,
     "ats_source": "gemini-2.5-pro",
@@ -5523,8 +5531,8 @@
   },
   {
     "name": "SolarEdge",
-    "website": "",
-    "source_vc": "Vertex Israel",
+    "website": "https://solaredge.com",
+    "source_vc": "Lightspeed Israel",
     "vc_tier": 2,
     "careers_url": null,
     "ats": "unknown",
@@ -5586,7 +5594,7 @@
       "token": "9103660519012202D5024401B3091024403660"
     },
     "discovered_at": "2026-05-04T22:20:45.737333+00:00",
-    "last_verified_at": "2026-06-17T19:34:21.587690+00:00",
+    "last_verified_at": "2026-06-21T09:43:21.587009+00:00",
     "last_jobs_pulled_at": "2026-06-18T11:06:24.425812+00:00",
     "consecutive_failures": 0,
     "careers_url_source": "gemini-2.5-pro",
@@ -5717,8 +5725,8 @@
   },
   {
     "name": "BlueVine",
-    "website": "http://www.bluevine.com",
-    "source_vc": "83North",
+    "website": "https://bluevine.com",
+    "source_vc": "Lightspeed Israel",
     "vc_tier": 2,
     "careers_url": "https://www.bluevine.com/careers",
     "ats": "unknown",
@@ -9624,7 +9632,7 @@
       "token": "99343059931CB999339721CB9264C1CB9993"
     },
     "discovered_at": "2026-05-04T22:27:12.611224+00:00",
-    "last_verified_at": "2026-06-17T19:34:21.587690+00:00",
+    "last_verified_at": "2026-06-21T09:43:21.587009+00:00",
     "last_jobs_pulled_at": "2026-06-18T11:06:34.614751+00:00",
     "consecutive_failures": 0,
     "ats_source": "gemini-2.5-pro",
@@ -9992,9 +10000,9 @@
   },
   {
     "name": "Theator",
-    "website": "https://gmpg.org",
-    "source_vc": "StageOne Ventures",
-    "vc_tier": 2,
+    "website": "https://www.theator.io",
+    "source_vc": "NFX",
+    "vc_tier": 3,
     "careers_url": "https://theator.io/careers",
     "ats": "unknown",
     "ats_params": {},
@@ -11932,7 +11940,7 @@
     "category": "cyber",
     "location_filter": "israel",
     "discovered_at": "2026-05-04T22:31:35.530163+00:00",
-    "last_verified_at": "2026-06-17T19:34:21.587690+00:00",
+    "last_verified_at": "2026-06-21T09:43:21.587009+00:00",
     "last_jobs_pulled_at": "2026-06-18T11:06:46.687934+00:00",
     "consecutive_failures": 0
   },
@@ -12253,10 +12261,12 @@
     "source_vc": "Bessemer",
     "vc_tier": 2,
     "careers_url": "https://nilus.bamboohr.com/careers",
-    "ats": "other",
-    "ats_params": {},
+    "ats": "bamboohr",
+    "ats_params": {
+      "company_slug": "nilus"
+    },
     "discovered_at": "2026-05-05T14:22:08.443256+00:00",
-    "last_verified_at": "2026-06-17T19:24:20.421465+00:00",
+    "last_verified_at": "2026-06-21T09:43:21.587009+00:00",
     "last_jobs_pulled_at": "2026-06-04T10:35:46.858987+00:00",
     "consecutive_failures": 0,
     "ats_source": "gemini-2.5-pro",
@@ -12286,8 +12296,8 @@
   },
   {
     "name": "Otonomo",
-    "website": "https://gmpg.org",
-    "source_vc": "StageOne Ventures",
+    "website": "https://otonomo.io",
+    "source_vc": "Bessemer",
     "vc_tier": 2,
     "careers_url": null,
     "ats": "unknown",
@@ -12338,8 +12348,8 @@
   },
   {
     "name": "Qwak",
-    "website": "https://gmpg.org",
-    "source_vc": "StageOne Ventures",
+    "website": "https://www.qwak.com",
+    "source_vc": "Bessemer",
     "vc_tier": 2,
     "careers_url": null,
     "ats": "unknown",
@@ -12493,7 +12503,7 @@
     "ats": "other",
     "ats_params": {},
     "discovered_at": "2026-05-05T14:22:31.835830+00:00",
-    "last_verified_at": "2026-06-17T19:34:21.587690+00:00",
+    "last_verified_at": "2026-06-21T09:43:21.587009+00:00",
     "last_jobs_pulled_at": null,
     "consecutive_failures": 0,
     "ats_hint": "custom",
@@ -32020,7 +32030,7 @@
     "category": "fintech",
     "location_filter": "israel",
     "discovered_at": "2026-05-07T11:24:33.472448+00:00",
-    "last_verified_at": "2026-06-17T19:34:21.587690+00:00",
+    "last_verified_at": "2026-06-21T09:43:21.587009+00:00",
     "last_jobs_pulled_at": "2026-06-18T11:08:16.790603+00:00",
     "consecutive_failures": 0
   },
@@ -32187,7 +32197,7 @@
     "category": "general",
     "location_filter": "israel",
     "discovered_at": "2026-05-07T11:24:33.472448+00:00",
-    "last_verified_at": "2026-06-17T19:34:21.587690+00:00",
+    "last_verified_at": "2026-06-21T09:43:21.587009+00:00",
     "last_jobs_pulled_at": "2026-06-18T11:08:20.905153+00:00",
     "consecutive_failures": 0
   },
@@ -32279,7 +32289,7 @@
       "token": "AF24C9E4C9E015E457906282579036BA36BA"
     },
     "discovered_at": "2026-05-17T11:24:29.799753+00:00",
-    "last_verified_at": "2026-06-17T19:34:21.587690+00:00",
+    "last_verified_at": "2026-06-21T09:43:21.587009+00:00",
     "last_jobs_pulled_at": "2026-06-18T11:09:14.845639+00:00",
     "consecutive_failures": 0,
     "category": "cyber",
@@ -32717,7 +32727,7 @@
     "category": "general",
     "location_filter": "israel",
     "discovered_at": "2026-05-17T11:32:14.759406+00:00",
-    "last_verified_at": "2026-06-17T19:34:21.587690+00:00",
+    "last_verified_at": "2026-06-21T09:43:21.587009+00:00",
     "last_jobs_pulled_at": null,
     "consecutive_failures": 0
   },
@@ -32749,7 +32759,7 @@
       "token": "6342538634037D42B6C129C18D0129CC68"
     },
     "discovered_at": "2026-05-17T11:54:39.783582+00:00",
-    "last_verified_at": "2026-06-17T19:34:21.587690+00:00",
+    "last_verified_at": "2026-06-21T09:43:21.587009+00:00",
     "last_jobs_pulled_at": "2026-06-18T11:09:22.538184+00:00",
     "consecutive_failures": 0,
     "category": "general",
@@ -32796,9 +32806,9 @@
   },
   {
     "name": "Silverfort",
-    "website": "https://gmpg.org",
-    "source_vc": "StageOne Ventures",
-    "vc_tier": 2,
+    "website": "http://silverfort.com",
+    "source_vc": "Greenfield Partners",
+    "vc_tier": 1,
     "careers_url": "https://www.silverfort.com/careers",
     "ats": "unknown",
     "ats_params": {},
@@ -32821,7 +32831,7 @@
       "token": "A5B487D296C487D01F1152D852D852D8487D"
     },
     "discovered_at": "2026-05-17T11:56:25.782767+00:00",
-    "last_verified_at": "2026-06-17T19:34:21.587690+00:00",
+    "last_verified_at": "2026-06-21T09:43:21.587009+00:00",
     "last_jobs_pulled_at": "2026-06-18T11:09:24.482776+00:00",
     "consecutive_failures": 0,
     "skip_discovery": true,
@@ -32856,7 +32866,7 @@
       "company_slug": "real"
     },
     "discovered_at": "2026-05-17T11:56:29.641392+00:00",
-    "last_verified_at": "2026-06-17T19:34:21.587690+00:00",
+    "last_verified_at": "2026-06-21T09:43:21.587009+00:00",
     "last_jobs_pulled_at": "2026-06-18T11:09:24.629346+00:00",
     "consecutive_failures": 0,
     "category": "general",
@@ -34203,8 +34213,8 @@
   },
   {
     "name": "Finaloop",
-    "website": "https://www.finaloop.com",
-    "source_vc": "Aleph",
+    "website": "https://finaloop.com",
+    "source_vc": "Lightspeed Israel",
     "vc_tier": 2,
     "careers_url": "https://careers.finaloop.com/",
     "ats": "unknown",
@@ -34334,7 +34344,7 @@
     "ats": "other",
     "ats_params": {},
     "discovered_at": "2026-05-24T08:20:29.979365+00:00",
-    "last_verified_at": "2026-06-17T19:34:21.587690+00:00",
+    "last_verified_at": "2026-06-21T09:43:21.587009+00:00",
     "last_jobs_pulled_at": null,
     "consecutive_failures": 0,
     "skip_discovery": true,
@@ -34924,8 +34934,8 @@
   },
   {
     "name": "Epsagon",
-    "website": "https://gmpg.org",
-    "source_vc": "StageOne Ventures",
+    "website": "https://epsagon.com",
+    "source_vc": "Lightspeed Israel",
     "vc_tier": 2,
     "careers_url": null,
     "ats": "unknown",
@@ -35141,8 +35151,8 @@
   },
   {
     "name": "Varada",
-    "website": "https://gmpg.org",
-    "source_vc": "StageOne Ventures",
+    "website": "https://Varada.io",
+    "source_vc": "Lightspeed Israel",
     "vc_tier": 2,
     "careers_url": null,
     "ats": "unknown",
@@ -36293,7 +36303,7 @@
       "token": "B124D7E4D7E213663A2B122136375A375A375A"
     },
     "discovered_at": "2026-05-24T08:25:29.217757+00:00",
-    "last_verified_at": "2026-06-17T19:34:21.587690+00:00",
+    "last_verified_at": "2026-06-21T09:43:21.587009+00:00",
     "last_jobs_pulled_at": "2026-06-18T11:09:38.772915+00:00",
     "consecutive_failures": 0,
     "skip_discovery": true,
@@ -37109,7 +37119,7 @@
   },
   {
     "name": "Tribal",
-    "website": "https://gotribal.ai",
+    "website": "https://scripts.clarity.ms",
     "source_vc": "Team8",
     "vc_tier": 1,
     "careers_url": null,
@@ -37595,7 +37605,7 @@
       "token": "7C42E981F101F10365C174C2E98F88F880"
     },
     "discovered_at": "2026-06-14T09:08:50.748930+00:00",
-    "last_verified_at": "2026-06-17T19:34:21.587690+00:00",
+    "last_verified_at": "2026-06-21T09:43:21.587009+00:00",
     "last_jobs_pulled_at": "2026-06-18T11:09:44.552104+00:00",
     "consecutive_failures": 0,
     "category": "cyber",
@@ -39475,7 +39485,7 @@
       "org_name": "matia"
     },
     "discovered_at": "2026-06-14T09:12:16.662624+00:00",
-    "last_verified_at": "2026-06-17T19:34:21.587690+00:00",
+    "last_verified_at": "2026-06-21T09:43:21.587009+00:00",
     "last_jobs_pulled_at": "2026-06-18T11:09:51.732873+00:00",
     "consecutive_failures": 0,
     "category": "general",
@@ -44092,12 +44102,15 @@
     "source_vc": null,
     "vc_tier": null,
     "careers_url": "https://iawmqy.fa.ocs.oraclecloud.com/hcmUI/CandidateExperience/en/sites/careers",
-    "ats": "other",
-    "ats_params": {},
+    "ats": "oracle_hcm",
+    "ats_params": {
+      "host": "iawmqy.fa.ocs.oraclecloud.com",
+      "site": "careers"
+    },
     "category": "general",
     "location_filter": "israel",
     "discovered_at": "2026-06-14T09:23:15.389636+00:00",
-    "last_verified_at": "2026-06-14T09:23:15.389636+00:00",
+    "last_verified_at": "2026-06-21T09:43:21.587009+00:00",
     "last_jobs_pulled_at": null,
     "consecutive_failures": 0
   },
@@ -45200,6 +45213,32 @@
     "discovered_at": "2026-06-17T19:34:21.587690+00:00",
     "last_verified_at": "2026-06-17T19:34:21.587690+00:00",
     "last_jobs_pulled_at": "2026-06-18T11:22:26.178792+00:00",
+    "consecutive_failures": 0
+  },
+  {
+    "name": "Mentari Therapeutics",
+    "website": "https://mentaritx.com",
+    "source_vc": "a16z",
+    "vc_tier": 2,
+    "careers_url": null,
+    "ats": "unknown",
+    "ats_params": {},
+    "discovered_at": "2026-06-21T09:40:44.255667+00:00",
+    "last_verified_at": "2026-06-21T09:40:44.255676+00:00",
+    "last_jobs_pulled_at": null,
+    "consecutive_failures": 0
+  },
+  {
+    "name": "Telepatia AI",
+    "website": "https://telepatia.ai",
+    "source_vc": "a16z",
+    "vc_tier": 2,
+    "careers_url": null,
+    "ats": "unknown",
+    "ats_params": {},
+    "discovered_at": "2026-06-21T09:40:44.633288+00:00",
+    "last_verified_at": "2026-06-21T09:40:44.633297+00:00",
+    "last_jobs_pulled_at": null,
     "consecutive_failures": 0
   }
 ]
