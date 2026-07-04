@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import { Check } from 'lucide-react'
 
 type Props = {
   profile: boolean
@@ -28,7 +29,7 @@ export default function GettingStartedChecklist({ profile, cv, apiKey, hasJobs }
       label: 'Add your profile',
       done: profile,
       action: (
-        <Link href="/settings#profile" className="text-xs text-green-500 hover:text-green-400 underline underline-offset-2">
+        <Link href="/settings#profile" className="text-xs text-accent hover:text-accent-hover underline underline-offset-2 transition-colors">
           Go to settings
         </Link>
       ),
@@ -37,7 +38,7 @@ export default function GettingStartedChecklist({ profile, cv, apiKey, hasJobs }
       label: 'Upload your CV',
       done: cv,
       action: (
-        <Link href="/settings#cv" className="text-xs text-green-500 hover:text-green-400 underline underline-offset-2">
+        <Link href="/settings#cv" className="text-xs text-accent hover:text-accent-hover underline underline-offset-2 transition-colors">
           Go to settings
         </Link>
       ),
@@ -46,7 +47,7 @@ export default function GettingStartedChecklist({ profile, cv, apiKey, hasJobs }
       label: 'Set your API key',
       done: apiKey,
       action: (
-        <Link href="/settings#apikey" className="text-xs text-green-500 hover:text-green-400 underline underline-offset-2">
+        <Link href="/settings#apikey" className="text-xs text-accent hover:text-accent-hover underline underline-offset-2 transition-colors">
           Go to settings
         </Link>
       ),
@@ -55,7 +56,7 @@ export default function GettingStartedChecklist({ profile, cv, apiKey, hasJobs }
       label: 'Run your first scan',
       done: hasJobs,
       action: (
-        <span className="text-xs text-gray-400">
+        <span className="text-xs text-muted">
           Click &quot;Score now&quot; above
         </span>
       ),
@@ -63,12 +64,12 @@ export default function GettingStartedChecklist({ profile, cv, apiKey, hasJobs }
   ]
 
   return (
-    <div className="bg-gray-900 rounded-xl p-5 border border-gray-700">
+    <div className="bg-surface rounded-xl p-5 border border-subtle">
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-sm font-semibold text-white">Getting started</h2>
+        <h2 className="text-sm font-semibold text-foreground">Getting started</h2>
         <button
           onClick={() => setDismissed(true)}
-          className="text-xs text-gray-500 hover:text-gray-300"
+          className="text-xs text-subtle hover:text-muted transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded"
         >
           Dismiss for now
         </button>
@@ -77,15 +78,13 @@ export default function GettingStartedChecklist({ profile, cv, apiKey, hasJobs }
         {items.map((item) => (
           <li key={item.label} className="flex items-center gap-3">
             {item.done ? (
-              <span className="w-5 h-5 rounded-full bg-green-700 flex items-center justify-center flex-shrink-0">
-                <svg className="w-3 h-3 text-green-300" viewBox="0 0 12 12" fill="none">
-                  <path d="M2 6l3 3 5-5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
+              <span className="w-5 h-5 rounded-full bg-accent flex items-center justify-center flex-shrink-0">
+                <Check className="w-3 h-3 text-accent-foreground" strokeWidth={3} aria-hidden="true" />
               </span>
             ) : (
-              <span className="w-5 h-5 rounded-full border border-gray-600 flex-shrink-0" />
+              <span className="w-5 h-5 rounded-full border border-subtle flex-shrink-0" />
             )}
-            <span className={`text-sm flex-1 ${item.done ? 'text-gray-500 line-through' : 'text-gray-200'}`}>
+            <span className={`text-sm flex-1 ${item.done ? 'text-subtle line-through' : 'text-gray-200'}`}>
               {item.label}
             </span>
             {!item.done && item.action}

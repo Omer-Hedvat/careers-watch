@@ -1,4 +1,10 @@
 import Link from 'next/link'
+import { SCORE_BANDS } from '@/lib/scoreBands'
+
+// Derived from the shared SCORE_BANDS so the numbers/labels here can't drift
+// from the digest legend and badge tooltips.
+const scoreBandsSummary =
+  `Score bands: ${SCORE_BANDS.map(b => `${b.range} - ${b.blurb}`).join(' ')} Jobs below 5 are filtered out before they reach your digest.`
 
 const sections = [
   {
@@ -14,7 +20,7 @@ const sections = [
     heading: 'How scoring works',
     content: [
       'Each job is scored from 0 to 10 by Gemini AI based on how well it matches your profile and CV. The model reads the full job description alongside your background, stated preferences, and any dealbreakers you listed.',
-      'Score bands: 9-10 is a strong fit - the role, seniority, and domain all align; 7-8 is a good fit with one or two caveats worth reading; 5-6 is adjacent - related but off on some dimension. Jobs below 5 are filtered out before they reach your digest.',
+      scoreBandsSummary,
       'Scores are relative to your profile, not absolute. A 7 for you means something different than a 7 for someone with a different background. The more specific your profile, the more precise the scores.',
     ],
   },

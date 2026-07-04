@@ -2,33 +2,9 @@
 
 import { useEffect, useState } from 'react'
 import { supabase } from '@/lib/supabaseClient'
-import { FLAG_GLOSSARY, flagInfo } from '@/lib/flags'
+import { SCORE_BANDS } from '@/lib/scoreBands'
 import GettingStartedChecklist from '@/app/components/GettingStartedChecklist'
-
-type Job = {
-  id: string
-  company: string
-  title: string
-  location: string
-  score: number
-  reasoning: string
-  flags: string[]
-  scored_at: string
-  applied: boolean
-  apply_url: string
-  profile_version?: number
-  status?: 'open' | 'closed'
-  closed_at?: string
-}
-
-function timeAgo(iso: string): string {
-  const diff = Date.now() - new Date(iso).getTime()
-  const h = Math.floor(diff / 3_600_000)
-  const d = Math.floor(diff / 86_400_000)
-  if (h < 1) return 'just now'
-  if (h < 24) return `${h}h ago`
-  return `${d}d ago`
-}
+import { type Job, timeAgo, ScoreBadge, JobCard } from '@/app/components/JobCard'
 
 // Friendly "resets Monday" wording. If the backend gives us an ISO reset date,
 // append it (e.g. "resets Monday, Jun 22"); otherwise fall back to bare copy.
@@ -49,14 +25,14 @@ function ScoreNowHelp() {
       <button
         onClick={() => setOpen(v => !v)}
         aria-label="What does scoring do?"
-        className="text-gray-400 hover:text-white text-sm w-5 h-5 rounded-full border border-gray-600 flex items-center justify-center"
+        className="text-muted hover:text-foreground text-sm w-5 h-5 rounded-full border border-gray-600 flex items-center justify-center"
       >
         ?
       </button>
       {open && (
-        <div className="absolute z-10 mt-2 right-0 w-72 bg-gray-900 border border-gray-700 rounded-lg p-3 space-y-2 shadow-lg text-xs text-left">
+        <div className="absolute z-10 mt-2 right-0 w-72 bg-surface border border-subtle rounded-lg p-3 space-y-2 shadow-lg text-xs text-left">
           <p className="text-gray-300">
-            <span className="font-medium text-white">Score now</span> scores newly collected jobs against your profile using your Gemini key.
+            <span className="font-medium text-foreground">Score now</span> scores newly collected jobs against your profile using your Gemini key.
           </p>
           <p className="text-gray-300">
             Limited to 2 runs per week. The limit resets Monday.
@@ -67,54 +43,36 @@ function ScoreNowHelp() {
   )
 }
 
-// Single source of truth for score tiers. The legend, popover, and badge
-// tooltip all derive from this so copy and colors cannot drift. Ordered
-// high to low; the first band whose `min` the score meets is the match.
-const SCORE_BANDS = [
-  { min: 9, color: 'bg-green-600', range: '9-10', label: 'reach out today', blurb: 'Top fit. A clear match on role, seniority, and domain - worth reaching out today.' },
-  { min: 7, color: 'bg-blue-600', range: '7-8', label: 'strong, worth a look', blurb: 'Strong fit with one or two caveats. Worth a look and likely worth applying.' },
-  { min: 5, color: 'bg-gray-600', range: '5-6', label: 'adjacent', blurb: 'Adjacent. Related but off on role, seniority, or domain - skim before investing time.' },
-] as const
-
-function bandFor(score: number) {
-  return SCORE_BANDS.find(b => score >= b.min) ?? SCORE_BANDS[SCORE_BANDS.length - 1]
-}
-
-function ScoreBadge({ score }: { score: number }) {
-  const band = bandFor(score)
-  return <span title={band.label} className={`${band.color} text-white text-sm font-bold w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0`}>{score}</span>
-}
-
 function ScoreLegend() {
   const [open, setOpen] = useState(false)
   return (
-    <div className="flex items-center gap-3 flex-wrap text-xs text-gray-400">
-      <span className="text-gray-500">Score key:</span>
+    <div className="flex items-center gap-2 flex-wrap text-xs text-muted">
+      <span className="text-subtle font-medium uppercase tracking-wide text-[11px]">Score key:</span>
       {SCORE_BANDS.map(b => (
-        <span key={b.range} className="flex items-center gap-1.5">
-          <span className={`${b.color} w-3 h-3 rounded-full inline-block`} />
+        <span key={b.range} className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface border border-border">
+          <span className={`${b.color} w-2.5 h-2.5 rounded-full inline-block ring-1 ring-white/10`} />
           <span>{b.range} {b.label}</span>
         </span>
       ))}
-      <span className="flex items-center gap-1.5">
-        <span className="w-3 h-3 rounded-full inline-block border border-gray-700" />
+      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface border border-border text-subtle">
+        <span className="w-2.5 h-2.5 rounded-full inline-block border border-subtle" />
         <span>below 5 not surfaced</span>
       </span>
       <div className="relative">
-        <button onClick={() => setOpen(v => !v)} className="text-gray-400 hover:text-white underline underline-offset-2">
+        <button onClick={() => setOpen(v => !v)} className="text-muted hover:text-foreground underline underline-offset-2 transition-colors">
           How scoring works
         </button>
         {open && (
-          <div className="absolute z-10 mt-2 right-0 w-72 bg-gray-900 border border-gray-700 rounded-lg p-3 space-y-2 shadow-lg">
+          <div className="absolute z-10 mt-2 right-0 w-72 bg-surface border border-subtle rounded-lg p-3 space-y-2 shadow-xl">
             {SCORE_BANDS.map(b => (
               <div key={b.range} className="flex gap-2">
                 <span className={`${b.color} w-3 h-3 rounded-full inline-block flex-shrink-0 mt-1`} />
-                <p className="text-gray-300"><span className="font-medium text-white">{b.range} ({b.label}):</span> {b.blurb}</p>
+                <p className="text-gray-300"><span className="font-medium text-foreground">{b.range} ({b.label}):</span> {b.blurb}</p>
               </div>
             ))}
             <div className="flex gap-2">
-              <span className="w-3 h-3 rounded-full inline-block border border-gray-700 flex-shrink-0 mt-1" />
-              <p className="text-gray-300"><span className="font-medium text-white">below 5:</span> Not a fit - these are not surfaced on the digest.</p>
+              <span className="w-3 h-3 rounded-full inline-block border border-subtle flex-shrink-0 mt-1" />
+              <p className="text-gray-300"><span className="font-medium text-foreground">below 5:</span> Not a fit - these are not surfaced on the digest.</p>
             </div>
           </div>
         )}
@@ -123,35 +81,18 @@ function ScoreLegend() {
   )
 }
 
-function FlagGlossary() {
-  const [open, setOpen] = useState(false)
-  return (
-    <div className="relative inline-block">
-      <button onClick={() => setOpen(v => !v)} className="text-gray-400 hover:text-white underline underline-offset-2 text-xs">
-        What do these tags mean?
-      </button>
-      {open && (
-        <div className="absolute z-10 mt-2 right-0 w-80 bg-gray-900 border border-gray-700 rounded-lg p-3 space-y-2 shadow-lg text-xs">
-          {Object.entries(FLAG_GLOSSARY).map(([slug, info]) => (
-            <div key={slug}>
-              <p className="text-gray-300"><span className="font-medium text-white">{info.label}:</span> {info.definition}</p>
-            </div>
-          ))}
-        </div>
-      )}
-    </div>
-  )
-}
-
 function JobCardSkeleton() {
   return (
-    <div className="bg-gray-900 rounded-xl p-5 flex gap-4 animate-pulse">
-      <div className="w-8 h-8 rounded-full bg-gray-800 flex-shrink-0" />
+    <div className="bg-surface border border-border rounded-xl p-5 flex gap-4 motion-safe:animate-pulse">
+      <div className="w-9 h-9 rounded-lg bg-surface-raised flex-shrink-0" />
       <div className="flex-1 min-w-0 space-y-3">
-        <div className="h-4 bg-gray-800 rounded w-2/3" />
-        <div className="h-3 bg-gray-800 rounded w-1/3" />
-        <div className="h-3 bg-gray-800 rounded w-full" />
-        <div className="h-8 bg-gray-800 rounded w-24" />
+        <div className="h-4 bg-surface-raised rounded w-2/3" />
+        <div className="h-3 bg-surface-raised rounded w-1/3" />
+        <div className="h-3 bg-surface-raised rounded w-full" />
+        <div className="flex gap-2 pt-1">
+          <div className="h-8 bg-surface-raised rounded-lg w-24" />
+          <div className="h-8 bg-surface-raised rounded-lg w-28" />
+        </div>
       </div>
     </div>
   )
@@ -170,9 +111,9 @@ function EmptyState({
 }) {
   if (!hasProfile) {
     return (
-      <div className="text-center py-12 space-y-3">
-        <p className="text-gray-400">Add a profile in Settings to start scoring.</p>
-        <a href="/settings" className="inline-block px-4 py-2 bg-green-600 hover:bg-green-700 rounded-lg text-sm font-medium">
+      <div className="text-center py-12 px-6 space-y-4 rounded-xl border border-dashed border-border-subtle bg-surface">
+        <p className="text-muted">Add a profile in Settings to start scoring.</p>
+        <a href="/settings" className="inline-block px-4 py-2 bg-accent hover:bg-accent-hover text-accent-foreground rounded-lg text-sm font-medium transition-colors">
           Go to Settings
         </a>
       </div>
@@ -180,9 +121,9 @@ function EmptyState({
   }
   if (!hasApiKey) {
     return (
-      <div className="text-center py-12 space-y-3">
-        <p className="text-gray-400">Add your Gemini key in Settings to start scoring.</p>
-        <a href="/settings" className="inline-block px-4 py-2 bg-green-600 hover:bg-green-700 rounded-lg text-sm font-medium">
+      <div className="text-center py-12 px-6 space-y-4 rounded-xl border border-dashed border-border-subtle bg-surface">
+        <p className="text-muted">Add your Gemini key in Settings to start scoring.</p>
+        <a href="/settings" className="inline-block px-4 py-2 bg-accent hover:bg-accent-hover text-accent-foreground rounded-lg text-sm font-medium transition-colors">
           Go to Settings
         </a>
       </div>
@@ -190,76 +131,38 @@ function EmptyState({
   }
   if (!scoredAny) {
     return (
-      <p className="text-gray-400 text-center py-12">Run your first scan - click "Score now" above to score newly collected jobs.</p>
+      <div className="text-center py-12 px-6 rounded-xl border border-dashed border-border-subtle bg-surface">
+        <p className="text-muted">Run your first scan - click "Score now" above to score newly collected jobs.</p>
+      </div>
     )
   }
   // Scored, but the current filters hide everything.
   return (
-    <div className="text-center py-12 space-y-3">
-      <p className="text-gray-400">No jobs match your filters.</p>
-      <button onClick={onResetFilters} className="inline-block px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded-lg text-sm font-medium">
+    <div className="text-center py-12 px-6 space-y-4 rounded-xl border border-dashed border-border-subtle bg-surface">
+      <p className="text-muted">No jobs match your filters.</p>
+      <button onClick={onResetFilters} className="inline-block px-4 py-2 bg-surface-raised hover:bg-gray-700 border border-border-subtle rounded-lg text-sm font-medium transition-colors">
         Reset filters
       </button>
     </div>
   )
 }
 
-function JobCard({ job, onToggleApplied, currentProfileVersion }: { job: Job; onToggleApplied: (j: Job) => void; currentProfileVersion: number }) {
-  const staleProfile = job.profile_version !== undefined && job.profile_version < currentProfileVersion
-  return (
-    <div className={`bg-gray-900 rounded-xl p-5 flex gap-4 ${job.applied ? 'opacity-50' : ''}`}>
-      <ScoreBadge score={job.score} />
-      <div className="flex-1 min-w-0">
-        <div className="flex items-center gap-2 flex-wrap">
-          <span className="font-semibold text-white">{job.company} - {job.title}</span>
-          {staleProfile && <span className="px-2 py-0.5 bg-gray-800 text-gray-500 text-xs rounded border border-gray-700">scored with old profile</span>}
-        </div>
-        <div className="text-sm text-gray-400 mt-0.5">{job.location} · scored {timeAgo(job.scored_at)}</div>
-        {job.reasoning && <p className="text-sm text-gray-300 mt-2 line-clamp-2">"{job.reasoning}"</p>}
-        {job.flags.length > 0 && (
-          <div className="flex flex-wrap items-center gap-1 mt-2">
-            {job.flags.map(f => {
-              const info = flagInfo(f)
-              return (
-                <span key={f} title={info.definition} className="px-2 py-0.5 bg-gray-800 text-gray-400 text-xs rounded">
-                  {info.label}
-                </span>
-              )
-            })}
-            <FlagGlossary />
-          </div>
-        )}
-        <div className="flex gap-2 mt-3">
-          <a href={job.apply_url} target="_blank" rel="noopener noreferrer"
-            className="px-3 py-1.5 bg-green-600 hover:bg-green-700 text-white text-sm rounded-lg font-medium">
-            Apply →
-          </a>
-          <button onClick={() => onToggleApplied(job)}
-            className="px-3 py-1.5 bg-gray-700 hover:bg-gray-600 text-sm rounded-lg">
-            {job.applied ? 'Undo applied' : 'Mark applied'}
-          </button>
-        </div>
-      </div>
-    </div>
-  )
-}
-
 function ClosedJobCard({ job }: { job: Job }) {
   return (
-    <div className="bg-gray-900/50 rounded-xl p-4 flex gap-4 opacity-60">
+    <div className="cw-card-in bg-gray-900/40 border border-dashed border-border rounded-xl p-4 flex gap-4 opacity-60 saturate-50 transition-opacity duration-200 hover:opacity-80">
       <ScoreBadge score={job.score} />
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-2 flex-wrap">
-          <span className="font-semibold text-gray-400 line-through">{job.company} - {job.title}</span>
-          <span className="px-2 py-0.5 bg-red-900/40 text-red-400 text-xs rounded border border-red-800/40">
+          <span className="font-semibold text-muted line-through decoration-gray-600">{job.company} - {job.title}</span>
+          <span className="px-2 py-0.5 bg-red-950/40 text-danger text-xs rounded-full border border-red-900/40">
             Closed{job.closed_at ? ` ${job.closed_at}` : ''}
           </span>
         </div>
-        <div className="text-sm text-gray-500 mt-0.5">{job.location}</div>
-        {job.reasoning && <p className="text-sm text-gray-500 mt-1 line-clamp-1">"{job.reasoning}"</p>}
+        <div className="text-sm text-subtle mt-1">{job.location}</div>
+        {job.reasoning && <p className="text-sm text-subtle italic mt-1.5 line-clamp-1">"{job.reasoning}"</p>}
         {job.apply_url && (
           <a href={job.apply_url} target="_blank" rel="noopener noreferrer"
-            className="text-xs text-gray-600 hover:text-gray-400 mt-2 inline-block">
+            className="text-xs text-gray-600 hover:text-muted underline underline-offset-2 mt-2 inline-block transition-colors">
             View posting
           </a>
         )}
@@ -335,10 +238,14 @@ export default function DigestPage() {
 
   async function toggleApplied(job: Job) {
     const token = await getToken()
-    await fetch(`${process.env.NEXT_PUBLIC_API_URL}/jobs/${job.id}/applied`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/jobs/${job.id}/applied`, {
       method: 'POST',
       headers: { Authorization: `Bearer ${token}` },
     })
+    if (!res.ok) {
+      setScoreMsg('Could not update applied status - try again')
+      return
+    }
     setJobs(prev => prev.map(j => j.id === job.id ? { ...j, applied: !j.applied } : j))
   }
 
@@ -370,22 +277,34 @@ export default function DigestPage() {
 
   return (
     <div>
+      {/* Card mount animation - gated behind prefers-reduced-motion: no-preference
+          so reduced-motion users get an instant render. `backwards` (not `both`)
+          keeps the post-animation transform free for the hover translate. */}
+      <style>{`
+        @keyframes cwCardIn {
+          from { opacity: 0; transform: translateY(6px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        @media (prefers-reduced-motion: no-preference) {
+          .cw-card-in { animation: cwCardIn 0.3s ease-out backwards; }
+        }
+      `}</style>
       {/* Digest toolbar */}
-      <div className="border-b border-gray-800 px-6 py-3 flex items-center justify-between bg-gray-900">
+      <div className="border-b border-border px-6 py-3 flex items-center justify-between bg-surface">
         <div className="space-y-0.5">
-          {lastScored && <div className="text-sm text-gray-400">Last scored: {lastScored}</div>}
-          <div className="text-xs text-gray-500">New jobs collected Mon &amp; Thu</div>
+          {lastScored && <div className="text-sm text-muted">Last scored: {lastScored}</div>}
+          <div className="text-xs text-subtle">New jobs collected Mon &amp; Thu</div>
         </div>
         <div className="flex items-center gap-3">
           {scoring && (
-            <span className="flex items-center gap-2 text-sm text-gray-400">
-              <span className="w-3 h-3 rounded-full border-2 border-gray-600 border-t-green-500 animate-spin inline-block" />
+            <span className="flex items-center gap-2 text-sm text-muted">
+              <span className="w-3 h-3 rounded-full border-2 border-gray-600 border-t-accent animate-spin inline-block" />
               Scoring your jobs...
             </span>
           )}
-          {!scoring && scoreMsg && <span className="text-sm text-gray-400">{scoreMsg}</span>}
+          {!scoring && scoreMsg && <span className="text-sm text-muted">{scoreMsg}</span>}
           {runsUsed >= 2 && (
-            <span className="text-xs text-gray-500" title="2 scoring runs per week. The limit resets at the start of the week (Monday).">
+            <span className="text-xs text-subtle" title="2 scoring runs per week. The limit resets at the start of the week (Monday).">
               Run limit reached - {resetWording(runLimitResetsOn)}
             </span>
           )}
@@ -398,7 +317,7 @@ export default function DigestPage() {
                 ? `2 of 2 weekly runs used - ${resetWording(runLimitResetsOn)}`
                 : 'Scores newly collected jobs against your profile using your Gemini key. 2 runs per week, resets Monday.'
             }
-            className="px-4 py-2 bg-green-600 hover:bg-green-700 disabled:bg-gray-700 disabled:text-gray-400 rounded-lg text-sm font-medium"
+            className="px-4 py-2 bg-accent hover:bg-accent-hover text-accent-foreground disabled:bg-surface-raised disabled:text-subtle rounded-lg text-sm font-medium transition-colors"
           >
             {scoring ? 'Scoring...' : runsUsed >= 2 ? 'Run limit reached' : 'Score now'}
           </button>
@@ -420,20 +339,20 @@ export default function DigestPage() {
         {/* Filters */}
         <div className="space-y-2">
           <div className="flex items-center gap-2">
-            <label className="text-sm text-gray-400">Min score:</label>
-            <input type="range" min={0} max={10} value={minScore} onChange={e => setMinScore(+e.target.value)} className="w-24" />
-            <span className="text-sm w-4">{minScore}</span>
+            <label className="text-sm text-muted">Min score:</label>
+            <input type="range" min={0} max={10} value={minScore} onChange={e => setMinScore(+e.target.value)} className="w-24 accent-accent" />
+            <span className="text-sm w-4 text-foreground font-medium tabular-nums">{minScore}</span>
           </div>
           <div className="flex gap-2 flex-wrap">
             <input value={titleFilter} onChange={e => setTitleFilter(e.target.value)}
               placeholder="e.g. Data Scientist; Machine Learning; Applied Scientist"
-              className="flex-1 min-w-[200px] px-3 py-1.5 bg-gray-800 rounded-lg border border-gray-700 text-sm focus:outline-none focus:border-green-500" />
+              className="flex-1 min-w-[200px] px-3 py-1.5 bg-surface-raised rounded-lg border border-border-subtle text-sm placeholder:text-subtle focus:outline-none focus:border-accent transition-colors" />
             <input value={companyFilter} onChange={e => setCompanyFilter(e.target.value)}
               placeholder="e.g. Wiz; CrowdStrike; Palo Alto"
-              className="flex-1 min-w-[160px] px-3 py-1.5 bg-gray-800 rounded-lg border border-gray-700 text-sm focus:outline-none focus:border-green-500" />
+              className="flex-1 min-w-[160px] px-3 py-1.5 bg-surface-raised rounded-lg border border-border-subtle text-sm placeholder:text-subtle focus:outline-none focus:border-accent transition-colors" />
             <input value={locationFilter} onChange={e => setLocationFilter(e.target.value)}
               placeholder="e.g. Tel Aviv; Herzliya; Remote"
-              className="flex-1 min-w-[160px] px-3 py-1.5 bg-gray-800 rounded-lg border border-gray-700 text-sm focus:outline-none focus:border-green-500" />
+              className="flex-1 min-w-[160px] px-3 py-1.5 bg-surface-raised rounded-lg border border-border-subtle text-sm placeholder:text-subtle focus:outline-none focus:border-accent transition-colors" />
           </div>
         </div>
 
@@ -456,7 +375,7 @@ export default function DigestPage() {
         {/* Applied section */}
         {applied.length > 0 && (
           <div>
-            <button onClick={() => setShowApplied(v => !v)} className="text-sm text-gray-400 hover:text-white py-2">
+            <button onClick={() => setShowApplied(v => !v)} className="text-sm text-muted hover:text-foreground py-2 underline underline-offset-2 decoration-gray-600 transition-colors">
               {showApplied ? `Hide ${applied.length} applied` : `Show ${applied.length} applied`}
             </button>
             {showApplied && applied.map(job => <JobCard key={job.id} job={job} onToggleApplied={toggleApplied} currentProfileVersion={currentProfileVersion} />)}
@@ -465,8 +384,8 @@ export default function DigestPage() {
 
         {/* Closed section */}
         {closedJobs.length > 0 && (
-          <div className="pt-4 border-t border-gray-800">
-            <h2 className="text-sm font-medium text-gray-500 mb-3">Recently closed ({closedJobs.length})</h2>
+          <div className="pt-4 border-t border-border">
+            <h2 className="text-[11px] font-medium text-subtle mb-3 uppercase tracking-wide">Recently closed ({closedJobs.length})</h2>
             <div className="space-y-2">
               {closedJobs.map(job => <ClosedJobCard key={job.id} job={job} />)}
             </div>

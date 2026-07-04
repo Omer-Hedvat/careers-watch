@@ -1,3 +1,75 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  /* Surfaces */
+  --color-bg: #030712;
+  --color-surface: #111827;
+  --color-surface-raised: #1f2937;
+
+  /* Borders */
+  --color-border: #1f2937;
+  --color-border-subtle: #374151;
+
+  /* Text */
+  --color-text: #ffffff;
+  --color-text-muted: #9ca3af;
+  --color-text-subtle: #6b7280;
+
+  /* Accent */
+  --color-accent: #16a34a;
+  --color-accent-hover: #15803d;
+  --color-accent-foreground: #ffffff;
+
+  /* Score bands - single source of truth consumed via lib/scoreBands.ts */
+  --color-score-high: #16a34a;
+  --color-score-mid: #2563eb;
+  --color-score-low: #4b5563;
+
+  /* Semantic */
+  --color-warning: #f59e0b;
+  --color-danger: #ef4444;
+
+  /* Radius scale */
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+
+  /* Aliases kept for Next.js metadata theming conventions */
+  --background: var(--color-bg);
+  --foreground: var(--color-text);
+}
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+::selection {
+  background-color: var(--color-accent);
+  color: var(--color-accent-foreground);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-surface-raised);
+  border-radius: var(--radius-sm);
+  border: 2px solid var(--color-bg);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-border-subtle);
+}
