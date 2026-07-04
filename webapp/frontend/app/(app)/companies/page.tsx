@@ -44,6 +44,19 @@ function CategoryBadge({ category }: { category: string }) {
   return <span className={`${cls} text-xs px-2 py-0.5 rounded`}>{category || '—'}</span>
 }
 
+function CompanyRowSkeleton() {
+  return (
+    <div className="bg-surface rounded-xl px-5 py-4 animate-pulse motion-reduce:animate-none">
+      <div className="flex items-center gap-2">
+        <div className="h-4 bg-surface-raised rounded w-32" />
+        <div className="h-4 bg-surface-raised rounded w-14" />
+        <div className="h-4 bg-surface-raised rounded w-16" />
+      </div>
+      <div className="h-3 bg-surface-raised rounded w-24 mt-2" />
+    </div>
+  )
+}
+
 export default function CompaniesPage() {
   const [companies, setCompanies] = useState<Company[]>([])
   const [loading, setLoading] = useState(true)
@@ -72,20 +85,24 @@ export default function CompaniesPage() {
         <div className="flex items-center justify-between">
           <h1 className="text-xl font-semibold">
             Tracked companies
-            {!loading && <span className="text-gray-400 font-normal text-base ml-2">({animatedCount})</span>}
+            {!loading && <span className="text-muted font-normal text-base ml-2">({animatedCount})</span>}
           </h1>
           <input
             value={search}
             onChange={e => setSearch(e.target.value)}
             placeholder="Search..."
-            className="px-3 py-1.5 bg-gray-800 rounded-lg border border-gray-700 text-sm focus:outline-none focus:border-green-500 w-40"
+            className="px-3 py-1.5 bg-surface-raised rounded-lg border border-subtle text-sm focus:outline-none focus:border-accent transition-colors w-40"
           />
         </div>
 
-        {loading && <p className="text-gray-400">Loading...</p>}
+        {loading && (
+          <div className="space-y-2">
+            {[0, 1, 2, 3, 4].map(i => <CompanyRowSkeleton key={i} />)}
+          </div>
+        )}
 
         {!loading && filtered.length === 0 && (
-          <p className="text-gray-400 text-center py-12">No companies found.</p>
+          <p className="text-muted text-center py-12">No companies found.</p>
         )}
 
         <div className="space-y-2">
@@ -95,12 +112,12 @@ export default function CompaniesPage() {
               href={c.careers_url || '#'}
               target="_blank"
               rel="noopener noreferrer"
-              className={`block bg-gray-900 rounded-xl px-5 py-4 hover:bg-gray-800 transition-colors ${!c.careers_url ? 'pointer-events-none' : ''}`}
+              className={`block bg-surface rounded-xl px-5 py-4 hover:bg-surface-raised transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent ${!c.careers_url ? 'pointer-events-none' : ''}`}
             >
               <div className="flex items-center gap-2 flex-wrap">
-                <span className="font-semibold text-white">{c.name}</span>
+                <span className="font-semibold text-foreground">{c.name}</span>
                 <CategoryBadge category={c.category} />
-                {c.ats && c.ats !== 'unknown' && <span className="text-xs text-gray-500 bg-gray-800 px-2 py-0.5 rounded">{c.ats}</span>}
+                {c.ats && c.ats !== 'unknown' && <span className="text-xs text-subtle bg-surface-raised px-2 py-0.5 rounded">{c.ats}</span>}
                 {c.open_positions > 0 && (
                   <span className="text-xs text-green-400 bg-green-900/40 px-2 py-0.5 rounded">
                     {c.open_positions} open
@@ -108,7 +125,7 @@ export default function CompaniesPage() {
                 )}
                 <FailureBadge count={c.consecutive_failures} />
               </div>
-              <div className="text-xs text-gray-500 mt-1">
+              <div className="text-xs text-subtle mt-1">
                 {c.last_verified_at ? `Verified ${timeAgo(c.last_verified_at)}` : 'Never verified'}
               </div>
             </a>

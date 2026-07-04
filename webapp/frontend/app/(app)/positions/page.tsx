@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState, useMemo } from 'react'
+import { ArrowUpRight, ChevronLeft, ChevronRight } from 'lucide-react'
 import { supabase } from '@/lib/supabaseClient'
 import { useCountUp } from '@/hooks/useCountUp'
 
@@ -13,6 +14,20 @@ type Position = {
   apply_url: string
   score: number | null
   status: string | null
+}
+
+function PositionRowSkeleton() {
+  return (
+    <div className="bg-surface rounded-xl px-5 py-3 animate-pulse motion-reduce:animate-none">
+      <div className="flex items-start gap-3">
+        <div className="flex-1 min-w-0 space-y-2">
+          <div className="h-4 bg-surface-raised rounded w-2/3" />
+          <div className="h-3 bg-surface-raised rounded w-1/3" />
+        </div>
+        <div className="h-3 bg-surface-raised rounded w-12 shrink-0 mt-0.5" />
+      </div>
+    </div>
+  )
 }
 
 export default function PositionsPage() {
@@ -58,7 +73,7 @@ export default function PositionsPage() {
           <h1 className="text-xl font-semibold">
             Open positions
             {!loading && (
-              <span className="text-gray-400 font-normal text-base ml-2">
+              <span className="text-muted font-normal text-base ml-2">
                 ({search.trim()
                   ? `${filtered.length.toLocaleString()} of ${animatedTotal.toLocaleString()}`
                   : animatedTotal.toLocaleString()
@@ -70,14 +85,18 @@ export default function PositionsPage() {
             value={search}
             onChange={e => handleSearch(e.target.value)}
             placeholder="Search company or title..."
-            className="px-3 py-1.5 bg-gray-800 rounded-lg border border-gray-700 text-sm focus:outline-none focus:border-green-500 w-52"
+            className="px-3 py-1.5 bg-surface-raised rounded-lg border border-subtle text-sm focus:outline-none focus:border-accent transition-colors w-52"
           />
         </div>
 
-        {loading && <p className="text-gray-400">Loading...</p>}
+        {loading && (
+          <div className="space-y-1.5">
+            {[0, 1, 2, 3, 4, 5].map(i => <PositionRowSkeleton key={i} />)}
+          </div>
+        )}
 
         {!loading && filtered.length === 0 && (
-          <p className="text-gray-400 text-center py-12">No positions found.</p>
+          <p className="text-muted text-center py-12">No positions found.</p>
         )}
 
         <div className="space-y-1.5">
@@ -89,22 +108,27 @@ export default function PositionsPage() {
                 href={isClosed ? undefined : (p.apply_url || '#')}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`flex items-start gap-3 bg-gray-900 rounded-xl px-5 py-3 transition-colors ${isClosed ? 'opacity-40 pointer-events-none' : 'hover:bg-gray-800'} ${!p.apply_url ? 'pointer-events-none opacity-50' : ''}`}
+                className={`flex items-start gap-3 bg-surface rounded-xl px-5 py-3 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent ${isClosed ? 'opacity-40 pointer-events-none' : 'hover:bg-surface-raised'} ${!p.apply_url ? 'pointer-events-none opacity-50' : ''}`}
               >
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 flex-wrap">
-                    <span className={`font-semibold text-sm ${isClosed ? 'text-gray-400 line-through' : 'text-white'}`}>{p.company}</span>
-                    <span className="text-gray-500 text-sm">—</span>
-                    <span className={`text-sm ${isClosed ? 'text-gray-500 line-through' : 'text-gray-200'}`}>{p.title}</span>
-                    {isClosed && <span className="text-xs text-red-500 no-underline" style={{textDecoration: 'none'}}>Closed</span>}
+                    <span className={`font-semibold text-sm ${isClosed ? 'text-muted line-through' : 'text-foreground'}`}>{p.company}</span>
+                    <span className="text-subtle text-sm">—</span>
+                    <span className={`text-sm ${isClosed ? 'text-subtle line-through' : 'text-gray-200'}`}>{p.title}</span>
+                    {isClosed && <span className="text-xs text-danger no-underline" style={{textDecoration: 'none'}}>Closed</span>}
                   </div>
                   {p.location && (
-                    <div className="text-xs text-gray-500 mt-0.5">{p.location}</div>
+                    <div className="text-xs text-subtle mt-0.5">{p.location}</div>
                   )}
                 </div>
-                {!isClosed && <span className="text-xs text-green-500 shrink-0 mt-0.5">Apply →</span>}
+                {!isClosed && (
+                  <span className="text-xs text-accent shrink-0 mt-0.5 inline-flex items-center gap-0.5">
+                    Apply
+                    <ArrowUpRight className="w-3.5 h-3.5" aria-hidden="true" />
+                  </span>
+                )}
                 {p.score != null && (
-                  <span className={`text-xs shrink-0 mt-0.5 font-medium ${p.score >= 9 ? 'text-green-400' : p.score >= 7 ? 'text-yellow-400' : 'text-gray-500'}`}>
+                  <span className={`text-xs shrink-0 mt-0.5 font-medium ${p.score >= 9 ? 'text-green-400' : p.score >= 7 ? 'text-yellow-400' : 'text-subtle'}`}>
                     {p.score}/10
                   </span>
                 )}
@@ -118,19 +142,21 @@ export default function PositionsPage() {
             <button
               onClick={() => setPage(p => Math.max(0, p - 1))}
               disabled={page_ === 0}
-              className="px-3 py-1.5 bg-gray-800 rounded-lg text-sm disabled:opacity-40 hover:bg-gray-700 disabled:hover:bg-gray-800"
+              className="inline-flex items-center gap-1 px-3 py-1.5 bg-surface-raised rounded-lg text-sm transition-colors disabled:opacity-40 hover:bg-border-subtle disabled:hover:bg-surface-raised focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
             >
-              ← Prev
+              <ChevronLeft className="w-4 h-4" aria-hidden="true" />
+              Prev
             </button>
-            <span className="text-sm text-gray-400">
+            <span className="text-sm text-muted">
               Page {page_ + 1} of {totalPages}
             </span>
             <button
               onClick={() => setPage(p => Math.min(totalPages - 1, p + 1))}
               disabled={page_ === totalPages - 1}
-              className="px-3 py-1.5 bg-gray-800 rounded-lg text-sm disabled:opacity-40 hover:bg-gray-700 disabled:hover:bg-gray-800"
+              className="inline-flex items-center gap-1 px-3 py-1.5 bg-surface-raised rounded-lg text-sm transition-colors disabled:opacity-40 hover:bg-border-subtle disabled:hover:bg-surface-raised focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
             >
-              Next →
+              Next
+              <ChevronRight className="w-4 h-4" aria-hidden="true" />
             </button>
           </div>
         )}

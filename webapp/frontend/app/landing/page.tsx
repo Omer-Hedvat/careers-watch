@@ -1,7 +1,8 @@
 'use client'
 
 import Link from 'next/link'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { JobCard, type Job } from '@/app/components/JobCard'
 
 const FAQ_ITEMS = [
   {
@@ -30,50 +31,153 @@ const FAQ_ITEMS = [
   },
 ]
 
+// Static sample fed to the real JobCard so the landing preview can never
+// drift from the digest's actual card. The far-future scored_at is a fixed
+// constant chosen so timeAgo() deterministically renders "just now" on both
+// the prerender and the client - a past date would drift as real time
+// advances and cause a hydration mismatch.
+const SAMPLE_JOB: Job = {
+  id: 'sample-preview',
+  company: 'Cybereason',
+  title: 'Lead Data Scientist - Threat Detection',
+  location: 'Tel Aviv, Israel',
+  score: 8,
+  reasoning: 'Strong match - fraud domain, team lead scope, Israel location. Minor gap: role leans endpoint telemetry rather than pure fintech fraud.',
+  flags: ['tier1-vc', 'lead-path-implied', 'fraud-domain'],
+  scored_at: '2099-01-01T00:00:00Z',
+  applied: false,
+  apply_url: '/auth',
+}
+
+// Fade/slide a section's content in the first time it scrolls into view.
+// Reduced-motion users (and environments without IntersectionObserver) get
+// an instant, static render.
+function Reveal({ children, className = '', delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
+  const ref = useRef<HTMLDivElement>(null)
+  const [visible, setVisible] = useState(false)
+
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    if (
+      typeof IntersectionObserver === 'undefined' ||
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    ) {
+      setVisible(true)
+      return
+    }
+    const obs = new IntersectionObserver(
+      entries => {
+        if (entries[0]?.isIntersecting) {
+          setVisible(true)
+          obs.disconnect()
+        }
+      },
+      { threshold: 0.15, rootMargin: '0px 0px -40px 0px' }
+    )
+    obs.observe(el)
+    return () => obs.disconnect()
+  }, [])
+
+  return (
+    <div
+      ref={ref}
+      style={{ transitionDelay: `${delay}ms` }}
+      className={`${className} transition-[opacity,transform] duration-700 ease-out motion-reduce:transition-none ${
+        visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
+      }`}
+    >
+      {children}
+    </div>
+  )
+}
+
 function FaqAccordion() {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
 
   return (
-    <div className="divide-y divide-gray-800 border border-gray-800 rounded-xl overflow-hidden">
-      {FAQ_ITEMS.map((item, i) => (
-        <div key={i}>
-          <button
-            className="w-full text-left px-6 py-5 flex justify-between items-center hover:bg-gray-900 transition-colors"
-            onClick={() => setOpenIndex(openIndex === i ? null : i)}
-            aria-expanded={openIndex === i}
-          >
-            <span className="font-medium text-white">{item.q}</span>
-            <span className="ml-4 text-gray-400 text-xl leading-none select-none">
-              {openIndex === i ? '-' : '+'}
-            </span>
-          </button>
-          {openIndex === i && (
-            <div className="px-6 pb-5 text-gray-400 text-sm leading-relaxed">
-              {item.a}
+    <div className="divide-y divide-border border border-border rounded-xl overflow-hidden bg-background shadow-lg">
+      {FAQ_ITEMS.map((item, i) => {
+        const open = openIndex === i
+        return (
+          <div key={i}>
+            <button
+              className="w-full text-left px-6 py-5 flex justify-between items-center gap-4 hover:bg-surface transition-colors"
+              onClick={() => setOpenIndex(open ? null : i)}
+              aria-expanded={open}
+            >
+              <span className={`font-medium transition-colors ${open ? 'text-foreground' : 'text-gray-200'}`}>{item.q}</span>
+              <span
+                aria-hidden="true"
+                className={`ml-auto flex-shrink-0 text-muted text-xl leading-none select-none transition-transform duration-300 ease-out motion-reduce:transition-none ${
+                  open ? 'rotate-45' : ''
+                }`}
+              >
+                +
+              </span>
+            </button>
+            {/* grid-rows 0fr -> 1fr gives a smooth height animation without
+                measuring content; motion-reduce collapses it to an instant
+                toggle. */}
+            <div
+              className={`grid transition-[grid-template-rows,opacity] duration-300 ease-out motion-reduce:transition-none ${
+                open ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
+              }`}
+            >
+              <div className="overflow-hidden">
+                <div className="px-6 pb-5 text-muted text-sm leading-relaxed">
+                  {item.a}
+                </div>
+              </div>
             </div>
-          )}
-        </div>
-      ))}
+          </div>
+        )
+      })}
     </div>
   )
 }
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-gray-950 text-white flex flex-col">
+    <div className="min-h-screen bg-background text-foreground flex flex-col">
+      {/* Hero mount + job-card mount animations, both gated behind
+          prefers-reduced-motion: no-preference. cwCardIn matches the digest
+          page's definition so the shared JobCard animates identically here. */}
+      <style>{`
+        @keyframes cwCardIn {
+          from { opacity: 0; transform: translateY(6px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes cwRise {
+          from { opacity: 0; transform: translateY(14px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        @media (prefers-reduced-motion: no-preference) {
+          .cw-card-in { animation: cwCardIn 0.3s ease-out backwards; }
+          .cw-rise { animation: cwRise 0.7s cubic-bezier(0.22, 1, 0.36, 1) backwards; }
+        }
+      `}</style>
+
       {/* Hero */}
-      <main className="flex-1 flex flex-col items-center justify-center px-4 text-center py-20">
-        <h1 className="text-5xl font-bold mb-4 tracking-tight">CareerWatch</h1>
-        <p className="text-xl text-gray-400 mb-3 max-w-xl">
+      <main className="relative flex-1 flex flex-col items-center justify-center px-4 text-center py-24 sm:py-32 overflow-hidden">
+        {/* Ambient accent glow + hairline base border, purely decorative */}
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+          <div className="absolute left-1/2 top-[-14rem] -translate-x-1/2 w-[52rem] h-[36rem] rounded-full bg-accent/10 blur-3xl" />
+          <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-border-subtle to-transparent" />
+        </div>
+        <h1 className="cw-rise relative text-5xl sm:text-6xl font-bold mb-5 tracking-tight bg-gradient-to-b from-white to-gray-400 bg-clip-text text-transparent">
+          CareerWatch
+        </h1>
+        <p className="cw-rise relative text-xl sm:text-2xl text-gray-300 mb-3 max-w-xl leading-snug" style={{ animationDelay: '80ms' }}>
           Find the right job without the noise. AI-powered job matching for tech professionals in Israel.
         </p>
-        <p className="text-base text-gray-500 mb-10 max-w-xl">
+        <p className="cw-rise relative text-base text-muted mb-10 max-w-xl" style={{ animationDelay: '160ms' }}>
           Tracks 100+ Israeli cyber, fraud and fintech companies and scores every open role against your profile.
         </p>
-        <div className="flex gap-4 flex-wrap justify-center">
+        <div className="cw-rise relative flex gap-4 flex-wrap justify-center" style={{ animationDelay: '240ms' }}>
           <Link
             href="/auth"
-            className="px-6 py-3 bg-green-600 hover:bg-green-700 rounded-lg font-semibold transition-colors"
+            className="px-6 py-3 bg-accent hover:bg-accent-hover text-accent-foreground rounded-lg font-semibold shadow-lg shadow-accent/20 hover:shadow-accent/30 transition-[background-color,box-shadow,transform] motion-safe:hover:-translate-y-0.5"
           >
             Get started free
           </Link>
@@ -81,7 +185,7 @@ export default function LandingPage() {
             href="https://github.com/omerhedvat/careers-watch"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-6 py-3 bg-gray-800 hover:bg-gray-700 rounded-lg font-semibold transition-colors"
+            className="px-6 py-3 bg-surface-raised hover:bg-gray-700 border border-border-subtle rounded-lg font-semibold transition-[background-color,transform] motion-safe:hover:-translate-y-0.5"
           >
             View on GitHub
           </a>
@@ -89,10 +193,12 @@ export default function LandingPage() {
       </main>
 
       {/* How it works */}
-      <section className="py-20 px-4 bg-gray-900">
+      <section className="py-20 sm:py-24 px-4 bg-surface border-y border-border">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-12">How it works</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <Reveal>
+            <h2 className="text-3xl font-bold text-center tracking-tight mb-14">How it works</h2>
+          </Reveal>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8">
             {[
               {
                 n: '1',
@@ -109,125 +215,102 @@ export default function LandingPage() {
                 title: 'You get a ranked digest',
                 body: 'Every job scored 0-10 against your profile. You only read what matters.',
               },
-            ].map(step => (
-              <div key={step.n} className="flex flex-col items-center text-center">
-                <div className="w-10 h-10 rounded-full bg-green-600 flex items-center justify-center font-bold text-lg mb-4">
-                  {step.n}
+            ].map((step, i) => (
+              <Reveal key={step.n} delay={i * 120}>
+                <div className="flex flex-col items-center text-center">
+                  <div className="w-11 h-11 rounded-full bg-accent flex items-center justify-center font-bold text-lg mb-5 shadow-lg shadow-accent/25 ring-1 ring-white/15">
+                    {step.n}
+                  </div>
+                  <h3 className="font-semibold text-lg mb-2">{step.title}</h3>
+                  <p className="text-muted text-sm leading-relaxed max-w-[17rem]">{step.body}</p>
                 </div>
-                <h3 className="font-semibold text-lg mb-2">{step.title}</h3>
-                <p className="text-gray-400 text-sm">{step.body}</p>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
       </section>
 
       {/* Bring your own key */}
-      <section className="py-16 px-4 bg-gray-950">
-        <div className="max-w-2xl mx-auto text-center">
-          <h2 className="text-2xl font-bold mb-4">Bring your own free AI key</h2>
-          <p className="text-gray-400 text-sm leading-relaxed mb-3">
-            Scoring runs on Google Gemini - a model with a free tier generous enough that most users never hit the limit.
-            During onboarding you will paste your own API key. That key is stored in your account and used only to run scoring on your behalf.
-          </p>
-          <p className="text-gray-400 text-sm leading-relaxed">
-            Your CV, your key, your quota. Your data never trains a model.
-          </p>
-          <div className="mt-6">
-            <a
-              href="https://aistudio.google.com/app/apikey"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-green-500 hover:text-green-400 text-sm underline underline-offset-2 transition-colors"
-            >
-              Get a free Gemini API key at Google AI Studio
-            </a>
+      <section className="py-16 sm:py-20 px-4 bg-background">
+        <Reveal className="max-w-2xl mx-auto">
+          <div className="text-center bg-surface border border-border rounded-2xl px-6 py-10 sm:px-10 shadow-lg">
+            <h2 className="text-2xl font-bold tracking-tight mb-4">Bring your own free AI key</h2>
+            <p className="text-muted text-sm leading-relaxed mb-3">
+              Scoring runs on Google Gemini - a model with a free tier generous enough that most users never hit the limit.
+              During onboarding you will paste your own API key. That key is stored in your account and used only to run scoring on your behalf.
+            </p>
+            <p className="text-muted text-sm leading-relaxed">
+              Your CV, your key, your quota. Your data never trains a model.
+            </p>
+            <div className="mt-6">
+              <a
+                href="https://aistudio.google.com/app/apikey"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-green-500 hover:text-green-400 text-sm underline underline-offset-2 transition-colors"
+              >
+                Get a free Gemini API key at Google AI Studio
+              </a>
+            </div>
           </div>
-        </div>
+        </Reveal>
       </section>
 
-      {/* Digest preview */}
-      <section className="py-20 px-4 bg-gray-900">
+      {/* Digest preview - renders the real JobCard with static sample data,
+          so the preview and the digest can never drift apart. */}
+      <section className="py-20 sm:py-24 px-4 bg-surface border-y border-border">
         <div className="max-w-2xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-4">What your digest looks like</h2>
-          <p className="text-gray-400 text-center text-sm mb-10">Example scored job card - your real digest is personalised to your profile.</p>
-
-          <div className="bg-gray-950 border border-gray-800 rounded-xl p-6">
-            {/* Score + company row */}
-            <div className="flex items-start justify-between gap-4 mb-4">
-              <div>
-                <p className="text-xs text-gray-500 uppercase tracking-wider mb-1">Cybereason</p>
-                <h3 className="text-lg font-semibold text-white">Lead Data Scientist - Threat Detection</h3>
+          <Reveal>
+            <h2 className="text-3xl font-bold text-center tracking-tight mb-4">What your digest looks like</h2>
+            <p className="text-muted text-center text-sm mb-10">Example scored job card - your real digest is personalised to your profile.</p>
+          </Reveal>
+          <Reveal delay={120}>
+            <div className="rounded-2xl border border-border bg-background shadow-2xl overflow-hidden">
+              {/* Decorative app-window chrome */}
+              <div aria-hidden="true" className="flex items-center gap-1.5 px-4 py-3 border-b border-border bg-surface/60">
+                <span className="w-2.5 h-2.5 rounded-full bg-surface-raised" />
+                <span className="w-2.5 h-2.5 rounded-full bg-surface-raised" />
+                <span className="w-2.5 h-2.5 rounded-full bg-surface-raised" />
               </div>
-              <div className="flex-shrink-0 w-14 h-14 rounded-xl bg-green-600 flex flex-col items-center justify-center">
-                <span className="text-xl font-bold leading-none">8</span>
-                <span className="text-xs text-green-200 leading-none">/ 10</span>
+              <div className="p-4 sm:p-6">
+                <JobCard job={SAMPLE_JOB} onToggleApplied={() => {}} currentProfileVersion={1} />
               </div>
             </div>
-
-            {/* Reasoning */}
-            <p className="text-gray-400 text-sm mb-4">
-              Strong match - fraud domain, team lead scope, Israel location. Minor gap: role leans endpoint telemetry rather than pure fintech fraud.
-            </p>
-
-            {/* Tags */}
-            <div className="flex flex-wrap gap-2 mb-5">
-              {['fraud', 'team-lead', 'tel-aviv', 'cyber'].map(tag => (
-                <span
-                  key={tag}
-                  className="px-2 py-1 bg-gray-800 text-gray-300 text-xs rounded-md"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-
-            {/* Action buttons */}
-            <div className="flex gap-3">
-              <button
-                disabled
-                className="px-4 py-2 bg-green-600 rounded-lg text-sm font-semibold opacity-80 cursor-default"
-              >
-                Apply
-              </button>
-              <button
-                disabled
-                className="px-4 py-2 bg-gray-800 rounded-lg text-sm font-semibold text-gray-300 opacity-80 cursor-default"
-              >
-                Mark applied
-              </button>
-            </div>
-          </div>
+          </Reveal>
         </div>
       </section>
 
       {/* Who it's for */}
-      <section className="py-16 px-4 bg-gray-950">
-        <div className="max-w-2xl mx-auto text-center">
-          <h2 className="text-2xl font-bold mb-6">Who it is for</h2>
-          <p className="text-gray-400 text-sm leading-relaxed mb-4">
+      <section className="py-16 sm:py-20 px-4 bg-background">
+        <Reveal className="max-w-2xl mx-auto text-center">
+          <h2 className="text-2xl font-bold tracking-tight mb-6">Who it is for</h2>
+          <p className="text-muted text-sm leading-relaxed mb-4">
             CareerWatch is built for senior technical job seekers in Israel - data scientists, ML engineers, applied researchers, and security/fraud engineers who want signal without noise.
           </p>
-          <p className="text-gray-400 text-sm leading-relaxed">
+          <p className="text-muted text-sm leading-relaxed">
             The company list and scoring rubric are tuned for the Israeli cyber, fraud and fintech ecosystem.
             If you are based outside Israel or looking for roles in unrelated domains, you can still use it - but coverage and score accuracy will be lower.
             Non-Israel company coverage is out of scope for now.
           </p>
-        </div>
+        </Reveal>
       </section>
 
       {/* FAQ */}
-      <section className="py-20 px-4 bg-gray-900">
+      <section className="py-20 sm:py-24 px-4 bg-surface border-t border-border">
         <div className="max-w-2xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-10">Frequently asked questions</h2>
-          <FaqAccordion />
+          <Reveal>
+            <h2 className="text-3xl font-bold text-center tracking-tight mb-10">Frequently asked questions</h2>
+          </Reveal>
+          <Reveal delay={120}>
+            <FaqAccordion />
+          </Reveal>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="py-8 px-4 border-t border-gray-800 text-center text-gray-500 text-sm">
+      <footer className="py-8 px-4 border-t border-border bg-background text-center text-subtle text-sm">
         CareerWatch &middot; Built by Omer Hedvat &middot;{' '}
-        <a href="https://github.com/omerhedvat/careers-watch" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
+        <a href="https://github.com/omerhedvat/careers-watch" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">
           GitHub
         </a>
       </footer>

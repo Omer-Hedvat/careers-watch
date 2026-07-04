@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
+import { Check, X, Minus, ChevronDown, Copy } from 'lucide-react'
 import { supabase } from '@/lib/supabaseClient'
 
 // --- Types ---
@@ -87,9 +88,9 @@ function severityBadge(s: GapSeverity) {
 }
 
 function coverageColor(c: CvCoverage) {
-  if (c === 'none') return 'text-red-400'
-  if (c === 'partial') return 'text-amber-400'
-  return 'text-gray-400'
+  if (c === 'none') return 'text-danger'
+  if (c === 'partial') return 'text-warning'
+  return 'text-muted'
 }
 
 function matchStrengthBadge(m: MatchStrength) {
@@ -139,7 +140,36 @@ function AlignmentScore({ score }: { score: number }) {
   return (
     <div className="flex items-center gap-3">
       <span className={`text-5xl font-bold ${color}`}>{score}</span>
-      <span className="text-gray-500 text-lg">/10</span>
+      <span className="text-subtle text-lg">/10</span>
+    </div>
+  )
+}
+
+function ProfileCVSkeleton() {
+  return (
+    <div className="bg-surface rounded-xl p-6 space-y-4 animate-pulse motion-reduce:animate-none">
+      <div className="flex items-center gap-3">
+        <div className="h-12 w-16 bg-surface-raised rounded" />
+        <div className="h-5 w-10 bg-surface-raised rounded" />
+      </div>
+      <div className="space-y-2">
+        <div className="h-3 bg-surface-raised rounded w-full" />
+        <div className="h-3 bg-surface-raised rounded w-5/6" />
+        <div className="h-3 bg-surface-raised rounded w-2/3" />
+      </div>
+    </div>
+  )
+}
+
+function PositionRowSkeleton() {
+  return (
+    <div className="border border-subtle rounded-xl p-4 flex items-center gap-3 animate-pulse motion-reduce:animate-none">
+      <div className="w-8 h-8 rounded-full bg-surface-raised flex-shrink-0" />
+      <div className="flex-1 min-w-0 space-y-2">
+        <div className="h-4 bg-surface-raised rounded w-2/3" />
+        <div className="h-3 bg-surface-raised rounded w-1/3" />
+      </div>
+      <div className="h-5 w-20 bg-surface-raised rounded flex-shrink-0" />
     </div>
   )
 }
@@ -159,18 +189,19 @@ function PositionRow({ pos }: { pos: PositionResult }) {
   }
 
   return (
-    <div className="border border-gray-700 rounded-xl overflow-hidden">
+    <div className="border border-subtle rounded-xl overflow-hidden">
       <button
         onClick={() => setExpanded(v => !v)}
-        className="w-full flex items-center gap-3 p-4 text-left hover:bg-gray-800/50 transition-colors"
+        aria-expanded={expanded}
+        className="w-full flex items-center gap-3 p-4 text-left hover:bg-gray-800/50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-inset"
       >
-        <span className="bg-gray-700 text-white text-sm font-bold w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0">
+        <span className="bg-surface-raised text-foreground text-sm font-bold w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0">
           {pos.score}
         </span>
         <div className="flex-1 min-w-0">
-          <span className="font-medium text-white">{pos.company}</span>
-          <span className="text-gray-400"> - {pos.title}</span>
-          {pos.location && <span className="text-gray-500 text-sm ml-2">{pos.location}</span>}
+          <span className="font-medium text-foreground">{pos.company}</span>
+          <span className="text-muted"> - {pos.title}</span>
+          {pos.location && <span className="text-subtle text-sm ml-2">{pos.location}</span>}
         </div>
         {!hasError && (
           <div className="flex gap-2 flex-shrink-0">
@@ -184,23 +215,30 @@ function PositionRow({ pos }: { pos: PositionResult }) {
             )}
           </div>
         )}
-        <span className="text-gray-500 ml-2">{expanded ? '▲' : '▼'}</span>
+        <ChevronDown
+          className={`w-4 h-4 text-subtle ml-2 flex-shrink-0 transition-transform duration-300 motion-reduce:transition-none ${expanded ? 'rotate-180' : ''}`}
+          aria-hidden="true"
+        />
       </button>
 
-      {expanded && (
-        <div className="border-t border-gray-700 p-4 space-y-4 bg-gray-900/50">
+      <div
+        className={`grid transition-[grid-template-rows] duration-300 ease-in-out motion-reduce:transition-none ${expanded ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}
+        aria-hidden={!expanded}
+      >
+        <div className="overflow-hidden min-h-0">
+          <div className="border-t border-subtle p-4 space-y-4 bg-gray-900/50">
           {hasError ? (
-            <p className="text-sm text-red-400">Analysis failed: {pos.error}</p>
+            <p className="text-sm text-danger">Analysis failed: {pos.error}</p>
           ) : (
             <>
               {/* CV strengths */}
               {(pos.cv_gap?.strengths?.length ?? 0) > 0 && (
                 <div>
-                  <p className="text-xs font-medium text-gray-400 uppercase tracking-wide mb-2">CV covers these requirements</p>
+                  <p className="text-xs font-medium text-muted uppercase tracking-wide mb-2">CV covers these requirements</p>
                   <ul className="space-y-1">
                     {pos.cv_gap!.strengths.map((s, i) => (
                       <li key={i} className="flex items-start gap-2 text-sm">
-                        <span className="text-green-400 flex-shrink-0 mt-0.5">✓</span>
+                        <Check className="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" aria-hidden="true" />
                         <span className="text-gray-300">{s}</span>
                       </li>
                     ))}
@@ -211,20 +249,22 @@ function PositionRow({ pos }: { pos: PositionResult }) {
               {/* CV gaps */}
               {(pos.cv_gap?.gaps?.length ?? 0) > 0 && (
                 <div>
-                  <p className="text-xs font-medium text-gray-400 uppercase tracking-wide mb-2">CV gaps</p>
+                  <p className="text-xs font-medium text-muted uppercase tracking-wide mb-2">CV gaps</p>
                   <ul className="space-y-2">
                     {pos.cv_gap!.gaps.map((g, i) => (
                       <li key={i} className="text-sm">
                         <div className="flex items-start gap-2">
-                          <span className={`flex-shrink-0 mt-0.5 ${coverageColor(g.cv_coverage)}`}>
-                            {g.cv_coverage === 'none' ? '✗' : '~'}
-                          </span>
+                          {g.cv_coverage === 'none' ? (
+                            <X className={`w-4 h-4 flex-shrink-0 mt-0.5 ${coverageColor(g.cv_coverage)}`} aria-hidden="true" />
+                          ) : (
+                            <Minus className={`w-4 h-4 flex-shrink-0 mt-0.5 ${coverageColor(g.cv_coverage)}`} aria-hidden="true" />
+                          )}
                           <div>
-                            <span className="text-white">{g.requirement}</span>
-                            <span className={`ml-2 text-xs px-1.5 py-0.5 rounded ${coverageColor(g.cv_coverage)} bg-gray-800`}>
+                            <span className="text-foreground">{g.requirement}</span>
+                            <span className={`ml-2 text-xs px-1.5 py-0.5 rounded ${coverageColor(g.cv_coverage)} bg-surface-raised`}>
                               {g.cv_coverage}
                             </span>
-                            {g.note && <p className="text-gray-400 mt-0.5">{g.note}</p>}
+                            {g.note && <p className="text-muted mt-0.5">{g.note}</p>}
                           </div>
                         </div>
                       </li>
@@ -236,7 +276,7 @@ function PositionRow({ pos }: { pos: PositionResult }) {
               {/* Profile divergences */}
               {(pos.profile_gap?.divergences?.length ?? 0) > 0 && (
                 <div>
-                  <p className="text-xs font-medium text-gray-400 uppercase tracking-wide mb-2">Profile divergences</p>
+                  <p className="text-xs font-medium text-muted uppercase tracking-wide mb-2">Profile divergences</p>
                   <ul className="space-y-3">
                     {pos.profile_gap!.divergences.map((d, i) => (
                       <li key={i} className="text-sm space-y-0.5">
@@ -247,7 +287,7 @@ function PositionRow({ pos }: { pos: PositionResult }) {
                             'bg-gray-800 text-gray-400'
                           }`}>{d.impact}</span>
                           <div>
-                            <p className="text-gray-400">Profile: {d.profile_says}</p>
+                            <p className="text-muted">Profile: {d.profile_says}</p>
                             <p className="text-gray-300">JD: {d.jd_says}</p>
                           </div>
                         </div>
@@ -259,14 +299,21 @@ function PositionRow({ pos }: { pos: PositionResult }) {
 
               <button
                 onClick={copy}
-                className="px-3 py-1.5 bg-gray-700 hover:bg-gray-600 text-sm rounded-lg"
+                tabIndex={expanded ? undefined : -1}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-surface-raised hover:bg-border-subtle text-sm rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
               >
+                {copied ? (
+                  <Check className="w-4 h-4 text-green-400" aria-hidden="true" />
+                ) : (
+                  <Copy className="w-4 h-4" aria-hidden="true" />
+                )}
                 {copied ? 'Copied!' : 'Copy gap summary'}
               </button>
             </>
           )}
+          </div>
         </div>
-      )}
+      </div>
     </div>
   )
 }
@@ -308,20 +355,23 @@ export default function GapsPage() {
         <section className="mb-10">
           <h2 className="text-lg font-semibold mb-4 text-gray-200">Profile vs CV</h2>
           {loadingProfileCV ? (
-            <p className="text-sm text-gray-400">Analyzing alignment...</p>
+            <div className="space-y-2">
+              <p className="text-sm text-muted">Analyzing alignment...</p>
+              <ProfileCVSkeleton />
+            </div>
           ) : errorProfileCV ? (
-            <p className="text-sm text-red-400">Error: {errorProfileCV}</p>
+            <p className="text-sm text-danger">Error: {errorProfileCV}</p>
           ) : profileCV?.empty ? (
             <div className="bg-gray-800/50 rounded-xl p-6 text-center">
-              <p className="text-gray-400 text-sm">{profileCV.reason}</p>
-              <Link href="/settings" className="mt-2 inline-block text-sm text-green-400 hover:text-green-300 underline">
+              <p className="text-muted text-sm">{profileCV.reason}</p>
+              <Link href="/settings" className="mt-2 inline-block text-sm text-green-400 hover:text-green-300 underline transition-colors">
                 Go to Settings
               </Link>
             </div>
           ) : profileCV ? (
             <div className="space-y-4">
               {/* Score + positioning note */}
-              <div className="bg-gray-900 rounded-xl p-6 space-y-3">
+              <div className="bg-surface rounded-xl p-6 space-y-3">
                 <AlignmentScore score={profileCV.alignment_score} />
                 {profileCV.positioning_notes && (
                   <p className="text-gray-300 text-sm leading-relaxed">{profileCV.positioning_notes}</p>
@@ -330,12 +380,12 @@ export default function GapsPage() {
 
               {/* Strengths */}
               {profileCV.strengths?.length > 0 && (
-                <div className="bg-gray-900 rounded-xl p-5">
-                  <p className="text-sm font-medium text-gray-400 uppercase tracking-wide mb-3">Strengths</p>
+                <div className="bg-surface rounded-xl p-5">
+                  <p className="text-sm font-medium text-muted uppercase tracking-wide mb-3">Strengths</p>
                   <ul className="space-y-2">
                     {profileCV.strengths.map((s, i) => (
                       <li key={i} className="flex items-start gap-2 text-sm">
-                        <span className="text-green-400 flex-shrink-0 mt-0.5">✓</span>
+                        <Check className="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" aria-hidden="true" />
                         <span className="text-gray-200">{s}</span>
                       </li>
                     ))}
@@ -346,19 +396,19 @@ export default function GapsPage() {
               {/* Gaps */}
               {profileCV.gaps?.length > 0 && (
                 <div className="space-y-3">
-                  <p className="text-sm font-medium text-gray-400 uppercase tracking-wide">Gaps</p>
+                  <p className="text-sm font-medium text-muted uppercase tracking-wide">Gaps</p>
                   {profileCV.gaps.map((g, i) => (
                     <div key={i} className={`rounded-xl p-5 border ${severityColor(g.severity)}`}>
                       <div className="flex items-center gap-2 mb-3">
-                        <span className="font-medium text-white">{g.area}</span>
+                        <span className="font-medium text-foreground">{g.area}</span>
                         <span className={`px-2 py-0.5 rounded text-xs ${severityBadge(g.severity)}`}>{g.severity}</span>
                       </div>
                       <div className="space-y-1.5 text-sm">
-                        <p><span className="text-gray-400">Profile targets:</span> <span className="text-gray-200">{g.profile_says}</span></p>
-                        <p><span className="text-gray-400">CV shows:</span> <span className="text-gray-200">{g.cv_shows}</span></p>
+                        <p><span className="text-muted">Profile targets:</span> <span className="text-gray-200">{g.profile_says}</span></p>
+                        <p><span className="text-muted">CV shows:</span> <span className="text-gray-200">{g.cv_shows}</span></p>
                         {g.suggestion && (
                           <p className="mt-2 pt-2 border-t border-gray-700/50">
-                            <span className="text-gray-400">Suggestion:</span>{' '}
+                            <span className="text-muted">Suggestion:</span>{' '}
                             <span className="text-gray-200">{g.suggestion}</span>
                           </p>
                         )}
@@ -375,13 +425,16 @@ export default function GapsPage() {
         <section>
           <h2 className="text-lg font-semibold mb-4 text-gray-200">Position gaps (score &ge; 6)</h2>
           {loadingPositions ? (
-            <p className="text-sm text-gray-400">Analyzing positions... this may take a minute.</p>
+            <div className="space-y-3">
+              <p className="text-sm text-muted">Analyzing positions... this may take a minute.</p>
+              {[0, 1, 2].map(i => <PositionRowSkeleton key={i} />)}
+            </div>
           ) : errorPositions ? (
-            <p className="text-sm text-red-400">Error: {errorPositions}</p>
+            <p className="text-sm text-danger">Error: {errorPositions}</p>
           ) : !positions || positions.length === 0 ? (
             <div className="bg-gray-800/50 rounded-xl p-6 text-center">
-              <p className="text-gray-400 text-sm">No positions scored 6 or above yet.</p>
-              <Link href="/digest" className="mt-2 inline-block text-sm text-green-400 hover:text-green-300 underline">
+              <p className="text-muted text-sm">No positions scored 6 or above yet.</p>
+              <Link href="/digest" className="mt-2 inline-block text-sm text-green-400 hover:text-green-300 underline transition-colors">
                 Run scoring first
               </Link>
             </div>
@@ -391,10 +444,10 @@ export default function GapsPage() {
                 value={filter}
                 onChange={e => setFilter(e.target.value)}
                 placeholder="Filter by company or title..."
-                className="w-full bg-gray-800 text-white px-3 py-2 rounded-lg border border-gray-700 text-sm focus:outline-none focus:border-green-500"
+                className="w-full bg-surface-raised text-foreground px-3 py-2 rounded-lg border border-subtle text-sm focus:outline-none focus:border-accent transition-colors"
               />
               {filteredPositions.length === 0 ? (
-                <p className="text-sm text-gray-500 py-4 text-center">No matches for &ldquo;{filter}&rdquo;</p>
+                <p className="text-sm text-subtle py-4 text-center">No matches for &ldquo;{filter}&rdquo;</p>
               ) : (
                 filteredPositions.map(pos => <PositionRow key={pos.job_id} pos={pos} />)
               )}
