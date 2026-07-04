@@ -1,7 +1,7 @@
 | Field | Value |
 |---|---|
 | **Phase** | P5 |
-| **Status** | `completed` |
+| **Status** | `wrapped` |
 | **Effort** | S |
 | **Epic** | — |
 | **Depends on** | WEBAPP_PDF_CV_UPLOAD ✅ |

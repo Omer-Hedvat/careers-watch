@@ -14,6 +14,7 @@ Wrapped features only. Active work lives in `ROADMAP.md`.
 | App shell & account UX | `future_devs/archive/WEBAPP_APP_SHELL_ACCOUNT_SPEC.md` | P7 | `wrapped` | 4 |
 | First-run comprehension | `future_devs/archive/WEBAPP_FIRST_RUN_COMPREHENSION_SPEC.md` | P7 | `wrapped` | 5 |
 | Digest legibility & trust | `future_devs/archive/WEBAPP_DIGEST_TRUST_SPEC.md` | P7 | `wrapped` | 4 |
+| Webapp visual design system | `future_devs/archive/WEBAPP_VISUAL_DESIGN_SPEC.md` | P10 | `wrapped` | 5 |
 
 ---
 
@@ -75,6 +76,7 @@ Wrapped features only. Active work lives in `ROADMAP.md`.
 |---|---|---|---|
 | DS analysis notebook — score distribution, VC tier signal, top companies, flag frequency | `future_devs/archive/DS_ANALYSIS_NOTEBOOK_SPEC.md` | S | `wrapped` |
 | README rewrite — engineering showcase with Mermaid architecture diagram and real scale numbers | `future_devs/archive/REPO_SHOWCASE_SPEC.md` | S | `wrapped` |
+| Scoring calibration doc — rubric design, spot-check against real scores, failure modes | `future_devs/archive/SCORING_RUBRIC_ABLATION_SPEC.md` | S | `wrapped` |
 
 ---
 
@@ -105,6 +107,10 @@ Wrapped features only. Active work lives in `ROADMAP.md`.
 | [webapp] Positions page — browse all open roles from pipeline, client-side search + pagination | `future_devs/archive/WEBAPP_POSITIONS_VIEW_SPEC.md` | S | `wrapped` |
 | [webapp] Count-up animation on Companies + Positions page load | `future_devs/archive/WEBAPP_COUNTUP_ANIMATION_SPEC.md` | XS | `wrapped` |
 | [webapp] Gap analysis — profile vs CV, position vs CV, position vs profile | `future_devs/archive/PROFILE_CV_GAP_ANALYSIS_SPEC.md` | M | `wrapped` |
+| [webapp] CV upload: DOCX + TXT support alongside PDF | `future_devs/archive/WEBAPP_CV_UPLOAD_FORMATS_SPEC.md` | S | `wrapped` |
+| [webapp] Settings reflects current state — CV file/text, filters, API-key status, account identity | `future_devs/archive/WEBAPP_SETTINGS_STATE_VISIBILITY_SPEC.md` | S | `wrapped` |
+| [webapp] Profile upload or AI-prompt generator for building profile.md | `future_devs/archive/WEBAPP_PROFILE_UPLOAD_OR_PROMPT_SPEC.md` | M | `wrapped` |
+| Stamp `first_seen` date on each position — persist across daily runs, show in digest + webapp cards | `future_devs/archive/POSITION_FIRST_SEEN_SPEC.md` | S | `wrapped` |
 
 ---
 
@@ -138,3 +144,25 @@ Wrapped features only. Active work lives in `ROADMAP.md`.
 | Diff scored jobs vs live set → `status` + `closed_at` in `scored_jobs.json` | `future_devs/archive/POSITION_LIVENESS_STATUS_DIFF_SPEC.md` | S | `wrapped` |
 | Render closed jobs distinctly in `digest.md` (strikethrough, closed date, trailing section) | `future_devs/archive/POSITION_LIVENESS_DIGEST_RENDER_SPEC.md` | S | `wrapped` |
 | Reflect `status`/`closed_at` in webapp digest API + closed-card rendering | `future_devs/archive/POSITION_LIVENESS_WEBAPP_SPEC.md` | S | `wrapped` |
+
+---
+
+## Phase P9 — ATS expansion II
+
+| Feature | Spec | Effort | Status |
+|---|---|---|---|
+| BambooHR puller — Nilus (3 jobs) + 4 others | `future_devs/archive/ATS_BAMBOOHR_SPEC.md` | S | `wrapped` |
+| Oracle Taleo puller — Radware (44+ jobs) | `future_devs/archive/ATS_TALEO_SPEC.md` | M | `wrapped` |
+| Oracle HCM puller — Dell Technologies (325 jobs globally; 0 Israel openings at wrap time) | `future_devs/archive/ATS_ORACLE_HCM_SPEC.md` | M | `wrapped` |
+
+---
+
+## Phase P10 — Webapp visual design system
+
+| Feature | Spec | Effort | Status |
+|---|---|---|---|
+| Design tokens + theme + typography foundation (CSS variables, Tailwind mapping, next/font, shared SCORE_BANDS) | `future_devs/archive/WEBAPP_DESIGN_TOKENS_SPEC.md` | S | `wrapped` |
+| Digest visual redesign — cards, badges, legend, skeleton, empty states, mount motion | `future_devs/archive/WEBAPP_DIGEST_VISUAL_SPEC.md` | M | `wrapped` |
+| Landing visual glow-up — hero/section polish, FAQ animation, real JobCard reused in preview | `future_devs/archive/WEBAPP_LANDING_VISUAL_SPEC.md` | M | `wrapped` |
+| Unify iconography on lucide-react + consistent micro-interactions across Nav/checklist/positions/companies/gaps/auth | `future_devs/archive/WEBAPP_ICONOGRAPHY_MOTION_SPEC.md` | S | `wrapped` |
+| Onboarding wizard visual polish — step indicator, transitions, styled form controls | `future_devs/archive/WEBAPP_ONBOARDING_VISUAL_SPEC.md` | S | `wrapped` |
