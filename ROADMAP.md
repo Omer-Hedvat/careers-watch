@@ -185,9 +185,9 @@ New ATS pullers for high-value companies currently stuck in `ats: other` or `ats
 
 | Slug | Title | Status | Effort | Depends on |
 |---|---|---|---|---|
-| [ATS_SMARTRECRUITERS](future_devs/ATS_SMARTRECRUITERS_SPEC.md) | SmartRecruiters puller - CyberArk + Palo Alto Networks | `completed` | S | — |
+| [ATS_SMARTRECRUITERS](future_devs/archive/ATS_SMARTRECRUITERS_SPEC.md) | SmartRecruiters puller - CyberArk + Palo Alto Networks | `wrapped` | S | — |
 | [ATS_BAMBOOHR](future_devs/archive/ATS_BAMBOOHR_SPEC.md) | BambooHR puller - Nilus + 4 others | `wrapped` | S | — |
-| [ATS_CHECKPOINT_CAREERS](future_devs/ATS_CHECKPOINT_CAREERS_SPEC.md) | Check Point custom careers puller (single-tenant) | `completed` | S | — |
+| [ATS_CHECKPOINT_CAREERS](future_devs/ATS_CHECKPOINT_CAREERS_SPEC.md) | Check Point custom careers puller (single-tenant) - blocked by AWS WAF human-verification challenge | `not-started` | S | — |
 | [ATS_TALEO](future_devs/archive/ATS_TALEO_SPEC.md) | Oracle Taleo puller - Radware | `wrapped` | M | — |
 | [ATS_ORACLE_HCM](future_devs/archive/ATS_ORACLE_HCM_SPEC.md) | Oracle HCM puller - Dell Technologies Israel | `wrapped` | M | — |
 
@@ -290,7 +290,7 @@ Appearance overhaul executed with the **Fable** design model. The app is functio
 | `future_devs/archive/POSITION_LIVENESS_STATUS_DIFF_SPEC.md` | P8 — Status diff: scored jobs vs live set (wrapped) |
 | `future_devs/archive/POSITION_LIVENESS_DIGEST_RENDER_SPEC.md` | P8 — Render closed jobs in digest.md (wrapped) |
 | `future_devs/archive/POSITION_LIVENESS_WEBAPP_SPEC.md` | P8 — Reflect status in webapp digest (wrapped) |
-| `future_devs/ATS_SMARTRECRUITERS_SPEC.md` | P9 — SmartRecruiters puller (CyberArk + PAN) |
+| `future_devs/archive/ATS_SMARTRECRUITERS_SPEC.md` | P9 — SmartRecruiters puller (CyberArk + PAN) (wrapped; see BUG_SMARTRECRUITERS_ROUTING for live regression) |
 | `future_devs/archive/ATS_BAMBOOHR_SPEC.md` | P9 — BambooHR puller (Nilus + 4 others) (wrapped) |
 | `future_devs/ATS_CHECKPOINT_CAREERS_SPEC.md` | P9 — Check Point custom careers (single-tenant) |
 | `future_devs/archive/ATS_TALEO_SPEC.md` | P9 — Oracle Taleo puller (Radware) (wrapped) |

@@ -151,6 +151,7 @@ Wrapped features only. Active work lives in `ROADMAP.md`.
 
 | Feature | Spec | Effort | Status |
 |---|---|---|---|
+| SmartRecruiters puller — CyberArk + Palo Alto Networks (regressed since; tracked as BUG_SMARTRECRUITERS_ROUTING) | `future_devs/archive/ATS_SMARTRECRUITERS_SPEC.md` | S | `wrapped` |
 | BambooHR puller — Nilus (3 jobs) + 4 others | `future_devs/archive/ATS_BAMBOOHR_SPEC.md` | S | `wrapped` |
 | Oracle Taleo puller — Radware (44+ jobs) | `future_devs/archive/ATS_TALEO_SPEC.md` | M | `wrapped` |
 | Oracle HCM puller — Dell Technologies (325 jobs globally; 0 Israel openings at wrap time) | `future_devs/archive/ATS_ORACLE_HCM_SPEC.md` | M | `wrapped` |

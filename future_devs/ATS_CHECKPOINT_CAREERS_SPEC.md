@@ -1,7 +1,7 @@
 | Field | Value |
 |---|---|
 | **Phase** | P9 |
-| **Status** | `completed` |
+| **Status** | `not-started` |
 | **Effort** | S |
 | **Epic** | — |
 | **Depends on** | — |
@@ -36,3 +36,19 @@ This is a single-tenant integration (no third-party ATS, no `detect.py` rule nee
 2. All returned jobs have `title`, `location`, `description`, `apply_url` populated.
 3. `uv run python collect_jobs.py` — Check Point jobs appear in `new_jobs.json`.
 4. `uv run python -m pytest tests/ -v` passes.
+
+## Blocked (2026-07-04)
+
+`careers.checkpoint.com` is now uniformly behind an AWS WAF human-verification
+challenge - every path (root, search page, even `sitemap.xml`) returns a 202
+with an empty body and `x-amzn-waf-action: challenge`. Confirmed this isn't
+just a JS-render gate: a real headless Chromium via Playwright still gets
+served an interactive "Human Verification" CAPTCHA-style page, not the
+underlying search results. Building a reliable puller would require defeating
+that challenge (CAPTCHA-solving services, stealth-browser plugins, or similar
+anti-bot-evasion tooling), which is out of scope for this project - Check
+Point has deliberately deployed this barrier and circumventing it isn't
+something to automate around.
+
+No known workaround at this time. Revisit if Check Point changes their WAF
+config, or if a legitimate partner/API access path becomes available.

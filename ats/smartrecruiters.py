@@ -1,19 +1,22 @@
 """
 SmartRecruiters careers puller.
 
+The career site at careers.smartrecruiters.com/{slug} used to be server-side
+rendered with job listings in the initial HTML; it now 302-redirects to a
+client-rendered SPA at jobs.smartrecruiters.com with no jobs in the initial
+payload, so HTML scraping no longer works (see BUG_SMARTRECRUITERS_ROUTING).
+
 The public API at api.smartrecruiters.com/v1/companies/{slug}/postings is
-effectively gated for anonymous access (always returns 0).  The career site
-at careers.smartrecruiters.com/{slug} is server-side rendered — job groups
-(by location) and individual job links are in the initial HTML.
+NOT gated for anonymous access (verified against Sutherland: 357 postings,
+Visa: 2 postings) - only paginated JSON, no per-job detail fetch needed.
 
-Pagination: the first page is the SSR render; additional pages are fetched
-from /{slug}/api/groups?page=N which also returns HTML fragments.
+apply_url is constructed as jobs.smartrecruiters.com/{slug}/{posting_id} -
+verified this bare-id form (no human-readable slug suffix) resolves as a
+working link without an extra detail request per job.
 
-apply_url is the jobs.smartrecruiters.com URL embedded in every anchor.
-Description is empty — the listing HTML has none; titles are descriptive
-enough for scoring and description can be added later via a detail fetch.
+Description is empty - the list endpoint doesn't include it; a detail fetch
+per job would be needed for that and isn't worth the request volume.
 """
-import re
 import sys
 
 import httpx
@@ -25,88 +28,52 @@ except ModuleNotFoundError:
     sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__))))
     from ats.utils import HEADERS
 
-_CAREER_BASE = "https://careers.smartrecruiters.com"
-
-# Matches: aria-label="Job Title - REF1234" on the job anchor
-_JOB_ANCHOR_RE = re.compile(
-    r'<a[^>]+href=["\']([^"\']+/\d+-[^"\']+)["\'][^>]+aria-label=["\']([^"\']+)["\']',
-    re.IGNORECASE,
-)
-# Location heading for each opening group
-_LOCATION_RE = re.compile(
-    r'<h3[^>]+class=["\'][^"\']*opening-title[^"\']*["\'][^>]*>([^<]+)</h3>',
-    re.IGNORECASE,
-)
-_DATA_PAGES_RE = re.compile(r'data-groups-pages=["\'](\d+)["\']')
-
-
-def _parse_jobs_from_html(html: str) -> list[dict]:
-    """
-    Extract jobs from a SmartRecruiters career-site HTML page or fragment.
-
-    Groups jobs by location: the `.opening-title` heading before each group
-    of `.js-job-ad-link` anchors provides the city/country for those jobs.
-    """
-    results = []
-
-    # Split on opening-section boundaries to pair each location with its jobs
-    # Sections are <section ... class="...opening...js-group">...</section>
-    section_blocks = re.split(
-        r'<section[^>]+class=["\'][^"\']*(?:opening|js-group)[^"\']*["\']',
-        html,
-        flags=re.IGNORECASE,
-    )
-
-    for block in section_blocks[1:]:  # skip preamble before first section
-        # Extract the location from the first opening-title in this block
-        loc_m = _LOCATION_RE.search(block)
-        location = loc_m.group(1).strip() if loc_m else ""
-
-        # Extract all job anchors within this block
-        for url, label in _JOB_ANCHOR_RE.findall(block):
-            # aria-label format: "Job Title - REF12345X" — strip REF suffix
-            title = re.sub(r"\s*-\s*REF[A-Z0-9]+\s*$", "", label).strip()
-            results.append(
-                {
-                    "title": title,
-                    "location": location,
-                    "description": "",
-                    "apply_url": url,
-                }
-            )
-
-    return results
+_API_BASE = "https://api.smartrecruiters.com/v1/companies"
+_APPLY_BASE = "https://jobs.smartrecruiters.com"
+_PAGE_SIZE = 100
 
 
 def fetch_positions(company_slug: str) -> list[dict]:
     """
-    Fetch open positions from a SmartRecruiters career site.
+    Fetch open positions from the SmartRecruiters public postings API.
     Returns list of normalized dicts: {title, location, description, apply_url}.
     """
-    base_url = f"{_CAREER_BASE}/{company_slug}"
-    try:
-        resp = httpx.get(base_url, headers=HEADERS, timeout=15, follow_redirects=True)
-        resp.raise_for_status()
-        html = resp.text
-    except Exception as e:
-        print(f"    SmartRecruiters fetch error for {company_slug}: {e}")
-        return []
+    results = []
+    offset = 0
 
-    results = _parse_jobs_from_html(html)
-
-    # Determine total page count from data-groups-pages attribute
-    m = _DATA_PAGES_RE.search(html)
-    total_pages = int(m.group(1)) if m else 1
-
-    # Fetch remaining pages
-    for page in range(1, total_pages):
-        page_url = f"{base_url}/api/groups?page={page}"
+    while True:
         try:
-            pr = httpx.get(page_url, headers=HEADERS, timeout=15, follow_redirects=True)
-            pr.raise_for_status()
-            results.extend(_parse_jobs_from_html(pr.text))
+            resp = httpx.get(
+                f"{_API_BASE}/{company_slug}/postings",
+                headers=HEADERS,
+                params={"limit": _PAGE_SIZE, "offset": offset},
+                timeout=15,
+            )
+            resp.raise_for_status()
+            data = resp.json()
         except Exception as e:
-            print(f"    SmartRecruiters page {page} error for {company_slug}: {e}")
+            print(f"    SmartRecruiters fetch error for {company_slug}: {e}")
+            break
+
+        postings = data.get("content", [])
+        for p in postings:
+            loc = p.get("location", {}) or {}
+            location = loc.get("fullLocation") or ", ".join(
+                filter(None, [loc.get("city"), loc.get("country")])
+            )
+            results.append(
+                {
+                    "title": p.get("name", ""),
+                    "location": location,
+                    "description": "",
+                    "apply_url": f"{_APPLY_BASE}/{company_slug}/{p.get('id', '')}",
+                }
+            )
+
+        total = data.get("totalFound", 0)
+        offset += _PAGE_SIZE
+        if offset >= total or not postings:
+            break
 
     return results
 
