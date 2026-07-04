@@ -6,3 +6,5 @@ Wrapped bugs only. Active bugs live in `BUG_TRACKER.md`.
 |---|---|---|---|
 | BUG_VIOLA_GETRO_DUPES | Viola Getro board sends same 3 job titles to every portfolio company, burning Gemini quota on duplicates | ✅ Wrapped | P2 |
 | BUG_RENDER_JOBS_PATH | Scoring endpoint always 503 — new_jobs.json unreachable on Render disk | ✅ Wrapped | P0 |
+| BUG_LANDING_DEAD_GITHUB_LINKS | Landing page GitHub links are dead (href="#") | ✅ Wrapped | P3 |
+| BUG_MARK_APPLIED_MISSING | "Mark applied" button missing / not persisting on digest page | ✅ Wrapped | P2 |

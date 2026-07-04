@@ -1,7 +1,7 @@
 # BUG: Landing page GitHub links are dead (href="#")
 
 ## Status
-🟢 Completed
+✅ Wrapped
 
 ## Severity
 P3

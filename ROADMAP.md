@@ -35,6 +35,7 @@
 | [WEBAPP_JOBSEEKER_WORKFLOW](future_devs/WEBAPP_JOBSEEKER_WORKFLOW_SPEC.md) | Job-seeker workspace (detail view, status tracker, hide, new, sort) | `not-started` | L | 5 |
 | [WEBAPP_APP_SHELL_ACCOUNT](future_devs/archive/WEBAPP_APP_SHELL_ACCOUNT_SPEC.md) | App shell + account UX (nav, sign-out, help, auth recovery) | `wrapped` | M | 4 |
 | [POSITION_LIVENESS](future_devs/archive/POSITION_LIVENESS_SPEC.md) | Position liveness — mark & surface closed postings in the scored digest | `wrapped` | M | 4 |
+| [WEBAPP_VISUAL_DESIGN](future_devs/archive/WEBAPP_VISUAL_DESIGN_SPEC.md) | Webapp visual design system + appearance overhaul (Fable) | `wrapped` | L | 5 |
 
 Run `/orchestrate_epic <slug>` to execute an epic's children in waves.
 
@@ -85,7 +86,7 @@ All Phase P2 tasks are wrapped. See `ROADMAP_ARCHIVE.md`.
 |---|---|---|---|---|
 | [DS_ANALYSIS_NOTEBOOK](future_devs/archive/DS_ANALYSIS_NOTEBOOK_SPEC.md) | DS analysis notebook — score distribution, VC tier signal, top companies | `wrapped` | S | — |
 | [REPO_SHOWCASE](future_devs/archive/REPO_SHOWCASE_SPEC.md) | README rewrite — engineering showcase with architecture diagram and scale callouts | `wrapped` | S | — |
-| [SCORING_RUBRIC_ABLATION](future_devs/SCORING_RUBRIC_ABLATION_SPEC.md) | Scoring calibration doc — rubric design, spot-check, failure modes | `completed` | S | — |
+| [SCORING_RUBRIC_ABLATION](future_devs/archive/SCORING_RUBRIC_ABLATION_SPEC.md) | Scoring calibration doc — rubric design, spot-check, failure modes | `wrapped` | S | — |
 
 ---
 
@@ -94,13 +95,14 @@ All Phase P2 tasks are wrapped. See `ROADMAP_ARCHIVE.md`.
 | Slug | Title | Status | Effort | Depends on |
 |---|---|---|---|---|
 | [WEBAPP_CV_SETTINGS_UPLOAD](future_devs/archive/WEBAPP_CV_SETTINGS_UPLOAD_SPEC.md) | CV re-upload section in Settings (outside onboarding) | `wrapped` | S | — |
-| [WEBAPP_CV_UPLOAD_FORMATS](future_devs/WEBAPP_CV_UPLOAD_FORMATS_SPEC.md) | CV upload: add DOCX + TXT support alongside PDF | `completed` | S | WEBAPP_PDF_CV_UPLOAD ✅ |
-| [WEBAPP_SETTINGS_STATE_VISIBILITY](future_devs/WEBAPP_SETTINGS_STATE_VISIBILITY_SPEC.md) | Settings shows current state: CV file/text, filters, API-key present/missing, account name+email | `completed` | S | — |
-| [WEBAPP_PROFILE_UPLOAD_OR_PROMPT](future_devs/WEBAPP_PROFILE_UPLOAD_OR_PROMPT_SPEC.md) | Profile upload OR AI-prompt generator for building profile.md | `completed` | M | — |
+| [WEBAPP_CV_UPLOAD_FORMATS](future_devs/archive/WEBAPP_CV_UPLOAD_FORMATS_SPEC.md) | CV upload: add DOCX + TXT support alongside PDF | `wrapped` | S | WEBAPP_PDF_CV_UPLOAD ✅ |
+| [WEBAPP_SETTINGS_STATE_VISIBILITY](future_devs/archive/WEBAPP_SETTINGS_STATE_VISIBILITY_SPEC.md) | Settings shows current state: CV file/text, filters, API-key present/missing, account name+email | `wrapped` | S | — |
+| [WEBAPP_PROFILE_UPLOAD_OR_PROMPT](future_devs/archive/WEBAPP_PROFILE_UPLOAD_OR_PROMPT_SPEC.md) | Profile upload OR AI-prompt generator for building profile.md | `wrapped` | M | — |
 | [WEBAPP_POSITIONS_VIEW](future_devs/archive/WEBAPP_POSITIONS_VIEW_SPEC.md) | Positions page — browse all open roles from pipeline | `wrapped` | S | WEBAPP_COMPANIES_VIEW ✅ |
 | [PROFILE_CV_GAP_ANALYSIS](future_devs/archive/PROFILE_CV_GAP_ANALYSIS_SPEC.md) | Gap analysis: profile vs CV, position vs CV, position vs profile | `wrapped` | M | — |
 | [WEBAPP_COUNTUP_ANIMATION](future_devs/archive/WEBAPP_COUNTUP_ANIMATION_SPEC.md) | Count-up animation on Companies + Positions page load | `wrapped` | XS | — |
-| [POSITION_FIRST_SEEN](future_devs/POSITION_FIRST_SEEN_SPEC.md) | Stamp first_seen date on each position — persist across daily runs, show in digest + webapp cards | `completed` | S | — |
+| [POSITION_FIRST_SEEN](future_devs/archive/POSITION_FIRST_SEEN_SPEC.md) | Stamp first_seen date on each position — persist across daily runs, show in digest + webapp cards | `wrapped` | S | — |
+| [WEBAPP_POSITIONS_TOTAL_COUNT](future_devs/WEBAPP_POSITIONS_TOTAL_COUNT_SPEC.md) | Positions page: show "n suitable out of N collected" instead of bare count | `not-started` | XS | WEBAPP_POSITIONS_VIEW ✅ |
 
 ---
 
@@ -184,10 +186,29 @@ New ATS pullers for high-value companies currently stuck in `ats: other` or `ats
 | Slug | Title | Status | Effort | Depends on |
 |---|---|---|---|---|
 | [ATS_SMARTRECRUITERS](future_devs/ATS_SMARTRECRUITERS_SPEC.md) | SmartRecruiters puller - CyberArk + Palo Alto Networks | `completed` | S | — |
-| [ATS_BAMBOOHR](future_devs/ATS_BAMBOOHR_SPEC.md) | BambooHR puller - Nilus + 4 others | `completed` | S | — |
+| [ATS_BAMBOOHR](future_devs/archive/ATS_BAMBOOHR_SPEC.md) | BambooHR puller - Nilus + 4 others | `wrapped` | S | — |
 | [ATS_CHECKPOINT_CAREERS](future_devs/ATS_CHECKPOINT_CAREERS_SPEC.md) | Check Point custom careers puller (single-tenant) | `completed` | S | — |
-| [ATS_TALEO](future_devs/ATS_TALEO_SPEC.md) | Oracle Taleo puller - Radware | `completed` | M | — |
-| [ATS_ORACLE_HCM](future_devs/ATS_ORACLE_HCM_SPEC.md) | Oracle HCM puller - Dell Technologies Israel | `completed` | M | — |
+| [ATS_TALEO](future_devs/archive/ATS_TALEO_SPEC.md) | Oracle Taleo puller - Radware | `wrapped` | M | — |
+| [ATS_ORACLE_HCM](future_devs/archive/ATS_ORACLE_HCM_SPEC.md) | Oracle HCM puller - Dell Technologies Israel | `wrapped` | M | — |
+
+---
+
+## Phase P10 — Webapp visual design system
+
+Appearance overhaul executed with the **Fable** design model. The app is functionally complete but visually unpolished: no design-token layer, abandoned shadcn/ui scaffold, inconsistent icons (inline SVGs + text glyphs + an emoji), default system font, minimal motion. This epic establishes a real design system and applies it. Presentation only — no behavior/data/routing changes; functional UX lives in P7.
+
+### Epic: Webapp visual design system
+
+| Slug | Title | Status | Effort | Depends on |
+|---|---|---|---|---|
+| [WEBAPP_VISUAL_DESIGN](future_devs/archive/WEBAPP_VISUAL_DESIGN_SPEC.md) | Webapp visual design system (epic root) | `wrapped` | L | — |
+| [WEBAPP_DESIGN_TOKENS](future_devs/archive/WEBAPP_DESIGN_TOKENS_SPEC.md) | Design tokens + theme + typography foundation | `wrapped` | S | — |
+| [WEBAPP_DIGEST_VISUAL](future_devs/archive/WEBAPP_DIGEST_VISUAL_SPEC.md) | Digest visual redesign (cards, badges, legend, states) | `wrapped` | M | WEBAPP_DESIGN_TOKENS ✅ |
+| [WEBAPP_LANDING_VISUAL](future_devs/archive/WEBAPP_LANDING_VISUAL_SPEC.md) | Landing visual glow-up + reuse real JobCard in preview | `wrapped` | M | WEBAPP_DESIGN_TOKENS ✅, WEBAPP_DIGEST_VISUAL ✅ |
+| [WEBAPP_ICONOGRAPHY_MOTION](future_devs/archive/WEBAPP_ICONOGRAPHY_MOTION_SPEC.md) | Unify on lucide-react + consistent micro-interactions | `wrapped` | S | WEBAPP_DESIGN_TOKENS ✅ |
+| [WEBAPP_ONBOARDING_VISUAL](future_devs/archive/WEBAPP_ONBOARDING_VISUAL_SPEC.md) | Onboarding wizard visual polish | `wrapped` | S | WEBAPP_DESIGN_TOKENS ✅ |
+
+> All 5 children wrapped. Epic archived.
 
 ---
 
@@ -226,18 +247,19 @@ New ATS pullers for high-value companies currently stuck in `ats: other` or `ats
 | `future_devs/archive/WEBAPP_SETTINGS_SPEC.md` | P2 — Settings tabs (wrapped) |
 | `future_devs/archive/DS_ANALYSIS_NOTEBOOK_SPEC.md` | P4 — DS analysis notebook (wrapped) |
 | `future_devs/archive/REPO_SHOWCASE_SPEC.md` | P4 — README rewrite / engineering showcase (wrapped) |
-| `future_devs/SCORING_RUBRIC_ABLATION_SPEC.md` | P4 — Scoring calibration doc |
+| `future_devs/archive/SCORING_RUBRIC_ABLATION_SPEC.md` | P4 — Scoring calibration doc (wrapped) |
 | `future_devs/archive/WEBAPP_FAVICON_SPEC.md` | P5 — Website favicon + Open Graph (wrapped) |
 | `future_devs/archive/WEBAPP_CV_SETTINGS_UPLOAD_SPEC.md` | P5 — CV re-upload in Settings (wrapped) |
-| `future_devs/WEBAPP_CV_UPLOAD_FORMATS_SPEC.md` | P5 — CV upload: DOCX + TXT support alongside PDF |
-| `future_devs/WEBAPP_SETTINGS_STATE_VISIBILITY_SPEC.md` | P5 — Settings reflects current state (CV, filters, API-key status, account identity) |
-| `future_devs/WEBAPP_PROFILE_UPLOAD_OR_PROMPT_SPEC.md` | P5 — Profile upload or AI prompt generator |
+| `future_devs/archive/WEBAPP_CV_UPLOAD_FORMATS_SPEC.md` | P5 — CV upload: DOCX + TXT support alongside PDF (wrapped) |
+| `future_devs/archive/WEBAPP_SETTINGS_STATE_VISIBILITY_SPEC.md` | P5 — Settings reflects current state (CV, filters, API-key status, account identity) (wrapped) |
+| `future_devs/archive/WEBAPP_PROFILE_UPLOAD_OR_PROMPT_SPEC.md` | P5 — Profile upload or AI prompt generator (wrapped) |
 | `future_devs/archive/WEBAPP_COMPANIES_VIEW_SPEC.md` | P5 — Companies page (wrapped) |
 | `future_devs/archive/WEBAPP_COUNTUP_ANIMATION_SPEC.md` | P5 — Count-up animation on Companies + Positions page load (wrapped) |
 | `future_devs/archive/WEBAPP_POSITIONS_VIEW_SPEC.md` | P5 — Positions page (wrapped) |
+| `future_devs/WEBAPP_POSITIONS_TOTAL_COUNT_SPEC.md` | P5 — Positions page: "n suitable out of N collected" header count |
 | `future_devs/archive/WEBAPP_MULTI_FILTER_SPEC.md` | P5 — Multi-value filters with ';' (wrapped) |
 | `future_devs/archive/PROFILE_CV_GAP_ANALYSIS_SPEC.md` | P5 — Gap analysis: profile vs CV, positions vs CV (wrapped) |
-| `future_devs/POSITION_FIRST_SEEN_SPEC.md` | P5 — Stamp first_seen date on each position; show in digest + webapp |
+| `future_devs/archive/POSITION_FIRST_SEEN_SPEC.md` | P5 — Stamp first_seen date on each position; show in digest + webapp (wrapped) |
 | `future_devs/RAG_CHATBOT_SPEC.md` | P6 — RAG sandbox + chat UI (next AI epic) |
 | `future_devs/MULTI_AGENT_RESUME_TAILOR_SPEC.md` | P6 — Multi-agent CV tailor |
 | `future_devs/WEBAPP_FIRST_RUN_COMPREHENSION_SPEC.md` | P7 — First-run comprehension (epic root) |
@@ -269,7 +291,13 @@ New ATS pullers for high-value companies currently stuck in `ats: other` or `ats
 | `future_devs/archive/POSITION_LIVENESS_DIGEST_RENDER_SPEC.md` | P8 — Render closed jobs in digest.md (wrapped) |
 | `future_devs/archive/POSITION_LIVENESS_WEBAPP_SPEC.md` | P8 — Reflect status in webapp digest (wrapped) |
 | `future_devs/ATS_SMARTRECRUITERS_SPEC.md` | P9 — SmartRecruiters puller (CyberArk + PAN) |
-| `future_devs/ATS_BAMBOOHR_SPEC.md` | P9 — BambooHR puller (Nilus + 4 others) |
+| `future_devs/archive/ATS_BAMBOOHR_SPEC.md` | P9 — BambooHR puller (Nilus + 4 others) (wrapped) |
 | `future_devs/ATS_CHECKPOINT_CAREERS_SPEC.md` | P9 — Check Point custom careers (single-tenant) |
-| `future_devs/ATS_TALEO_SPEC.md` | P9 — Oracle Taleo puller (Radware) |
-| `future_devs/ATS_ORACLE_HCM_SPEC.md` | P9 — Oracle HCM puller (Dell Technologies Israel) |
+| `future_devs/archive/ATS_TALEO_SPEC.md` | P9 — Oracle Taleo puller (Radware) (wrapped) |
+| `future_devs/archive/ATS_ORACLE_HCM_SPEC.md` | P9 — Oracle HCM puller (Dell Technologies Israel) (wrapped) |
+| `future_devs/archive/WEBAPP_VISUAL_DESIGN_SPEC.md` | P10 — Webapp visual design system (epic root, wrapped) |
+| `future_devs/archive/WEBAPP_DESIGN_TOKENS_SPEC.md` | P10 — Design tokens + theme + typography foundation (wrapped) |
+| `future_devs/archive/WEBAPP_DIGEST_VISUAL_SPEC.md` | P10 — Digest visual redesign (wrapped) |
+| `future_devs/archive/WEBAPP_LANDING_VISUAL_SPEC.md` | P10 — Landing visual glow-up + reuse real JobCard (wrapped) |
+| `future_devs/archive/WEBAPP_ICONOGRAPHY_MOTION_SPEC.md` | P10 — Unify on lucide-react + micro-interactions (wrapped) |
+| `future_devs/archive/WEBAPP_ONBOARDING_VISUAL_SPEC.md` | P10 — Onboarding wizard visual polish (wrapped) |
