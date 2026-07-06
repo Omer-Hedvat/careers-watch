@@ -83,7 +83,7 @@ export function JobCard({ job, onToggleApplied, currentProfileVersion }: { job: 
           <span className="text-subtle" aria-hidden="true">·</span>
           <span className="text-subtle font-mono text-xs">scored {timeAgo(job.scored_at)}</span>
         </div>
-        {job.reasoning && <p className="font-display italic text-[0.95rem] leading-relaxed text-foreground/80 mt-2.5 line-clamp-2 border-l-2 border-accent/40 pl-3">"{job.reasoning}"</p>}
+        {job.reasoning && <p className="text-sm italic leading-relaxed text-foreground/80 mt-2.5 line-clamp-2 border-l-2 border-accent/40 pl-3">"{job.reasoning}"</p>}
         {job.flags.length > 0 && (
           <div className="flex flex-wrap items-center gap-1.5 mt-2.5">
             {job.flags.map(f => {
