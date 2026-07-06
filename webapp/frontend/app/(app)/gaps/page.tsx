@@ -374,7 +374,7 @@ export default function GapsPage() {
               <div className="bg-surface border border-border rounded-xl p-6 space-y-3">
                 <AlignmentScore score={profileCV.alignment_score} />
                 {profileCV.positioning_notes && (
-                  <p className="font-display italic text-[0.95rem] text-foreground/85 leading-relaxed">{profileCV.positioning_notes}</p>
+                  <p className="text-sm text-foreground/85 leading-relaxed">{profileCV.positioning_notes}</p>
                 )}
               </div>
 

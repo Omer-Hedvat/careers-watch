@@ -159,7 +159,7 @@ function ClosedJobCard({ job }: { job: Job }) {
           </span>
         </div>
         <div className="text-sm text-subtle mt-1">{job.location}</div>
-        {job.reasoning && <p className="font-display italic text-sm text-subtle mt-1.5 line-clamp-1">"{job.reasoning}"</p>}
+        {job.reasoning && <p className="text-sm italic text-subtle mt-1.5 line-clamp-1">"{job.reasoning}"</p>}
         {job.apply_url && (
           <a href={job.apply_url} target="_blank" rel="noopener noreferrer"
             className="text-xs text-subtle hover:text-muted underline underline-offset-2 mt-2 inline-block transition-colors">
