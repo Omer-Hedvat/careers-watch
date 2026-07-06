@@ -121,10 +121,37 @@ Main screen. Seen every return visit.
 - Applied positions: collapsed into "X applied — show" at the bottom
 - Positions scored before the current profile version: soft badge "scored with old profile"
 
+**Job detail view:** clicking a card body (or its "Details" button) opens a
+slide-over panel with the full un-clamped reasoning, score + tier band, all
+flags with their glossary definitions, Apply / Mark-applied actions, and the
+full job description. The description is persisted onto `scored_jobs` at score
+time (migration `006_scored_jobs_description.sql`); rows scored before the
+migration fall back to a request-time `new_jobs.json` match by `apply_url`,
+and a missing description degrades to a "Full description unavailable" note
+with the Apply link. Served by `GET /jobs/{id}`; the digest list endpoint
+selects explicit columns so descriptions never bloat the list payload.
+
 **Filters sidebar** (collapsible):
 - Filter by score (slider: show ≥ N)
 - Filter by date scored
 - Search by company or title
+
+---
+
+### 4b. Positions (`/positions`)
+
+The **shared, unscored catalog** of every open role currently pulled from the
+pipeline — one copy for ALL users. This is the counterpart to the Digest: the
+Digest is your personalized *scored output*; Positions is the raw *market*, so a
+brand-new user with no profile or scoring still sees all open roles.
+
+- Source: the global `positions` table (NOT the per-user `scored_jobs` table).
+  Backed by `GET /jobs/positions`, which reads the shared table without scoping
+  by user and returns `score: null` for every row.
+- Per-row: company, title, location, apply link. No score, no ranking.
+- Sorted by company, then title. Client-side search + pagination (50/page).
+- Populated by `scripts/sync_positions.py` from `new_jobs.json` on each collect
+  run (upsert live set + prune stale) — see Scheduling below.
 
 ---
 
@@ -169,7 +196,7 @@ Tabs: **Profile** | **CV** | **Filters** | **API Key** | **Account**
 
 **Deduplication:** Per-user `all_scores.jsonl` ledger (already implemented). A position scored in a previous run is never re-sent to Gemini.
 
-**Shared data:** `companies.json` and `new_jobs.json` are global — one copy for all users. Scoring input is shared; scoring output is fully isolated per user.
+**Shared data:** `companies.json` and `new_jobs.json` are global — one copy for all users. Scoring input is shared; scoring output is fully isolated per user. The global `positions` table (Supabase) mirrors the latest `new_jobs.json` snapshot and backs the shared Positions page; `scripts/sync_positions.py` upserts it after each `collect_jobs.py` run (add a "Sync shared positions catalog" step to the collect cron, with `SUPABASE_URL` + `SUPABASE_SERVICE_ROLE_KEY` secrets).
 
 ---
 

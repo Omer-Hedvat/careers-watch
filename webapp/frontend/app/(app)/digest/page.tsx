@@ -1,8 +1,10 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { X } from 'lucide-react'
 import { supabase } from '@/lib/supabaseClient'
-import { SCORE_BANDS } from '@/lib/scoreBands'
+import { SCORE_BANDS, bandFor } from '@/lib/scoreBands'
+import { flagInfo } from '@/lib/flags'
 import GettingStartedChecklist from '@/app/components/GettingStartedChecklist'
 import { type Job, timeAgo, ScoreBadge, JobCard } from '@/app/components/JobCard'
 
@@ -147,6 +149,120 @@ function EmptyState({
   )
 }
 
+// Slide-over detail view: full reasoning, flags with glossary definitions,
+// and the complete job description (fetched per-job - the list payload stays
+// light). Closes on Esc, backdrop click, or the X button.
+function JobDetailPanel({
+  job, description, descLoading, onClose, onToggleApplied,
+}: {
+  job: Job
+  description: string | null
+  descLoading: boolean
+  onClose: () => void
+  onToggleApplied: (j: Job) => void
+}) {
+  useEffect(() => {
+    function onKey(e: KeyboardEvent) { if (e.key === 'Escape') onClose() }
+    document.addEventListener('keydown', onKey)
+    const prev = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.removeEventListener('keydown', onKey)
+      document.body.style.overflow = prev
+    }
+  }, [onClose])
+
+  const band = bandFor(job.score)
+
+  return (
+    <div className="fixed inset-0 z-50" role="dialog" aria-modal="true" aria-label={`${job.company} - ${job.title}`}>
+      <style>{`
+        @keyframes cwPanelIn { from { transform: translateX(24px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+        @keyframes cwFadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @media (prefers-reduced-motion: no-preference) {
+          .cw-panel-in { animation: cwPanelIn 0.25s ease-out; }
+          .cw-fade-in { animation: cwFadeIn 0.25s ease-out; }
+        }
+      `}</style>
+      <div className="cw-fade-in absolute inset-0 bg-black/50" onClick={onClose} aria-hidden="true" />
+      <div className="cw-panel-in absolute right-0 top-0 h-full w-full max-w-xl bg-surface border-l border-border shadow-2xl overflow-y-auto">
+        <div className="sticky top-0 flex items-start justify-between gap-4 px-6 py-4 bg-surface/95 backdrop-blur-sm border-b border-border">
+          <div className="flex items-center gap-3 min-w-0">
+            <ScoreBadge score={job.score} />
+            <div className="min-w-0">
+              <h2 className="font-semibold text-foreground leading-snug">{job.title}</h2>
+              <p className="text-sm text-muted truncate">
+                {job.company} · {job.location} · <span className="font-mono text-xs text-subtle">scored {timeAgo(job.scored_at)}</span>
+              </p>
+            </div>
+          </div>
+          <button onClick={onClose} aria-label="Close details"
+            className="flex-shrink-0 w-8 h-8 rounded-lg border border-border text-muted hover:text-foreground hover:border-border-subtle flex items-center justify-center transition-colors">
+            <X className="w-4 h-4" aria-hidden="true" />
+          </button>
+        </div>
+
+        <div className="px-6 py-5 space-y-6">
+          <div className="flex gap-2">
+            <a href={job.apply_url} target="_blank" rel="noopener noreferrer"
+              className="px-4 py-2 bg-accent hover:bg-accent-hover text-accent-foreground text-sm rounded-lg font-medium transition-colors">
+              Apply →
+            </a>
+            <button onClick={() => onToggleApplied(job)}
+              className="px-4 py-2 bg-surface-raised hover:bg-border-subtle/50 border border-border-subtle text-muted hover:text-foreground text-sm rounded-lg transition-colors">
+              {job.applied ? 'Undo applied' : 'Mark applied'}
+            </button>
+          </div>
+
+          <div>
+            <p className="cw-label text-subtle mb-2">Match assessment</p>
+            <p className="text-sm text-muted mb-2">
+              <span className={`${band.color} inline-block w-2.5 h-2.5 rounded-full mr-1.5 align-middle`} aria-hidden="true" />
+              {job.score}/10 · {band.range} - {band.label}
+            </p>
+            {job.reasoning
+              ? <p className="text-sm italic leading-relaxed text-foreground/80 border-l-2 border-accent/40 pl-3">"{job.reasoning}"</p>
+              : <p className="text-sm text-subtle">No reasoning stored for this job.</p>}
+          </div>
+
+          {job.flags.length > 0 && (
+            <div>
+              <p className="cw-label text-subtle mb-2">Signals</p>
+              <ul className="space-y-1.5">
+                {job.flags.map(f => {
+                  const info = flagInfo(f)
+                  return (
+                    <li key={f} className="text-sm">
+                      <span className="px-2 py-0.5 bg-surface-raised text-foreground/90 text-xs rounded-full border border-border mr-2">{info.label}</span>
+                      <span className="text-muted">{info.definition}</span>
+                    </li>
+                  )
+                })}
+              </ul>
+            </div>
+          )}
+
+          <div>
+            <p className="cw-label text-subtle mb-2">Job description</p>
+            {descLoading ? (
+              <div className="space-y-2 motion-safe:animate-pulse" aria-label="Loading description">
+                {[0, 1, 2, 3, 4].map(i => <div key={i} className="h-3 bg-surface-raised rounded" style={{ width: `${95 - i * 8}%` }} />)}
+              </div>
+            ) : description ? (
+              <p className="text-sm text-muted leading-relaxed whitespace-pre-wrap">{description}</p>
+            ) : (
+              <p className="text-sm text-subtle">
+                Full description unavailable - open the posting via{' '}
+                <a href={job.apply_url} target="_blank" rel="noopener noreferrer" className="text-accent hover:text-accent-hover underline underline-offset-2 transition-colors">Apply</a>.
+              </p>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 function ClosedJobCard({ job }: { job: Job }) {
   return (
     <div className="cw-card-in bg-surface/50 border border-dashed border-border rounded-xl p-4 flex gap-4 opacity-60 saturate-50 transition-opacity duration-200 hover:opacity-80">
@@ -187,6 +303,9 @@ export default function DigestPage() {
   const [companyFilter, setCompanyFilter] = useState('')
   const [locationFilter, setLocationFilter] = useState('')
   const [showApplied, setShowApplied] = useState(false)
+  const [detailJobId, setDetailJobId] = useState<string | null>(null)
+  const [detailDescription, setDetailDescription] = useState<string | null>(null)
+  const [detailLoading, setDetailLoading] = useState(false)
 
   async function getToken() {
     const { data: { session } } = await supabase.auth.getSession()
@@ -234,6 +353,28 @@ export default function DigestPage() {
     await loadJobs()
     await loadUser()
     setScoring(false)
+  }
+
+  async function openDetail(job: Job) {
+    setDetailJobId(job.id)
+    setDetailDescription(null)
+    setDetailLoading(true)
+    try {
+      const token = await getToken()
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/jobs/${job.id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      if (res.ok) {
+        const d = await res.json()
+        setDetailDescription(d.description ?? '')
+      } else {
+        setDetailDescription('')
+      }
+    } catch {
+      setDetailDescription('')
+    } finally {
+      setDetailLoading(false)
+    }
   }
 
   async function toggleApplied(job: Job) {
@@ -370,7 +511,7 @@ export default function DigestPage() {
             onResetFilters={resetFilters}
           />
         )}
-        {!loading && active.map(job => <JobCard key={job.id} job={job} onToggleApplied={toggleApplied} currentProfileVersion={currentProfileVersion} />)}
+        {!loading && active.map(job => <JobCard key={job.id} job={job} onToggleApplied={toggleApplied} currentProfileVersion={currentProfileVersion} onOpen={openDetail} />)}
 
         {/* Applied section */}
         {applied.length > 0 && (
@@ -378,7 +519,7 @@ export default function DigestPage() {
             <button onClick={() => setShowApplied(v => !v)} className="text-sm text-muted hover:text-foreground py-2 underline underline-offset-2 decoration-border-subtle transition-colors">
               {showApplied ? `Hide ${applied.length} applied` : `Show ${applied.length} applied`}
             </button>
-            {showApplied && applied.map(job => <JobCard key={job.id} job={job} onToggleApplied={toggleApplied} currentProfileVersion={currentProfileVersion} />)}
+            {showApplied && applied.map(job => <JobCard key={job.id} job={job} onToggleApplied={toggleApplied} currentProfileVersion={currentProfileVersion} onOpen={openDetail} />)}
           </div>
         )}
 
@@ -392,6 +533,23 @@ export default function DigestPage() {
           </div>
         )}
       </div>
+
+      {/* Job detail slide-over. The job is re-read from list state so
+          Mark applied inside the panel stays in sync with the cards. */}
+      {(() => {
+        if (!detailJobId) return null
+        const detailJob = jobs.find(j => j.id === detailJobId)
+        if (!detailJob) return null
+        return (
+          <JobDetailPanel
+            job={detailJob}
+            description={detailDescription}
+            descLoading={detailLoading}
+            onClose={() => setDetailJobId(null)}
+            onToggleApplied={toggleApplied}
+          />
+        )
+      })()}
     </div>
   )
 }

@@ -87,12 +87,17 @@ def list_positions(authorization: str = Header(...)):
     ]
 
 
+# Explicit columns: the digest list stays light - full `description` (multi-KB
+# per row) is only served by the per-job detail endpoint below.
+LIST_COLUMNS = "id,user_id,apply_url,company,title,location,score,reasoning,flags,scored_at,applied,profile_version,first_seen,status,closed_at"
+
+
 @router.get("/")
 def list_jobs(authorization: str = Header(...)):
     user_id = _get_user(authorization)
     rows = (
         supabase.table("scored_jobs")
-        .select("*")
+        .select(LIST_COLUMNS)
         .eq("user_id", user_id)
         .order("score", desc=True)
         .order("scored_at", desc=True)
@@ -136,6 +141,32 @@ def filter_preview(body: FilterPreviewRequest, authorization: str = Header(...))
             continue
         passing += 1
     return {"passing": passing, "total": total, "empty": False}
+
+
+@router.get("/{job_id}")
+def get_job(job_id: str, authorization: str = Header(...)):
+    user_id = _get_user(authorization)
+    row = (
+        supabase.table("scored_jobs")
+        .select("*")
+        .eq("id", job_id)
+        .eq("user_id", user_id)
+        .maybe_single()
+        .execute()
+        .data
+    )
+    if not row:
+        raise HTTPException(status_code=404, detail="Job not found")
+    # Rows scored before migration 006 have no stored description - fall back
+    # to a request-time match against new_jobs.json by apply_url. Fragile if
+    # the file has rotated, so newly scored rows persist it durably instead.
+    if not row.get("description") and NEW_JOBS_PATH.exists():
+        apply_url = row.get("apply_url", "")
+        jobs = json.loads(NEW_JOBS_PATH.read_text(encoding="utf-8"))
+        match = next((j for j in jobs if j.get("apply_url", "") == apply_url), None)
+        if match:
+            row["description"] = match.get("description", "")
+    return row
 
 
 @router.post("/{job_id}/applied")
