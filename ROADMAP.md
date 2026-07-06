@@ -302,6 +302,7 @@ All Phase P12 tasks are wrapped. See `ROADMAP_ARCHIVE.md`.
 | `future_devs/RAG_CHAT_API_SPEC.md` | P6 — RAG child 2: `/api/chat` router |
 | `future_devs/RAG_CHAT_UI_SPEC.md` | P6 — RAG child 3: `/chat` frontend page |
 | `future_devs/MULTI_AGENT_RESUME_TAILOR_SPEC.md` | P6 — Multi-agent CV tailor |
+| `future_devs/archive/MARKITDOWN_PDF_INGEST_SPEC.md` | P6 — MarkItDown doc→Markdown for CV upload + future RAG doc ingest (wrapped) |
 | `future_devs/WEBAPP_FIRST_RUN_COMPREHENSION_SPEC.md` | P7 — First-run comprehension (epic root) |
 | `future_devs/WEBAPP_LANDING_REVAMP_SPEC.md` | P7 — Landing revamp (value prop, BYO-key, digest preview, FAQ) |
 | `future_devs/WEBAPP_ONBOARDING_ORIENTATION_SPEC.md` | P7 — Onboarding orientation + setup summary |

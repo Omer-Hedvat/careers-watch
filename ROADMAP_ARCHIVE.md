@@ -114,6 +114,14 @@ Wrapped features only. Active work lives in `ROADMAP.md`.
 
 ---
 
+## Phase P6 — AI / Experimental
+
+| Feature | Spec | Effort | Status |
+|---|---|---|---|
+| Spike + adopt MarkItDown as doc→Markdown step for CV upload (+ future RAG doc ingest) | `future_devs/archive/MARKITDOWN_PDF_INGEST_SPEC.md` | S | `wrapped` |
+
+---
+
 ## Phase P7 — App shell & account UX
 
 | Feature | Spec | Effort | Status |
