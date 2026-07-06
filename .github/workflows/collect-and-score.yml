@@ -29,6 +29,12 @@ jobs:
       - name: Collect jobs
         run: uv run python collect_jobs.py
 
+      - name: Sync shared positions catalog to Supabase
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: uv run python scripts/sync_positions.py
+
       - name: Score jobs
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
