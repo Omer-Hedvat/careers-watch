@@ -50,29 +50,41 @@ def list_companies(authorization: str = Header(...)):
 
 @router.get("/positions")
 def list_positions(authorization: str = Header(...)):
-    user_id = _get_user(authorization)
-    rows = (
-        supabase.table("scored_jobs")
-        .select("company,title,location,apply_url,score,status")
-        .eq("user_id", user_id)
-        .execute()
-        .data
-    )
-    result = sorted(
-        [
-            {
-                "company": r.get("company", ""),
-                "title": r.get("title", ""),
-                "location": r.get("location", ""),
-                "apply_url": r.get("apply_url", ""),
-                "score": r.get("score"),
-                "status": r.get("status"),
-            }
-            for r in rows
-        ],
-        key=lambda j: (j["company"].lower(), j["title"].lower()),
-    )
-    return result
+    # The Positions page is the SHARED catalog of every open role - one copy for
+    # all users - so a brand-new user with no profile or scoring still sees the
+    # full market. This deliberately does NOT read the per-user scored_jobs
+    # table (that backs the personalized Digest); scores stay on the Digest.
+    _get_user(authorization)  # require a signed-in session, but do not scope by user
+    # PostgREST returns at most 1000 rows per request; the catalog is ~10k, so
+    # page through in 1000-row windows until a short page signals the end.
+    PAGE = 1000
+    rows: list[dict] = []
+    start = 0
+    while True:
+        chunk = (
+            supabase.table("positions")
+            .select("company,title,location,apply_url")
+            .order("company")
+            .order("title")
+            .range(start, start + PAGE - 1)
+            .execute()
+            .data
+        )
+        rows.extend(chunk)
+        if len(chunk) < PAGE:
+            break
+        start += PAGE
+    return [
+        {
+            "company": r.get("company", ""),
+            "title": r.get("title", ""),
+            "location": r.get("location", ""),
+            "apply_url": r.get("apply_url", ""),
+            "score": None,   # catalog is unscored; ranking lives on the Digest
+            "status": "open",
+        }
+        for r in rows
+    ]
 
 
 @router.get("/")
