@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
+import { AlertTriangle, Check, ChevronDown, ChevronRight } from 'lucide-react'
 import { supabase } from '@/lib/supabaseClient'
 
 type Tab = 'profile' | 'cv' | 'filters' | 'apikey' | 'account'
@@ -42,14 +43,14 @@ function TagInput({ tags, onChange, placeholder }: { tags: string[]; onChange: (
     setInput('')
   }
   return (
-    <div className="flex flex-wrap gap-1 p-2 bg-gray-800 rounded-lg border border-gray-700 min-h-[42px]">
+    <div className="flex flex-wrap gap-1.5 p-2 bg-surface-raised rounded-lg border border-border min-h-[42px] transition-colors focus-within:border-accent">
       {tags.length === 0 && !input && (
-        <span className="text-sm text-gray-600 self-center px-1">None set</span>
+        <span className="text-sm text-subtle self-center px-1">None set</span>
       )}
       {tags.map(t => (
-        <span key={t} className="flex items-center gap-1 px-2 py-0.5 bg-gray-700 rounded text-sm text-white">
+        <span key={t} className="flex items-center gap-1 px-2 py-0.5 bg-surface border border-border rounded text-sm text-foreground">
           {t}
-          <button onClick={() => onChange(tags.filter(x => x !== t))} className="text-gray-400 hover:text-white">×</button>
+          <button onClick={() => onChange(tags.filter(x => x !== t))} className="text-muted hover:text-foreground transition-colors">×</button>
         </span>
       ))}
       <input
@@ -58,7 +59,7 @@ function TagInput({ tags, onChange, placeholder }: { tags: string[]; onChange: (
         onChange={e => setInput(e.target.value)}
         onKeyDown={e => { if (e.key === 'Enter' || e.key === ',') { e.preventDefault(); addTag(input) } }}
         onBlur={() => input && addTag(input)}
-        className="flex-1 min-w-[120px] bg-transparent text-white text-sm outline-none placeholder-gray-500"
+        className="flex-1 min-w-[120px] bg-transparent text-foreground text-sm outline-none placeholder:text-subtle"
       />
     </div>
   )
@@ -83,41 +84,41 @@ function FilterPanel({ locationInput, onLocationChange, skipTitles, onSkipTitles
   return (
     <div className="space-y-4">
       <div>
-        <label className="text-sm text-gray-400 block mb-1">
-          Location filter <span title="Only score jobs whose location contains this text (e.g. 'israel')" className="text-gray-500 cursor-help">(?)</span>
+        <label className="text-sm text-muted block mb-1">
+          Location filter <span title="Only score jobs whose location contains this text (e.g. 'israel')" className="text-subtle cursor-help">(?)</span>
         </label>
         <input value={locationInput} onChange={e => onLocationChange(e.target.value)} placeholder="e.g. israel (leave blank for no filter)"
-          className="w-full bg-gray-800 text-white px-3 py-2 rounded-lg border border-gray-700 focus:outline-none focus:border-green-500" />
+          className="w-full bg-surface-raised text-foreground px-3 py-2 rounded-lg border border-border placeholder:text-subtle transition-colors focus:outline-none focus:border-accent" />
       </div>
       <div>
-        <label className="text-sm text-gray-400 block mb-1">
-          Skip jobs whose title contains... <span title="Jobs with these words in the title are dropped before scoring (e.g. 'data engineer, analyst')" className="text-gray-500 cursor-help">(?)</span>
+        <label className="text-sm text-muted block mb-1">
+          Skip jobs whose title contains... <span title="Jobs with these words in the title are dropped before scoring (e.g. 'data engineer, analyst')" className="text-subtle cursor-help">(?)</span>
         </label>
-        <p className="text-xs text-gray-500 mb-1">e.g. data engineer, analyst, bi developer</p>
+        <p className="text-xs text-subtle mb-1">e.g. data engineer, analyst, bi developer</p>
         <TagInput tags={skipTitles} onChange={onSkipTitlesChange} placeholder="add term, press Enter" />
       </div>
       <div>
-        <label className="text-sm text-gray-400 block mb-1">
-          Only score jobs whose title contains at least one of... <span title="Leave blank to score all titles. Add terms to score only matching titles (e.g. 'data scientist, ml engineer')" className="text-gray-500 cursor-help">(?)</span>
+        <label className="text-sm text-muted block mb-1">
+          Only score jobs whose title contains at least one of... <span title="Leave blank to score all titles. Add terms to score only matching titles (e.g. 'data scientist, ml engineer')" className="text-subtle cursor-help">(?)</span>
         </label>
-        <p className="text-xs text-gray-500 mb-1">Leave blank to score all titles</p>
+        <p className="text-xs text-subtle mb-1">Leave blank to score all titles</p>
         <TagInput tags={keepTitles} onChange={onKeepTitlesChange} placeholder="add term, press Enter" />
       </div>
       <div>
-        <label className="text-sm text-gray-400 block mb-1">
-          Skip these companies <span title="Jobs from these companies are dropped before scoring" className="text-gray-500 cursor-help">(?)</span>
+        <label className="text-sm text-muted block mb-1">
+          Skip these companies <span title="Jobs from these companies are dropped before scoring" className="text-subtle cursor-help">(?)</span>
         </label>
         <TagInput tags={skipCompanies} onChange={onSkipCompaniesChange} placeholder="company name, press Enter" />
       </div>
       <div>
-        <label className="text-sm text-gray-400 block mb-1">
-          Skip these industries <span title="Jobs tagged with these industries are dropped before scoring" className="text-gray-500 cursor-help">(?)</span>
+        <label className="text-sm text-muted block mb-1">
+          Skip these industries <span title="Jobs tagged with these industries are dropped before scoring" className="text-subtle cursor-help">(?)</span>
         </label>
-        <p className="text-xs text-gray-500 mb-1">e.g. gaming, adtech, gambling</p>
+        <p className="text-xs text-subtle mb-1">e.g. gaming, adtech, gambling</p>
         <TagInput tags={skipIndustries} onChange={onSkipIndustriesChange} placeholder="industry, press Enter" />
       </div>
       {/* Live preview */}
-      <div className="text-sm text-gray-400 bg-gray-800/50 rounded-lg px-3 py-2">
+      <div className="text-sm text-muted bg-surface-raised border border-border rounded-lg px-3 py-2">
         {previewLoading ? 'Calculating preview...' :
           preview === null ? '' :
           preview.empty ? 'No collected jobs yet - run the pipeline first.' :
@@ -428,17 +429,23 @@ export default function SettingsPage() {
 
   const cvWordCount = cvText ? cvText.split(/\s+/).filter(Boolean).length : 0
 
+  const primaryBtn = 'px-4 py-2 bg-accent hover:bg-accent-hover text-accent-foreground disabled:opacity-50 rounded-lg text-sm font-medium transition-colors'
+  const secondaryBtn = 'px-4 py-2 bg-surface-raised hover:bg-border-subtle/50 border border-border rounded-lg text-sm transition-colors'
+  const dangerBtn = 'px-4 py-2 bg-danger/10 hover:bg-danger/20 border border-danger/30 text-danger rounded-lg text-sm transition-colors'
+  const inputCls = 'bg-surface-raised text-foreground px-3 py-2 rounded-lg border border-border placeholder:text-subtle transition-colors focus:outline-none focus:border-accent'
+  const fileInputCls = 'block text-sm text-muted file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:bg-accent file:text-accent-foreground file:text-sm file:font-medium hover:file:bg-accent-hover file:transition-colors file:cursor-pointer cursor-pointer'
+
   return (
     <div className="max-w-3xl mx-auto px-4 py-8">
-      <h1 className="text-2xl font-bold mb-6">Settings</h1>
+      <h1 className="font-display text-4xl tracking-tight mb-6">Settings</h1>
 
-      {msg && <div className="mb-4 px-4 py-2 bg-gray-800 rounded-lg text-sm">{msg}</div>}
+      {msg && <div className="mb-4 px-4 py-2 bg-surface-raised border border-border rounded-lg text-sm">{msg}</div>}
 
         {/* Tab bar */}
-        <div className="flex border-b border-gray-700 mb-6 overflow-x-auto">
+        <div className="flex border-b border-border mb-6 overflow-x-auto">
           {tabs.map(t => (
             <button key={t.id} onClick={() => setActiveTab(t.id)}
-              className={`px-4 py-2 text-sm font-medium whitespace-nowrap ${activeTab === t.id ? 'text-white border-b-2 border-green-500' : 'text-gray-400 hover:text-white'}`}>
+              className={`px-4 py-2 text-sm font-medium whitespace-nowrap -mb-px border-b-2 transition-colors ${activeTab === t.id ? 'text-foreground border-accent' : 'text-muted hover:text-foreground border-transparent'}`}>
               {t.label}
             </button>
           ))}
@@ -448,49 +455,49 @@ export default function SettingsPage() {
         {activeTab === 'profile' && (
           <div className="space-y-4">
             {/* Status */}
-            <div className="text-sm text-gray-400">
+            <div className="text-sm text-muted">
               {profileMd.trim()
-                ? <span className="text-green-400">
+                ? <span className="text-score-high">
                     Profile saved · v{profileVersion}
                     {profileUpdatedAt && ` · updated ${new Date(profileUpdatedAt).toLocaleDateString(undefined, { day: 'numeric', month: 'short', year: 'numeric' })}`}
                   </span>
-                : <span className="text-amber-400">No profile yet - upload a file or generate one with AI below</span>
+                : <span className="text-warning">No profile yet - upload a file or generate one with AI below</span>
               }
             </div>
 
             {/* Path A: Upload .md */}
             <div>
-              <label className="text-sm text-gray-400 block mb-1">Upload profile.md</label>
+              <label className="text-sm text-muted block mb-1">Upload profile.md</label>
               <input
                 type="file"
                 accept=".md"
                 onChange={e => { const f = e.target.files?.[0]; if (f) uploadMdFile(f); e.target.value = '' }}
-                className="block text-sm text-gray-400 file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:bg-gray-700 file:text-white file:text-sm hover:file:bg-gray-600 cursor-pointer"
+                className={fileInputCls}
               />
-              {mdUploadError && <p className="text-sm text-red-400 mt-1">{mdUploadError}</p>}
+              {mdUploadError && <p className="text-sm text-danger mt-1">{mdUploadError}</p>}
             </div>
 
             {/* Path B: Generate with AI */}
-            <button onClick={() => setShowPrompt(v => !v)} className="px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded-lg text-sm">
-              {showPrompt ? '▾' : '▸'} Generate with AI
+            <button onClick={() => setShowPrompt(v => !v)} className={`${secondaryBtn} inline-flex items-center gap-1.5`}>
+              {showPrompt ? <ChevronDown className="w-3.5 h-3.5" aria-hidden="true" /> : <ChevronRight className="w-3.5 h-3.5" aria-hidden="true" />} Generate with AI
             </button>
             {showPrompt && (
-              <div className="space-y-3 bg-gray-800/50 rounded-xl p-4 border border-gray-700">
-                <p className="text-sm font-medium text-white">Step 1 - Copy this prompt</p>
+              <div className="space-y-3 bg-surface rounded-xl p-4 border border-border">
+                <p className="text-sm font-medium text-foreground">Step 1 - Copy this prompt</p>
                 <div className="relative">
                   <textarea readOnly value={PROFILE_PROMPT} rows={10}
-                    className="w-full bg-gray-800 font-mono text-xs p-3 rounded-lg border border-gray-700 resize-none text-gray-300" />
+                    className="w-full bg-surface-raised font-mono text-xs p-3 rounded-lg border border-border resize-none text-muted focus:outline-none" />
                   <button
                     onClick={() => { navigator.clipboard.writeText(PROFILE_PROMPT); setCopiedPrompt(true); setTimeout(() => setCopiedPrompt(false), 2000) }}
-                    className="absolute top-2 right-2 px-2 py-1 bg-gray-700 hover:bg-gray-600 text-xs rounded">
+                    className="absolute top-2 right-2 px-2 py-1 bg-surface-raised border border-border hover:bg-border-subtle/50 text-xs rounded transition-colors">
                     {copiedPrompt ? 'Copied!' : 'Copy'}
                   </button>
                 </div>
-                <p className="text-sm text-gray-400">
-                  <span className="font-medium text-white">Step 2</span> - Open ChatGPT, Claude, Gemini, or any LLM you prefer. Paste this prompt and answer the questions it asks. The LLM will output a ready-to-use profile.md file.
+                <p className="text-sm text-muted">
+                  <span className="font-medium text-foreground">Step 2</span> - Open ChatGPT, Claude, Gemini, or any LLM you prefer. Paste this prompt and answer the questions it asks. The LLM will output a ready-to-use profile.md file.
                 </p>
-                <p className="text-sm text-gray-400">
-                  <span className="font-medium text-white">Step 3</span> - Paste the LLM output into the editor below and click Save profile.
+                <p className="text-sm text-muted">
+                  <span className="font-medium text-foreground">Step 3</span> - Paste the LLM output into the editor below and click Save profile.
                 </p>
               </div>
             )}
@@ -498,8 +505,8 @@ export default function SettingsPage() {
             {/* Profile editor */}
             <textarea value={profileMd} onChange={e => setProfileMd(e.target.value)} rows={20}
               placeholder="Paste your profile.md here..."
-              className="w-full bg-gray-900 text-white p-4 rounded-xl border border-gray-700 font-mono text-sm resize-none focus:outline-none focus:border-green-500" />
-            <button onClick={saveProfile} disabled={saving} className="px-4 py-2 bg-green-600 hover:bg-green-700 disabled:opacity-50 rounded-lg text-sm font-medium">Save profile</button>
+              className="w-full bg-surface text-foreground p-4 rounded-xl border border-border font-mono text-sm placeholder:text-subtle resize-none transition-colors focus:outline-none focus:border-accent" />
+            <button onClick={saveProfile} disabled={saving} className={primaryBtn}>Save profile</button>
           </div>
         )}
 
@@ -508,33 +515,33 @@ export default function SettingsPage() {
           <div className="space-y-4">
             {/* Current state header */}
             {cvText ? (
-              <div className="flex items-center justify-between text-xs text-gray-500">
+              <div className="flex items-center justify-between text-xs text-subtle font-mono">
                 <span>
                   {cvText.length.toLocaleString()} chars · {cvWordCount.toLocaleString()} words
                   {cvUpdatedAt && ` · updated ${new Date(cvUpdatedAt).toLocaleDateString(undefined, { day: 'numeric', month: 'short', year: 'numeric' })}`}
                 </span>
-                <button onClick={downloadCvText} className="text-green-400 hover:text-green-300 underline">Download as .txt</button>
+                <button onClick={downloadCvText} className="text-accent hover:text-accent-hover underline transition-colors">Download as .txt</button>
               </div>
             ) : (
-              <p className="text-sm text-gray-500">No CV on file yet. Upload a file or paste text below.</p>
+              <p className="text-sm text-subtle">No CV on file yet. Upload a file or paste text below.</p>
             )}
             <div className="flex items-center justify-between">
               <div>
-                <label className="text-sm text-gray-400 block mb-1">Upload CV (PDF, DOCX, TXT)</label>
+                <label className="text-sm text-muted block mb-1">Upload CV (PDF, DOCX, TXT)</label>
                 <input
                   type="file"
                   accept=".pdf,.docx,.doc,.txt"
                   onChange={e => { const f = e.target.files?.[0]; if (f) uploadCvFile(f); e.target.value = '' }}
-                  className="block text-sm text-gray-400 file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:bg-gray-700 file:text-white file:text-sm hover:file:bg-gray-600 cursor-pointer"
+                  className={fileInputCls}
                 />
               </div>
             </div>
-            {pdfLoading && <p className="text-sm text-gray-400">Extracting text...</p>}
-            {pdfError && <p className="text-sm text-red-400">{pdfError}</p>}
+            {pdfLoading && <p className="text-sm text-muted">Extracting text...</p>}
+            {pdfError && <p className="text-sm text-danger">{pdfError}</p>}
             <textarea value={cvText} onChange={e => setCvText(e.target.value)} rows={18}
               placeholder="Or paste your CV text here..."
-              className="w-full bg-gray-900 text-white p-4 rounded-xl border border-gray-700 text-sm resize-none focus:outline-none focus:border-green-500" />
-            <button onClick={saveCv} disabled={saving} className="px-4 py-2 bg-green-600 hover:bg-green-700 disabled:opacity-50 rounded-lg text-sm font-medium">Save CV</button>
+              className="w-full bg-surface text-foreground p-4 rounded-xl border border-border text-sm placeholder:text-subtle resize-none transition-colors focus:outline-none focus:border-accent" />
+            <button onClick={saveCv} disabled={saving} className={primaryBtn}>Save CV</button>
           </div>
         )}
 
@@ -542,7 +549,7 @@ export default function SettingsPage() {
         {activeTab === 'filters' && (
           <div className="space-y-4">
             {/* Active filters summary */}
-            <div className="text-xs text-gray-500 bg-gray-800/50 px-3 py-2 rounded-lg">
+            <div className="text-xs text-subtle font-mono bg-surface border border-border px-3 py-2 rounded-lg">
               Location: {locationInput || 'none'}
               {' · '}{skipTitles.length} skip-title{skipTitles.length !== 1 ? 's' : ''}
               {' · '}{keepTitles.length} keep-title{keepTitles.length !== 1 ? 's' : ''}
@@ -563,7 +570,7 @@ export default function SettingsPage() {
               preview={filterPreview}
               previewLoading={filterPreviewLoading}
             />
-            <button onClick={saveFilters} disabled={saving} className="px-4 py-2 bg-green-600 hover:bg-green-700 disabled:opacity-50 rounded-lg text-sm font-medium">Save filters</button>
+            <button onClick={saveFilters} disabled={saving} className={primaryBtn}>Save filters</button>
           </div>
         )}
 
@@ -572,29 +579,29 @@ export default function SettingsPage() {
           <div className="space-y-4">
             {/* Status pill */}
             {hasApiKey !== null && (
-              <div className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm ${hasApiKey ? 'bg-green-900/30 text-green-400' : 'bg-amber-900/30 text-amber-400'}`}>
+              <div className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm border ${hasApiKey ? 'bg-score-high/10 border-score-high/25 text-score-high' : 'bg-warning/10 border-warning/30 text-warning'}`}>
                 {hasApiKey
-                  ? <span>✓ Gemini key configured{apiKeyLast4 ? ` · AIza••••••••${apiKeyLast4}` : ''}</span>
-                  : <span>⚠ No API key - scoring is paused</span>
+                  ? <span className="inline-flex items-center gap-1.5"><Check className="w-4 h-4" aria-hidden="true" /> Gemini key configured{apiKeyLast4 ? ` · AIza••••••••${apiKeyLast4}` : ''}</span>
+                  : <span className="inline-flex items-center gap-1.5"><AlertTriangle className="w-4 h-4" aria-hidden="true" /> No API key - scoring is paused</span>
                 }
               </div>
             )}
-            <p className="text-sm text-gray-400">Replace your Gemini API key. The current key is never shown.</p>
-            <p className="text-sm text-green-400">It&apos;s fully free - Google&apos;s Gemini API has a free tier that&apos;s plenty for scoring jobs. <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener noreferrer" className="underline">Get your free key here</a>.</p>
-            <ol className="text-sm text-gray-400 space-y-1 list-decimal list-inside bg-gray-800 p-4 rounded-lg">
-              <li>Go to <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener noreferrer" className="text-green-400 underline">Google AI Studio</a></li>
+            <p className="text-sm text-muted">Replace your Gemini API key. The current key is never shown.</p>
+            <p className="text-sm text-accent">It&apos;s fully free - Google&apos;s Gemini API has a free tier that&apos;s plenty for scoring jobs. <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener noreferrer" className="underline">Get your free key here</a>.</p>
+            <ol className="text-sm text-muted space-y-1 list-decimal list-inside bg-surface border border-border p-4 rounded-lg">
+              <li>Go to <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener noreferrer" className="text-accent underline">Google AI Studio</a></li>
               <li>Sign in with your Google account</li>
               <li>Click &quot;Get API key&quot; then &quot;Create API key&quot;</li>
               <li>Copy and paste the key below</li>
             </ol>
             <input type="password" value={newKey} onChange={e => setNewKey(e.target.value)} placeholder="AIza..."
-              className="w-full bg-gray-800 text-white px-3 py-2 rounded-lg border border-gray-700 focus:outline-none focus:border-green-500" />
+              className={`w-full ${inputCls}`} />
             <div className="flex gap-3">
-              <button onClick={saveKey} disabled={!newKey || saving} className="px-4 py-2 bg-green-600 hover:bg-green-700 disabled:opacity-50 rounded-lg text-sm font-medium">Replace key</button>
-              <button onClick={testKey} className="px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded-lg text-sm">Test key</button>
-              <button onClick={deleteKey} className="px-4 py-2 bg-red-900 hover:bg-red-800 rounded-lg text-sm">Delete key</button>
+              <button onClick={saveKey} disabled={!newKey || saving} className={primaryBtn}>Replace key</button>
+              <button onClick={testKey} className={secondaryBtn}>Test key</button>
+              <button onClick={deleteKey} className={dangerBtn}>Delete key</button>
             </div>
-            {testResult && <p className="text-sm text-gray-400">{testResult}</p>}
+            {testResult && <p className="text-sm text-muted">{testResult}</p>}
           </div>
         )}
 
@@ -603,51 +610,51 @@ export default function SettingsPage() {
           <div className="space-y-6">
             {/* Read-only identity block */}
             {userIdentity && (
-              <div className="bg-gray-800 rounded-lg p-4 space-y-2 text-sm">
+              <div className="bg-surface border border-border rounded-xl p-4 space-y-2 text-sm">
                 <div className="flex justify-between">
-                  <span className="text-gray-400">Name</span>
+                  <span className="text-muted">Name</span>
                   <span>{userIdentity.name}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-400">Email</span>
+                  <span className="text-muted">Email</span>
                   <span>{userIdentity.email}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-400">Sign-in</span>
+                  <span className="text-muted">Sign-in</span>
                   <span>{userIdentity.provider}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-400">Member since</span>
+                  <span className="text-muted">Member since</span>
                   <span>{userIdentity.memberSince}</span>
                 </div>
               </div>
             )}
             <div className="space-y-2">
-              <label className="text-sm text-gray-400 block">New email</label>
+              <label className="text-sm text-muted block">New email</label>
               <div className="flex gap-2">
                 <input type="email" value={newEmail} onChange={e => setNewEmail(e.target.value)} placeholder="new@email.com"
-                  className="flex-1 bg-gray-800 text-white px-3 py-2 rounded-lg border border-gray-700 focus:outline-none focus:border-green-500" />
-                <button onClick={saveEmail} disabled={!newEmail} className="px-4 py-2 bg-green-600 hover:bg-green-700 disabled:opacity-50 rounded-lg text-sm">Save</button>
+                  className={`flex-1 ${inputCls}`} />
+                <button onClick={saveEmail} disabled={!newEmail} className={primaryBtn}>Save</button>
               </div>
             </div>
             <div className="space-y-2">
-              <label className="text-sm text-gray-400 block">New password</label>
+              <label className="text-sm text-muted block">New password</label>
               <div className="flex gap-2">
                 <input type="password" value={newPassword} onChange={e => setNewPassword(e.target.value)} placeholder="new password"
-                  className="flex-1 bg-gray-800 text-white px-3 py-2 rounded-lg border border-gray-700 focus:outline-none focus:border-green-500" />
-                <button onClick={savePassword} disabled={!newPassword} className="px-4 py-2 bg-green-600 hover:bg-green-700 disabled:opacity-50 rounded-lg text-sm">Save</button>
+                  className={`flex-1 ${inputCls}`} />
+                <button onClick={savePassword} disabled={!newPassword} className={primaryBtn}>Save</button>
               </div>
             </div>
-            <button onClick={exportData} className="px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded-lg text-sm">Export data (JSON)</button>
-            <div className="border-t border-gray-700 pt-4">
+            <button onClick={exportData} className={secondaryBtn}>Export data (JSON)</button>
+            <div className="border-t border-border pt-4">
               {!deleteConfirm ? (
-                <button onClick={() => setDeleteConfirm(true)} className="px-4 py-2 bg-red-900 hover:bg-red-800 rounded-lg text-sm">Delete account</button>
+                <button onClick={() => setDeleteConfirm(true)} className={dangerBtn}>Delete account</button>
               ) : (
                 <div className="space-y-2">
-                  <p className="text-sm text-red-400">This will delete all your data permanently. Are you sure?</p>
+                  <p className="text-sm text-danger">This will delete all your data permanently. Are you sure?</p>
                   <div className="flex gap-2">
-                    <button onClick={deleteAccount} className="px-4 py-2 bg-red-600 hover:bg-red-700 rounded-lg text-sm">Yes, delete everything</button>
-                    <button onClick={() => setDeleteConfirm(false)} className="px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded-lg text-sm">Cancel</button>
+                    <button onClick={deleteAccount} className="px-4 py-2 bg-danger hover:bg-danger/85 text-white rounded-lg text-sm transition-colors">Yes, delete everything</button>
+                    <button onClick={() => setDeleteConfirm(false)} className={secondaryBtn}>Cancel</button>
                   </div>
                 </div>
               )}

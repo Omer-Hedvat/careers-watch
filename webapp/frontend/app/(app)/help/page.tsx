@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { ArrowLeft } from 'lucide-react'
 import { SCORE_BANDS } from '@/lib/scoreBands'
 
 // Derived from the shared SCORE_BANDS so the numbers/labels here can't drift
@@ -62,34 +63,32 @@ const sections = [
 
 export default function HelpPage() {
   return (
-    <div className="min-h-screen bg-gray-950 text-white">
+    <div className="min-h-screen bg-background text-foreground">
       <div className="max-w-2xl mx-auto px-4 py-10">
         {/* Back link */}
         <Link
           href="/digest"
-          className="inline-flex items-center gap-1 text-sm text-gray-400 hover:text-white mb-8 transition-colors"
+          className="inline-flex items-center gap-1 text-sm text-muted hover:text-foreground mb-8 transition-colors"
         >
-          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-          </svg>
+          <ArrowLeft className="w-4 h-4" aria-hidden="true" />
           Digest
         </Link>
 
         {/* Page title */}
-        <h1 className="text-3xl font-bold text-white mb-2">Help & FAQ</h1>
-        <p className="text-gray-400 mb-10 text-sm">
+        <h1 className="font-display text-4xl tracking-tight text-foreground mb-2">Help & FAQ</h1>
+        <p className="text-muted mb-10 text-sm">
           Everything you need to get the most out of CareerWatch.
         </p>
 
         {/* Quick-jump links */}
-        <nav className="mb-10 p-4 bg-gray-900 rounded-lg border border-gray-800">
-          <p className="text-xs text-gray-500 uppercase tracking-wider mb-3 font-medium">Jump to</p>
+        <nav className="mb-10 p-4 bg-surface rounded-xl border border-border">
+          <p className="cw-label text-subtle mb-3">Jump to</p>
           <ul className="space-y-1">
             {sections.map(s => (
               <li key={s.id}>
                 <a
                   href={`#${s.id}`}
-                  className="text-sm text-gray-400 hover:text-green-400 transition-colors"
+                  className="text-sm text-muted hover:text-accent transition-colors"
                 >
                   {s.heading}
                 </a>
@@ -102,10 +101,10 @@ export default function HelpPage() {
         <div className="space-y-12">
           {sections.map(s => (
             <section key={s.id} id={s.id} className="scroll-mt-20">
-              <h2 className="text-xl font-semibold text-green-500 mb-3">{s.heading}</h2>
+              <h2 className="font-display text-2xl text-accent mb-3">{s.heading}</h2>
               <div className="space-y-3">
                 {s.content.map((para, i) => (
-                  <p key={i} className="text-gray-300 text-sm leading-relaxed">
+                  <p key={i} className="text-muted text-sm leading-relaxed">
                     {para}
                   </p>
                 ))}
@@ -115,12 +114,12 @@ export default function HelpPage() {
         </div>
 
         {/* Footer nudge */}
-        <div className="mt-16 pt-8 border-t border-gray-800 text-center">
-          <p className="text-gray-500 text-sm">
+        <div className="mt-16 pt-8 border-t border-border text-center">
+          <p className="text-subtle text-sm">
             Still have questions?{' '}
             <a
               href="mailto:omer.hedvat@gmail.com"
-              className="text-green-500 hover:text-green-400 transition-colors"
+              className="text-accent hover:text-accent-hover transition-colors"
             >
               Get in touch
             </a>

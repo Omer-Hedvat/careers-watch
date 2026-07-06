@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { useRouter, usePathname } from 'next/navigation'
 import { Menu, X } from 'lucide-react'
 import { supabase } from '@/lib/supabaseClient'
+import { ThemeToggle } from '@/app/components/ThemeToggle'
 
 const NAV_LINKS = [
   { href: '/digest', label: 'Digest' },
@@ -33,11 +34,11 @@ export default function Nav() {
   }
 
   return (
-    <header className="border-b border-border bg-background sticky top-0 z-50">
+    <header className="border-b border-border bg-background/85 backdrop-blur-md sticky top-0 z-50">
       <div className="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
         {/* Brand */}
-        <Link href="/digest" className="font-bold text-lg text-foreground shrink-0">
-          CareerWatch
+        <Link href="/digest" className="font-display text-xl tracking-tight text-foreground shrink-0">
+          Career<em className="italic text-accent">Watch</em>
         </Link>
 
         {/* Desktop nav */}
@@ -67,6 +68,7 @@ export default function Nav() {
               {email}
             </span>
           )}
+          <ThemeToggle className="w-8 h-8" />
           <button
             onClick={handleSignOut}
             className="px-3 py-1.5 text-sm text-muted hover:text-foreground border border-subtle hover:border-muted rounded-md transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
@@ -76,8 +78,10 @@ export default function Nav() {
         </div>
 
         {/* Mobile hamburger */}
+        <div className="md:hidden flex items-center gap-2">
+        <ThemeToggle className="w-8 h-8" />
         <button
-          className="md:hidden p-2 text-muted hover:text-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-md"
+          className="p-2 text-muted hover:text-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-md"
           onClick={() => setMenuOpen(o => !o)}
           aria-label="Toggle menu"
           aria-expanded={menuOpen}
@@ -88,6 +92,7 @@ export default function Nav() {
             <Menu className="w-5 h-5" aria-hidden="true" />
           )}
         </button>
+        </div>
       </div>
 
       {/* Mobile menu */}

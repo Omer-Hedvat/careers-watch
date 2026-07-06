@@ -1,7 +1,9 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { Check, ChevronDown, ChevronRight } from 'lucide-react'
 import { supabase } from '@/lib/supabaseClient'
+import { ThemeToggle } from '@/app/components/ThemeToggle'
 
 const EXAMPLE_PROFILE = `# Candidate Profile
 
@@ -66,16 +68,16 @@ function ProfileExampleGuidance() {
   const [showGuide, setShowGuide] = useState(false)
   return (
     <div className="space-y-2">
-      <button onClick={() => setShowExample(v => !v)} className="text-sm text-accent hover:text-accent-hover transition-colors">
-        {showExample ? '▾' : '▸'} See an example profile
+      <button onClick={() => setShowExample(v => !v)} className="inline-flex items-center gap-1 text-sm text-accent hover:text-accent-hover transition-colors">
+        {showExample ? <ChevronDown className="w-3.5 h-3.5" aria-hidden="true" /> : <ChevronRight className="w-3.5 h-3.5" aria-hidden="true" />} See an example profile
       </button>
       {showExample && (
         <div className="bg-surface-raised rounded-lg p-4 border border-subtle">
           <pre className="text-xs text-muted whitespace-pre-wrap font-mono overflow-auto max-h-64">{EXAMPLE_PROFILE}</pre>
         </div>
       )}
-      <button onClick={() => setShowGuide(v => !v)} className="text-sm text-accent hover:text-accent-hover transition-colors">
-        {showGuide ? '▾' : '▸'} Required sections guide
+      <button onClick={() => setShowGuide(v => !v)} className="inline-flex items-center gap-1 text-sm text-accent hover:text-accent-hover transition-colors">
+        {showGuide ? <ChevronDown className="w-3.5 h-3.5" aria-hidden="true" /> : <ChevronRight className="w-3.5 h-3.5" aria-hidden="true" />} Required sections guide
       </button>
       {showGuide && (
         <div className="bg-surface-raised rounded-lg p-4 border border-subtle space-y-2">
@@ -374,7 +376,12 @@ export default function OnboardingPage() {
   const steps = ['Profile', 'CV', 'API Key', 'Filters']
 
   return (
-    <div className="min-h-screen bg-background text-foreground font-sans flex flex-col items-center justify-center px-4 py-12">
+    <div className="relative min-h-screen bg-background text-foreground font-sans flex flex-col items-center justify-center px-4 py-12 overflow-hidden">
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+        <div className="absolute inset-0 cw-grid [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,black,transparent)]" />
+        <div className="absolute left-1/2 top-[-18rem] -translate-x-1/2 w-[50rem] h-[32rem] rounded-full bg-accent/[0.08] blur-3xl" />
+      </div>
+      <ThemeToggle className="absolute top-4 right-4 z-10" />
       <style>{`
         @keyframes onboarding-step-in {
           from { opacity: 0; transform: translateY(10px); }
@@ -386,7 +393,7 @@ export default function OnboardingPage() {
         }
       `}</style>
       {/* Progress */}
-      <div className="flex items-center gap-2 sm:gap-3 mb-4" aria-label={`Step ${step} of ${steps.length}`}>
+      <div className="relative flex items-center gap-2 sm:gap-3 mb-4" aria-label={`Step ${step} of ${steps.length}`}>
         {steps.map((label, i) => {
           const done = i + 1 < step
           const current = i + 1 === step
@@ -398,21 +405,15 @@ export default function OnboardingPage() {
               <div className="flex items-center gap-2">
                 <div
                   aria-current={current ? 'step' : undefined}
-                  className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300 ${
+                  className={`w-8 h-8 rounded-lg flex items-center justify-center font-mono text-sm font-medium transition-all duration-300 ${
                     done
                       ? 'bg-accent text-accent-foreground'
                       : current
                         ? 'bg-accent text-accent-foreground ring-2 ring-accent ring-offset-2 ring-offset-background'
-                        : 'bg-surface-raised text-subtle border border-subtle'
+                        : 'bg-surface-raised text-subtle border border-border-subtle'
                   }`}
                 >
-                  {done ? (
-                    <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                      <path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                  ) : (
-                    i + 1
-                  )}
+                  {done ? <Check className="w-4 h-4" aria-hidden="true" /> : i + 1}
                 </div>
                 <span className={`text-sm hidden sm:block transition-colors duration-300 ${current ? 'text-foreground font-medium' : done ? 'text-muted' : 'text-subtle'}`}>{label}</span>
               </div>
@@ -422,17 +423,17 @@ export default function OnboardingPage() {
       </div>
 
       {/* Orientation intro */}
-      <p className="text-sm text-muted mb-6 text-center max-w-lg">
+      <p className="relative text-sm text-muted mb-6 text-center max-w-lg">
         Set up in 4 steps - Profile, CV, API key, and Filters - then we run your first scan and show you a ranked digest.
       </p>
 
-      <div className="bg-surface border border-border rounded-xl p-8 w-full max-w-2xl shadow-xl">
+      <div className="relative bg-surface border border-border rounded-2xl p-8 w-full max-w-2xl shadow-2xl shadow-black/20">
 
         {/* Step 1 */}
         {step === 1 && (
           <div className="space-y-4 onboarding-step-in">
             <div>
-              <h2 className="text-2xl font-bold">Set up your profile <span className="text-sm font-normal text-subtle">(optional)</span></h2>
+              <h2 className="font-display text-3xl">Set up your profile <span className="font-sans text-sm text-subtle">(optional)</span></h2>
               <p className="text-sm text-subtle mt-1">Your profile tells the AI what to look for - without it, scoring is generic.</p>
             </div>
             <p className="text-muted text-sm">Describe your target roles, domains, location, and dealbreakers. You can skip this and add it later in Settings.</p>
@@ -470,14 +471,14 @@ export default function OnboardingPage() {
             {(() => {
               const missing = checkProfileCompleteness(profileMd)
               return missing.length > 0 && profileMd.trim() ? (
-                <div className="text-xs text-warning bg-amber-900/20 border border-amber-700/30 rounded-lg p-2">
+                <div className="text-xs text-warning bg-warning/10 border border-warning/30 rounded-lg p-2">
                   Missing sections: {missing.join(', ')}
                 </div>
               ) : null
             })()}
 
             {profileSkipWarned && !profileMd.trim() && (
-              <div className="bg-amber-900/30 border border-amber-700/50 rounded-lg p-3 text-warning text-sm">
+              <div className="bg-warning/10 border border-warning/40 rounded-lg p-3 text-warning text-sm">
                 Without a profile the AI scores all jobs generically - you&apos;ll likely see an empty or irrelevant digest until you add one in Settings.
               </div>
             )}
@@ -492,7 +493,7 @@ export default function OnboardingPage() {
         {step === 2 && (
           <div className="space-y-4 onboarding-step-in">
             <div>
-              <h2 className="text-2xl font-bold">Upload your CV <span className="text-sm font-normal text-subtle">(optional)</span></h2>
+              <h2 className="font-display text-3xl">Upload your CV <span className="font-sans text-sm text-subtle">(optional)</span></h2>
               <p className="text-sm text-subtle mt-1">Your CV is the ground truth of what you&apos;ve done - it sharpens every score.</p>
             </div>
             <p className="text-muted text-sm">Your CV is used verbatim in scoring prompts. You can skip this and add it later in Settings.</p>
@@ -549,7 +550,7 @@ export default function OnboardingPage() {
         {step === 3 && (
           <div className="space-y-4 onboarding-step-in">
             <div>
-              <h2 className="text-2xl font-bold">Your Gemini API key</h2>
+              <h2 className="font-display text-3xl">Your Gemini API key</h2>
               <p className="text-sm text-subtle mt-1">Scoring runs on your own free Gemini quota - your data never leaves your key.</p>
             </div>
             <p className="text-muted text-sm">Used only for scoring. Never logged or shared.</p>
@@ -561,13 +562,13 @@ export default function OnboardingPage() {
                 {keyTesting ? 'Testing...' : 'Test key'}
               </button>
               {keyTestResult && (
-                <span className={`text-sm ${keyTestResult === 'Key works!' ? 'text-accent' : 'text-danger'}`}>
+                <span className={`text-sm ${keyTestResult === 'Key works!' ? 'text-score-high' : 'text-danger'}`}>
                   {keyTestResult}
                 </span>
               )}
             </div>
-            <button onClick={() => setShowKeyHelp(!showKeyHelp)} className="text-sm text-accent hover:text-accent-hover transition-colors">
-              {showKeyHelp ? '▾' : '▸'} How to get a key
+            <button onClick={() => setShowKeyHelp(!showKeyHelp)} className="inline-flex items-center gap-1 text-sm text-accent hover:text-accent-hover transition-colors">
+              {showKeyHelp ? <ChevronDown className="w-3.5 h-3.5" aria-hidden="true" /> : <ChevronRight className="w-3.5 h-3.5" aria-hidden="true" />} How to get a key
             </button>
             {showKeyHelp && (
               <ol className="text-sm text-muted space-y-1 list-decimal list-inside bg-surface-raised border border-subtle p-4 rounded-lg">
@@ -590,7 +591,7 @@ export default function OnboardingPage() {
         {step === 4 && (
           <div className="space-y-4 onboarding-step-in">
             <div>
-              <h2 className="text-2xl font-bold">Configure filters</h2>
+              <h2 className="font-display text-3xl">Configure filters</h2>
               <p className="text-sm text-subtle mt-1">Filters drop the noise before scoring - saves you reading irrelevant results.</p>
             </div>
 
@@ -611,21 +612,21 @@ export default function OnboardingPage() {
 
             {/* Setup summary */}
             <div className="bg-surface-raised border border-subtle rounded-lg p-4 text-sm space-y-2">
-              <p className="text-muted text-xs font-medium uppercase tracking-wide mb-2">Setup summary</p>
+              <p className="cw-label text-subtle mb-2">Setup summary</p>
               <div className="flex items-center gap-2">
                 <span className="text-muted w-16">Profile</span>
-                <span aria-hidden="true" className={`w-1.5 h-1.5 rounded-full ${profileMd.trim() ? 'bg-accent' : 'bg-warning'}`} />
-                <span className={profileMd.trim() ? 'text-accent' : 'text-warning'}>{profileMd.trim() ? 'Added' : 'Skipped'}</span>
+                <span aria-hidden="true" className={`w-1.5 h-1.5 rounded-full ${profileMd.trim() ? 'bg-score-high' : 'bg-warning'}`} />
+                <span className={profileMd.trim() ? 'text-score-high' : 'text-warning'}>{profileMd.trim() ? 'Added' : 'Skipped'}</span>
               </div>
               <div className="flex items-center gap-2">
                 <span className="text-muted w-16">CV</span>
-                <span aria-hidden="true" className={`w-1.5 h-1.5 rounded-full ${cvText.trim() ? 'bg-accent' : 'bg-warning'}`} />
-                <span className={cvText.trim() ? 'text-accent' : 'text-warning'}>{cvText.trim() ? 'Added' : 'Skipped'}</span>
+                <span aria-hidden="true" className={`w-1.5 h-1.5 rounded-full ${cvText.trim() ? 'bg-score-high' : 'bg-warning'}`} />
+                <span className={cvText.trim() ? 'text-score-high' : 'text-warning'}>{cvText.trim() ? 'Added' : 'Skipped'}</span>
               </div>
               <div className="flex items-center gap-2">
                 <span className="text-muted w-16">Key</span>
-                <span aria-hidden="true" className="w-1.5 h-1.5 rounded-full bg-accent" />
-                <span className="text-accent">Set</span>
+                <span aria-hidden="true" className="w-1.5 h-1.5 rounded-full bg-score-high" />
+                <span className="text-score-high">Set</span>
               </div>
               <div className="flex items-center gap-2">
                 <span className="text-muted w-16">Location</span>
@@ -646,7 +647,7 @@ export default function OnboardingPage() {
               </div>
             )}
             {scoringStage === 'done' && (
-              <div className="flex items-center gap-2 text-sm text-accent bg-green-900/20 border border-green-700/30 rounded-lg px-3 py-2">
+              <div className="flex items-center gap-2 text-sm text-score-high bg-score-high/10 border border-score-high/30 rounded-lg px-3 py-2">
                 {scoredCount === null
                   ? 'Setup complete - taking you to your digest...'
                   : `Scored ${scoredCount} new jobs - taking you to your digest...`}

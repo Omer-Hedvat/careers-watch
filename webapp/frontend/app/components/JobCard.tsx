@@ -39,7 +39,7 @@ export function ScoreBadge({ score }: { score: number }) {
   return (
     <span
       title={band.label}
-      className={`${band.color} text-white text-sm font-bold w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0 shadow-md ring-1 ring-white/10 tabular-nums`}
+      className={`${band.color} text-white font-mono text-sm font-semibold w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0 shadow-md ring-1 ring-white/15 tabular-nums`}
     >
       {score}
     </span>
@@ -54,10 +54,10 @@ export function FlagGlossary() {
         What do these tags mean?
       </button>
       {open && (
-        <div className="absolute z-10 mt-2 right-0 w-80 bg-surface border border-subtle rounded-lg p-3 space-y-2 shadow-xl text-xs">
+        <div className="absolute z-10 mt-2 right-0 w-80 bg-surface border border-border-subtle rounded-lg p-3 space-y-2 shadow-xl text-xs">
           {Object.entries(FLAG_GLOSSARY).map(([slug, info]) => (
             <div key={slug}>
-              <p className="text-gray-300"><span className="font-medium text-foreground">{info.label}:</span> {info.definition}</p>
+              <p className="text-muted"><span className="font-medium text-foreground">{info.label}:</span> {info.definition}</p>
             </div>
           ))}
         </div>
@@ -69,7 +69,7 @@ export function FlagGlossary() {
 export function JobCard({ job, onToggleApplied, currentProfileVersion }: { job: Job; onToggleApplied: (j: Job) => void; currentProfileVersion: number }) {
   const staleProfile = job.profile_version !== undefined && job.profile_version < currentProfileVersion
   return (
-    <div className={`cw-card-in bg-surface border border-border rounded-xl p-5 flex gap-4 transition-[transform,border-color,box-shadow] duration-200 hover:border-border-subtle hover:shadow-lg motion-safe:hover:-translate-y-0.5 ${job.applied ? 'opacity-50' : ''}`}>
+    <div className={`cw-card-in bg-surface border border-border rounded-xl p-5 flex gap-4 transition-[transform,border-color,box-shadow] duration-200 hover:border-accent/30 hover:shadow-lg hover:shadow-black/10 motion-safe:hover:-translate-y-0.5 ${job.applied ? 'opacity-50' : ''}`}>
       <ScoreBadge score={job.score} />
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-2 flex-wrap">
@@ -81,9 +81,9 @@ export function JobCard({ job, onToggleApplied, currentProfileVersion }: { job: 
           <span className="text-subtle" aria-hidden="true">·</span>
           <span className="text-muted">{job.location}</span>
           <span className="text-subtle" aria-hidden="true">·</span>
-          <span className="text-subtle">scored {timeAgo(job.scored_at)}</span>
+          <span className="text-subtle font-mono text-xs">scored {timeAgo(job.scored_at)}</span>
         </div>
-        {job.reasoning && <p className="text-sm text-gray-300 italic mt-2.5 line-clamp-2 border-l-2 border-border-subtle pl-3">"{job.reasoning}"</p>}
+        {job.reasoning && <p className="font-display italic text-[0.95rem] leading-relaxed text-foreground/80 mt-2.5 line-clamp-2 border-l-2 border-accent/40 pl-3">"{job.reasoning}"</p>}
         {job.flags.length > 0 && (
           <div className="flex flex-wrap items-center gap-1.5 mt-2.5">
             {job.flags.map(f => {
@@ -103,7 +103,7 @@ export function JobCard({ job, onToggleApplied, currentProfileVersion }: { job: 
             Apply →
           </a>
           <button onClick={() => onToggleApplied(job)}
-            className="px-3.5 py-1.5 bg-surface-raised hover:bg-gray-700 border border-border-subtle text-muted hover:text-foreground text-sm rounded-lg transition-colors">
+            className="px-3.5 py-1.5 bg-surface-raised hover:bg-border-subtle/50 border border-border-subtle text-muted hover:text-foreground text-sm rounded-lg transition-colors">
             {job.applied ? 'Undo applied' : 'Mark applied'}
           </button>
         </div>
