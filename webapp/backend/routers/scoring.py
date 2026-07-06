@@ -132,6 +132,7 @@ def trigger_score(authorization: str = Header(...)):
             "flags": result.get("flags", []),
             "profile_version": profile_version,
             "first_seen": job.get("first_seen"),
+            "description": job.get("description", ""),
         })
 
     if rows:

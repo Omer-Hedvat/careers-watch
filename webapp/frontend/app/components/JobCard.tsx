@@ -66,10 +66,17 @@ export function FlagGlossary() {
   )
 }
 
-export function JobCard({ job, onToggleApplied, currentProfileVersion }: { job: Job; onToggleApplied: (j: Job) => void; currentProfileVersion: number }) {
+export function JobCard({ job, onToggleApplied, currentProfileVersion, onOpen }: { job: Job; onToggleApplied: (j: Job) => void; currentProfileVersion: number; onOpen?: (j: Job) => void }) {
   const staleProfile = job.profile_version !== undefined && job.profile_version < currentProfileVersion
   return (
-    <div className={`cw-card-in bg-surface border border-border rounded-xl p-5 flex gap-4 transition-[transform,border-color,box-shadow] duration-200 hover:border-accent/30 hover:shadow-lg hover:shadow-black/10 motion-safe:hover:-translate-y-0.5 ${job.applied ? 'opacity-50' : ''}`}>
+    <div
+      onClick={onOpen ? e => {
+        // Inner controls (Apply, Mark applied, glossary) keep their own
+        // behavior - only clicks on the card body open the detail view.
+        if ((e.target as HTMLElement).closest('a,button')) return
+        onOpen(job)
+      } : undefined}
+      className={`cw-card-in bg-surface border border-border rounded-xl p-5 flex gap-4 transition-[transform,border-color,box-shadow] duration-200 hover:border-accent/30 hover:shadow-lg hover:shadow-black/10 motion-safe:hover:-translate-y-0.5 ${job.applied ? 'opacity-50' : ''} ${onOpen ? 'cursor-pointer' : ''}`}>
       <ScoreBadge score={job.score} />
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-2 flex-wrap">
@@ -106,6 +113,12 @@ export function JobCard({ job, onToggleApplied, currentProfileVersion }: { job: 
             className="px-3.5 py-1.5 bg-surface-raised hover:bg-border-subtle/50 border border-border-subtle text-muted hover:text-foreground text-sm rounded-lg transition-colors">
             {job.applied ? 'Undo applied' : 'Mark applied'}
           </button>
+          {onOpen && (
+            <button onClick={() => onOpen(job)}
+              className="px-3.5 py-1.5 text-muted hover:text-foreground text-sm rounded-lg transition-colors underline underline-offset-2 decoration-border-subtle">
+              Details
+            </button>
+          )}
         </div>
       </div>
     </div>
