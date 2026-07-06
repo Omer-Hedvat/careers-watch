@@ -234,6 +234,25 @@ def delete_account(authorization: str = Header(...)):
     return {"status": "ok"}
 
 
+_MARKITDOWN = None
+
+# MIME -> file extension hint. We know the type from the client, so we pass it
+# explicitly and skip MarkItDown's magika-based type sniffing.
+_DOC_EXTENSIONS = {
+    "application/pdf": ".pdf",
+    "application/vnd.openxmlformats-officedocument.wordprocessingml.document": ".docx",
+    "application/msword": ".doc",
+}
+
+
+def _markitdown():
+    global _MARKITDOWN
+    if _MARKITDOWN is None:
+        from markitdown import MarkItDown
+        _MARKITDOWN = MarkItDown(enable_plugins=False)
+    return _MARKITDOWN
+
+
 @router.post("/parse-cv")
 async def parse_cv(request: Request, authorization: str = Header(...)):
     token = authorization.removeprefix("Bearer ")
@@ -246,22 +265,20 @@ async def parse_cv(request: Request, authorization: str = Header(...)):
     import base64, io
     file_bytes = base64.b64decode(file_b64)
     try:
-        if mime_type == "application/pdf":
-            from pypdf import PdfReader
-            reader = PdfReader(io.BytesIO(file_bytes))
-            text = "\n".join(page.extract_text() or "" for page in reader.pages)
-        elif mime_type in (
-            "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-            "application/msword",
-        ):
-            from docx import Document
-            doc = Document(io.BytesIO(file_bytes))
-            text = "\n".join(p.text for p in doc.paragraphs)
-        elif mime_type == "text/plain":
+        if mime_type == "text/plain":
             text = file_bytes.decode("utf-8", errors="replace")
+        elif mime_type in _DOC_EXTENSIONS:
+            from markitdown import StreamInfo
+            result = _markitdown().convert_stream(
+                io.BytesIO(file_bytes),
+                stream_info=StreamInfo(
+                    extension=_DOC_EXTENSIONS[mime_type], mimetype=mime_type
+                ),
+            )
+            text = result.text_content
         else:
             raise HTTPException(status_code=422, detail="Unsupported file type")
-        if not text.strip():
+        if not text or not text.strip():
             raise HTTPException(status_code=422, detail="Could not extract text - please paste manually")
     except HTTPException:
         raise

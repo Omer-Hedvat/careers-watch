@@ -254,7 +254,7 @@ The prompt should explicitly mention that the output will be read by an LLM scor
 - Email auth
 - Onboarding flow (4 steps)
 - Profile prompt generator
-- CV upload (text paste + PDF extract)
+- CV upload (text paste + PDF/DOCX/TXT extract via MarkItDown)
 - Filter configuration
 - Digest view with scoring
 - Mark as applied
