@@ -103,14 +103,30 @@ All Phase P2 tasks are wrapped. See `ROADMAP_ARCHIVE.md`.
 | [WEBAPP_COUNTUP_ANIMATION](future_devs/archive/WEBAPP_COUNTUP_ANIMATION_SPEC.md) | Count-up animation on Companies + Positions page load | `wrapped` | XS | — |
 | [POSITION_FIRST_SEEN](future_devs/archive/POSITION_FIRST_SEEN_SPEC.md) | Stamp first_seen date on each position — persist across daily runs, show in digest + webapp cards | `wrapped` | S | — |
 | [WEBAPP_POSITIONS_TOTAL_COUNT](future_devs/WEBAPP_POSITIONS_TOTAL_COUNT_SPEC.md) | Positions page: show "n suitable out of N collected" instead of bare count | `not-started` | XS | WEBAPP_POSITIONS_VIEW ✅ |
+| [WEBAPP_POSITIONS_CATALOG_SYNC](future_devs/WEBAPP_POSITIONS_CATALOG_SYNC_SPEC.md) | Shared `positions` catalog auto-synced from pipeline — Positions page shows the full market to every user, not per-user scored_jobs | `in-progress` | S | WEBAPP_POSITIONS_VIEW ✅ |
 
 ---
 
 ## Phase P6 — AI / Experimental
 
+### Epic: RAG_CHATBOT (Fable)
+
+RAG sandbox + "Chat with the Job Market" chatbot. Assigned to **Fable**: the
+spec is fully pinned (see the "Pre-flight decisions" block in the epic root), so
+the work is execution-shaped. Split into three children — run under
+`/start_task`, and review child 1's retrieval golden set before starting child 2.
+
 | Slug | Title | Status | Effort | Depends on |
 |---|---|---|---|---|
-| [RAG_CHATBOT](future_devs/RAG_CHATBOT_SPEC.md) | RAG sandbox + "Chat with the Job Market" chatbot (next AI epic) | `not-started` | L | — |
+| [RAG_CHATBOT](future_devs/RAG_CHATBOT_SPEC.md) | RAG sandbox + chat epic (root + shared brief) | `not-started` | L | — |
+| [RAG_CORE](future_devs/RAG_CORE_SPEC.md) | `rag/` module: ingest + query + refresh (CLI-runnable retrieval core) | `completed` | M | RAG_CHATBOT |
+| [RAG_CHAT_API](future_devs/RAG_CHAT_API_SPEC.md) | `POST /api/chat` router over `rag/query.py` + rate limit | `not-started` | S | RAG_CORE |
+| [RAG_CHAT_UI](future_devs/RAG_CHAT_UI_SPEC.md) | `/chat` page + Sources panel + nav link | `not-started` | S | RAG_CHAT_API |
+
+### Downstream
+
+| Slug | Title | Status | Effort | Depends on |
+|---|---|---|---|---|
 | [MULTI_AGENT_RESUME_TAILOR](future_devs/MULTI_AGENT_RESUME_TAILOR_SPEC.md) | Actor/critic multi-agent resume tailor for high-scoring jobs | `not-started` | M | RAG_CHATBOT |
 
 ---
@@ -156,6 +172,7 @@ First-time-user comprehension, digest trust, the job-seeker workspace, and the a
 | Slug | Title | Status | Effort | Depends on |
 |---|---|---|---|---|
 | [WEBAPP_ACCESSIBILITY_PASS](future_devs/WEBAPP_ACCESSIBILITY_PASS_SPEC.md) | Accessibility pass (color-blind-safe scores, focus, aria, keyboard) | `not-started` | S | — |
+| [WEBAPP_COPY_POLISH](future_devs/WEBAPP_COPY_POLISH_SPEC.md) | Voice/clarity pass on onboarding + landing + help + profile.md notes (Fable) | `not-started` | S | — |
 
 > Bug: [BUG_LANDING_DEAD_GITHUB_LINKS](bugs_to_fix/BUG_LANDING_DEAD_GITHUB_LINKS.md) — dead `href="#"` GitHub links on landing (filed in `bugs_to_fix/`).
 
@@ -212,6 +229,26 @@ Appearance overhaul executed with the **Fable** design model. The app is functio
 
 ---
 
+## Phase P11 — Pipeline reliability & hardening (Fable)
+
+Cross-file correctness + resilience sweeps over the pipeline, sized for the
+**Fable** model's edge in high-recall bug-finding and intermittent-failure
+debugging. Give each the full file set up front; run at `high`/`xhigh` effort;
+enable server-side `fallbacks` to `claude-opus-4-8` for cyber-content refusals.
+
+| Slug | Title | Status | Effort | Depends on |
+|---|---|---|---|---|
+| [ATS_PULLER_HARDENING_AUDIT](future_devs/ATS_PULLER_HARDENING_AUDIT_SPEC.md) | Repo-wide ATS puller correctness + resilience audit | `completed` | M | — |
+| [PIPELINE_FAILURE_RESILIENCE](future_devs/PIPELINE_FAILURE_RESILIENCE_SPEC.md) | Diagnose + harden intermittent collect/score/refresh failures | `not-started` | M | — |
+
+---
+
+## Phase P12 — Webapp visual re-identity v2 (Fable)
+
+All Phase P12 tasks are wrapped. See `ROADMAP_ARCHIVE.md`.
+
+---
+
 ## Spec Index
 
 | Spec | Domain |
@@ -260,7 +297,10 @@ Appearance overhaul executed with the **Fable** design model. The app is functio
 | `future_devs/archive/WEBAPP_MULTI_FILTER_SPEC.md` | P5 — Multi-value filters with ';' (wrapped) |
 | `future_devs/archive/PROFILE_CV_GAP_ANALYSIS_SPEC.md` | P5 — Gap analysis: profile vs CV, positions vs CV (wrapped) |
 | `future_devs/archive/POSITION_FIRST_SEEN_SPEC.md` | P5 — Stamp first_seen date on each position; show in digest + webapp (wrapped) |
-| `future_devs/RAG_CHATBOT_SPEC.md` | P6 — RAG sandbox + chat UI (next AI epic) |
+| `future_devs/RAG_CHATBOT_SPEC.md` | P6 — RAG sandbox + chat epic (root + shared brief) |
+| `future_devs/RAG_CORE_SPEC.md` | P6 — RAG child 1: `rag/` retrieval core (ingest/query/refresh) |
+| `future_devs/RAG_CHAT_API_SPEC.md` | P6 — RAG child 2: `/api/chat` router |
+| `future_devs/RAG_CHAT_UI_SPEC.md` | P6 — RAG child 3: `/chat` frontend page |
 | `future_devs/MULTI_AGENT_RESUME_TAILOR_SPEC.md` | P6 — Multi-agent CV tailor |
 | `future_devs/WEBAPP_FIRST_RUN_COMPREHENSION_SPEC.md` | P7 — First-run comprehension (epic root) |
 | `future_devs/WEBAPP_LANDING_REVAMP_SPEC.md` | P7 — Landing revamp (value prop, BYO-key, digest preview, FAQ) |
@@ -285,6 +325,7 @@ Appearance overhaul executed with the **Fable** design model. The app is functio
 | `future_devs/archive/WEBAPP_IN_APP_HELP_FAQ_SPEC.md` | P7 — In-app Help / FAQ page (wrapped) |
 | `future_devs/archive/WEBAPP_AUTH_RESET_CONFIRM_LEGAL_SPEC.md` | P7 — Auth reset / confirm / legal (wrapped) |
 | `future_devs/WEBAPP_ACCESSIBILITY_PASS_SPEC.md` | P7 — Accessibility pass |
+| `future_devs/WEBAPP_COPY_POLISH_SPEC.md` | P7 — Voice/clarity copy pass (onboarding, landing, help, profile.md) (Fable) |
 | `future_devs/archive/POSITION_LIVENESS_SPEC.md` | P8 — Position liveness (epic root, wrapped) |
 | `future_devs/archive/POSITION_LIVENESS_LIVE_SET_SPEC.md` | P8 — Persist live apply_url set from successful pulls (wrapped) |
 | `future_devs/archive/POSITION_LIVENESS_STATUS_DIFF_SPEC.md` | P8 — Status diff: scored jobs vs live set (wrapped) |
@@ -301,3 +342,6 @@ Appearance overhaul executed with the **Fable** design model. The app is functio
 | `future_devs/archive/WEBAPP_LANDING_VISUAL_SPEC.md` | P10 — Landing visual glow-up + reuse real JobCard (wrapped) |
 | `future_devs/archive/WEBAPP_ICONOGRAPHY_MOTION_SPEC.md` | P10 — Unify on lucide-react + micro-interactions (wrapped) |
 | `future_devs/archive/WEBAPP_ONBOARDING_VISUAL_SPEC.md` | P10 — Onboarding wizard visual polish (wrapped) |
+| `future_devs/ATS_PULLER_HARDENING_AUDIT_SPEC.md` | P11 — Repo-wide ATS puller correctness + resilience audit (Fable) |
+| `future_devs/PIPELINE_FAILURE_RESILIENCE_SPEC.md` | P11 — Diagnose + harden intermittent pipeline failures (Fable) |
+| `future_devs/archive/WEBAPP_VISUAL_REDESIGN_V2_SPEC.md` | P12 — Bold visual re-identity + light/dark theme toggle (Fable, wrapped) |

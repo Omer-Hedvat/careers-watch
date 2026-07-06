@@ -167,3 +167,11 @@ Wrapped features only. Active work lives in `ROADMAP.md`.
 | Landing visual glow-up — hero/section polish, FAQ animation, real JobCard reused in preview | `future_devs/archive/WEBAPP_LANDING_VISUAL_SPEC.md` | M | `wrapped` |
 | Unify iconography on lucide-react + consistent micro-interactions across Nav/checklist/positions/companies/gaps/auth | `future_devs/archive/WEBAPP_ICONOGRAPHY_MOTION_SPEC.md` | S | `wrapped` |
 | Onboarding wizard visual polish — step indicator, transitions, styled form controls | `future_devs/archive/WEBAPP_ONBOARDING_VISUAL_SPEC.md` | S | `wrapped` |
+
+---
+
+## Phase P12 — Webapp visual re-identity v2
+
+| Feature | Spec | Effort | Status |
+|---|---|---|---|
+| Bold visual re-identity ("Market Terminal": amber/ink palette, Instrument Serif/Sans + IBM Plex Mono, signature hero) + light/dark theme toggle with no-flash bootstrap | `future_devs/archive/WEBAPP_VISUAL_REDESIGN_V2_SPEC.md` | L | `wrapped` |
