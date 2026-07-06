@@ -2,34 +2,45 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+  CareerWatch "Market Terminal" theme.
+
+  Tokens are raw RGB triples (not hex) so Tailwind opacity modifiers
+  (bg-accent/10, shadow-accent/20, ...) compose correctly via <alpha-value>.
+  :root carries the dark ramp (product default); [data-theme="light"]
+  overrides with the paper ramp. A pre-paint script in app/layout.tsx stamps
+  data-theme on <html> before hydration, so there is no wrong-theme flash.
+*/
+
 :root {
-  /* Surfaces */
-  --color-bg: #030712;
-  --color-surface: #111827;
-  --color-surface-raised: #1f2937;
+  /* Surfaces - warm ink */
+  --color-bg: 11 10 7;
+  --color-surface: 20 17 11;
+  --color-surface-raised: 31 26 17;
 
   /* Borders */
-  --color-border: #1f2937;
-  --color-border-subtle: #374151;
+  --color-border: 40 34 22;
+  --color-border-subtle: 63 54 36;
 
-  /* Text */
-  --color-text: #ffffff;
-  --color-text-muted: #9ca3af;
-  --color-text-subtle: #6b7280;
+  /* Text - warm off-white ramp */
+  --color-text: 244 239 228;
+  --color-text-muted: 168 158 137;
+  --color-text-subtle: 116 107 88;
 
-  /* Accent */
-  --color-accent: #16a34a;
-  --color-accent-hover: #15803d;
-  --color-accent-foreground: #ffffff;
+  /* Accent - terminal amber */
+  --color-accent: 255 178 36;
+  --color-accent-hover: 255 197 90;
+  --color-accent-foreground: 36 23 3;
 
-  /* Score bands - single source of truth consumed via lib/scoreBands.ts */
-  --color-score-high: #16a34a;
-  --color-score-mid: #2563eb;
-  --color-score-low: #4b5563;
+  /* Score bands - single source of truth consumed via lib/scoreBands.ts.
+     Must stay mutually distinguishable and hold white badge text in BOTH themes. */
+  --color-score-high: 5 150 105;
+  --color-score-mid: 37 99 235;
+  --color-score-low: 87 80 72;
 
   /* Semantic */
-  --color-warning: #f59e0b;
-  --color-danger: #ef4444;
+  --color-warning: 249 115 22;
+  --color-danger: 239 68 68;
 
   /* Radius scale */
   --radius-sm: 0.5rem;
@@ -37,22 +48,68 @@
   --radius-lg: 1rem;
 
   /* Aliases kept for Next.js metadata theming conventions */
-  --background: var(--color-bg);
-  --foreground: var(--color-text);
+  --background: rgb(var(--color-bg));
+  --foreground: rgb(var(--color-text));
+}
+
+[data-theme="light"] {
+  /* Surfaces - warm paper */
+  --color-bg: 247 243 234;
+  --color-surface: 253 251 245;
+  --color-surface-raised: 238 232 218;
+
+  /* Borders */
+  --color-border: 227 220 202;
+  --color-border-subtle: 202 193 168;
+
+  /* Text - ink ramp */
+  --color-text: 32 27 16;
+  --color-text-muted: 109 100 80;
+  --color-text-subtle: 150 141 119;
+
+  /* Accent - deep amber, AA on paper */
+  --color-accent: 173 87 6;
+  --color-accent-hover: 140 68 4;
+  --color-accent-foreground: 253 246 233;
+
+  --color-score-high: 4 120 87;
+  --color-score-mid: 29 78 216;
+  --color-score-low: 107 100 85;
+
+  --color-warning: 194 65 12;
+  --color-danger: 185 28 28;
 }
 
 html {
   color-scheme: dark;
 }
 
+html[data-theme="light"] {
+  color-scheme: light;
+}
+
 body {
-  background-color: var(--color-bg);
-  color: var(--color-text);
+  background-color: rgb(var(--color-bg));
+  color: rgb(var(--color-text));
+}
+
+/* Theme-conditional visibility - used by ThemeToggle so it needs no client
+   state and can never mismatch hydration. Dark is the default (no attr yet). */
+html:not([data-theme="light"]) .cw-light-only {
+  display: none;
+}
+html[data-theme="light"] .cw-dark-only {
+  display: none;
 }
 
 ::selection {
-  background-color: var(--color-accent);
-  color: var(--color-accent-foreground);
+  background-color: rgb(var(--color-accent));
+  color: rgb(var(--color-accent-foreground));
+}
+
+:focus-visible {
+  outline: 2px solid rgb(var(--color-accent));
+  outline-offset: 2px;
 }
 
 ::-webkit-scrollbar {
@@ -61,15 +118,39 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--color-bg);
+  background: rgb(var(--color-bg));
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: var(--color-surface-raised);
+  background-color: rgb(var(--color-surface-raised));
   border-radius: var(--radius-sm);
-  border: 2px solid var(--color-bg);
+  border: 2px solid rgb(var(--color-bg));
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: var(--color-border-subtle);
+  background-color: rgb(var(--color-border-subtle));
+}
+
+@layer utilities {
+  /* Film grain - inline SVG turbulence, no network asset. Layer over hero
+     glows at low opacity for texture; purely decorative. */
+  .cw-grain {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  }
+
+  /* Fine instrument-grid lines, currentColor-agnostic via token */
+  .cw-grid {
+    background-image:
+      linear-gradient(rgb(var(--color-border-subtle) / 0.22) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(var(--color-border-subtle) / 0.22) 1px, transparent 1px);
+    background-size: 44px 44px;
+  }
+
+  /* Mono microlabel - the terminal voice for eyebrows, counts, and meta */
+  .cw-label {
+    font-family: var(--font-mono), ui-monospace, monospace;
+    font-size: 0.6875rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
 }

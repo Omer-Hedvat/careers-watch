@@ -25,16 +25,16 @@ function ScoreNowHelp() {
       <button
         onClick={() => setOpen(v => !v)}
         aria-label="What does scoring do?"
-        className="text-muted hover:text-foreground text-sm w-5 h-5 rounded-full border border-gray-600 flex items-center justify-center"
+        className="text-muted hover:text-foreground text-sm w-5 h-5 rounded-full border border-border-subtle flex items-center justify-center"
       >
         ?
       </button>
       {open && (
-        <div className="absolute z-10 mt-2 right-0 w-72 bg-surface border border-subtle rounded-lg p-3 space-y-2 shadow-lg text-xs text-left">
-          <p className="text-gray-300">
+        <div className="absolute z-10 mt-2 right-0 w-72 bg-surface border border-border-subtle rounded-lg p-3 space-y-2 shadow-lg text-xs text-left">
+          <p className="text-muted">
             <span className="font-medium text-foreground">Score now</span> scores newly collected jobs against your profile using your Gemini key.
           </p>
-          <p className="text-gray-300">
+          <p className="text-muted">
             Limited to 2 runs per week. The limit resets Monday.
           </p>
         </div>
@@ -47,7 +47,7 @@ function ScoreLegend() {
   const [open, setOpen] = useState(false)
   return (
     <div className="flex items-center gap-2 flex-wrap text-xs text-muted">
-      <span className="text-subtle font-medium uppercase tracking-wide text-[11px]">Score key:</span>
+      <span className="cw-label text-subtle">Score key:</span>
       {SCORE_BANDS.map(b => (
         <span key={b.range} className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface border border-border">
           <span className={`${b.color} w-2.5 h-2.5 rounded-full inline-block ring-1 ring-white/10`} />
@@ -63,16 +63,16 @@ function ScoreLegend() {
           How scoring works
         </button>
         {open && (
-          <div className="absolute z-10 mt-2 right-0 w-72 bg-surface border border-subtle rounded-lg p-3 space-y-2 shadow-xl">
+          <div className="absolute z-10 mt-2 right-0 w-72 bg-surface border border-border-subtle rounded-lg p-3 space-y-2 shadow-xl">
             {SCORE_BANDS.map(b => (
               <div key={b.range} className="flex gap-2">
                 <span className={`${b.color} w-3 h-3 rounded-full inline-block flex-shrink-0 mt-1`} />
-                <p className="text-gray-300"><span className="font-medium text-foreground">{b.range} ({b.label}):</span> {b.blurb}</p>
+                <p className="text-muted"><span className="font-medium text-foreground">{b.range} ({b.label}):</span> {b.blurb}</p>
               </div>
             ))}
             <div className="flex gap-2">
               <span className="w-3 h-3 rounded-full inline-block border border-subtle flex-shrink-0 mt-1" />
-              <p className="text-gray-300"><span className="font-medium text-foreground">below 5:</span> Not a fit - these are not surfaced on the digest.</p>
+              <p className="text-muted"><span className="font-medium text-foreground">below 5:</span> Not a fit - these are not surfaced on the digest.</p>
             </div>
           </div>
         )}
@@ -140,7 +140,7 @@ function EmptyState({
   return (
     <div className="text-center py-12 px-6 space-y-4 rounded-xl border border-dashed border-border-subtle bg-surface">
       <p className="text-muted">No jobs match your filters.</p>
-      <button onClick={onResetFilters} className="inline-block px-4 py-2 bg-surface-raised hover:bg-gray-700 border border-border-subtle rounded-lg text-sm font-medium transition-colors">
+      <button onClick={onResetFilters} className="inline-block px-4 py-2 bg-surface-raised hover:bg-border-subtle/50 border border-border-subtle rounded-lg text-sm font-medium transition-colors">
         Reset filters
       </button>
     </div>
@@ -149,20 +149,20 @@ function EmptyState({
 
 function ClosedJobCard({ job }: { job: Job }) {
   return (
-    <div className="cw-card-in bg-gray-900/40 border border-dashed border-border rounded-xl p-4 flex gap-4 opacity-60 saturate-50 transition-opacity duration-200 hover:opacity-80">
+    <div className="cw-card-in bg-surface/50 border border-dashed border-border rounded-xl p-4 flex gap-4 opacity-60 saturate-50 transition-opacity duration-200 hover:opacity-80">
       <ScoreBadge score={job.score} />
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-2 flex-wrap">
-          <span className="font-semibold text-muted line-through decoration-gray-600">{job.company} - {job.title}</span>
-          <span className="px-2 py-0.5 bg-red-950/40 text-danger text-xs rounded-full border border-red-900/40">
+          <span className="font-semibold text-muted line-through decoration-border-subtle">{job.company} - {job.title}</span>
+          <span className="px-2 py-0.5 bg-danger/10 text-danger text-xs rounded-full border border-danger/25">
             Closed{job.closed_at ? ` ${job.closed_at}` : ''}
           </span>
         </div>
         <div className="text-sm text-subtle mt-1">{job.location}</div>
-        {job.reasoning && <p className="text-sm text-subtle italic mt-1.5 line-clamp-1">"{job.reasoning}"</p>}
+        {job.reasoning && <p className="font-display italic text-sm text-subtle mt-1.5 line-clamp-1">"{job.reasoning}"</p>}
         {job.apply_url && (
           <a href={job.apply_url} target="_blank" rel="noopener noreferrer"
-            className="text-xs text-gray-600 hover:text-muted underline underline-offset-2 mt-2 inline-block transition-colors">
+            className="text-xs text-subtle hover:text-muted underline underline-offset-2 mt-2 inline-block transition-colors">
             View posting
           </a>
         )}
@@ -292,13 +292,13 @@ export default function DigestPage() {
       {/* Digest toolbar */}
       <div className="border-b border-border px-6 py-3 flex items-center justify-between bg-surface">
         <div className="space-y-0.5">
-          {lastScored && <div className="text-sm text-muted">Last scored: {lastScored}</div>}
-          <div className="text-xs text-subtle">New jobs collected Mon &amp; Thu</div>
+          {lastScored && <div className="text-sm text-muted">Last scored: <span className="font-mono text-xs">{lastScored}</span></div>}
+          <div className="text-xs text-subtle font-mono">New jobs collected Mon &amp; Thu</div>
         </div>
         <div className="flex items-center gap-3">
           {scoring && (
             <span className="flex items-center gap-2 text-sm text-muted">
-              <span className="w-3 h-3 rounded-full border-2 border-gray-600 border-t-accent animate-spin inline-block" />
+              <span className="w-3 h-3 rounded-full border-2 border-border-subtle border-t-accent animate-spin inline-block" />
               Scoring your jobs...
             </span>
           )}
@@ -375,7 +375,7 @@ export default function DigestPage() {
         {/* Applied section */}
         {applied.length > 0 && (
           <div>
-            <button onClick={() => setShowApplied(v => !v)} className="text-sm text-muted hover:text-foreground py-2 underline underline-offset-2 decoration-gray-600 transition-colors">
+            <button onClick={() => setShowApplied(v => !v)} className="text-sm text-muted hover:text-foreground py-2 underline underline-offset-2 decoration-border-subtle transition-colors">
               {showApplied ? `Hide ${applied.length} applied` : `Show ${applied.length} applied`}
             </button>
             {showApplied && applied.map(job => <JobCard key={job.id} job={job} onToggleApplied={toggleApplied} currentProfileVersion={currentProfileVersion} />)}
@@ -385,7 +385,7 @@ export default function DigestPage() {
         {/* Closed section */}
         {closedJobs.length > 0 && (
           <div className="pt-4 border-t border-border">
-            <h2 className="text-[11px] font-medium text-subtle mb-3 uppercase tracking-wide">Recently closed ({closedJobs.length})</h2>
+            <h2 className="cw-label text-subtle mb-3">Recently closed ({closedJobs.length})</h2>
             <div className="space-y-2">
               {closedJobs.map(job => <ClosedJobCard key={job.id} job={job} />)}
             </div>

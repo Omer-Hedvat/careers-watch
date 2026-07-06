@@ -76,15 +76,15 @@ async function apiFetch(path: string) {
 }
 
 function severityColor(s: GapSeverity) {
-  if (s === 'critical') return 'border-red-500 bg-red-900/10'
-  if (s === 'moderate') return 'border-amber-500 bg-amber-900/10'
-  return 'border-gray-700 bg-gray-800/30'
+  if (s === 'critical') return 'border-danger/50 bg-danger/[0.06]'
+  if (s === 'moderate') return 'border-warning/50 bg-warning/[0.06]'
+  return 'border-border bg-surface'
 }
 
 function severityBadge(s: GapSeverity) {
-  if (s === 'critical') return 'bg-red-900/60 text-red-300'
-  if (s === 'moderate') return 'bg-amber-900/60 text-amber-300'
-  return 'bg-gray-800 text-gray-400'
+  if (s === 'critical') return 'bg-danger/15 text-danger'
+  if (s === 'moderate') return 'bg-warning/15 text-warning'
+  return 'bg-surface-raised text-muted'
 }
 
 function coverageColor(c: CvCoverage) {
@@ -94,17 +94,17 @@ function coverageColor(c: CvCoverage) {
 }
 
 function matchStrengthBadge(m: MatchStrength) {
-  if (m === 'strong') return 'bg-green-900/50 text-green-300'
-  if (m === 'partial') return 'bg-amber-900/50 text-amber-300'
-  if (m === 'weak') return 'bg-red-900/50 text-red-300'
-  return 'bg-gray-800 text-gray-400'
+  if (m === 'strong') return 'bg-score-high/15 text-score-high'
+  if (m === 'partial') return 'bg-warning/15 text-warning'
+  if (m === 'weak') return 'bg-danger/15 text-danger'
+  return 'bg-surface-raised text-muted'
 }
 
 function alignmentBadge(a: ProfileAlignment) {
-  if (a === 'strong') return 'bg-green-900/50 text-green-300'
-  if (a === 'partial') return 'bg-amber-900/50 text-amber-300'
-  if (a === 'mismatch') return 'bg-red-900/50 text-red-300'
-  return 'bg-gray-800 text-gray-400'
+  if (a === 'strong') return 'bg-score-high/15 text-score-high'
+  if (a === 'partial') return 'bg-warning/15 text-warning'
+  if (a === 'mismatch') return 'bg-danger/15 text-danger'
+  return 'bg-surface-raised text-muted'
 }
 
 function buildCopyText(pos: PositionResult): string {
@@ -136,11 +136,11 @@ function buildCopyText(pos: PositionResult): string {
 // --- Components ---
 
 function AlignmentScore({ score }: { score: number }) {
-  const color = score >= 8 ? 'text-green-400' : score >= 6 ? 'text-amber-400' : 'text-red-400'
+  const color = score >= 8 ? 'text-score-high' : score >= 6 ? 'text-warning' : 'text-danger'
   return (
     <div className="flex items-center gap-3">
-      <span className={`text-5xl font-bold ${color}`}>{score}</span>
-      <span className="text-subtle text-lg">/10</span>
+      <span className={`text-5xl font-mono font-semibold tabular-nums ${color}`}>{score}</span>
+      <span className="text-subtle font-mono text-lg">/10</span>
     </div>
   )
 }
@@ -193,9 +193,9 @@ function PositionRow({ pos }: { pos: PositionResult }) {
       <button
         onClick={() => setExpanded(v => !v)}
         aria-expanded={expanded}
-        className="w-full flex items-center gap-3 p-4 text-left hover:bg-gray-800/50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-inset"
+        className="w-full flex items-center gap-3 p-4 text-left hover:bg-surface-raised/60 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-inset"
       >
-        <span className="bg-surface-raised text-foreground text-sm font-bold w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0">
+        <span className="bg-surface-raised text-foreground font-mono text-sm font-semibold w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 tabular-nums">
           {pos.score}
         </span>
         <div className="flex-1 min-w-0">
@@ -226,7 +226,7 @@ function PositionRow({ pos }: { pos: PositionResult }) {
         aria-hidden={!expanded}
       >
         <div className="overflow-hidden min-h-0">
-          <div className="border-t border-subtle p-4 space-y-4 bg-gray-900/50">
+          <div className="border-t border-border p-4 space-y-4 bg-background/40">
           {hasError ? (
             <p className="text-sm text-danger">Analysis failed: {pos.error}</p>
           ) : (
@@ -234,12 +234,12 @@ function PositionRow({ pos }: { pos: PositionResult }) {
               {/* CV strengths */}
               {(pos.cv_gap?.strengths?.length ?? 0) > 0 && (
                 <div>
-                  <p className="text-xs font-medium text-muted uppercase tracking-wide mb-2">CV covers these requirements</p>
+                  <p className="cw-label text-subtle mb-2">CV covers these requirements</p>
                   <ul className="space-y-1">
                     {pos.cv_gap!.strengths.map((s, i) => (
                       <li key={i} className="flex items-start gap-2 text-sm">
-                        <Check className="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" aria-hidden="true" />
-                        <span className="text-gray-300">{s}</span>
+                        <Check className="w-4 h-4 text-score-high flex-shrink-0 mt-0.5" aria-hidden="true" />
+                        <span className="text-foreground/85">{s}</span>
                       </li>
                     ))}
                   </ul>
@@ -249,7 +249,7 @@ function PositionRow({ pos }: { pos: PositionResult }) {
               {/* CV gaps */}
               {(pos.cv_gap?.gaps?.length ?? 0) > 0 && (
                 <div>
-                  <p className="text-xs font-medium text-muted uppercase tracking-wide mb-2">CV gaps</p>
+                  <p className="cw-label text-subtle mb-2">CV gaps</p>
                   <ul className="space-y-2">
                     {pos.cv_gap!.gaps.map((g, i) => (
                       <li key={i} className="text-sm">
@@ -276,19 +276,19 @@ function PositionRow({ pos }: { pos: PositionResult }) {
               {/* Profile divergences */}
               {(pos.profile_gap?.divergences?.length ?? 0) > 0 && (
                 <div>
-                  <p className="text-xs font-medium text-muted uppercase tracking-wide mb-2">Profile divergences</p>
+                  <p className="cw-label text-subtle mb-2">Profile divergences</p>
                   <ul className="space-y-3">
                     {pos.profile_gap!.divergences.map((d, i) => (
                       <li key={i} className="text-sm space-y-0.5">
                         <div className="flex items-start gap-2">
                           <span className={`flex-shrink-0 text-xs px-1.5 py-0.5 rounded mt-0.5 ${
-                            d.impact === 'high' ? 'bg-red-900/50 text-red-300' :
-                            d.impact === 'medium' ? 'bg-amber-900/50 text-amber-300' :
-                            'bg-gray-800 text-gray-400'
+                            d.impact === 'high' ? 'bg-danger/15 text-danger' :
+                            d.impact === 'medium' ? 'bg-warning/15 text-warning' :
+                            'bg-surface-raised text-muted'
                           }`}>{d.impact}</span>
                           <div>
                             <p className="text-muted">Profile: {d.profile_says}</p>
-                            <p className="text-gray-300">JD: {d.jd_says}</p>
+                            <p className="text-foreground/85">JD: {d.jd_says}</p>
                           </div>
                         </div>
                       </li>
@@ -303,7 +303,7 @@ function PositionRow({ pos }: { pos: PositionResult }) {
                 className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-surface-raised hover:bg-border-subtle text-sm rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
               >
                 {copied ? (
-                  <Check className="w-4 h-4 text-green-400" aria-hidden="true" />
+                  <Check className="w-4 h-4 text-score-high" aria-hidden="true" />
                 ) : (
                   <Copy className="w-4 h-4" aria-hidden="true" />
                 )}
@@ -349,11 +349,11 @@ export default function GapsPage() {
 
   return (
     <div className="max-w-3xl mx-auto px-4 py-8">
-        <h1 className="text-2xl font-bold mb-8">Gap Analysis</h1>
+        <h1 className="font-display text-4xl tracking-tight mb-8">Gap Analysis</h1>
 
         {/* Section 1: Profile vs CV */}
         <section className="mb-10">
-          <h2 className="text-lg font-semibold mb-4 text-gray-200">Profile vs CV</h2>
+          <h2 className="font-display text-2xl mb-4 text-foreground">Profile vs CV</h2>
           {loadingProfileCV ? (
             <div className="space-y-2">
               <p className="text-sm text-muted">Analyzing alignment...</p>
@@ -362,31 +362,31 @@ export default function GapsPage() {
           ) : errorProfileCV ? (
             <p className="text-sm text-danger">Error: {errorProfileCV}</p>
           ) : profileCV?.empty ? (
-            <div className="bg-gray-800/50 rounded-xl p-6 text-center">
+            <div className="bg-surface border border-dashed border-border-subtle rounded-xl p-6 text-center">
               <p className="text-muted text-sm">{profileCV.reason}</p>
-              <Link href="/settings" className="mt-2 inline-block text-sm text-green-400 hover:text-green-300 underline transition-colors">
+              <Link href="/settings" className="mt-2 inline-block text-sm text-accent hover:text-accent-hover underline transition-colors">
                 Go to Settings
               </Link>
             </div>
           ) : profileCV ? (
             <div className="space-y-4">
               {/* Score + positioning note */}
-              <div className="bg-surface rounded-xl p-6 space-y-3">
+              <div className="bg-surface border border-border rounded-xl p-6 space-y-3">
                 <AlignmentScore score={profileCV.alignment_score} />
                 {profileCV.positioning_notes && (
-                  <p className="text-gray-300 text-sm leading-relaxed">{profileCV.positioning_notes}</p>
+                  <p className="font-display italic text-[0.95rem] text-foreground/85 leading-relaxed">{profileCV.positioning_notes}</p>
                 )}
               </div>
 
               {/* Strengths */}
               {profileCV.strengths?.length > 0 && (
-                <div className="bg-surface rounded-xl p-5">
-                  <p className="text-sm font-medium text-muted uppercase tracking-wide mb-3">Strengths</p>
+                <div className="bg-surface border border-border rounded-xl p-5">
+                  <p className="cw-label text-subtle mb-3">Strengths</p>
                   <ul className="space-y-2">
                     {profileCV.strengths.map((s, i) => (
                       <li key={i} className="flex items-start gap-2 text-sm">
-                        <Check className="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" aria-hidden="true" />
-                        <span className="text-gray-200">{s}</span>
+                        <Check className="w-4 h-4 text-score-high flex-shrink-0 mt-0.5" aria-hidden="true" />
+                        <span className="text-foreground/90">{s}</span>
                       </li>
                     ))}
                   </ul>
@@ -396,7 +396,7 @@ export default function GapsPage() {
               {/* Gaps */}
               {profileCV.gaps?.length > 0 && (
                 <div className="space-y-3">
-                  <p className="text-sm font-medium text-muted uppercase tracking-wide">Gaps</p>
+                  <p className="cw-label text-subtle">Gaps</p>
                   {profileCV.gaps.map((g, i) => (
                     <div key={i} className={`rounded-xl p-5 border ${severityColor(g.severity)}`}>
                       <div className="flex items-center gap-2 mb-3">
@@ -404,12 +404,12 @@ export default function GapsPage() {
                         <span className={`px-2 py-0.5 rounded text-xs ${severityBadge(g.severity)}`}>{g.severity}</span>
                       </div>
                       <div className="space-y-1.5 text-sm">
-                        <p><span className="text-muted">Profile targets:</span> <span className="text-gray-200">{g.profile_says}</span></p>
-                        <p><span className="text-muted">CV shows:</span> <span className="text-gray-200">{g.cv_shows}</span></p>
+                        <p><span className="text-muted">Profile targets:</span> <span className="text-foreground/90">{g.profile_says}</span></p>
+                        <p><span className="text-muted">CV shows:</span> <span className="text-foreground/90">{g.cv_shows}</span></p>
                         {g.suggestion && (
-                          <p className="mt-2 pt-2 border-t border-gray-700/50">
+                          <p className="mt-2 pt-2 border-t border-border">
                             <span className="text-muted">Suggestion:</span>{' '}
-                            <span className="text-gray-200">{g.suggestion}</span>
+                            <span className="text-foreground/90">{g.suggestion}</span>
                           </p>
                         )}
                       </div>
@@ -423,7 +423,7 @@ export default function GapsPage() {
 
         {/* Section 2: Position gaps */}
         <section>
-          <h2 className="text-lg font-semibold mb-4 text-gray-200">Position gaps (score &ge; 6)</h2>
+          <h2 className="font-display text-2xl mb-4 text-foreground">Position gaps (score &ge; 6)</h2>
           {loadingPositions ? (
             <div className="space-y-3">
               <p className="text-sm text-muted">Analyzing positions... this may take a minute.</p>
@@ -432,9 +432,9 @@ export default function GapsPage() {
           ) : errorPositions ? (
             <p className="text-sm text-danger">Error: {errorPositions}</p>
           ) : !positions || positions.length === 0 ? (
-            <div className="bg-gray-800/50 rounded-xl p-6 text-center">
+            <div className="bg-surface border border-dashed border-border-subtle rounded-xl p-6 text-center">
               <p className="text-muted text-sm">No positions scored 6 or above yet.</p>
-              <Link href="/digest" className="mt-2 inline-block text-sm text-green-400 hover:text-green-300 underline transition-colors">
+              <Link href="/digest" className="mt-2 inline-block text-sm text-accent hover:text-accent-hover underline transition-colors">
                 Run scoring first
               </Link>
             </div>

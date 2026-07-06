@@ -70,10 +70,10 @@ export default function PositionsPage() {
   return (
     <div className="max-w-3xl mx-auto px-4 py-6 space-y-4">
         <div className="flex items-center justify-between">
-          <h1 className="text-xl font-semibold">
+          <h1 className="font-display text-3xl tracking-tight">
             Open positions
             {!loading && (
-              <span className="text-muted font-normal text-base ml-2">
+              <span className="text-muted font-mono text-sm ml-2 tabular-nums">
                 ({search.trim()
                   ? `${filtered.length.toLocaleString()} of ${animatedTotal.toLocaleString()}`
                   : animatedTotal.toLocaleString()
@@ -108,13 +108,13 @@ export default function PositionsPage() {
                 href={isClosed ? undefined : (p.apply_url || '#')}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`flex items-start gap-3 bg-surface rounded-xl px-5 py-3 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent ${isClosed ? 'opacity-40 pointer-events-none' : 'hover:bg-surface-raised'} ${!p.apply_url ? 'pointer-events-none opacity-50' : ''}`}
+                className={`flex items-start gap-3 bg-surface border border-border rounded-xl px-5 py-3 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent ${isClosed ? 'opacity-40 pointer-events-none' : 'hover:bg-surface-raised hover:border-accent/25'} ${!p.apply_url ? 'pointer-events-none opacity-50' : ''}`}
               >
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 flex-wrap">
                     <span className={`font-semibold text-sm ${isClosed ? 'text-muted line-through' : 'text-foreground'}`}>{p.company}</span>
                     <span className="text-subtle text-sm">—</span>
-                    <span className={`text-sm ${isClosed ? 'text-subtle line-through' : 'text-gray-200'}`}>{p.title}</span>
+                    <span className={`text-sm ${isClosed ? 'text-subtle line-through' : 'text-foreground/85'}`}>{p.title}</span>
                     {isClosed && <span className="text-xs text-danger no-underline" style={{textDecoration: 'none'}}>Closed</span>}
                   </div>
                   {p.location && (
@@ -128,7 +128,7 @@ export default function PositionsPage() {
                   </span>
                 )}
                 {p.score != null && (
-                  <span className={`text-xs shrink-0 mt-0.5 font-medium ${p.score >= 9 ? 'text-green-400' : p.score >= 7 ? 'text-yellow-400' : 'text-subtle'}`}>
+                  <span className={`text-xs font-mono shrink-0 mt-0.5 font-medium tabular-nums ${p.score >= 9 ? 'text-score-high' : p.score >= 7 ? 'text-score-mid' : 'text-subtle'}`}>
                     {p.score}/10
                   </span>
                 )}
@@ -147,7 +147,7 @@ export default function PositionsPage() {
               <ChevronLeft className="w-4 h-4" aria-hidden="true" />
               Prev
             </button>
-            <span className="text-sm text-muted">
+            <span className="text-sm text-muted font-mono tabular-nums">
               Page {page_ + 1} of {totalPages}
             </span>
             <button

@@ -64,9 +64,9 @@ export default function GettingStartedChecklist({ profile, cv, apiKey, hasJobs }
   ]
 
   return (
-    <div className="bg-surface rounded-xl p-5 border border-subtle">
+    <div className="bg-surface rounded-xl p-5 border border-border">
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-sm font-semibold text-foreground">Getting started</h2>
+        <h2 className="cw-label text-accent">Getting started</h2>
         <button
           onClick={() => setDismissed(true)}
           className="text-xs text-subtle hover:text-muted transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded"
@@ -78,13 +78,13 @@ export default function GettingStartedChecklist({ profile, cv, apiKey, hasJobs }
         {items.map((item) => (
           <li key={item.label} className="flex items-center gap-3">
             {item.done ? (
-              <span className="w-5 h-5 rounded-full bg-accent flex items-center justify-center flex-shrink-0">
-                <Check className="w-3 h-3 text-accent-foreground" strokeWidth={3} aria-hidden="true" />
+              <span className="w-5 h-5 rounded-full bg-score-high flex items-center justify-center flex-shrink-0">
+                <Check className="w-3 h-3 text-white" strokeWidth={3} aria-hidden="true" />
               </span>
             ) : (
-              <span className="w-5 h-5 rounded-full border border-subtle flex-shrink-0" />
+              <span className="w-5 h-5 rounded-full border border-border-subtle flex-shrink-0" />
             )}
-            <span className={`text-sm flex-1 ${item.done ? 'text-subtle line-through' : 'text-gray-200'}`}>
+            <span className={`text-sm flex-1 ${item.done ? 'text-subtle line-through' : 'text-foreground/90'}`}>
               {item.label}
             </span>
             {!item.done && item.action}
