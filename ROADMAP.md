@@ -32,7 +32,7 @@
 | Slug | Title | Status | Effort | Children |
 |---|---|---|---|---|
 | [WEBAPP_FIRST_RUN_COMPREHENSION](future_devs/archive/WEBAPP_FIRST_RUN_COMPREHENSION_SPEC.md) | First-run comprehension (what/why/what-you-get before & during onboarding) | `wrapped` | L | 5 |
-| [WEBAPP_JOBSEEKER_WORKFLOW](future_devs/WEBAPP_JOBSEEKER_WORKFLOW_SPEC.md) | Job-seeker workspace (detail view, status tracker, hide, new, sort) | `not-started` | L | 5 |
+| [WEBAPP_JOBSEEKER_WORKFLOW](future_devs/WEBAPP_JOBSEEKER_WORKFLOW_SPEC.md) | Job-seeker workspace (detail view, status tracker, hide, new, sort) | `in-progress` | L | 5 (1 wrapped) |
 | [WEBAPP_APP_SHELL_ACCOUNT](future_devs/archive/WEBAPP_APP_SHELL_ACCOUNT_SPEC.md) | App shell + account UX (nav, sign-out, help, auth recovery) | `wrapped` | M | 4 |
 | [POSITION_LIVENESS](future_devs/archive/POSITION_LIVENESS_SPEC.md) | Position liveness — mark & surface closed postings in the scored digest | `wrapped` | M | 4 |
 | [WEBAPP_VISUAL_DESIGN](future_devs/archive/WEBAPP_VISUAL_DESIGN_SPEC.md) | Webapp visual design system + appearance overhaul (Fable) | `wrapped` | L | 5 |
@@ -150,8 +150,7 @@ First-time-user comprehension, digest trust, the job-seeker workspace, and the a
 
 | Slug | Title | Status | Effort | Depends on |
 |---|---|---|---|---|
-| [WEBAPP_JOBSEEKER_WORKFLOW](future_devs/WEBAPP_JOBSEEKER_WORKFLOW_SPEC.md) | Job-seeker workspace (epic root) | `not-started` | L | — |
-| [WEBAPP_JOB_DETAIL_VIEW](future_devs/WEBAPP_JOB_DETAIL_VIEW_SPEC.md) | In-app job detail view (full reasoning + JD) | `not-started` | M | WEBAPP_FLAG_GLOSSARY ✅ |
+| [WEBAPP_JOBSEEKER_WORKFLOW](future_devs/WEBAPP_JOBSEEKER_WORKFLOW_SPEC.md) | Job-seeker workspace (epic root) | `in-progress` | L | — |
 | [WEBAPP_APPLICATION_TRACKER](future_devs/WEBAPP_APPLICATION_TRACKER_SPEC.md) | Application status tracker (saved/applied/interviewing/...) | `not-started` | M | WEBAPP_JOBSEEKER_WORKFLOW |
 | [WEBAPP_HIDE_DISMISS_JOBS](future_devs/WEBAPP_HIDE_DISMISS_JOBS_SPEC.md) | Hide / dismiss irrelevant jobs | `not-started` | S | WEBAPP_JOBSEEKER_WORKFLOW |
 | [WEBAPP_NEW_SINCE_LAST_VISIT](future_devs/WEBAPP_NEW_SINCE_LAST_VISIT_SPEC.md) | "New since last visit" badges + filter | `not-started` | S | WEBAPP_JOBSEEKER_WORKFLOW |
@@ -315,7 +314,7 @@ All Phase P12 tasks are wrapped. See `ROADMAP_ARCHIVE.md`.
 | `future_devs/archive/WEBAPP_CADENCE_RUN_LIMIT_EXPLAINER_SPEC.md` | P7 — Cadence & run-limit explainer (wrapped) |
 | `future_devs/archive/WEBAPP_DIAGNOSTIC_STATES_SPEC.md` | P7 — Diagnostic empty & progress states (wrapped) |
 | `future_devs/WEBAPP_JOBSEEKER_WORKFLOW_SPEC.md` | P7 — Job-seeker workspace (epic root) |
-| `future_devs/WEBAPP_JOB_DETAIL_VIEW_SPEC.md` | P7 — In-app job detail view |
+| `future_devs/archive/WEBAPP_JOB_DETAIL_VIEW_SPEC.md` | P7 — In-app job detail view (wrapped) |
 | `future_devs/WEBAPP_APPLICATION_TRACKER_SPEC.md` | P7 — Application status tracker |
 | `future_devs/WEBAPP_HIDE_DISMISS_JOBS_SPEC.md` | P7 — Hide / dismiss jobs |
 | `future_devs/WEBAPP_NEW_SINCE_LAST_VISIT_SPEC.md` | P7 — New-since-last-visit badges |
