@@ -108,6 +108,7 @@ Wrapped features only. Active work lives in `ROADMAP.md`.
 | [webapp] Count-up animation on Companies + Positions page load | `future_devs/archive/WEBAPP_COUNTUP_ANIMATION_SPEC.md` | XS | `wrapped` |
 | [webapp] Gap analysis — profile vs CV, position vs CV, position vs profile | `future_devs/archive/PROFILE_CV_GAP_ANALYSIS_SPEC.md` | M | `wrapped` |
 | [webapp] CV upload: DOCX + TXT support alongside PDF | `future_devs/archive/WEBAPP_CV_UPLOAD_FORMATS_SPEC.md` | S | `wrapped` |
+| [webapp] Full format set (.md/.txt/.pdf/.docx/.doc) for BOTH CV + profile uploads; centralized allowed-types | `future_devs/archive/WEBAPP_UNIFIED_UPLOAD_FORMATS_SPEC.md` | S | `wrapped` |
 | [webapp] Settings reflects current state — CV file/text, filters, API-key status, account identity | `future_devs/archive/WEBAPP_SETTINGS_STATE_VISIBILITY_SPEC.md` | S | `wrapped` |
 | [webapp] Profile upload or AI-prompt generator for building profile.md | `future_devs/archive/WEBAPP_PROFILE_UPLOAD_OR_PROMPT_SPEC.md` | M | `wrapped` |
 | Stamp `first_seen` date on each position — persist across daily runs, show in digest + webapp cards | `future_devs/archive/POSITION_FIRST_SEEN_SPEC.md` | S | `wrapped` |

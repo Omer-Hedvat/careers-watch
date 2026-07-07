@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { Check, ChevronDown, ChevronRight } from 'lucide-react'
 import { supabase } from '@/lib/supabaseClient'
+import { ACCEPT_ATTR, extractUploadText } from '@/lib/uploadFormats'
 import { ThemeToggle } from '@/app/components/ThemeToggle'
 
 const EXAMPLE_PROFILE = `# Candidate Profile
@@ -303,22 +304,16 @@ export default function OnboardingPage() {
     setTimeout(() => setCopied(false), 2000)
   }
 
-  function uploadMdFile(file: File) {
+  async function uploadMdFile(file: File) {
     setMdUploadError('')
-    if (!file.name.endsWith('.md') && file.type !== 'text/markdown' && file.type !== 'text/plain') {
-      setMdUploadError('Only .md files are supported')
-      return
-    }
-    if (file.size > 1024 * 1024) {
-      setMdUploadError('File must be under 1 MB')
-      return
-    }
-    const reader = new FileReader()
-    reader.onload = e => {
-      const text = e.target?.result as string
+    try {
+      const { data: { session } } = await supabase.auth.getSession()
+      const token = session?.access_token ?? ''
+      const text = await extractUploadText(file, token, process.env.NEXT_PUBLIC_API_URL!)
       setProfileMd(text)
+    } catch (err: unknown) {
+      setMdUploadError(err instanceof Error ? err.message : 'Could not read file')
     }
-    reader.readAsText(file, 'utf-8')
   }
 
   function handleStep1Next() {
@@ -442,10 +437,10 @@ export default function OnboardingPage() {
 
             {/* Path A: Upload */}
             <div>
-              <label className="text-sm text-muted block mb-1">Upload an existing profile.md</label>
+              <label className="text-sm text-muted block mb-1">Upload an existing profile (.md, .txt, .pdf, .docx, .doc)</label>
               <input
                 type="file"
-                accept=".md"
+                accept={ACCEPT_ATTR}
                 onChange={e => { const f = e.target.files?.[0]; if (f) uploadMdFile(f); e.target.value = '' }}
                 className="block w-full text-sm text-muted cursor-pointer rounded-lg border border-dashed border-subtle bg-surface-raised px-3 py-3 transition-colors hover:border-accent file:mr-4 file:cursor-pointer file:rounded-md file:border-0 file:bg-accent file:text-accent-foreground file:text-sm file:font-medium file:px-4 file:py-1.5 file:transition-colors hover:file:bg-accent-hover"
               />
@@ -498,35 +493,25 @@ export default function OnboardingPage() {
             </div>
             <p className="text-muted text-sm">Your CV is used verbatim in scoring prompts. You can skip this and add it later in Settings.</p>
             <div>
-              <label className="text-sm text-muted block mb-1">Upload CV (PDF, DOCX, TXT)</label>
+              <label className="text-sm text-muted block mb-1">Upload CV (.md, .txt, .pdf, .docx, .doc)</label>
               <input
                 type="file"
-                accept=".pdf,.docx,.doc,.txt"
+                accept={ACCEPT_ATTR}
                 onChange={async (e) => {
                   const file = e.target.files?.[0]
                   if (!file) return
                   setPdfLoading(true)
                   setPdfError('')
                   try {
-                    const buf = await file.arrayBuffer()
-                    const bytes = new Uint8Array(buf)
-                    let binary = ''
-                    for (let i = 0; i < bytes.length; i++) binary += String.fromCharCode(bytes[i])
-                    const b64 = btoa(binary)
                     const { data: { session } } = await supabase.auth.getSession()
                     const token = session?.access_token ?? ''
-                    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/user/parse-cv`, {
-                      method: 'POST',
-                      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
-                      body: JSON.stringify({ pdf_b64: b64, mime_type: file.type || 'application/pdf' }),
-                    })
-                    const data = await res.json()
-                    if (!res.ok) throw new Error(data.detail ?? 'Extraction failed')
-                    setCvText(data.text)
+                    const text = await extractUploadText(file, token, process.env.NEXT_PUBLIC_API_URL!)
+                    setCvText(text)
                   } catch (err: unknown) {
                     setPdfError(err instanceof Error ? err.message : 'Could not extract text - please paste manually')
                   } finally {
                     setPdfLoading(false)
+                    e.target.value = ''
                   }
                 }}
                 className="block w-full text-sm text-muted cursor-pointer rounded-lg border border-dashed border-subtle bg-surface-raised px-3 py-3 transition-colors hover:border-accent file:mr-4 file:cursor-pointer file:rounded-md file:border-0 file:bg-accent file:text-accent-foreground file:text-sm file:font-medium file:px-4 file:py-1.5 file:transition-colors hover:file:bg-accent-hover"

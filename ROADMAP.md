@@ -285,6 +285,7 @@ All Phase P12 tasks are wrapped. See `ROADMAP_ARCHIVE.md`.
 | `future_devs/archive/WEBAPP_FAVICON_SPEC.md` | P5 — Website favicon + Open Graph (wrapped) |
 | `future_devs/archive/WEBAPP_CV_SETTINGS_UPLOAD_SPEC.md` | P5 — CV re-upload in Settings (wrapped) |
 | `future_devs/archive/WEBAPP_CV_UPLOAD_FORMATS_SPEC.md` | P5 — CV upload: DOCX + TXT support alongside PDF (wrapped) |
+| `future_devs/archive/WEBAPP_UNIFIED_UPLOAD_FORMATS_SPEC.md` | P5 — Full format set for both CV + profile uploads; centralized allowed-types (wrapped) |
 | `future_devs/archive/WEBAPP_SETTINGS_STATE_VISIBILITY_SPEC.md` | P5 — Settings reflects current state (CV, filters, API-key status, account identity) (wrapped) |
 | `future_devs/archive/WEBAPP_PROFILE_UPLOAD_OR_PROMPT_SPEC.md` | P5 — Profile upload or AI prompt generator (wrapped) |
 | `future_devs/archive/WEBAPP_COMPANIES_VIEW_SPEC.md` | P5 — Companies page (wrapped) |
