@@ -1,7 +1,7 @@
 | Field | Value |
 |---|---|
 | **Phase** | P7 |
-| **Status** | `not-started` |
+| **Status** | `wrapped` |
 | **Effort** | M |
 | **Epic** | WEBAPP_JOBSEEKER_WORKFLOW |
 | **Depends on** | [WEBAPP_FLAG_GLOSSARY](WEBAPP_FLAG_GLOSSARY_SPEC.md) |

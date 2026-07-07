@@ -183,3 +183,11 @@ Wrapped features only. Active work lives in `ROADMAP.md`.
 | Feature | Spec | Effort | Status |
 |---|---|---|---|
 | Bold visual re-identity ("Market Terminal": amber/ink palette, Instrument Serif/Sans + IBM Plex Mono, signature hero) + light/dark theme toggle with no-flash bootstrap | `future_devs/archive/WEBAPP_VISUAL_REDESIGN_V2_SPEC.md` | L | `wrapped` |
+
+---
+
+## Phase P7 — Job-seeker workspace
+
+| Feature | Spec | Effort | Status |
+|---|---|---|---|
+| In-app job detail view — slide-over with full reasoning, flags + glossary, full JD (persisted at score time, migration 006) | `future_devs/archive/WEBAPP_JOB_DETAIL_VIEW_SPEC.md` | M | `wrapped` |
