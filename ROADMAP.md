@@ -101,9 +101,8 @@ All Phase P2 tasks are wrapped. See `ROADMAP_ARCHIVE.md`.
 | [WEBAPP_POSITIONS_VIEW](future_devs/archive/WEBAPP_POSITIONS_VIEW_SPEC.md) | Positions page — browse all open roles from pipeline | `wrapped` | S | WEBAPP_COMPANIES_VIEW ✅ |
 | [PROFILE_CV_GAP_ANALYSIS](future_devs/archive/PROFILE_CV_GAP_ANALYSIS_SPEC.md) | Gap analysis: profile vs CV, position vs CV, position vs profile | `wrapped` | M | — |
 | [WEBAPP_COUNTUP_ANIMATION](future_devs/archive/WEBAPP_COUNTUP_ANIMATION_SPEC.md) | Count-up animation on Companies + Positions page load | `wrapped` | XS | — |
-| [POSITION_FIRST_SEEN](future_devs/archive/POSITION_FIRST_SEEN_SPEC.md) | Stamp first_seen date on each position — persist across daily runs, show in digest + webapp cards | `wrapped` | S | — |
-| [WEBAPP_POSITIONS_TOTAL_COUNT](future_devs/WEBAPP_POSITIONS_TOTAL_COUNT_SPEC.md) | Positions page: show "n suitable out of N collected" instead of bare count | `not-started` | XS | WEBAPP_POSITIONS_VIEW ✅ |
-| [WEBAPP_POSITIONS_CATALOG_SYNC](future_devs/WEBAPP_POSITIONS_CATALOG_SYNC_SPEC.md) | Shared `positions` catalog auto-synced from pipeline — Positions page shows the full market to every user, not per-user scored_jobs | `in-progress` | S | WEBAPP_POSITIONS_VIEW ✅ |
+| [POSITION_FIRST_SEEN](future_devs/archive/POSITION_FIRST_SEEN_SPEC.md) | Stamp first_seen date on each position — persist across daily runs, show in digest + webapp cards | `wrapped` | S | — || [WEBAPP_POSITIONS_CATALOG_SYNC](future_devs/WEBAPP_POSITIONS_CATALOG_SYNC_SPEC.md) | Shared `positions` catalog auto-synced from pipeline — Positions page shows the full market to every user, not per-user scored_jobs | `in-progress` | S | WEBAPP_POSITIONS_VIEW ✅ |
+| [WEBAPP_POSITIONS_DETAIL_DESCRIPTION](future_devs/WEBAPP_POSITIONS_DETAIL_DESCRIPTION_SPEC.md) | Positions detail: show real job description (add `description` to shared catalog + sync + endpoint) | `not-started` | S | WEBAPP_POSITIONS_CATALOG_SYNC |
 
 ---
 
@@ -153,6 +152,7 @@ First-time-user comprehension, digest trust, the job-seeker workspace, and the a
 |---|---|---|---|---|
 | [WEBAPP_JOBSEEKER_WORKFLOW](future_devs/WEBAPP_JOBSEEKER_WORKFLOW_SPEC.md) | Job-seeker workspace (epic root) | `in-progress` | L | — |
 | [WEBAPP_APPLICATION_TRACKER](future_devs/WEBAPP_APPLICATION_TRACKER_SPEC.md) | Application status tracker (saved/applied/interviewing/...) | `not-started` | M | WEBAPP_JOBSEEKER_WORKFLOW |
+| [WEBAPP_POSITIONS_MARK_APPLIED](future_devs/WEBAPP_POSITIONS_MARK_APPLIED_SPEC.md) | Mark-applied on Positions (shared catalog) — needs per-user overlay; confirm scope first | `not-started` | S | WEBAPP_POSITIONS_CATALOG_SYNC |
 | [WEBAPP_HIDE_DISMISS_JOBS](future_devs/WEBAPP_HIDE_DISMISS_JOBS_SPEC.md) | Hide / dismiss irrelevant jobs | `not-started` | S | WEBAPP_JOBSEEKER_WORKFLOW |
 | [WEBAPP_NEW_SINCE_LAST_VISIT](future_devs/WEBAPP_NEW_SINCE_LAST_VISIT_SPEC.md) | "New since last visit" badges + filter | `not-started` | S | WEBAPP_JOBSEEKER_WORKFLOW |
 | [WEBAPP_DIGEST_SORT_PERSIST](future_devs/WEBAPP_DIGEST_SORT_PERSIST_SPEC.md) | Sort controls + persist filter/sort view + counts | `not-started` | S | WEBAPP_JOBSEEKER_WORKFLOW |
@@ -170,9 +170,7 @@ First-time-user comprehension, digest trust, the job-seeker workspace, and the a
 ### Standalone
 
 | Slug | Title | Status | Effort | Depends on |
-|---|---|---|---|---|
-| [WEBAPP_ACCESSIBILITY_PASS](future_devs/WEBAPP_ACCESSIBILITY_PASS_SPEC.md) | Accessibility pass (color-blind-safe scores, focus, aria, keyboard) | `not-started` | S | — |
-| [WEBAPP_COPY_POLISH](future_devs/WEBAPP_COPY_POLISH_SPEC.md) | Voice/clarity pass on onboarding + landing + help + profile.md notes (Fable) | `not-started` | S | — |
+|---|---|---|---|---|| [WEBAPP_COPY_POLISH](future_devs/WEBAPP_COPY_POLISH_SPEC.md) | Voice/clarity pass on onboarding + landing + help + profile.md notes (Fable) | `not-started` | S | — |
 
 > Bug: [BUG_LANDING_DEAD_GITHUB_LINKS](bugs_to_fix/BUG_LANDING_DEAD_GITHUB_LINKS.md) — dead `href="#"` GitHub links on landing (filed in `bugs_to_fix/`).
 
@@ -292,7 +290,7 @@ All Phase P12 tasks are wrapped. See `ROADMAP_ARCHIVE.md`.
 | `future_devs/archive/WEBAPP_COMPANIES_VIEW_SPEC.md` | P5 — Companies page (wrapped) |
 | `future_devs/archive/WEBAPP_COUNTUP_ANIMATION_SPEC.md` | P5 — Count-up animation on Companies + Positions page load (wrapped) |
 | `future_devs/archive/WEBAPP_POSITIONS_VIEW_SPEC.md` | P5 — Positions page (wrapped) |
-| `future_devs/WEBAPP_POSITIONS_TOTAL_COUNT_SPEC.md` | P5 — Positions page: "n suitable out of N collected" header count |
+| `future_devs/archive/WEBAPP_POSITIONS_TOTAL_COUNT_SPEC.md` | P5 — Digest toolbar: "n suitable roles out of N collected" (retargeted from Positions) (wrapped) |
 | `future_devs/archive/WEBAPP_POSITIONS_DETAIL_VIEW_SPEC.md` | P5 — Positions page: in-app detail view on row click + link out to posting (wrapped) |
 | `future_devs/archive/WEBAPP_MULTI_FILTER_SPEC.md` | P5 — Multi-value filters with ';' (wrapped) |
 | `future_devs/archive/PROFILE_CV_GAP_ANALYSIS_SPEC.md` | P5 — Gap analysis: profile vs CV, positions vs CV (wrapped) |
@@ -318,6 +316,8 @@ All Phase P12 tasks are wrapped. See `ROADMAP_ARCHIVE.md`.
 | `future_devs/WEBAPP_JOBSEEKER_WORKFLOW_SPEC.md` | P7 — Job-seeker workspace (epic root) |
 | `future_devs/archive/WEBAPP_JOB_DETAIL_VIEW_SPEC.md` | P7 — In-app job detail view (wrapped) |
 | `future_devs/WEBAPP_APPLICATION_TRACKER_SPEC.md` | P7 — Application status tracker |
+| `future_devs/WEBAPP_POSITIONS_MARK_APPLIED_SPEC.md` | P7 — Mark-applied on Positions shared catalog (per-user overlay) |
+| `future_devs/WEBAPP_POSITIONS_DETAIL_DESCRIPTION_SPEC.md` | P5 — Positions detail: show real job description from shared catalog |
 | `future_devs/WEBAPP_HIDE_DISMISS_JOBS_SPEC.md` | P7 — Hide / dismiss jobs |
 | `future_devs/WEBAPP_NEW_SINCE_LAST_VISIT_SPEC.md` | P7 — New-since-last-visit badges |
 | `future_devs/WEBAPP_DIGEST_SORT_PERSIST_SPEC.md` | P7 — Digest sort + persist view |
@@ -326,7 +326,7 @@ All Phase P12 tasks are wrapped. See `ROADMAP_ARCHIVE.md`.
 | `future_devs/archive/WEBAPP_GETTING_STARTED_CHECKLIST_SPEC.md` | P7 — Getting-started checklist (wrapped) |
 | `future_devs/archive/WEBAPP_IN_APP_HELP_FAQ_SPEC.md` | P7 — In-app Help / FAQ page (wrapped) |
 | `future_devs/archive/WEBAPP_AUTH_RESET_CONFIRM_LEGAL_SPEC.md` | P7 — Auth reset / confirm / legal (wrapped) |
-| `future_devs/WEBAPP_ACCESSIBILITY_PASS_SPEC.md` | P7 — Accessibility pass |
+| `future_devs/archive/WEBAPP_ACCESSIBILITY_PASS_SPEC.md` | P7 — Accessibility pass (wrapped) |
 | `future_devs/WEBAPP_COPY_POLISH_SPEC.md` | P7 — Voice/clarity copy pass (onboarding, landing, help, profile.md) (Fable) |
 | `future_devs/archive/POSITION_LIVENESS_SPEC.md` | P8 — Position liveness (epic root, wrapped) |
 | `future_devs/archive/POSITION_LIVENESS_LIVE_SET_SPEC.md` | P8 — Persist live apply_url set from successful pulls (wrapped) |

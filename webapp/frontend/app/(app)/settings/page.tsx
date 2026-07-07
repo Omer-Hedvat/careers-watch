@@ -50,7 +50,7 @@ function TagInput({ tags, onChange, placeholder }: { tags: string[]; onChange: (
       {tags.map(t => (
         <span key={t} className="flex items-center gap-1 px-2 py-0.5 bg-surface border border-border rounded text-sm text-foreground">
           {t}
-          <button onClick={() => onChange(tags.filter(x => x !== t))} className="text-muted hover:text-foreground transition-colors">×</button>
+          <button type="button" aria-label={`Remove ${t}`} onClick={() => onChange(tags.filter(x => x !== t))} className="text-muted hover:text-foreground transition-colors rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"><span aria-hidden="true">×</span></button>
         </span>
       ))}
       <input
@@ -478,7 +478,7 @@ export default function SettingsPage() {
             </div>
 
             {/* Path B: Generate with AI */}
-            <button onClick={() => setShowPrompt(v => !v)} className={`${secondaryBtn} inline-flex items-center gap-1.5`}>
+            <button type="button" aria-expanded={showPrompt} onClick={() => setShowPrompt(v => !v)} className={`${secondaryBtn} inline-flex items-center gap-1.5`}>
               {showPrompt ? <ChevronDown className="w-3.5 h-3.5" aria-hidden="true" /> : <ChevronRight className="w-3.5 h-3.5" aria-hidden="true" />} Generate with AI
             </button>
             {showPrompt && (

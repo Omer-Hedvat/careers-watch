@@ -143,6 +143,41 @@ def filter_preview(body: FilterPreviewRequest, authorization: str = Header(...))
     return {"passing": passing, "total": total, "empty": False}
 
 
+# Digest surfaces roles scored at or above this; "suitable" mirrors that set.
+SURFACE_THRESHOLD = 5
+
+
+@router.get("/stats")
+def jobs_stats(authorization: str = Header(...)):
+    # Declared before /{job_id} so "stats" isn't captured as a job id.
+    user_id = _get_user(authorization)
+    suitable = (
+        supabase.table("scored_jobs")
+        .select("id", count="exact")
+        .eq("user_id", user_id)
+        .gte("score", SURFACE_THRESHOLD)
+        .execute()
+        .count
+    ) or 0
+    # collected = the raw market pulled from ATSes before scoring. Prefer the
+    # local snapshot; on the deployed backend (where new_jobs.json may be absent)
+    # fall back to the shared positions catalog count. null if neither resolves.
+    collected: int | None = None
+    if NEW_JOBS_PATH.exists():
+        try:
+            collected = len(json.loads(NEW_JOBS_PATH.read_text(encoding="utf-8")))
+        except (json.JSONDecodeError, OSError):
+            collected = None
+    if collected is None:
+        try:
+            collected = (
+                supabase.table("positions").select("apply_url", count="exact").execute().count
+            )
+        except Exception:
+            collected = None
+    return {"suitable": suitable, "collected": collected}
+
+
 @router.get("/{job_id}")
 def get_job(job_id: str, authorization: str = Header(...)):
     user_id = _get_user(authorization)
