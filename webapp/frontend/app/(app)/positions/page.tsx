@@ -1,9 +1,10 @@
 'use client'
 
 import { useEffect, useState, useMemo } from 'react'
-import { ArrowUpRight, ChevronLeft, ChevronRight } from 'lucide-react'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { supabase } from '@/lib/supabaseClient'
 import { useCountUp } from '@/hooks/useCountUp'
+import { DetailPanel } from '@/app/components/DetailPanel'
 
 const PAGE_SIZE = 50
 
@@ -30,11 +31,76 @@ function PositionRowSkeleton() {
   )
 }
 
+// In-app detail view for a catalog position. The shared catalog carries no
+// description/reasoning/score, so this surfaces the fields it has plus a link
+// out to the original posting - keeping the user in-app instead of bouncing
+// them straight to the ATS on a row click.
+function PositionDetailPanel({ position, onClose }: { position: Position; onClose: () => void }) {
+  return (
+    <DetailPanel
+      ariaLabel={`${position.company} - ${position.title}`}
+      onClose={onClose}
+      header={
+        <div className="min-w-0">
+          <h2 className="font-semibold text-foreground leading-snug">{position.title}</h2>
+          <p className="text-sm text-muted truncate">
+            {position.company}{position.location ? ` · ${position.location}` : ''}
+          </p>
+        </div>
+      }
+      actions={
+        position.apply_url ? (
+          <a href={position.apply_url} target="_blank" rel="noopener noreferrer"
+            className="px-4 py-2 bg-accent hover:bg-accent-hover text-accent-foreground text-sm rounded-lg font-medium transition-colors">
+            Go to posting →
+          </a>
+        ) : undefined
+      }
+    >
+      <div>
+        <p className="cw-label text-subtle mb-2">Position</p>
+        <dl className="text-sm space-y-1.5">
+          <div className="flex gap-2">
+            <dt className="text-subtle w-20 shrink-0">Company</dt>
+            <dd className="text-foreground/85">{position.company}</dd>
+          </div>
+          <div className="flex gap-2">
+            <dt className="text-subtle w-20 shrink-0">Title</dt>
+            <dd className="text-foreground/85">{position.title}</dd>
+          </div>
+          {position.location && (
+            <div className="flex gap-2">
+              <dt className="text-subtle w-20 shrink-0">Location</dt>
+              <dd className="text-foreground/85">{position.location}</dd>
+            </div>
+          )}
+        </dl>
+      </div>
+
+      <div>
+        <p className="cw-label text-subtle mb-2">Job description</p>
+        <p className="text-sm text-subtle">
+          The full description isn&apos;t stored in the shared catalog.{' '}
+          {position.apply_url ? (
+            <>
+              Open the posting via{' '}
+              <a href={position.apply_url} target="_blank" rel="noopener noreferrer" className="text-accent hover:text-accent-hover underline underline-offset-2 transition-colors">Go to posting</a>.
+            </>
+          ) : (
+            <>No application link is available for this position yet.</>
+          )}
+        </p>
+      </div>
+    </DetailPanel>
+  )
+}
+
 export default function PositionsPage() {
   const [positions, setPositions] = useState<Position[]>([])
   const [loading, setLoading] = useState(true)
   const [search, setSearch] = useState('')
   const [page, setPage] = useState(0)
+  const [detailPosition, setDetailPosition] = useState<Position | null>(null)
   const animatedTotal = useCountUp(loading ? 0 : positions.length)
 
   useEffect(() => {
@@ -102,15 +168,9 @@ export default function PositionsPage() {
         <div className="space-y-1.5">
           {visible.map((p, i) => {
             const isClosed = p.status === 'closed'
-            return (
-              <a
-                key={`${p.company}-${p.title}-${i}`}
-                href={isClosed ? undefined : (p.apply_url || '#')}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`flex items-start gap-3 bg-surface border border-border rounded-xl px-5 py-3 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent ${isClosed ? 'opacity-40 pointer-events-none' : 'hover:bg-surface-raised hover:border-accent/25'} ${!p.apply_url ? 'pointer-events-none opacity-50' : ''}`}
-              >
-                <div className="flex-1 min-w-0">
+            const rowBody = (
+              <>
+                <div className="flex-1 min-w-0 text-left">
                   <div className="flex items-center gap-2 flex-wrap">
                     <span className={`font-semibold text-sm ${isClosed ? 'text-muted line-through' : 'text-foreground'}`}>{p.company}</span>
                     <span className="text-subtle text-sm">—</span>
@@ -121,18 +181,35 @@ export default function PositionsPage() {
                     <div className="text-xs text-subtle mt-0.5">{p.location}</div>
                   )}
                 </div>
-                {!isClosed && (
-                  <span className="text-xs text-accent shrink-0 mt-0.5 inline-flex items-center gap-0.5">
-                    Apply
-                    <ArrowUpRight className="w-3.5 h-3.5" aria-hidden="true" />
-                  </span>
-                )}
                 {p.score != null && (
                   <span className={`text-xs font-mono shrink-0 mt-0.5 font-medium tabular-nums ${p.score >= 9 ? 'text-score-high' : p.score >= 7 ? 'text-score-mid' : 'text-subtle'}`}>
                     {p.score}/10
                   </span>
                 )}
-              </a>
+                {!isClosed && (
+                  <ChevronRight className="w-4 h-4 text-subtle shrink-0 mt-0.5" aria-hidden="true" />
+                )}
+              </>
+            )
+            if (isClosed) {
+              return (
+                <div
+                  key={`${p.company}-${p.title}-${i}`}
+                  className="flex items-start gap-3 bg-surface border border-border rounded-xl px-5 py-3 opacity-40"
+                >
+                  {rowBody}
+                </div>
+              )
+            }
+            return (
+              <button
+                key={`${p.company}-${p.title}-${i}`}
+                type="button"
+                onClick={() => setDetailPosition(p)}
+                className="w-full flex items-start gap-3 bg-surface border border-border rounded-xl px-5 py-3 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent hover:bg-surface-raised hover:border-accent/25 cursor-pointer"
+              >
+                {rowBody}
+              </button>
             )
           })}
         </div>
@@ -159,6 +236,10 @@ export default function PositionsPage() {
               <ChevronRight className="w-4 h-4" aria-hidden="true" />
             </button>
           </div>
+        )}
+
+        {detailPosition && (
+          <PositionDetailPanel position={detailPosition} onClose={() => setDetailPosition(null)} />
         )}
     </div>
   )

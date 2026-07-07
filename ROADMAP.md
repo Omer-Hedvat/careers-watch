@@ -104,7 +104,6 @@ All Phase P2 tasks are wrapped. See `ROADMAP_ARCHIVE.md`.
 | [POSITION_FIRST_SEEN](future_devs/archive/POSITION_FIRST_SEEN_SPEC.md) | Stamp first_seen date on each position — persist across daily runs, show in digest + webapp cards | `wrapped` | S | — |
 | [WEBAPP_POSITIONS_TOTAL_COUNT](future_devs/WEBAPP_POSITIONS_TOTAL_COUNT_SPEC.md) | Positions page: show "n suitable out of N collected" instead of bare count | `not-started` | XS | WEBAPP_POSITIONS_VIEW ✅ |
 | [WEBAPP_POSITIONS_CATALOG_SYNC](future_devs/WEBAPP_POSITIONS_CATALOG_SYNC_SPEC.md) | Shared `positions` catalog auto-synced from pipeline — Positions page shows the full market to every user, not per-user scored_jobs | `in-progress` | S | WEBAPP_POSITIONS_VIEW ✅ |
-| [WEBAPP_POSITIONS_DETAIL_VIEW](future_devs/WEBAPP_POSITIONS_DETAIL_VIEW_SPEC.md) | Positions page: clicking a position opens an in-app detail view (reuse digest slide-over) with a link out to the posting, instead of navigating straight out | `not-started` | S | WEBAPP_POSITIONS_VIEW ✅ |
 
 ---
 
@@ -293,7 +292,7 @@ All Phase P12 tasks are wrapped. See `ROADMAP_ARCHIVE.md`.
 | `future_devs/archive/WEBAPP_COUNTUP_ANIMATION_SPEC.md` | P5 — Count-up animation on Companies + Positions page load (wrapped) |
 | `future_devs/archive/WEBAPP_POSITIONS_VIEW_SPEC.md` | P5 — Positions page (wrapped) |
 | `future_devs/WEBAPP_POSITIONS_TOTAL_COUNT_SPEC.md` | P5 — Positions page: "n suitable out of N collected" header count |
-| `future_devs/WEBAPP_POSITIONS_DETAIL_VIEW_SPEC.md` | P5 — Positions page: in-app detail view on row click + link out to posting |
+| `future_devs/archive/WEBAPP_POSITIONS_DETAIL_VIEW_SPEC.md` | P5 — Positions page: in-app detail view on row click + link out to posting (wrapped) |
 | `future_devs/archive/WEBAPP_MULTI_FILTER_SPEC.md` | P5 — Multi-value filters with ';' (wrapped) |
 | `future_devs/archive/PROFILE_CV_GAP_ANALYSIS_SPEC.md` | P5 — Gap analysis: profile vs CV, positions vs CV (wrapped) |
 | `future_devs/archive/POSITION_FIRST_SEEN_SPEC.md` | P5 — Stamp first_seen date on each position; show in digest + webapp (wrapped) |

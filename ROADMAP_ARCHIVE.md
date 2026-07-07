@@ -111,6 +111,7 @@ Wrapped features only. Active work lives in `ROADMAP.md`.
 | [webapp] Settings reflects current state — CV file/text, filters, API-key status, account identity | `future_devs/archive/WEBAPP_SETTINGS_STATE_VISIBILITY_SPEC.md` | S | `wrapped` |
 | [webapp] Profile upload or AI-prompt generator for building profile.md | `future_devs/archive/WEBAPP_PROFILE_UPLOAD_OR_PROMPT_SPEC.md` | M | `wrapped` |
 | Stamp `first_seen` date on each position — persist across daily runs, show in digest + webapp cards | `future_devs/archive/POSITION_FIRST_SEEN_SPEC.md` | S | `wrapped` |
+| [webapp] Positions page — clicking a position opens an in-app detail slide-over (shared `DetailPanel`) with a link out to the posting, instead of navigating straight out | `future_devs/archive/WEBAPP_POSITIONS_DETAIL_VIEW_SPEC.md` | S | `wrapped` |
 
 ---
 
