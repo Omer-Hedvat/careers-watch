@@ -68,7 +68,7 @@ function ProfileExampleGuidance() {
   const [showGuide, setShowGuide] = useState(false)
   return (
     <div className="space-y-2">
-      <button onClick={() => setShowExample(v => !v)} className="inline-flex items-center gap-1 text-sm text-accent hover:text-accent-hover transition-colors">
+      <button type="button" aria-expanded={showExample} onClick={() => setShowExample(v => !v)} className="inline-flex items-center gap-1 text-sm text-accent hover:text-accent-hover transition-colors">
         {showExample ? <ChevronDown className="w-3.5 h-3.5" aria-hidden="true" /> : <ChevronRight className="w-3.5 h-3.5" aria-hidden="true" />} See an example profile
       </button>
       {showExample && (
@@ -76,7 +76,7 @@ function ProfileExampleGuidance() {
           <pre className="text-xs text-muted whitespace-pre-wrap font-mono overflow-auto max-h-64">{EXAMPLE_PROFILE}</pre>
         </div>
       )}
-      <button onClick={() => setShowGuide(v => !v)} className="inline-flex items-center gap-1 text-sm text-accent hover:text-accent-hover transition-colors">
+      <button type="button" aria-expanded={showGuide} onClick={() => setShowGuide(v => !v)} className="inline-flex items-center gap-1 text-sm text-accent hover:text-accent-hover transition-colors">
         {showGuide ? <ChevronDown className="w-3.5 h-3.5" aria-hidden="true" /> : <ChevronRight className="w-3.5 h-3.5" aria-hidden="true" />} Required sections guide
       </button>
       {showGuide && (
@@ -567,7 +567,7 @@ export default function OnboardingPage() {
                 </span>
               )}
             </div>
-            <button onClick={() => setShowKeyHelp(!showKeyHelp)} className="inline-flex items-center gap-1 text-sm text-accent hover:text-accent-hover transition-colors">
+            <button type="button" aria-expanded={showKeyHelp} onClick={() => setShowKeyHelp(!showKeyHelp)} className="inline-flex items-center gap-1 text-sm text-accent hover:text-accent-hover transition-colors">
               {showKeyHelp ? <ChevronDown className="w-3.5 h-3.5" aria-hidden="true" /> : <ChevronRight className="w-3.5 h-3.5" aria-hidden="true" />} How to get a key
             </button>
             {showKeyHelp && (

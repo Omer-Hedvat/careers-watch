@@ -112,6 +112,7 @@ Wrapped features only. Active work lives in `ROADMAP.md`.
 | [webapp] Profile upload or AI-prompt generator for building profile.md | `future_devs/archive/WEBAPP_PROFILE_UPLOAD_OR_PROMPT_SPEC.md` | M | `wrapped` |
 | Stamp `first_seen` date on each position — persist across daily runs, show in digest + webapp cards | `future_devs/archive/POSITION_FIRST_SEEN_SPEC.md` | S | `wrapped` |
 | [webapp] Positions page — clicking a position opens an in-app detail slide-over (shared `DetailPanel`) with a link out to the posting, instead of navigating straight out | `future_devs/archive/WEBAPP_POSITIONS_DETAIL_VIEW_SPEC.md` | S | `wrapped` |
+| [webapp] Digest toolbar — "N suitable roles out of M collected" (`GET /jobs/stats`); retargeted from the Positions page to the Digest after CATALOG_SYNC made Positions the full market | `future_devs/archive/WEBAPP_POSITIONS_TOTAL_COUNT_SPEC.md` | XS | `wrapped` |
 
 ---
 
@@ -200,3 +201,11 @@ Wrapped features only. Active work lives in `ROADMAP.md`.
 | Feature | Spec | Effort | Status |
 |---|---|---|---|
 | In-app job detail view — slide-over with full reasoning, flags + glossary, full JD (persisted at score time, migration 006) | `future_devs/archive/WEBAPP_JOB_DETAIL_VIEW_SPEC.md` | M | `wrapped` |
+
+---
+
+## Phase P7 — Standalone
+
+| Feature | Spec | Effort | Status |
+|---|---|---|---|
+| Accessibility pass — score-badge accessible names (color-blind safe), `aria-label`/`aria-expanded` on icon-only controls, WCAG AA `--color-text-subtle` bump in both themes | `future_devs/archive/WEBAPP_ACCESSIBILITY_PASS_SPEC.md` | S | `wrapped` |

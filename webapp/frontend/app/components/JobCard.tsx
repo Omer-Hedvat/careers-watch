@@ -38,10 +38,12 @@ export function ScoreBadge({ score }: { score: number }) {
   const band = bandFor(score)
   return (
     <span
-      title={band.label}
+      role="img"
+      aria-label={`Score ${score} out of 10 - ${band.label}`}
+      title={`${score}/10 - ${band.label}`}
       className={`${band.color} text-white font-mono text-sm font-semibold w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0 shadow-md ring-1 ring-white/15 tabular-nums`}
     >
-      {score}
+      <span aria-hidden="true">{score}</span>
     </span>
   )
 }

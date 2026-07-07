@@ -22,10 +22,12 @@
   --color-border: 40 34 22;
   --color-border-subtle: 63 54 36;
 
-  /* Text - warm off-white ramp */
+  /* Text - warm off-white ramp.
+     subtle is lightened from 116/107/88 so caption/meta text clears WCAG AA
+     (>=4.5:1) on both surface and surface-raised, while staying below muted. */
   --color-text: 244 239 228;
   --color-text-muted: 168 158 137;
-  --color-text-subtle: 116 107 88;
+  --color-text-subtle: 142 132 110;
 
   /* Accent - terminal amber */
   --color-accent: 255 178 36;
@@ -62,10 +64,12 @@
   --color-border: 227 220 202;
   --color-border-subtle: 202 193 168;
 
-  /* Text - ink ramp */
+  /* Text - ink ramp.
+     subtle is darkened from 150/141/119 so caption/meta text clears WCAG AA
+     (>=4.5:1) on both paper surfaces. */
   --color-text: 32 27 16;
   --color-text-muted: 109 100 80;
-  --color-text-subtle: 150 141 119;
+  --color-text-subtle: 110 102 84;
 
   /* Accent - deep amber, AA on paper */
   --color-accent: 173 87 6;

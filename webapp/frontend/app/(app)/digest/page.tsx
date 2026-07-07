@@ -281,6 +281,7 @@ export default function DigestPage() {
   const [detailJobId, setDetailJobId] = useState<string | null>(null)
   const [detailDescription, setDetailDescription] = useState<string | null>(null)
   const [detailLoading, setDetailLoading] = useState(false)
+  const [stats, setStats] = useState<{ suitable: number; collected: number | null } | null>(null)
 
   async function getToken() {
     const { data: { session } } = await supabase.auth.getSession()
@@ -294,6 +295,19 @@ export default function DigestPage() {
     })
     if (res.ok) setJobs(await res.json())
     setLoading(false)
+  }
+
+  async function loadStats() {
+    const token = await getToken()
+    try {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/jobs/stats`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      if (res.ok) setStats(await res.json())
+      else setStats(null)
+    } catch {
+      setStats(null)
+    }
   }
 
   async function loadUser() {
@@ -312,7 +326,7 @@ export default function DigestPage() {
     }
   }
 
-  useEffect(() => { loadJobs(); loadUser() }, [])
+  useEffect(() => { loadJobs(); loadUser(); loadStats() }, [])
 
   async function triggerScoring() {
     setScoring(true)
@@ -327,6 +341,7 @@ export default function DigestPage() {
     else setScoreMsg(data.detail ?? 'Scoring failed')
     await loadJobs()
     await loadUser()
+    await loadStats()
     setScoring(false)
   }
 
@@ -409,6 +424,13 @@ export default function DigestPage() {
       <div className="border-b border-border px-6 py-3 flex items-center justify-between bg-surface">
         <div className="space-y-0.5">
           {lastScored && <div className="text-sm text-muted">Last scored: <span className="font-mono text-xs">{lastScored}</span></div>}
+          {stats && stats.suitable > 0 && (
+            <div className="text-xs text-subtle font-mono">
+              {stats.collected != null
+                ? `${stats.suitable.toLocaleString()} suitable roles out of ${stats.collected.toLocaleString()} collected`
+                : `${stats.suitable.toLocaleString()} suitable roles`}
+            </div>
+          )}
           <div className="text-xs text-subtle font-mono">New jobs collected Mon &amp; Thu</div>
         </div>
         <div className="flex items-center gap-3">
