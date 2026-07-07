@@ -244,6 +244,12 @@ _DOC_EXTENSIONS = {
     "application/msword": ".doc",
 }
 
+# Extensions we decode as UTF-8 text directly - no MarkItDown needed.
+_TEXT_EXTENSIONS = {".md", ".txt"}
+_TEXT_MIMES = {"text/plain", "text/markdown", "text/x-markdown"}
+# Reverse of _DOC_EXTENSIONS: extension -> MIME, for the extension hint path.
+_DOC_EXT_TO_MIME = {v: k for k, v in _DOC_EXTENSIONS.items()}
+
 
 def _markitdown():
     global _MARKITDOWN
@@ -262,17 +268,22 @@ async def parse_cv(request: Request, authorization: str = Header(...)):
     body = await request.json()
     file_b64 = body.get("pdf_b64", "")
     mime_type = body.get("mime_type", "application/pdf")
+    # Extension hint from the client - browsers often report an empty or wrong
+    # MIME for .md/.txt, so prefer the extension when it is present.
+    extension = (body.get("extension") or "").lower()
     import base64, io
     file_bytes = base64.b64decode(file_b64)
     try:
-        if mime_type == "text/plain":
+        is_text = extension in _TEXT_EXTENSIONS or (not extension and mime_type in _TEXT_MIMES)
+        doc_ext = extension if extension in _DOC_EXT_TO_MIME else _DOC_EXTENSIONS.get(mime_type)
+        if is_text:
             text = file_bytes.decode("utf-8", errors="replace")
-        elif mime_type in _DOC_EXTENSIONS:
+        elif doc_ext:
             from markitdown import StreamInfo
             result = _markitdown().convert_stream(
                 io.BytesIO(file_bytes),
                 stream_info=StreamInfo(
-                    extension=_DOC_EXTENSIONS[mime_type], mimetype=mime_type
+                    extension=doc_ext, mimetype=_DOC_EXT_TO_MIME[doc_ext]
                 ),
             )
             text = result.text_content

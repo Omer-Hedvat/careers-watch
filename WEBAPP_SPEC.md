@@ -18,8 +18,8 @@ Single persona: a job-seeking professional (primarily technical — data scienti
 
 1. Land on marketing page → understand what the product does in 10 seconds
 2. Sign up with email
-3. Generate a `profile.md` using an AI prompt (copy prompt → paste into ChatGPT/Claude/Gemini → paste result back) — optional, can be added later in Settings
-4. Upload CV (PDF or paste text) — optional, can be added later in Settings
+3. Generate a `profile.md` using an AI prompt (copy prompt → paste into ChatGPT/Claude/Gemini → paste result back), upload an existing profile document, or paste text — optional, can be added later in Settings
+4. Upload CV (upload a document or paste text) — optional, can be added later in Settings
 5. Enter Gemini API key
 6. Configure filters (location, title denylist/allowlist, company exclusions)
 7. Trigger first scoring run → see digest
@@ -260,7 +260,7 @@ The prompt should explicitly mention that the output will be read by an LLM scor
 - Email auth
 - Onboarding flow (4 steps)
 - Profile prompt generator
-- CV upload (text paste + PDF/DOCX/TXT extract via MarkItDown)
+- CV + profile document upload (both flows accept `.md`, `.txt`, `.pdf`, `.docx`, `.doc`; `.md`/`.txt` read client-side, documents extracted via MarkItDown). Allowed types are centralized in `webapp/frontend/lib/uploadFormats.ts` (frontend) and `_DOC_EXTENSIONS`/`_TEXT_EXTENSIONS` in `webapp/backend/routers/user.py` (backend).
 - Filter configuration
 - Digest view with scoring
 - Mark as applied

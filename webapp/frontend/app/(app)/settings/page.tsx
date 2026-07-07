@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { AlertTriangle, Check, ChevronDown, ChevronRight } from 'lucide-react'
 import { supabase } from '@/lib/supabaseClient'
+import { ACCEPT_ATTR, extractUploadText } from '@/lib/uploadFormats'
 
 type Tab = 'profile' | 'cv' | 'filters' | 'apikey' | 'account'
 
@@ -265,22 +266,15 @@ export default function SettingsPage() {
     setSaving(false)
   }
 
-  function uploadMdFile(file: File) {
+  async function uploadMdFile(file: File) {
     setMdUploadError('')
-    if (!file.name.endsWith('.md') && file.type !== 'text/markdown' && file.type !== 'text/plain') {
-      setMdUploadError('Only .md files are supported')
-      return
-    }
-    if (file.size > 1024 * 1024) {
-      setMdUploadError('File must be under 1 MB')
-      return
-    }
-    const reader = new FileReader()
-    reader.onload = e => {
-      const text = e.target?.result as string
+    try {
+      const token = await getToken()
+      const text = await extractUploadText(file, token, process.env.NEXT_PUBLIC_API_URL!)
       setProfileMd(text)
+    } catch (err: unknown) {
+      setMdUploadError(err instanceof Error ? err.message : 'Could not read file')
     }
-    reader.readAsText(file, 'utf-8')
   }
 
   async function saveCv() {
@@ -305,33 +299,13 @@ export default function SettingsPage() {
   }
 
   async function uploadCvFile(file: File) {
-    const allowed = ['application/pdf', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/msword', 'text/plain']
-    if (!allowed.includes(file.type)) {
-      setPdfError('Only PDF, DOCX, and TXT files are supported')
-      return
-    }
-    if (file.size > 10 * 1024 * 1024) {
-      setPdfError('File must be under 10 MB')
-      return
-    }
     setPdfLoading(true)
     setPdfError('')
     try {
-      const buf = await file.arrayBuffer()
-      const bytes = new Uint8Array(buf)
-      let binary = ''
-      for (let i = 0; i < bytes.length; i++) binary += String.fromCharCode(bytes[i])
-      const b64 = btoa(binary)
       const token = await getToken()
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/user/parse-cv`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
-        body: JSON.stringify({ pdf_b64: b64, mime_type: file.type }),
-      })
-      const data = await res.json()
-      if (!res.ok) throw new Error(data.detail ?? 'Extraction failed')
-      setCvText(data.text)
-      const saveRes = await api('/user/cv', { method: 'PATCH', body: JSON.stringify({ cv_text: data.text }) })
+      const text = await extractUploadText(file, token, process.env.NEXT_PUBLIC_API_URL!)
+      setCvText(text)
+      const saveRes = await api('/user/cv', { method: 'PATCH', body: JSON.stringify({ cv_text: text }) })
       if (saveRes.ok) {
         const saved = await saveRes.json()
         setCvUpdatedAt(saved.cv_updated_at ?? null)
@@ -467,10 +441,10 @@ export default function SettingsPage() {
 
             {/* Path A: Upload .md */}
             <div>
-              <label className="text-sm text-muted block mb-1">Upload profile.md</label>
+              <label className="text-sm text-muted block mb-1">Upload profile (.md, .txt, .pdf, .docx, .doc)</label>
               <input
                 type="file"
-                accept=".md"
+                accept={ACCEPT_ATTR}
                 onChange={e => { const f = e.target.files?.[0]; if (f) uploadMdFile(f); e.target.value = '' }}
                 className={fileInputCls}
               />
@@ -527,10 +501,10 @@ export default function SettingsPage() {
             )}
             <div className="flex items-center justify-between">
               <div>
-                <label className="text-sm text-muted block mb-1">Upload CV (PDF, DOCX, TXT)</label>
+                <label className="text-sm text-muted block mb-1">Upload CV (.md, .txt, .pdf, .docx, .doc)</label>
                 <input
                   type="file"
-                  accept=".pdf,.docx,.doc,.txt"
+                  accept={ACCEPT_ATTR}
                   onChange={e => { const f = e.target.files?.[0]; if (f) uploadCvFile(f); e.target.value = '' }}
                   className={fileInputCls}
                 />
