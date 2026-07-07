@@ -119,8 +119,9 @@ the work is execution-shaped. Split into three children — run under
 | Slug | Title | Status | Effort | Depends on |
 |---|---|---|---|---|
 | [RAG_CHATBOT](future_devs/RAG_CHATBOT_SPEC.md) | RAG sandbox + chat epic (root + shared brief) | `not-started` | L | — |
-| [RAG_CORE](future_devs/RAG_CORE_SPEC.md) | `rag/` module: ingest + query + refresh (CLI-runnable retrieval core) | `completed` | M | RAG_CHATBOT |
-| [RAG_CHAT_API](future_devs/RAG_CHAT_API_SPEC.md) | `POST /api/chat` router over `rag/query.py` + rate limit | `not-started` | S | RAG_CORE |
+| [RAG_CORE](future_devs/archive/RAG_CORE_SPEC.md) | `rag/` module: ingest + query + refresh (CLI-runnable retrieval core) | `wrapped` | M | RAG_CHATBOT |
+| [RAG_EMBEDDINGS_BACKFILL](future_devs/RAG_EMBEDDINGS_BACKFILL_SPEC.md) | Finish full embedding ingest (blocked on free-tier 1k/day quota) + re-run golden set on complete store | `not-started` | XS | RAG_CORE ✅ |
+| [RAG_CHAT_API](future_devs/RAG_CHAT_API_SPEC.md) | `POST /api/chat` router over `rag/query.py` + rate limit | `not-started` | S | RAG_CORE ✅ |
 | [RAG_CHAT_UI](future_devs/RAG_CHAT_UI_SPEC.md) | `/chat` page + Sources panel + nav link | `not-started` | S | RAG_CHAT_API |
 
 ### Downstream
@@ -297,7 +298,8 @@ All Phase P12 tasks are wrapped. See `ROADMAP_ARCHIVE.md`.
 | `future_devs/archive/PROFILE_CV_GAP_ANALYSIS_SPEC.md` | P5 — Gap analysis: profile vs CV, positions vs CV (wrapped) |
 | `future_devs/archive/POSITION_FIRST_SEEN_SPEC.md` | P5 — Stamp first_seen date on each position; show in digest + webapp (wrapped) |
 | `future_devs/RAG_CHATBOT_SPEC.md` | P6 — RAG sandbox + chat epic (root + shared brief) |
-| `future_devs/RAG_CORE_SPEC.md` | P6 — RAG child 1: `rag/` retrieval core (ingest/query/refresh) |
+| `future_devs/archive/RAG_CORE_SPEC.md` | P6 — RAG child 1: `rag/` retrieval core (ingest/query/refresh) (wrapped) |
+| `future_devs/RAG_EMBEDDINGS_BACKFILL_SPEC.md` | P6 — RAG follow-up: finish full embedding ingest + golden set |
 | `future_devs/RAG_CHAT_API_SPEC.md` | P6 — RAG child 2: `/api/chat` router |
 | `future_devs/RAG_CHAT_UI_SPEC.md` | P6 — RAG child 3: `/chat` frontend page |
 | `future_devs/MULTI_AGENT_RESUME_TAILOR_SPEC.md` | P6 — Multi-agent CV tailor |
