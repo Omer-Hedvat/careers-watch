@@ -229,7 +229,9 @@ def test_successfactors_schema():
     _assert_schema(results)
     assert len(results) == 2
     assert results[0]["title"] == "ML Engineer"
-    assert results[0]["location"] == "Tel Aviv, IL, 12345"
+    # Bare ISO code "IL" is expanded so an "israel" location_filter still matches.
+    assert results[0]["location"] == "Tel Aviv, IL, 12345, Israel"
+    assert "israel" in results[0]["location"].lower()
     assert results[0]["apply_url"].endswith("/job/Tel-Aviv-ML-Engineer-1234/9999/")
     # HTML entities (incl. double-encoded &amp;apos;) must be decoded in titles+URLs.
     assert results[1]["title"] == "Data & ML Scientist"

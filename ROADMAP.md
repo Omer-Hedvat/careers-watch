@@ -104,6 +104,7 @@ All Phase P2 tasks are wrapped. See `ROADMAP_ARCHIVE.md`.
 | [POSITION_FIRST_SEEN](future_devs/archive/POSITION_FIRST_SEEN_SPEC.md) | Stamp first_seen date on each position — persist across daily runs, show in digest + webapp cards | `wrapped` | S | — |
 | [WEBAPP_POSITIONS_TOTAL_COUNT](future_devs/WEBAPP_POSITIONS_TOTAL_COUNT_SPEC.md) | Positions page: show "n suitable out of N collected" instead of bare count | `not-started` | XS | WEBAPP_POSITIONS_VIEW ✅ |
 | [WEBAPP_POSITIONS_CATALOG_SYNC](future_devs/WEBAPP_POSITIONS_CATALOG_SYNC_SPEC.md) | Shared `positions` catalog auto-synced from pipeline — Positions page shows the full market to every user, not per-user scored_jobs | `in-progress` | S | WEBAPP_POSITIONS_VIEW ✅ |
+| [WEBAPP_POSITIONS_DETAIL_VIEW](future_devs/WEBAPP_POSITIONS_DETAIL_VIEW_SPEC.md) | Positions page: clicking a position opens an in-app detail view (reuse digest slide-over) with a link out to the posting, instead of navigating straight out | `not-started` | S | WEBAPP_POSITIONS_VIEW ✅ |
 
 ---
 
@@ -237,7 +238,6 @@ enable server-side `fallbacks` to `claude-opus-4-8` for cyber-content refusals.
 
 | Slug | Title | Status | Effort | Depends on |
 |---|---|---|---|---|
-| [ATS_PULLER_HARDENING_AUDIT](future_devs/ATS_PULLER_HARDENING_AUDIT_SPEC.md) | Repo-wide ATS puller correctness + resilience audit | `completed` | M | — |
 | [PIPELINE_FAILURE_RESILIENCE](future_devs/PIPELINE_FAILURE_RESILIENCE_SPEC.md) | Diagnose + harden intermittent collect/score/refresh failures | `not-started` | M | — |
 
 ---
@@ -293,6 +293,7 @@ All Phase P12 tasks are wrapped. See `ROADMAP_ARCHIVE.md`.
 | `future_devs/archive/WEBAPP_COUNTUP_ANIMATION_SPEC.md` | P5 — Count-up animation on Companies + Positions page load (wrapped) |
 | `future_devs/archive/WEBAPP_POSITIONS_VIEW_SPEC.md` | P5 — Positions page (wrapped) |
 | `future_devs/WEBAPP_POSITIONS_TOTAL_COUNT_SPEC.md` | P5 — Positions page: "n suitable out of N collected" header count |
+| `future_devs/WEBAPP_POSITIONS_DETAIL_VIEW_SPEC.md` | P5 — Positions page: in-app detail view on row click + link out to posting |
 | `future_devs/archive/WEBAPP_MULTI_FILTER_SPEC.md` | P5 — Multi-value filters with ';' (wrapped) |
 | `future_devs/archive/PROFILE_CV_GAP_ANALYSIS_SPEC.md` | P5 — Gap analysis: profile vs CV, positions vs CV (wrapped) |
 | `future_devs/archive/POSITION_FIRST_SEEN_SPEC.md` | P5 — Stamp first_seen date on each position; show in digest + webapp (wrapped) |
@@ -342,6 +343,6 @@ All Phase P12 tasks are wrapped. See `ROADMAP_ARCHIVE.md`.
 | `future_devs/archive/WEBAPP_LANDING_VISUAL_SPEC.md` | P10 — Landing visual glow-up + reuse real JobCard (wrapped) |
 | `future_devs/archive/WEBAPP_ICONOGRAPHY_MOTION_SPEC.md` | P10 — Unify on lucide-react + micro-interactions (wrapped) |
 | `future_devs/archive/WEBAPP_ONBOARDING_VISUAL_SPEC.md` | P10 — Onboarding wizard visual polish (wrapped) |
-| `future_devs/ATS_PULLER_HARDENING_AUDIT_SPEC.md` | P11 — Repo-wide ATS puller correctness + resilience audit (Fable) |
+| `future_devs/archive/ATS_PULLER_HARDENING_AUDIT_SPEC.md` | P11 — Repo-wide ATS puller correctness + resilience audit (Fable, wrapped) |
 | `future_devs/PIPELINE_FAILURE_RESILIENCE_SPEC.md` | P11 — Diagnose + harden intermittent pipeline failures (Fable) |
 | `future_devs/archive/WEBAPP_VISUAL_REDESIGN_V2_SPEC.md` | P12 — Bold visual re-identity + light/dark theme toggle (Fable, wrapped) |

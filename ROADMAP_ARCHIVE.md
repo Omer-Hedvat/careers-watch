@@ -178,6 +178,14 @@ Wrapped features only. Active work lives in `ROADMAP.md`.
 
 ---
 
+## Phase P11 — Pipeline reliability & hardening
+
+| Feature | Spec | Effort | Status |
+|---|---|---|---|
+| Repo-wide ATS puller correctness + resilience audit — fixed SuccessFactors ISO-code locations (0/7→7/7 Israel jobs), Workday "N Locations" collapse, teamme city+country join, talentbrew shared strip_html; added `expand_country`/`qualify_location` helpers + 9 regression tests | `future_devs/archive/ATS_PULLER_HARDENING_AUDIT_SPEC.md` | M | `wrapped` |
+
+---
+
 ## Phase P12 — Webapp visual re-identity v2
 
 | Feature | Spec | Effort | Status |

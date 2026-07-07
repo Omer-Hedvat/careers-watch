@@ -22,13 +22,13 @@ import sys
 import httpx
 
 try:
-    from ats.utils import HEADERS, strip_html as _strip_html
+    from ats.utils import HEADERS, expand_country, strip_html as _strip_html
 except ModuleNotFoundError:
     # Allow running as a script from the repo root: uv run ats/teamme.py <tenant>
     import os as _os
 
     sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__))))
-    from ats.utils import HEADERS, strip_html as _strip_html
+    from ats.utils import HEADERS, expand_country, strip_html as _strip_html
 
 
 # Captures every self.__next_f.push([1, "<escaped JSON-ish string>"]) call.
@@ -68,17 +68,25 @@ def _extract_jobpostings(html: str) -> list[dict]:
 def _location_str(jp: dict) -> str:
     """Flatten the schema.org jobLocation / applicantLocationRequirements field."""
     loc = jp.get("jobLocation")
+    if isinstance(loc, list) and loc:
+        loc = loc[0]
     if isinstance(loc, dict):
         addr = loc.get("address") or {}
         if isinstance(addr, dict):
-            v = addr.get("addressLocality") or addr.get("addressRegion") or addr.get("addressCountry")
-            if v:
-                return str(v)
+            city = str(addr.get("addressLocality") or addr.get("addressRegion") or "").strip()
+            country = str(addr.get("addressCountry") or "").strip()
+            # addressCountry may be a bare ISO code — expand so location_filter
+            # (a substring match) can match on the country name, not just the city.
+            if len(country) == 2:
+                country = expand_country(country)
+            parts = [p for p in (city, country) if p]
+            if len(parts) == 2 and parts[0].lower() == parts[1].lower():
+                parts = parts[:1]
+            if parts:
+                return ", ".join(parts)
         name = loc.get("name")
         if name:
             return str(name)
-    elif isinstance(loc, list) and loc:
-        return _location_str({"jobLocation": loc[0]})
 
     # Remote-only roles use applicantLocationRequirements instead of jobLocation
     alr = jp.get("applicantLocationRequirements")

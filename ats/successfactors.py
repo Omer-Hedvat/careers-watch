@@ -34,13 +34,13 @@ from urllib.parse import urljoin
 import httpx
 
 try:
-    from ats.utils import HEADERS, strip_html as _strip_html
+    from ats.utils import HEADERS, qualify_location, strip_html as _strip_html
 except ModuleNotFoundError:
     # Allow running as a script from the repo root: uv run ats/successfactors.py <tenant>
     import os as _os
 
     sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__))))
-    from ats.utils import HEADERS, strip_html as _strip_html
+    from ats.utils import HEADERS, qualify_location, strip_html as _strip_html
 
 
 # Each posting on a jobs2web /search/ page is wrapped in <tr class="data-row">.
@@ -194,7 +194,9 @@ def fetch_positions(
             location = ""
             loc_m = _LOCATION_RE.search(row)
             if loc_m:
-                location = _clean(loc_m.group(1))
+                # jobs2web emits a bare ISO code ("Ra'anana, IL, ...") — expand it
+                # so location_filter can match on the country name.
+                location = qualify_location(_clean(loc_m.group(1)))
 
             results.append(
                 {
