@@ -1,8 +1,14 @@
+import re
+
 import httpx
 
 from ats.utils import HEADERS, strip_html as _strip_html
 
 _JSON_HEADERS = {**HEADERS, "Content-Type": "application/json"}
+# Workday collapses a multi-location posting's list-view text to "N Locations",
+# which hides the actual cities/countries from location_filter. Detect it so we
+# can substitute the full location set from the per-job detail endpoint.
+_COLLAPSED_LOC_RE = re.compile(r"^\s*\d+\s+locations?\s*$", re.IGNORECASE)
 
 
 def fetch_positions(tenant: str, wd_instance: str, job_site: str) -> list[dict]:
@@ -56,8 +62,16 @@ def fetch_positions(tenant: str, wd_instance: str, job_site: str) -> list[dict]:
             try:
                 dr = httpx.get(detail_url, timeout=10, headers=HEADERS)
                 if dr.status_code == 200:
-                    raw = dr.json().get("jobPostingInfo", {}).get("jobDescription", "")
-                    description = _strip_html(raw)[:4000]
+                    info = dr.json().get("jobPostingInfo", {})
+                    description = _strip_html(info.get("jobDescription", ""))[:4000]
+                    # If the list view hid the real locations behind "N Locations"
+                    # (or gave nothing), rebuild the string from the detail payload
+                    # so a bundled Israel role isn't silently dropped by the filter.
+                    if not location or _COLLAPSED_LOC_RE.match(location):
+                        locs = [info.get("location", "")] + (info.get("additionalLocations") or [])
+                        locs = [loc for loc in locs if loc]
+                        if locs:
+                            location = ", ".join(locs)
             except Exception:
                 pass
 

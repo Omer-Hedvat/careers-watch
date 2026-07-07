@@ -22,13 +22,13 @@ import sys
 import httpx
 
 try:
-    from ats.utils import HEADERS
+    from ats.utils import HEADERS, strip_html as _strip_html
 except ModuleNotFoundError:
     # Allow running as a script from the repo root: uv run ats/talentbrew.py <host>
     import os as _os
 
     sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__))))
-    from ats.utils import HEADERS
+    from ats.utils import HEADERS, strip_html as _strip_html
 
 SEARCH_SECTION_RE = re.compile(
     r'<section\s+id="search-results"[^>]*'
@@ -51,7 +51,7 @@ LOCATION_RE = re.compile(
 
 
 def _clean(text: str) -> str:
-    return re.sub(r"<[^>]+>", " ", text).strip()
+    return re.sub(r"\s+", " ", _strip_html(text)).strip()
 
 
 def fetch_positions(host: str, facet: str = "israel") -> list[dict]:
