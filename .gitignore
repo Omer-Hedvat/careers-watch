@@ -15,6 +15,9 @@ new_jobs.json
 *.db
 *.sqlite
 
+# RAG vector store (rebuildable artifact - never commit)
+rag/.chroma/
+
 # OS
 .DS_Store
 Thumbs.db
