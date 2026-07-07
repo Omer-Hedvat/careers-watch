@@ -148,7 +148,13 @@ brand-new user with no profile or scoring still sees all open roles.
 - Source: the global `positions` table (NOT the per-user `scored_jobs` table).
   Backed by `GET /jobs/positions`, which reads the shared table without scoping
   by user and returns `score: null` for every row.
-- Per-row: company, title, location, apply link. No score, no ranking.
+- Per-row: company, title, location. No score, no ranking.
+- Clicking a row opens an in-app detail slide-over (shared `DetailPanel` shell,
+  same chrome as the Digest job detail) showing the position's company, title,
+  and location plus a **Go to posting →** link out to the original ATS page.
+  The shared catalog stores no description, so the panel notes that and points
+  to the posting; a row with no `apply_url` still opens but omits the link.
+  Closed positions stay dimmed and non-interactive.
 - Sorted by company, then title. Client-side search + pagination (50/page).
 - Populated by `scripts/sync_positions.py` from `new_jobs.json` on each collect
   run (upsert live set + prune stale) — see Scheduling below.
