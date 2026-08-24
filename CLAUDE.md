@@ -197,6 +197,17 @@ This is plumbing - scrape, score, surface. The mission is not to expand into a f
 
 If a request feels like mission expansion, surface that to Omer before implementing.
 
+## Reference implementations (read, do not vendor)
+
+Local read-only clone of the closest prior art. Consult before designing, cite in the spec.
+
+| Building | Read first |
+|---|---|
+| The scorer eval harness (P13), or any grader / golden-set / pass@k work | `/Users/omerhedvat/git/ECC/skills/eval-harness/SKILL.md` — eval-driven-development vocabulary, capability vs regression evals, the three grader types, pass@k. Structure only; it ships no runnable harness. |
+| Model routing, batch cost control, or budget caps on Gemini calls | `/Users/omerhedvat/git/ECC/skills/cost-aware-llm-pipeline/SKILL.md` — complexity-based model selection and an immutable `CostTracker`. Its thresholds are hand-tuned, so treat them as a starting shape, not as tuned values. |
+
+MIT-licensed. Borrowing structure is fine; copying code requires attribution.
+
 ## Task management
 
 This project uses a lightweight task system modeled on the PowerME project. Read before filing or starting any task.
@@ -238,6 +249,20 @@ uv run python score.py --dry-run
 
 Both must pass with no errors.
 
+### Scoring changes are gated on the eval
+
+`matcher/gemini_scorer.py` produces the number the entire digest is ranked by, and it is
+currently unmeasured. Before changing the scoring prompt, rubric, batch size, or model:
+
+1. If `evals/` does not exist yet, the change you are about to make is unmeasurable — say so
+   to the user and offer `future_devs/SCORER_EVAL_HARNESS_SPEC.md` (P13) first. Do not
+   silently proceed and do not claim the change is an improvement.
+2. If `evals/` exists, run `uv run python evals/run_eval.py --baseline evals/baseline.json`
+   before and after. Report both numbers. A change that moves band accuracy or hard-filter
+   recall down is a regression regardless of how much better the new prompt reads.
+
+This is the repo's instance of the honesty rule: **no scoring claim without an eval behind it.**
+
 ### Domain → Spec routing
 
 When you touch these files, update the corresponding spec:
@@ -245,7 +270,9 @@ When you touch these files, update the corresponding spec:
 | Files touched | Spec to update |
 |---|---|
 | `score.py` | `CLAUDE.md` architecture section |
-| `matcher/gemini_scorer.py` | `CLAUDE.md` architecture section |
+| `matcher/gemini_scorer.py` | `CLAUDE.md` architecture section **+ `future_devs/SCORER_EVAL_HARNESS_SPEC.md`** |
+| `profile.md`, `cv.md`, `profiles/*/score_config.json` (scoring rubric) | `docs/scoring_calibration.md` **+ `future_devs/SCORER_EVAL_HARNESS_SPEC.md`** |
+| `evals/*` | `future_devs/SCORER_EVAL_HARNESS_SPEC.md` |
 | `collect_jobs.py` | `CLAUDE.md` architecture section |
 | `refresh_companies.py` | `CLAUDE.md` architecture section |
 | `ats/*.py` | `CLAUDE.md` Adding a new ATS section |
