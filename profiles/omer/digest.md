@@ -2,6 +2,76 @@
 
 *27 applied positions hidden.*
 
+## 2026-07-06
+
+### **Microsoft Israel** - [Principal Security Research - Microsoft Security](https://apply.careers.microsoft.com/careers/job/1970393556918902)
+**Score:** 10/10 | **Location:** Israel, Multiple Locations, Multiple Locations | **Applied:** 0 | **First seen:** 2026-07-04
+**Reasoning:** This is a Principal-level applied security research role at a top company, perfectly aligning with the candidate's adversarial ML background, leadership aspirations, and production-first mindset.
+
+### **Reco** - [Security Research Team Lead](https://www.comeet.com/jobs/reco/3A.00D/security-research-team-lead/85.D67)
+**Score:** 10/10 | **Location:** Tel Aviv, Israel | **Applied:** 0 | **First seen:** 2026-07-04
+**Reasoning:** This Security Research Team Lead role directly aligns with the candidate's adversarial ML expertise, leadership experience, and focus on developing advanced, production-oriented threat detection logic in an AI-driven security domain.
+
+### **Cyera** - [Full Stack Team Lead - AI team](https://www.comeet.com/jobs/cyera/17.008/full-stack-team-lead---ai-team/74.D69)
+**Score:** 9/10 | **Location:** Tel Aviv, Israel | **Applied:** 0 | **First seen:** 2026-07-04
+**Reasoning:** This leadership role on an AI team at a top cyber security company perfectly aligns with the candidate's applied AI interests, production ML experience, and leadership aspirations, despite the 'Full Stack' title.
+
+### **SentinelOne** - [Staff AI Engineer, Prompt](https://www.sentinelone.com/jobs/7789715003?gh_jid=7789715003)
+**Score:** 9/10 | **Location:** Tel Aviv-Yafo, Tel Aviv District, Israel | **Applied:** 0 | **First seen:** 2026-07-04
+**Reasoning:** Excellent company, location, and domain, with "Staff" level and end-to-end project leadership, perfectly aligning with the acceptable "Applied AI Engineer" definition for security products. `lead-path-implied` `title-laundering`
+
+### **SentinelOne** - [Staff Data Scientist](https://www.sentinelone.com/jobs/7769463003?gh_jid=7769463003)
+**Score:** 9/10 | **Location:** Tel Aviv-Yafo, Tel Aviv District, Israel | **Applied:** 0 | **First seen:** 2026-07-04
+**Reasoning:** Excellent company, location, and domain, with "Staff" level and clear end-to-end production ML ownership, aligning perfectly with desired senior roles and leadership aspirations. `lead-path-implied` `title-laundering`
+
+### **Cato Networks** - [Lead Security Researcher - AI Threat Intelligence](https://www.catonetworks.com/careers/careers-post/4897189101?gh_jid=4897189101)
+**Score:** 8/10 | **Location:** Tel Aviv District, Israel | **Applied:** 0 | **First seen:** 2026-07-04
+**Reasoning:** Excellent domain, location, and the "Lead" title strongly aligns with leadership goals, with applied research building tools for threat detection, but the travel commitment is significant. `researcher-title` `heavy-travel`
+
+### **Oligo Security** - [AI Security Researcher](https://www.comeet.com/jobs/oligosecurity/5A.00B/ai-security-researcher/5C.86A)
+**Score:** 8/10 | **Location:** Tel Aviv, Israel | **Applied:** 0 | **First seen:** 2026-07-04
+**Reasoning:** This is a strong fit with the candidate's adversarial ML and cyber security background, focusing on applied AI security research that leads to deployed production-grade capabilities. `cyber-security` `applied-ai-security` `production-focus`
+
+### **Wiz** - [Applied Security Researcher](https://www.wiz.io/careers/job/4692874006/:title?gh_jid=4692874006)
+**Score:** 7/10 | **Location:** Tel Aviv | **Applied:** 0 | **First seen:** 2026-07-04
+**Reasoning:** Strong company, location, and domain; the "Applied Security Researcher" role involves prototypes and product integration, mitigating pure research concerns, but it's not a core Data Scientist title. `researcher-title` `no-explicit-lead-title`
+
+### **Bright Data** - [Senior Developer - AI Engineer](https://www.comeet.com/jobs/brightdata/88.007/senior-developer---ai-engineer/4F.F5B)
+**Score:** 7/10 | **Location:** Bright Data, Israel | **Applied:** 0 | **First seen:** 2026-07-04
+**Reasoning:** The role focuses on building AI-powered features for a product, aligning with the candidate's desire for applied production ML where AI is a tool, even if the domain is neutral and the title has 'Developer'. `applied-ai` `production-focus` `domain-neutral`
+
+### **Onyx Security** - [AI Researcher](https://www.comeet.com/jobs/onyxsecurity/BA.005/ai-researcher/8C.56A)
+**Score:** 6/10 | **Location:** Tel Aviv, Israel | **Applied:** 0 | **First seen:** 2026-07-04
+**Reasoning:** Strong domain, location, and VC tier, with applied AI security research translating into product capabilities, but lacks explicit seniority and is not a direct Data Scientist role. `researcher-title` `no-explicit-seniority` `no-explicit-lead-path`
+
+### **Oligo Security** - [Linux Security Researcher](https://www.comeet.com/jobs/oligosecurity/5A.00B/linux-security-researcher/DC.952)
+**Score:** 6/10 | **Location:** Tel Aviv, Israel | **Applied:** 0 | **First seen:** 2026-07-04
+**Reasoning:** The role is in cyber security with a production component and some AI mention, but the 'Linux Security' focus suggests a heavier emphasis on low-level security research rather than core ML system development. `cyber-security` `research-focus` `infra-leaning`
+
+### **Tenzai** - [Application Security Researcher](https://www.comeet.com/jobs/tenzai/1B.002/application-security-researcher/69.86D)
+**Score:** 6/10 | **Location:** Tel Aviv, Israel | **Applied:** 0 | **First seen:** 2026-07-04
+**Reasoning:** The role is in a strong cyber security domain with an AI component and adversarial context, but focuses more on offensive security research and improving AI agents than building end-to-end ML detection systems. `cyber-security` `research-focus` `offensive-security-ai`
+
+### **Buildots** - [*Full-Stack Team Lead](https://www.comeet.com/jobs/buildots/36.004/full-stack-team-lead/26.557)
+**Score:** 5/10 | **Location:** Tel-Aviv, Israel | **Applied:** 0 | **First seen:** 2026-07-04
+**Reasoning:** This Full-Stack Team Lead role offers leadership and technical overlap with Python, AWS, and LLM tooling, but it is not a Data Science or production ML leadership position. `not-data-science-lead` `full-stack-focus` `lead-path-implied`
+
+### **Aqua Security** - [Senior Security Researcher](https://www.comeet.com/jobs/aquasec/91.001/senior-security-researcher/03.36A)
+**Score:** 5/10 | **Location:** Ramat-Gan, Israel | **Applied:** 0 | **First seen:** 2026-07-04
+**Reasoning:** Good company, location, and domain, but the role focuses heavily on "Security Research" and reverse engineering rather than production ML system building, with no explicit leadership path. `researcher-title` `no-explicit-lead-path` `less-ml-focused`
+
+### **Onyx Security** - [Security Researcher](https://www.comeet.com/jobs/onyxsecurity/BA.005/security-researcher/97.76D)
+**Score:** 5/10 | **Location:** Tel Aviv, Israel | **Applied:** 0 | **First seen:** 2026-07-04
+**Reasoning:** Strong domain, location, and VC tier, with security research contributing to product capabilities, but it's less ML-centric and lacks explicit seniority or leadership. `researcher-title` `no-explicit-seniority` `no-explicit-lead-path` `less-ml-focused`
+
+### **Tenzai** - [Senior Security Researcher](https://www.comeet.com/jobs/tenzai/1B.002/senior-security-researcher/2B.96E)
+**Score:** 5/10 | **Location:** Tel Aviv, Israel | **Applied:** 0 | **First seen:** 2026-07-04
+**Reasoning:** The role is in a strong cyber security domain, but the description emphasizes cutting-edge research and sharpening AI without a clear focus on building and deploying production ML systems. `cyber-security` `pure-research-leaning` `offensive-security-ai`
+
+### **SafeBreach** - [Offensive Security Researcher](https://job-boards.greenhouse.io/safebreach/jobs/4297569009)
+**Score:** 5/10 | **Location:** Israel | **Applied:** 0 | **First seen:** 2026-07-04
+**Reasoning:** While the cybersecurity and adversarial AI domain is a strong fit, this is an offensive security research role, not a production ML or data science position, lacking clear end-to-end ML ownership or a lead path. `wrong-craft` `pure-security-research` `no-ml-ownership` `lead-path-missing`
+
 ## 2026-06-17
 
 ### **Melio** - [Senior Data Scientist ](https://job-boards.greenhouse.io/melio/jobs/7765818003)
@@ -66,10 +136,6 @@
 **Score:** 10/10 | **Location:** Tel Aviv, Israel | **Applied:** 0
 **Reasoning:** This AI Engineer role in identity security involves driving technical direction, end-to-end production ML ownership, and LLM integration as a tool for a core product, aligning perfectly with Omer's lead aspirations and expertise. `title-laundering` `lead-path-implied`
 
-### **JFrog** - [R&D Team Lead -JFrog Security](https://join.jfrog.com/job/?job=7920898&gh_jid=7920898)
-**Score:** 9/10 | **Location:** Tel Aviv/ Netanya, Israel | **Applied:** 0
-**Reasoning:** This is a strong R&D Team Lead role in cybersecurity, perfectly aligning with the candidate's desire for leadership in production ML within an adversarial domain and within his commute radius. `people-management-context`
-
 ### **Cyera** - [Data Scientist  - DLP](https://www.comeet.com/jobs/cyera/17.008/data-scientist----dlp/24.C60)
 **Score:** 9/10 | **Location:** Tel Aviv, Israel | **Applied:** 0
 **Reasoning:** This is a strong senior data scientist role in a preferred cybersecurity domain with clear end-to-end production ML ownership and lead-level influence.
@@ -98,27 +164,11 @@
 **Score:** 6/10 | **Location:** Herzliya, Israel | **Applied:** 0
 **Reasoning:** This role features strong production ML ownership at a relevant startup with good location, but the 'AI Researcher' title and robotics domain are not ideal matches for the candidate's primary experience or lead aspirations. `title-misleading-research` `lead-path-unclear` `not-adversarial-domain`
 
-### **Monday** - [Engineering Team Lead - Sidekick Group](https://www.comeet.com/jobs/monday/41.00B/engineering-team-lead---sidekick-group/C4.062)
-**Score:** 5/10 | **Location:** Tel-Aviv, Israel | **Applied:** 0
-**Reasoning:** While a Team Lead role in AI at a good company and location, the focus on leading full-stack engineers with a non-matching tech stack makes it a weaker fit for the candidate's specialized ML engineering craft. `craft-mismatch` `stack-mismatch`
-
-### **Kiva Systems (Amazon Robotics since 2012)** - [Applied scientist, Agentic AI, AWS Agentic AI](https://www.amazon.jobs/en/jobs/10430758/applied-scientist-agentic-ai-aws-agentic-ai)
-**Score:** 5/10 | **Location:** Tel Aviv-Yafo, Tel Aviv, ISR | **Applied:** 0
-**Reasoning:** The role leans heavily into advanced research in agentic AI, RL, and multimodal models with an emphasis on publishing, which is a weaker fit for Omer's production-first, specialized ML background. `pure-research-component` `llm-specialist-focus` `skill-mismatch`
-
-### **Kiva Systems (Amazon Robotics since 2012)** - [Applied scientist, Agentic AI, AWS Agentic AI](https://www.amazon.jobs/en/jobs/3196112/applied-scientist-agentic-ai-aws-agentic-ai)
-**Score:** 5/10 | **Location:** Tel Aviv-Yafo, Tel Aviv, ISR | **Applied:** 0
-**Reasoning:** Despite being at a top company with a good location, the role's primary focus on pure LLM/Agentic AI development is a weaker fit for the candidate's specialization. `pure-llm-product` `research-component`
-
 ## 2026-06-01
 
 ### **Zeroport** - [Senior AI Engineer](https://www.comeet.com/jobs/zeroport/7A.00E/senior-ai-engineer/D9.960)
 **Score:** 9/10 | **Location:** Herzliya, Israel | **Applied:** 0
 **Reasoning:** This Senior AI Engineer role offers deep technical ownership in a strong-fit cyber security domain, utilizing multimodal AI agents for threat detection at the edge with clear production focus, aligning perfectly with the candidate's adversarial ML expertise. `cyber-domain` `llm-as-tool` `e2e-ownership` `lead-path-implied`
-
-### **Orchid Security** - [Senior AI Engineer](https://www.comeet.com/jobs/orchid_security/4A.001/senior-ai-engineer/53.359)
-**Score:** 8/10 | **Location:** Tel- Aviv, Israel | **Applied:** 0
-**Reasoning:** This Senior AI Engineer role is in the strong-fit cybersecurity domain, involves architectural ownership of agentic systems for identity risk, and uses LLMs as a tool to serve the product, aligning well with the candidate's applied production ML expertise. `cyber-domain` `llm-as-tool` `lead-path-implied` `e2e-ownership`
 
 ### **Datarails** - [AI Researcher](https://job-boards.greenhouse.io/datarails/jobs/4164316009)
 **Score:** 7/10 | **Location:** Tel Aviv-Yafo, Tel Aviv District, Israel | **Applied:** 0
@@ -130,39 +180,11 @@
 
 ## 2026-05-17
 
-### **Claroty** - [Vulnerability Research Team Lead](https://claroty.teamme.link/jobs/94.A63)
-**Score:** 9/10 | **Location:** Israel | **Applied:** 0
-**Reasoning:** This Team Lead role is an excellent fit, aligning with the candidate's leadership aspirations and deep adversarial ML experience in cloud security.
-
-### **Google Israel** - [Staff Data Scientist, GenAI and Agentic SOC](https://www.google.com/about/careers/applications/jobs/results/110451722916111046)
-**Score:** 9/10 | **Location:** Ramat Gan, Israel; Tel Aviv, Israel | **Applied:** 0
-**Reasoning:** This Staff Data Scientist role at Google strongly aligns with Omer's technical leadership, production ML expertise, and adversarial domain experience, focusing on applied AI in cybersecurity within a preferred large company and location. `lead-path-explicit` `experience-gap-minor`
-
 ### **Wiz** - [AI Security Researcher   ](https://www.wiz.io/careers/job/4681239006/:title?gh_jid=4681239006)
 **Score:** 8/10 | **Location:** Tel Aviv | **Applied:** 0
 **Reasoning:** This role offers a senior-level applied AI security research position at a top company, with a strong focus on translating research into production capabilities in a highly relevant adversarial domain. `applied-research-strong-fit`
 
-### **PayPal Israel** - [Sr Machine Learning Scientist](https://paypal.eightfold.ai/careers/job/274918502425)
-**Score:** 8/10 | **Location:** Tel Aviv, Tel Aviv District, Israel | **Applied:** 0
-**Reasoning:** This role is a strong senior production ML position with explicit end-to-end ownership and deployment responsibilities, perfectly matching Omer's core skills and experience at a large, relevant company.
-
-### **Varonis** - [Senior Machine Learning Engineer (MLE)](https://jobs.jobvite.com/varonis/job/oLtQzfwn)
-**Score:** 6/10 | **Location:** Israel | **Applied:** 0
-**Reasoning:** Despite the strong title and relevant domain, the empty job description prevents a full assessment of production ML ownership or lead opportunities. `job-description-missing` `location-unclear`
-
-### **Monday** - [Engineering Team Lead](https://www.comeet.com/jobs/monday/41.00B/engineering-team-lead/72.B62)
-**Score:** 5/10 | **Location:** Tel-Aviv, Israel | **Applied:** 0
-**Reasoning:** A leadership role in a strong company and location, but the focus on 'Engineering Team Lead' for a 'marketing engine' suggests a primary craft mismatch from core production ML Data Science. `wrong-craft` `infra-focus` `management-gap`
-
 ## 2026-05-14
-
-### **Monday** - [Engineering Team Lead - Payments](https://www.comeet.com/jobs/monday/41.00B/engineering-team-lead---payments/B3.A44)
-**Score:** 9/10 | **Location:** Tel-Aviv, Israel | **Applied:** 0
-**Reasoning:** This "Engineering Team Lead" role perfectly aligns with the candidate's expertise in fintech fraud and payments risk, offers substantial team leadership, and is at a large company in a good location. `engineering-lead` `payments-fraud` `strong-domain-fit` `management-fit`
-
-### **Monday** - [Engineering Team Lead -Enterprise Core](https://www.comeet.com/jobs/monday/41.00B/engineering-team-lead--enterprise-core/2F.362)
-**Score:** 8/10 | **Location:** Tel-Aviv, Israel | **Applied:** 0
-**Reasoning:** This "Engineering Team Lead" role offers strong management responsibility and is in a highly relevant enterprise security and governance domain at a large company, closely matching the candidate's cloud security expertise. `engineering-lead` `enterprise-security` `strong-domain-fit` `management-fit`
 
 ### **Dream** - [Engineering Team Leader - AI Application Foundation](https://www.comeet.com/jobs/dreamgroup/99.002/engineering-team-leader---ai-application-foundation/E1.F50)
 **Score:** 7/10 | **Location:** Tel Aviv | **Applied:** 0
@@ -180,17 +202,9 @@
 **Score:** 6/10 | **Location:** Tel Aviv | **Applied:** 0
 **Reasoning:** This role is a good fit in domain, location, and seniority, but the "AI Research" suffix and lack of explicit production or lead responsibilities prevent a higher score, raising concerns about a pure research focus or LLM-centricity. `research-focus` `llm-centric`
 
-### **Monday** - [Engineering Team Lead - monday Service](https://www.comeet.com/jobs/monday/41.00B/engineering-team-lead---monday-service/1B.D5A)
-**Score:** 6/10 | **Location:** Tel-Aviv, Israel | **Applied:** 0
-**Reasoning:** This "Engineering Team Lead" role offers excellent management responsibility and lead title at a large company in a good location, but the core focus is on building AI agent products outside the candidate's preferred security/fraud domain. `engineering-lead` `llm-as-product` `wrong-domain` `management-fit`
-
 ### **Harmonya** - [Senior Data Science](https://www.comeet.com/jobs/harmonya/89.004/senior-data-science/F6.867)
 **Score:** 6/10 | **Location:** Tel Aviv, Israel | **Applied:** 0
 **Reasoning:** The role has strong technical leadership aspects and is production-grade, but the domain is retail/CPG and the reliance on LLMs as the product's core technology makes it a weaker fit than desired. `wrong-domain` `llm-focus-not-security` `lead-path-implied`
-
-### **Cardinalops** - [Team Lead Data Scientist](https://boards.greenhouse.io/pagayais/jobs/7589574003)
-**Score:** 6/10 | **Location:** Tel Aviv-Yafo, Israel | **Applied:** 0
-**Reasoning:** The Team Lead title and Tel Aviv location are strong fits, but the lack of a job description prevents confirming domain alignment and specific team management responsibilities. `description-missing` `domain-unclear` `management-gap`
 
 ### **Dream** - [AI Cyber Security Researcher- Posture](https://www.comeet.com/jobs/dreamgroup/99.002/ai-cyber-security-researcher--posture/1C.46A)
 **Score:** 5/10 | **Location:** Tel Aviv | **Applied:** 0
@@ -208,19 +222,7 @@
 **Score:** 5/10 | **Location:** Tel Aviv | **Applied:** 0
 **Reasoning:** The role focuses on general threat intelligence research and 'Cyber Language Models' as a central product, not a lead DS role in Omer's target domain. `pure-llm-product` `research-focus` `ic-role-no-lead-path`
 
-### **Monday** - [AI Engineering Tech Lead (Core Engineering)](https://www.comeet.com/jobs/monday/41.00B/ai-engineering-tech-lead-core-engineering/8A.052)
-**Score:** 5/10 | **Location:** Tel-Aviv, Israel | **Applied:** 0
-**Reasoning:** The "Tech Lead" title is a strong fit for the candidate's career goals, but the company's domain is general productivity AI, likely an LLM-centric product role which is a weak fit. `tech-lead` `llm-as-product-unclear` `wrong-domain`
-
-### **Monday** - [Full Stack Data Scientist (DevEx Internal AI)](https://www.comeet.com/jobs/monday/41.00B/full-stack-data-scientist-devex-internal-ai/0F.E5C)
-**Score:** 5/10 | **Location:** Tel-Aviv, Israel | **Applied:** 0
-**Reasoning:** While a senior production DS role at a large company, the domain of internal DevEx AI is not Omer's specialized adversarial domain, and it focuses heavily on generative AI. `wrong-domain` `llm-focus-not-security`
-
 ## 2026-05-12
-
-### **Cyera** - [Data Scientist](https://www.comeet.com/jobs/cyera/17.008/data-scientist/6A.668)
-**Score:** 9/10 | **Location:** Tel Aviv | **Applied:** 0
-**Reasoning:** Excellent domain in AI/Data Security at a Tier 1 company, with responsibilities for end-to-end ML model production, leadership in DS workflows, and using LLMs as a tool, aligning perfectly with a lead-path Senior DS role. `lead-path-implied` `title-laundering-possible`
 
 ### **Cato Networks** - [Data Scientist](https://www.catonetworks.com/careers/careers-post/4848229101?gh_jid=4848229101)
 **Score:** 8/10 | **Location:** Tel Aviv District, Israel | **Applied:** 0
@@ -230,21 +232,9 @@
 **Score:** 8/10 | **Location:** Ramat Gan, IL | **Applied:** 0
 **Reasoning:** This Lead role in cyber security with a focus on threat detection strongly aligns with the candidate's domain expertise and leadership aspirations, despite a potential gap in direct malware reverse engineering experience. `management-gap` `technical-skill-gap`
 
-### **Cato Networks** - [Network & Security Researcher](https://www.catonetworks.com/careers/careers-post/4672344101?gh_jid=4672344101)
-**Score:** 7/10 | **Location:** Tel Aviv District, Israel | **Applied:** 0
-**Reasoning:** This role offers a strong technical and domain fit in applying ML for network security research with production implications, but it is not a lead position. `not-lead` `applied-research`
-
 ### **Cato Networks** - [AI Team Lead ](https://www.catonetworks.com/careers/careers-post/4863044101?gh_jid=4863044101)
 **Score:** 6/10 | **Location:** Tel Aviv District, Israel | **Applied:** 0
 **Reasoning:** This is a leadership role in an AI domain, but the focus on internal business process automation via LLM agents does not align with the candidate's core adversarial ML expertise. `wrong-domain-focus` `llm-as-product` `management-gap`
-
-### **Cato Networks** - [Research Engineer (Network)](https://www.catonetworks.com/careers/careers-post/4850403101?gh_jid=4850403101)
-**Score:** 6/10 | **Location:** Tel Aviv District, Israel | **Applied:** 0
-**Reasoning:** This is an applied research role in cyber security with a focus on network security content, involving AI tools and cross-team project leadership, but it is not a dedicated data science leadership position. `not-DS-lead` `applied-research` `llm-as-tool`
-
-### **Thetaray** - [Automation and performance Team Leader](https://www.comeet.com/jobs/thetaray/72.00F/automation-and-performance-team-leader/E1.661)
-**Score:** 6/10 | **Location:** Israel, Hod HaSharon | **Applied:** 0
-**Reasoning:** While a Team Lead role in a strong fintech fraud domain and good location, the primary focus on QA automation, performance testing, and CI/CD for AI platforms is a weak fit for a production Data Scientist whose craft is not heavy infrastructure or MLOps. `wrong-craft` `qa-automation-lead`
 
 ### **Cato Networks** - [AI Security - Field AI Engineer](https://www.catonetworks.com/careers/careers-post/4769033101?gh_jid=4769033101)
 **Score:** 5/10 | **Location:** Tel Aviv District, Israel | **Applied:** 0
@@ -286,29 +276,9 @@
 **Score:** 5/10 | **Location:** Tel Aviv, Israel | **Applied:** 0
 **Reasoning:** This role has an excellent domain (cybersecurity) and location fit, but its primary focus on data infrastructure engineering is explicitly noted as a weak fit for your preferred craft as a Data Scientist. `infra-heavy` `no-ds-focus` `lead-path-unclear`
 
-### **Wiz** - [AI Research Scientist](https://www.wiz.io/careers/job/4663539006/:title?gh_jid=4663539006)
-**Score:** 5/10 | **Location:** Tel Aviv | **Applied:** 0
-**Reasoning:** The role at Wiz is in the target domain and location, but its strong emphasis on novel LLM/transformer research and publications aligns with the candidate's 'weak fit' preferences for pure research or LLM craft roles. `llm-not-security` `pure-research-focus` `publications-gap` `lead-path-implied`
-
 ### **Wiz** - [Data Scientist Expert](https://www.wiz.io/careers/job/4621534006/:title?gh_jid=4621534006)
 **Score:** 5/10 | **Location:** Tel Aviv | **Applied:** 0
 **Reasoning:** The role is at a top-tier cyber security company in a perfect location with a senior title implying technical leadership, but the core focus on pure LLM R&D and AI agents is explicitly a weak fit for the candidate's desired role where LLMs are a tool, not the product. `llm-heavy` `lead-path-implied`
-
-## 2026-05-07
-
-### **Hunters** - [Security Researcher](https://www.comeet.com/jobs/hunters/67.007/security-researcher/7F.563)
-**Score:** 6/10 | **Location:** Israel | **Applied:** 0
-**Reasoning:** The role offers a strong domain fit in cybersecurity leveraging LLMs as a tool, but the 'Security Researcher' title suggests an individual contributor role without the desired leadership or management path. `IC-role` `no-lead-path` `DS-vs-Researcher`
-
-## 2026-05-06
-
-### **Orca Security** - [Senior Security Researcher](https://orca.security/about/careers/5798960004?gh_jid=5798960004)
-**Score:** 9/10 | **Location:** Tel Aviv-Yafo, Tel Aviv District, Israel | **Applied:** 0
-**Reasoning:** The role offers lead responsibilities in cloud security detection at a Tier 1 VC-backed unicorn, perfectly matching the candidate's adversarial ML and technical leadership experience. `title-laundering`
-
-### **Orca Security** - [Security Researcher](https://orca.security/about/careers/5797515004?gh_jid=5797515004)
-**Score:** 8/10 | **Location:** Tel Aviv-Yafo, Tel Aviv District, Israel | **Applied:** 0
-**Reasoning:** This is a strong applied security research role at a top-tier cloud security company, perfectly matching the candidate's adversarial ML and production experience, though without an explicit management or team lead title. `lead-path-implied` `title-laundering`
 
 ## 2026-05-05
 
@@ -316,10 +286,108 @@
 **Score:** 9/10 | **Location:** Tel Aviv | **Applied:** 0
 **Reasoning:** The role perfectly aligns with your cloud security and adversarial ML expertise, applied AI for product, E2E ownership, and is at a Tier 1 cyber company within your preferred location, though the title doesn't explicitly mention team leadership. `lead-path-implied` `title-laundering`
 
-### **Native** - [Senior Security Researcher](https://www.comeet.com/jobs/native/5A.00A/senior-security-researcher/FF.26C)
-**Score:** 9/10 | **Location:** Tel Aviv | **Applied:** 0
-**Reasoning:** This role is an excellent fit, aligning perfectly with the candidate's cloud security expertise, production-first approach, and technical leadership aspirations at a Tier 1 cyber security company in a preferred location.
-
 ### **Grip Security** - [R&D Team Lead](https://www.comeet.com/jobs/grip/A8.001/rd-team-lead/2B.E5C)
 **Score:** 7/10 | **Location:** Tel Aviv, Israel | **Applied:** 0
 **Reasoning:** The job is a lead role in a highly relevant cyber security domain with an excellent location and VC, but the team led consists of full-stack software engineers, not data scientists, creating a discipline mismatch despite strong technical and military leadership experience. `management-gap` `wrong-discipline`
+
+## Recently closed (25)
+
+### **Native** - [~~Senior Security Researcher~~](https://www.comeet.com/jobs/native/5A.00A/senior-security-researcher/FF.26C) (closed 2026-07-06)
+**Score:** 9/10 | **Location:** Tel Aviv
+**Reasoning:** This role is an excellent fit, aligning perfectly with the candidate's cloud security expertise, production-first approach, and technical leadership aspirations at a Tier 1 cyber security company in a preferred location.
+
+### **Orca Security** - [~~Senior Security Researcher~~](https://orca.security/about/careers/5798960004?gh_jid=5798960004) (closed 2026-07-06)
+**Score:** 9/10 | **Location:** Tel Aviv-Yafo, Tel Aviv District, Israel
+**Reasoning:** The role offers lead responsibilities in cloud security detection at a Tier 1 VC-backed unicorn, perfectly matching the candidate's adversarial ML and technical leadership experience. `title-laundering`
+
+### **Cyera** - [~~Data Scientist~~](https://www.comeet.com/jobs/cyera/17.008/data-scientist/6A.668) (closed 2026-07-06)
+**Score:** 9/10 | **Location:** Tel Aviv
+**Reasoning:** Excellent domain in AI/Data Security at a Tier 1 company, with responsibilities for end-to-end ML model production, leadership in DS workflows, and using LLMs as a tool, aligning perfectly with a lead-path Senior DS role. `lead-path-implied` `title-laundering-possible`
+
+### **Monday** - [~~Engineering Team Lead - Payments~~](https://www.comeet.com/jobs/monday/41.00B/engineering-team-lead---payments/B3.A44) (closed 2026-07-06)
+**Score:** 9/10 | **Location:** Tel-Aviv, Israel
+**Reasoning:** This "Engineering Team Lead" role perfectly aligns with the candidate's expertise in fintech fraud and payments risk, offers substantial team leadership, and is at a large company in a good location. `engineering-lead` `payments-fraud` `strong-domain-fit` `management-fit`
+
+### **Claroty** - [~~Vulnerability Research Team Lead~~](https://claroty.teamme.link/jobs/94.A63) (closed 2026-07-06)
+**Score:** 9/10 | **Location:** Israel
+**Reasoning:** This Team Lead role is an excellent fit, aligning with the candidate's leadership aspirations and deep adversarial ML experience in cloud security.
+
+### **Google Israel** - [~~Staff Data Scientist, GenAI and Agentic SOC~~](https://www.google.com/about/careers/applications/jobs/results/110451722916111046) (closed 2026-07-06)
+**Score:** 9/10 | **Location:** Ramat Gan, Israel; Tel Aviv, Israel
+**Reasoning:** This Staff Data Scientist role at Google strongly aligns with Omer's technical leadership, production ML expertise, and adversarial domain experience, focusing on applied AI in cybersecurity within a preferred large company and location. `lead-path-explicit` `experience-gap-minor`
+
+### **JFrog** - [~~R&D Team Lead -JFrog Security~~](https://join.jfrog.com/job/?job=7920898&gh_jid=7920898) (closed 2026-07-06)
+**Score:** 9/10 | **Location:** Tel Aviv/ Netanya, Israel
+**Reasoning:** This is a strong R&D Team Lead role in cybersecurity, perfectly aligning with the candidate's desire for leadership in production ML within an adversarial domain and within his commute radius. `people-management-context`
+
+### **Orca Security** - [~~Security Researcher~~](https://orca.security/about/careers/5797515004?gh_jid=5797515004) (closed 2026-07-06)
+**Score:** 8/10 | **Location:** Tel Aviv-Yafo, Tel Aviv District, Israel
+**Reasoning:** This is a strong applied security research role at a top-tier cloud security company, perfectly matching the candidate's adversarial ML and production experience, though without an explicit management or team lead title. `lead-path-implied` `title-laundering`
+
+### **Monday** - [~~Engineering Team Lead -Enterprise Core~~](https://www.comeet.com/jobs/monday/41.00B/engineering-team-lead--enterprise-core/2F.362) (closed 2026-07-06)
+**Score:** 8/10 | **Location:** Tel-Aviv, Israel
+**Reasoning:** This "Engineering Team Lead" role offers strong management responsibility and is in a highly relevant enterprise security and governance domain at a large company, closely matching the candidate's cloud security expertise. `engineering-lead` `enterprise-security` `strong-domain-fit` `management-fit`
+
+### **PayPal Israel** - [~~Sr Machine Learning Scientist~~](https://paypal.eightfold.ai/careers/job/274918502425) (closed 2026-07-06)
+**Score:** 8/10 | **Location:** Tel Aviv, Tel Aviv District, Israel
+**Reasoning:** This role is a strong senior production ML position with explicit end-to-end ownership and deployment responsibilities, perfectly matching Omer's core skills and experience at a large, relevant company.
+
+### **Orchid Security** - [~~Senior AI Engineer~~](https://www.comeet.com/jobs/orchid_security/4A.001/senior-ai-engineer/53.359) (closed 2026-07-06)
+**Score:** 8/10 | **Location:** Tel- Aviv, Israel
+**Reasoning:** This Senior AI Engineer role is in the strong-fit cybersecurity domain, involves architectural ownership of agentic systems for identity risk, and uses LLMs as a tool to serve the product, aligning well with the candidate's applied production ML expertise. `cyber-domain` `llm-as-tool` `lead-path-implied` `e2e-ownership`
+
+### **Cato Networks** - [~~Network & Security Researcher~~](https://www.catonetworks.com/careers/careers-post/4672344101?gh_jid=4672344101) (closed 2026-07-06)
+**Score:** 7/10 | **Location:** Tel Aviv District, Israel
+**Reasoning:** This role offers a strong technical and domain fit in applying ML for network security research with production implications, but it is not a lead position. `not-lead` `applied-research`
+
+### **Hunters** - [~~Security Researcher~~](https://www.comeet.com/jobs/hunters/67.007/security-researcher/7F.563) (closed 2026-07-06)
+**Score:** 6/10 | **Location:** Israel
+**Reasoning:** The role offers a strong domain fit in cybersecurity leveraging LLMs as a tool, but the 'Security Researcher' title suggests an individual contributor role without the desired leadership or management path. `IC-role` `no-lead-path` `DS-vs-Researcher`
+
+### **Cato Networks** - [~~Research Engineer (Network)~~](https://www.catonetworks.com/careers/careers-post/4850403101?gh_jid=4850403101) (closed 2026-07-06)
+**Score:** 6/10 | **Location:** Tel Aviv District, Israel
+**Reasoning:** This is an applied research role in cyber security with a focus on network security content, involving AI tools and cross-team project leadership, but it is not a dedicated data science leadership position. `not-DS-lead` `applied-research` `llm-as-tool`
+
+### **Thetaray** - [~~Automation and performance Team Leader~~](https://www.comeet.com/jobs/thetaray/72.00F/automation-and-performance-team-leader/E1.661) (closed 2026-07-06)
+**Score:** 6/10 | **Location:** Israel, Hod HaSharon
+**Reasoning:** While a Team Lead role in a strong fintech fraud domain and good location, the primary focus on QA automation, performance testing, and CI/CD for AI platforms is a weak fit for a production Data Scientist whose craft is not heavy infrastructure or MLOps. `wrong-craft` `qa-automation-lead`
+
+### **Monday** - [~~Engineering Team Lead - monday Service~~](https://www.comeet.com/jobs/monday/41.00B/engineering-team-lead---monday-service/1B.D5A) (closed 2026-07-06)
+**Score:** 6/10 | **Location:** Tel-Aviv, Israel
+**Reasoning:** This "Engineering Team Lead" role offers excellent management responsibility and lead title at a large company in a good location, but the core focus is on building AI agent products outside the candidate's preferred security/fraud domain. `engineering-lead` `llm-as-product` `wrong-domain` `management-fit`
+
+### **Cardinalops** - [~~Team Lead Data Scientist~~](https://boards.greenhouse.io/pagayais/jobs/7589574003) (closed 2026-07-06)
+**Score:** 6/10 | **Location:** Tel Aviv-Yafo, Israel
+**Reasoning:** The Team Lead title and Tel Aviv location are strong fits, but the lack of a job description prevents confirming domain alignment and specific team management responsibilities. `description-missing` `domain-unclear` `management-gap`
+
+### **Varonis** - [~~Senior Machine Learning Engineer (MLE)~~](https://jobs.jobvite.com/varonis/job/oLtQzfwn) (closed 2026-07-06)
+**Score:** 6/10 | **Location:** Israel
+**Reasoning:** Despite the strong title and relevant domain, the empty job description prevents a full assessment of production ML ownership or lead opportunities. `job-description-missing` `location-unclear`
+
+### **Wiz** - [~~AI Research Scientist~~](https://www.wiz.io/careers/job/4663539006/:title?gh_jid=4663539006) (closed 2026-07-06)
+**Score:** 5/10 | **Location:** Tel Aviv
+**Reasoning:** The role at Wiz is in the target domain and location, but its strong emphasis on novel LLM/transformer research and publications aligns with the candidate's 'weak fit' preferences for pure research or LLM craft roles. `llm-not-security` `pure-research-focus` `publications-gap` `lead-path-implied`
+
+### **Monday** - [~~AI Engineering Tech Lead (Core Engineering)~~](https://www.comeet.com/jobs/monday/41.00B/ai-engineering-tech-lead-core-engineering/8A.052) (closed 2026-07-06)
+**Score:** 5/10 | **Location:** Tel-Aviv, Israel
+**Reasoning:** The "Tech Lead" title is a strong fit for the candidate's career goals, but the company's domain is general productivity AI, likely an LLM-centric product role which is a weak fit. `tech-lead` `llm-as-product-unclear` `wrong-domain`
+
+### **Monday** - [~~Full Stack Data Scientist (DevEx Internal AI)~~](https://www.comeet.com/jobs/monday/41.00B/full-stack-data-scientist-devex-internal-ai/0F.E5C) (closed 2026-07-06)
+**Score:** 5/10 | **Location:** Tel-Aviv, Israel
+**Reasoning:** While a senior production DS role at a large company, the domain of internal DevEx AI is not Omer's specialized adversarial domain, and it focuses heavily on generative AI. `wrong-domain` `llm-focus-not-security`
+
+### **Monday** - [~~Engineering Team Lead~~](https://www.comeet.com/jobs/monday/41.00B/engineering-team-lead/72.B62) (closed 2026-07-06)
+**Score:** 5/10 | **Location:** Tel-Aviv, Israel
+**Reasoning:** A leadership role in a strong company and location, but the focus on 'Engineering Team Lead' for a 'marketing engine' suggests a primary craft mismatch from core production ML Data Science. `wrong-craft` `infra-focus` `management-gap`
+
+### **Monday** - [~~Engineering Team Lead - Sidekick Group~~](https://www.comeet.com/jobs/monday/41.00B/engineering-team-lead---sidekick-group/C4.062) (closed 2026-07-06)
+**Score:** 5/10 | **Location:** Tel-Aviv, Israel
+**Reasoning:** While a Team Lead role in AI at a good company and location, the focus on leading full-stack engineers with a non-matching tech stack makes it a weaker fit for the candidate's specialized ML engineering craft. `craft-mismatch` `stack-mismatch`
+
+### **Kiva Systems (Amazon Robotics since 2012)** - [~~Applied scientist, Agentic AI, AWS Agentic AI~~](https://www.amazon.jobs/en/jobs/10430758/applied-scientist-agentic-ai-aws-agentic-ai) (closed 2026-07-06)
+**Score:** 5/10 | **Location:** Tel Aviv-Yafo, Tel Aviv, ISR
+**Reasoning:** The role leans heavily into advanced research in agentic AI, RL, and multimodal models with an emphasis on publishing, which is a weaker fit for Omer's production-first, specialized ML background. `pure-research-component` `llm-specialist-focus` `skill-mismatch`
+
+### **Kiva Systems (Amazon Robotics since 2012)** - [~~Applied scientist, Agentic AI, AWS Agentic AI~~](https://www.amazon.jobs/en/jobs/3196112/applied-scientist-agentic-ai-aws-agentic-ai) (closed 2026-07-06)
+**Score:** 5/10 | **Location:** Tel Aviv-Yafo, Tel Aviv, ISR
+**Reasoning:** Despite being at a top company with a good location, the role's primary focus on pure LLM/Agentic AI development is a weaker fit for the candidate's specialization. `pure-llm-product` `research-component`
