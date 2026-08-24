@@ -170,7 +170,9 @@ First-time-user comprehension, digest trust, the job-seeker workspace, and the a
 ### Standalone
 
 | Slug | Title | Status | Effort | Depends on |
-|---|---|---|---|---|| [WEBAPP_COPY_POLISH](future_devs/WEBAPP_COPY_POLISH_SPEC.md) | Voice/clarity pass on onboarding + landing + help + profile.md notes (Fable) | `not-started` | S | — |
+|---|---|---|---|---|
+| [WEBAPP_COPY_POLISH](future_devs/WEBAPP_COPY_POLISH_SPEC.md) | Voice/clarity pass on onboarding + landing + help + profile.md notes (Fable) | `not-started` | S | — |
+| [WEBAPP_INSTANT_LOAD_SWR](future_devs/WEBAPP_INSTANT_LOAD_SWR_SPEC.md) | Instant load — SWR localStorage cache on Digest + Positions + keep-warm ping to kill Render cold start | `not-started` | S | — |
 
 > Bug: [BUG_LANDING_DEAD_GITHUB_LINKS](bugs_to_fix/BUG_LANDING_DEAD_GITHUB_LINKS.md) — dead `href="#"` GitHub links on landing (filed in `bugs_to_fix/`).
 
@@ -246,6 +248,19 @@ All Phase P12 tasks are wrapped. See `ROADMAP_ARCHIVE.md`.
 
 ---
 
+## Phase P13 — Scorer evaluation
+
+The scorer is the one part of the pipeline nothing measures. Everything downstream —
+digest ranking, the webapp, the RAG corpus — inherits its quality, and no change to the
+prompt, rubric, or model can currently be shown to be an improvement rather than a
+regression. Build the golden set and the two metrics before touching the scorer again.
+
+| Slug | Title | Status | Effort | Depends on |
+|---|---|---|---|---|
+| [SCORER_EVAL_HARNESS](future_devs/SCORER_EVAL_HARNESS_SPEC.md) | Human-labelled golden set + band accuracy / hard-filter recall + CI gate on `gemini_scorer.py` | `not-started` | S | — |
+
+---
+
 ## Spec Index
 
 | Spec | Domain |
@@ -263,6 +278,7 @@ All Phase P12 tasks are wrapped. See `ROADMAP_ARCHIVE.md`.
 | `future_devs/archive/ATS_SUCCESSFACTORS_SPEC.md` | P3 — SuccessFactors puller (SAP) (wrapped) |
 | `future_devs/archive/ATS_TEAMME_SPEC.md` | P3 — TeamMe puller (Claroty, QM) (wrapped) |
 | `future_devs/archive/ATS_BREEZY_SPEC.md` | P3 — Breezy HR puller (Descope) (wrapped) |
+| `future_devs/SCORER_EVAL_HARNESS_SPEC.md` | P13 — Scorer eval harness (golden set + CI gate) |
 | `future_devs/NEW_VC_ADAPTERS_SPEC.md` | P3 — Add VC adapters: State of Mind / Sequoia IL / Aleph / Lightspeed IL / Greylock / Insight IL |
 | `future_devs/archive/TLV_PORTFOLIO_FIX_SPEC.md` | P3 — Fix TLV Partners scraper + clean stale entries (wrapped) |
 | `future_devs/archive/BIG_COMPANIES_ATS_PARAMS_SPEC.md` | P3 — Fill ATS params for ~30 unfilled big_companies.yml stubs (wrapped) |
@@ -329,6 +345,7 @@ All Phase P12 tasks are wrapped. See `ROADMAP_ARCHIVE.md`.
 | `future_devs/archive/WEBAPP_AUTH_RESET_CONFIRM_LEGAL_SPEC.md` | P7 — Auth reset / confirm / legal (wrapped) |
 | `future_devs/archive/WEBAPP_ACCESSIBILITY_PASS_SPEC.md` | P7 — Accessibility pass (wrapped) |
 | `future_devs/WEBAPP_COPY_POLISH_SPEC.md` | P7 — Voice/clarity copy pass (onboarding, landing, help, profile.md) (Fable) |
+| `future_devs/WEBAPP_INSTANT_LOAD_SWR_SPEC.md` | P7 — Instant load: SWR localStorage cache (Digest + Positions) + keep-warm ping vs Render cold start |
 | `future_devs/archive/POSITION_LIVENESS_SPEC.md` | P8 — Position liveness (epic root, wrapped) |
 | `future_devs/archive/POSITION_LIVENESS_LIVE_SET_SPEC.md` | P8 — Persist live apply_url set from successful pulls (wrapped) |
 | `future_devs/archive/POSITION_LIVENESS_STATUS_DIFF_SPEC.md` | P8 — Status diff: scored jobs vs live set (wrapped) |
