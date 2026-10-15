@@ -6,7 +6,7 @@
 | **Epic** | — |
 | **Depends on** | — |
 | **Blocks** | — |
-| **Touches** | webapp/supabase/migrations/012_user_files.sql, webapp/backend/routers/user.py, webapp/backend/tests/test_user_files.py, webapp/frontend/lib/uploadFormats.ts, webapp/frontend/app/(app)/settings/page.tsx, webapp/frontend/app/onboarding/page.tsx |
+| **Touches** | webapp/frontend/lib/profileCopy.ts, webapp/supabase/migrations/012_user_files.sql, webapp/backend/routers/user.py, webapp/backend/tests/test_user_files.py, webapp/frontend/lib/uploadFormats.ts, webapp/frontend/app/(app)/settings/page.tsx, webapp/frontend/app/onboarding/page.tsx |
 
 ## Overview
 Settings - Profile / CV show only the extracted text in a big text box; the uploaded file is
@@ -31,6 +31,11 @@ the tabs look empty - indistinguishable from "nothing saved".
   minute after a quiet spell" instead of empty boxes.
 - Delete account also removes the user's stored files. Max file size 10 MB (same as parsing).
 - Free plan: Supabase Storage includes 1 GB; a few CVs/profiles are a few MB.
+- Profile tab (and onboarding step 1) open with a short human explainer of what the profile
+  is and how scoring uses it (copy by Fable), and the copyable AI prompt now has the user
+  attach their CV: the assistant infers what the CV answers, asks only the rest, and outputs
+  profile.md with the eight exact headings the scorer and the completeness check expect.
+  Both texts live in `webapp/frontend/lib/profileCopy.ts`.
 
 ## Files to Touch
 See Touches.
@@ -42,3 +47,5 @@ See Touches.
 3. Reload: the card is still there. Settings - Profile: same with a .md file.
 4. Upload again: the card shows the new file; the bucket holds one file per kind.
 5. Cold backend (or throttled network): tabs show the waking-up message, not empty boxes.
+6. Profile tab starts with the two-paragraph explainer; Generate with AI - Copy puts the new
+   prompt (attach your CV, eight headings) on the clipboard.

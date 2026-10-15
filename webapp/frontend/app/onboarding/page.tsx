@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { Check, ChevronDown, ChevronRight } from 'lucide-react'
 import { supabase } from '@/lib/supabaseClient'
+import { PROFILE_EXPLAINER, PROFILE_PROMPT } from '@/lib/profileCopy'
 import { ACCEPT_ATTR, extractUploadText, storeUploadedFile, type StoredKind } from '@/lib/uploadFormats'
 import { ThemeToggle } from '@/app/components/ThemeToggle'
 
@@ -94,33 +95,6 @@ function ProfileExampleGuidance() {
   )
 }
 
-const PROFILE_PROMPT = `You are helping me create a job-matching profile file. I will answer your questions and you will produce a structured Markdown document called profile.md that a job-scoring AI will use to evaluate job postings for me.
-
-Ask me the following questions one at a time (or ask them all at once and I will answer):
-
-1. What is your current title and how many years of experience do you have?
-2. What is your primary specialization - the area where you are stronger than most people at your level?
-3. What job titles are you targeting, in priority order? (e.g. "Team Lead DS first, Senior DS second")
-4. What domains do you want to work in? (e.g. cyber security, fraud, fintech, healthcare, general SaaS). Which are required vs. preferred?
-5. Where are you located and what is your maximum commute time? Are you open to hybrid, fully remote, or relocation?
-6. What are your absolute dealbreakers - roles or companies you will not consider no matter how good the title looks?
-7. What specific technologies, methodologies, or company stages are a strong signal that a role is right for you?
-8. What kinds of roles look good on paper but are actually wrong for you? (e.g. "MLOps-heavy roles", "pure research", "customer-facing")
-9. What nuances should the scorer know that are easy to get wrong? (e.g. "I have military leadership but no formal DS manager title - treat it as a partial fit, not a miss")
-10. What does a 9-10 role look like for you? What does a 5-6 look like?
-
-After I answer, produce a profile.md with these exact sections:
-- # Candidate Profile
-- ## Who I am, in one paragraph
-- ## What I'm looking for, in priority order
-- ## Location
-- ## Strong fit signals (boost the score)
-- ## Weak fit / skip (drop the score)
-- ## Dealbreakers (score = 0, do not surface)
-- ## Notes for the matcher
-- ## Scoring rubric for the matcher
-
-Write the scoring rubric as explicit score bands: what a 9-10 looks like, what a 7-8 looks like, what a 5-6 looks like, and what 0-2 means. Be specific - reference the role types and signals I described.`
 
 type Filters = {
   location_terms: string[]
@@ -587,7 +561,10 @@ export default function OnboardingPage() {
               <h2 className="font-display text-3xl">Set up your profile</h2>
               <p className="text-sm text-subtle mt-1">Your profile tells the AI what a great role looks like for you. Without it, every score is a guess.</p>
             </div>
-            <p className="text-muted text-sm">Describe the roles you want, the domains you care about, where you can work, and what you will never accept. You can skip for now and finish in Settings, but scoring will not run until a profile exists.</p>
+            <div className="space-y-2 text-muted text-sm">
+              {PROFILE_EXPLAINER.map(p => <p key={p.slice(0, 20)}>{p}</p>)}
+              <p>You can skip for now and finish in Settings, but scoring will not run until a profile exists.</p>
+            </div>
 
             <ProfileExampleGuidance />
 
@@ -606,7 +583,7 @@ export default function OnboardingPage() {
             {/* Path B: Generate with AI */}
             <div className="space-y-2 bg-surface-raised rounded-xl p-4 border border-subtle">
               <p className="text-sm font-medium text-foreground">Or build one with an AI assistant</p>
-              <p className="text-xs text-muted mb-2">1. Copy this prompt. 2. Paste it into ChatGPT, Claude or any chatbot and answer its questions. 3. Paste the finished profile below.</p>
+              <p className="text-xs text-muted mb-2">1. Copy this prompt. 2. Paste it into ChatGPT, Claude or any AI assistant, attach your CV, and answer its questions. 3. Upload the profile.md it writes above, or paste it below.</p>
               <div className="relative">
                 <textarea readOnly value={PROFILE_PROMPT} rows={8} className="w-full bg-surface text-muted font-mono text-xs p-3 rounded-lg border border-border resize-none focus:outline-none" />
                 <button onClick={copyPrompt} className="absolute top-2 right-2 px-2 py-1 bg-surface-raised border border-subtle hover:bg-border-subtle text-xs rounded-md transition-colors">

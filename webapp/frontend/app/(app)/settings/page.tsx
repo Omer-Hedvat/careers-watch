@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import { AlertTriangle, Check, ChevronDown, ChevronRight, ExternalLink, FileText } from 'lucide-react'
 import { supabase } from '@/lib/supabaseClient'
 import { clearSwrCache } from '@/lib/swrCache'
+import { PROFILE_EXPLAINER, PROFILE_PROMPT } from '@/lib/profileCopy'
 import { ACCEPT_ATTR, extractUploadText, formatBytes, openStoredFile, storeUploadedFile, type StoredFile, type StoredKind } from '@/lib/uploadFormats'
 
 type Tab = 'profile' | 'cv' | 'filters' | 'apikey' | 'account'
@@ -64,33 +65,6 @@ function WakingUp({ what }: { what: string }) {
   )
 }
 
-const PROFILE_PROMPT = `You are helping me create a job-matching profile file. I will answer your questions and you will produce a structured Markdown document called profile.md that a job-scoring AI will use to evaluate job postings for me.
-
-Ask me the following questions one at a time (or ask them all at once and I will answer):
-
-1. What is your current title and how many years of experience do you have?
-2. What is your primary specialization - the area where you are stronger than most people at your level?
-3. What job titles are you targeting, in priority order? (e.g. "Team Lead DS first, Senior DS second")
-4. What domains do you want to work in? (e.g. cyber security, fraud, fintech, healthcare, general SaaS). Which are required vs. preferred?
-5. Where are you located and what is your maximum commute time? Are you open to hybrid, fully remote, or relocation?
-6. What are your absolute dealbreakers - roles or companies you will not consider no matter how good the title looks?
-7. What specific technologies, methodologies, or company stages are a strong signal that a role is right for you?
-8. What kinds of roles look good on paper but are actually wrong for you? (e.g. "MLOps-heavy roles", "pure research", "customer-facing")
-9. What nuances should the scorer know that are easy to get wrong? (e.g. "I have military leadership but no formal DS manager title - treat it as a partial fit, not a miss")
-10. What does a 9-10 role look like for you? What does a 5-6 look like?
-
-After I answer, produce a profile.md with these exact sections:
-- # Candidate Profile
-- ## Who I am, in one paragraph
-- ## What I'm looking for, in priority order
-- ## Location
-- ## Strong fit signals (boost the score)
-- ## Weak fit / skip (drop the score)
-- ## Dealbreakers (score = 0, do not surface)
-- ## Notes for the matcher
-- ## Scoring rubric for the matcher
-
-Write the scoring rubric as explicit score bands: what a 9-10 looks like, what a 7-8 looks like, what a 5-6 looks like, and what 0-2 means. Be specific - reference the role types and signals I described.`
 
 function TagInput({ tags, onChange, placeholder }: { tags: string[]; onChange: (t: string[]) => void; placeholder?: string }) {
   const [input, setInput] = useState('')
@@ -564,6 +538,9 @@ export default function SettingsPage() {
         {/* Profile tab */}
         {activeTab === 'profile' && (
           <div className="space-y-4">
+            <div className="space-y-2 text-sm text-muted max-w-prose">
+              {PROFILE_EXPLAINER.map(p => <p key={p.slice(0, 20)}>{p}</p>)}
+            </div>
             {/* Path A: Upload a file - saved state shown beside the picker */}
             <div>
               <p className="text-sm text-muted mb-1.5">Upload profile (.md, .txt, .pdf, .docx, .doc)</p>
@@ -612,10 +589,10 @@ export default function SettingsPage() {
                   </button>
                 </div>
                 <p className="text-sm text-muted">
-                  <span className="font-medium text-foreground">Step 2</span> - Open ChatGPT, Claude, Gemini, or any LLM you prefer. Paste this prompt and answer the questions it asks. The LLM will output a ready-to-use profile.md file.
+                  <span className="font-medium text-foreground">Step 2</span> - Open ChatGPT, Claude, Gemini, or any AI assistant you like. Paste the prompt, attach your CV (or paste its text), and answer the few questions it asks. It replies with a ready-to-use profile.md.
                 </p>
                 <p className="text-sm text-muted">
-                  <span className="font-medium text-foreground">Step 3</span> - Paste the LLM output into the editor below and click Save profile.
+                  <span className="font-medium text-foreground">Step 3</span> - Save it as a file and upload it above (Settings then keeps the file), or paste it into the editor below and click Save profile.
                 </p>
               </div>
             )}
