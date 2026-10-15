@@ -1,7 +1,7 @@
 | Field | Value |
 |---|---|
 | **Phase** | P7 |
-| **Status** | `in-progress` |
+| **Status** | `completed` |
 | **Effort** | S |
 | **Epic** | WEBAPP_JOBSEEKER_WORKFLOW |
 | **Depends on** | — |
@@ -60,3 +60,16 @@ never sent to Gemini again, which also saves scoring quota.
 4. Live (after Omer applies 013): Skip a job on Positions. It disappears, stays gone after a reload, and is also hidden on the Digest if it was scored.
 5. Live: "N skipped - Show them" lists it, and Unskip brings it back on both pages.
 6. Live: a Score now run doesn't score a skipped job, which shows in the run's total.
+
+## Implementation notes
+
+Shipped (2026-10-15, branch `feat/skip-jobs`):
+
+- `webapp/supabase/migrations/013_hidden_jobs.sql` - `hidden_jobs` table, RLS on with no policies, idempotent. **Not applied** - Omer pastes it into Supabase.
+- `routers/jobs.py` - `hidden_urls(user_id)` (paginated, returns an empty set if the table is missing or the read fails), `POST /jobs/skip` (upsert on `user_id,apply_url`), `DELETE /jobs/skip`. Both return 400 on an empty `apply_url` and 503 if the write fails (table missing). `GET /jobs/` and `GET /jobs/positions` add `skipped: bool`.
+- `routers/scoring.py` - `_new_pending` excludes scored and skipped URLs together.
+- `routers/user.py` - `/user/export` is now `{"scored_jobs": [...], "hidden_jobs": [...]}` (it was a bare list of scored jobs). `delete_account` relies on the FK cascade, since it only deletes the `users` row.
+- Frontend: `app/components/SkipButton.tsx` (presentational, because JobCard also renders on the public landing page) plus `lib/skip.ts` (`saveSkip`). Skip sits on each Positions row and each Digest card, not in the detail panels. It is hidden for applied jobs. Both pages hide skipped rows behind a "N skipped - Show them" line, and the Digest tier counts and "Showing N of M" use the visible set. Both SWR cache versions were bumped.
+- Tests: `webapp/backend/tests/test_hidden_jobs.py`.
+
+Live QA still pending (needs migration 013): How to QA steps 4-6. Before 013, Skip shows the rollback message, because the endpoint returns 503.
