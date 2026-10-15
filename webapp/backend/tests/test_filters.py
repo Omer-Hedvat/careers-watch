@@ -62,3 +62,30 @@ def test_list_jobs_flags_rows_outside_filters(monkeypatch):
     monkeypatch.setattr(jobs, "_get_user", lambda a: "user-1")
     out = jobs.list_jobs(authorization="Bearer good")
     assert [(r["id"], r["outside_filters"]) for r in out] == [("1", False), ("2", True)]
+
+
+class _PagedQ:
+    """Honours .range(a, b) like PostgREST, so list_jobs must page past 1000 rows."""
+
+    def __init__(self, rows):
+        self.rows, self.window = rows, (0, len(rows) - 1)
+
+    def range(self, a, b):
+        self.window = (a, b)
+        return self
+
+    def __getattr__(self, name):
+        return lambda *a, **k: self
+
+    def execute(self):
+        a, b = self.window
+        return types.SimpleNamespace(data=self.rows[a:b + 1])
+
+
+def test_list_jobs_returns_more_than_one_page(monkeypatch):
+    rows = [dict(_job(), id=str(i)) for i in range(2345)]
+    monkeypatch.setattr(jobs, "supabase", types.SimpleNamespace(table=lambda n: _PagedQ(rows)))
+    monkeypatch.setattr(jobs, "load_filters", lambda uid: {})
+    monkeypatch.setattr(jobs, "hidden_urls", lambda uid: set())
+    monkeypatch.setattr(jobs, "_get_user", lambda a: "user-1")
+    assert len(jobs.list_jobs(authorization="Bearer good")) == 2345

@@ -108,6 +108,7 @@ All Phase P2 tasks are wrapped. See `ROADMAP_ARCHIVE.md`.
 | [WEBAPP_AUTO_SCORE_AFTER_COLLECT](future_devs/WEBAPP_AUTO_SCORE_AFTER_COLLECT_SPEC.md) | Auto-score after each collection, auto-continue capped runs, push pipeline scores to the webapp | `completed` | M | WEBAPP_SCORE_NOW_BACKGROUND ✅ |
 | [WEBAPP_DIGEST_RESPECTS_FILTERS](future_devs/WEBAPP_DIGEST_RESPECTS_FILTERS_SPEC.md) | Digest hides jobs outside saved filters; multi-term location filter | `completed` | S | BUG_WEBAPP_FILTERS_NEVER_SAVED |
 | [WEBAPP_KEEP_UPLOADED_FILES](future_devs/WEBAPP_KEEP_UPLOADED_FILES_SPEC.md) | Keep uploaded CV/profile files, show a clickable file card; clear waking-up state | `in-progress` | S | — |
+| [WEBAPP_DIGEST_VIEWS_FIRST_SEEN](future_devs/WEBAPP_DIGEST_VIEWS_FIRST_SEEN_SPEC.md) | First-seen date on cards and positions; Applied/Skipped views at the top of the Digest | `completed` | S | WEBAPP_HIDE_DISMISS_JOBS ✅ |
 
 ---
 
@@ -275,6 +276,7 @@ regression. Build the golden set and the two metrics before touching the scorer 
 | `future_devs/WEBAPP_AUTO_SCORE_AFTER_COLLECT_SPEC.md` | P5 - auto-score after collect, auto-continue, pipeline score push |
 | `future_devs/WEBAPP_DIGEST_RESPECTS_FILTERS_SPEC.md` | P5 - Digest honours saved filters, multi-term location |
 | `future_devs/WEBAPP_KEEP_UPLOADED_FILES_SPEC.md` | P5 - keep uploaded CV/profile files, file card, waking-up state |
+| `future_devs/WEBAPP_DIGEST_VIEWS_FIRST_SEEN_SPEC.md` | P5 - first-seen dates, Applied/Skipped views, job list paging |
 | `future_devs/WEBAPP_SCORE_NOW_BACKGROUND_SPEC.md` | P5 - background Score now, progress, run cap |
 | `future_devs/WEBAPP_RESCORE_MISSING_DESCRIPTIONS_SPEC.md` | P5 - re-score jobs scored without a description |
 | `future_devs/archive/WEBAPP_SUPABASE_SETUP_GUIDE_SPEC.md` | P2 post-launch — Supabase setup guide (wrapped) |

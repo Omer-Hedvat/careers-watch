@@ -7,12 +7,13 @@ import { readCache, writeCache } from '@/lib/swrCache'
 import { useCountUp } from '@/hooks/useCountUp'
 import { DetailPanel } from '@/app/components/DetailPanel'
 import { SkipButton } from '@/app/components/SkipButton'
+import { shortDate } from '@/app/components/JobCard'
 import { saveSkip } from '@/lib/skip'
 
 const PAGE_SIZE = 50
 // SWR cache for the /jobs/positions list - bump the version when Position changes.
 // 4 days = the longest gap between collection runs (Thu -> Mon).
-const POSITIONS_CACHE_VERSION = 2
+const POSITIONS_CACHE_VERSION = 3 // 3: rows carry first_seen
 const POSITIONS_CACHE_MAX_AGE_MS = 4 * 24 * 60 * 60 * 1000
 
 type Position = {
@@ -23,6 +24,7 @@ type Position = {
   score: number | null
   status: string | null
   skipped?: boolean
+  first_seen?: string | null
 }
 
 function PositionRowSkeleton() {
@@ -245,8 +247,10 @@ export default function PositionsPage() {
                     <span className={`text-sm ${isClosed ? 'text-subtle line-through' : 'text-foreground/85'}`}>{p.title}</span>
                     {isClosed && <span className="text-xs text-danger no-underline" style={{textDecoration: 'none'}}>Closed</span>}
                   </div>
-                  {p.location && (
-                    <div className="text-xs text-subtle mt-0.5">{p.location}</div>
+                  {(p.location || shortDate(p.first_seen)) && (
+                    <div className="text-xs text-subtle mt-0.5">
+                      {[p.location, shortDate(p.first_seen) && `first seen ${shortDate(p.first_seen)}`].filter(Boolean).join(' · ')}
+                    </div>
                   )}
                 </div>
                 {p.score != null && (

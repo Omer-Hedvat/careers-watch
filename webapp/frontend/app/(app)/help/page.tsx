@@ -5,7 +5,7 @@ import { SCORE_BANDS } from '@/lib/scoreBands'
 // Derived from the shared SCORE_BANDS so the numbers/labels here can't drift
 // from the digest legend and badge tooltips.
 const scoreBandsSummary =
-  `Score bands: ${SCORE_BANDS.map(b => `${b.range} - ${b.blurb}`).join(' ')} Jobs scoring below 5 are hidden from your digest by default - lower the min score filter to see them. Jobs outside your saved Settings filters (for example a location filter) are hidden too, with a link to show them.`
+  `Score bands: ${SCORE_BANDS.map(b => `${b.range} - ${b.blurb}`).join(' ')} Jobs scoring below 5 are hidden from your digest by default - lower the min score filter to see them. Jobs outside your saved Settings filters (for example a location filter) are hidden too, with a link to show them. Jobs you mark applied or skip move to the Applied and Skipped links at the top of the Digest, and each card shows when the posting was first seen.`
 
 const sections = [
   {

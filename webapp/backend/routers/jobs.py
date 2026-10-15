@@ -123,7 +123,7 @@ def list_positions(authorization: str = Header(...)):
     while True:
         chunk = (
             supabase.table("positions")
-            .select("company,title,location,apply_url")
+            .select("company,title,location,apply_url,first_seen")
             .order("company")
             .order("title")
             .range(start, start + PAGE - 1)
@@ -141,6 +141,7 @@ def list_positions(authorization: str = Header(...)):
             "title": r.get("title", ""),
             "location": r.get("location", ""),
             "apply_url": r.get("apply_url", ""),
+            "first_seen": r.get("first_seen"),
             "score": None,   # catalog is unscored; ranking lives on the Digest
             "status": "open",
             "skipped": r.get("apply_url", "") in hidden,
@@ -157,15 +158,28 @@ LIST_COLUMNS = "id,user_id,apply_url,company,title,location,score,reasoning,flag
 @router.get("/")
 def list_jobs(authorization: str = Header(...)):
     user_id = _get_user(authorization)
-    rows = (
-        supabase.table("scored_jobs")
-        .select(LIST_COLUMNS)
-        .eq("user_id", user_id)
-        .order("score", desc=True)
-        .order("scored_at", desc=True)
-        .execute()
-        .data
-    )
+    # PostgREST caps a response at 1000 rows; page so users past that keep every
+    # row (the Digest said "of 1,000" and Applied could miss jobs). id breaks ties
+    # so paging is stable.
+    PAGE = 1000
+    rows: list[dict] = []
+    start = 0
+    while True:
+        chunk = (
+            supabase.table("scored_jobs")
+            .select(LIST_COLUMNS)
+            .eq("user_id", user_id)
+            .order("score", desc=True)
+            .order("scored_at", desc=True)
+            .order("id")
+            .range(start, start + PAGE - 1)
+            .execute()
+            .data
+        )
+        rows.extend(chunk)
+        if len(chunk) < PAGE:
+            break
+        start += PAGE
     # Flag (not drop) rows outside the saved Settings filters: the Digest hides
     # them by default, e.g. jobs scored before a location filter was set.
     cfg = load_filters(user_id)

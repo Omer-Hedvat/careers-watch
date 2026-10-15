@@ -381,9 +381,9 @@ export default function DigestPage() {
   // hydration mismatch; saving waits until it has been read so defaults never
   // overwrite it.
   const [viewLoaded, setViewLoaded] = useState(false)
-  const [showApplied, setShowApplied] = useState(false)
+  // Top-of-page views: the ranked matches, or everything marked applied / skipped.
+  const [view, setView] = useState<'matches' | 'applied' | 'skipped'>('matches')
   const [showOutside, setShowOutside] = useState(false)
-  const [showSkipped, setShowSkipped] = useState(false)
   // PREVIOUS last_seen_at (ms), captured once per page visit before it is
   // stamped to now. null = first visit / storage blocked: no banner, no badges.
   const [prevSeenAt, setPrevSeenAt] = useState<number | null>(null)
@@ -687,9 +687,12 @@ export default function DigestPage() {
   // was set) stay hidden unless asked for. Applied ones always show.
   const hiddenByFilters = filtered.filter(j => j.outside_filters && !j.applied).length
   const inFilters = showOutside ? filtered : filtered.filter(j => !j.outside_filters || j.applied)
-  // Skipped ("not interested") jobs hide the same way; applied ones always show.
-  const skippedCount = inFilters.filter(j => j.skipped && !j.applied).length
-  const visible = showSkipped ? inFilters : inFilters.filter(j => !j.skipped || j.applied)
+  // Applied and skipped jobs live in their own views (links at the top), so the
+  // ranked list shows neither. Those views list every such job, whatever the
+  // score or filters, so nothing marked there can go missing.
+  const visible = inFilters.filter(j => !j.skipped && !j.applied)
+  const appliedJobs = jobs.filter(j => j.applied).sort(compareJobs(sortBy))
+  const skippedJobs = jobs.filter(j => j.skipped && !j.applied).sort(compareJobs(sortBy))
 
   // Below-5 scores fall outside every band (bandFor would lump them into 5-6).
   const tierCounts = SCORE_BANDS.map(b => ({
@@ -699,11 +702,10 @@ export default function DigestPage() {
 
   const openJobs = visible.filter(j => (j.status ?? 'open') !== 'closed')
   const closedJobs = visible.filter(j => j.status === 'closed')
-  const active = openJobs.filter(j => !j.applied)
-  const applied = openJobs.filter(j => j.applied)
+  const active = openJobs
   // /jobs returns every score, so honour the min-score slider (not the text
   // filters) to keep the count meaningful when "show only new" is applied.
-  const newCount = jobs.filter(j => j.score >= minScore && j.status !== 'closed' && (showOutside || !j.outside_filters) && (showSkipped || !j.skipped || j.applied) && isNewSince(j.scored_at, prevSeenAt)).length
+  const newCount = jobs.filter(j => j.score >= minScore && j.status !== 'closed' && (showOutside || !j.outside_filters) && !j.skipped && !j.applied && isNewSince(j.scored_at, prevSeenAt)).length
 
   function resetFilters() {
     setMinScore(5)
@@ -823,6 +825,30 @@ export default function DigestPage() {
           </div>
         )}
 
+        {/* Views: ranked matches, or the jobs you marked applied / skipped */}
+        <nav aria-label="Digest views" className="flex items-center gap-1 text-sm border-b border-border">
+          {([
+            ['matches', 'Matches', null],
+            ['applied', 'Applied', appliedJobs.length],
+            ['skipped', 'Skipped', skippedJobs.length],
+          ] as const).map(([key, label, count]) => (
+            <button key={key} onClick={() => setView(key)} aria-pressed={view === key}
+              className={`px-3 py-2 -mb-px border-b-2 transition-colors ${view === key ? 'border-accent text-foreground' : 'border-transparent text-muted hover:text-foreground'}`}>
+              {label}{count !== null && <span className="ml-1 font-mono text-xs text-subtle">({count})</span>}
+            </button>
+          ))}
+        </nav>
+
+        {view !== 'matches' && !loading && (() => {
+          const list = view === 'applied' ? appliedJobs : skippedJobs
+          return list.length === 0
+            ? <p className="text-sm text-subtle py-6">{view === 'applied'
+                ? 'Nothing marked applied yet. Use "Mark applied" on a job to keep track of it here.'
+                : 'Nothing skipped. Use "Skip" on a job you are not interested in and it moves here.'}</p>
+            : <div className="space-y-4">{list.map(job => <JobCard key={job.id} job={job} onToggleApplied={toggleApplied} currentProfileVersion={currentProfileVersion} onOpen={openDetail} isNew={isNewSince(job.scored_at, prevSeenAt)} onToggleSkip={toggleSkip} />)}</div>
+        })()}
+
+        {view === 'matches' && <>
         {/* Score legend */}
         <ScoreLegend />
 
@@ -879,17 +905,6 @@ export default function DigestPage() {
           </p>
         )}
 
-        {skippedCount > 0 && (
-          <p className="text-sm text-subtle">
-            {showSkipped
-              ? `Showing ${skippedCount} skipped job${skippedCount !== 1 ? 's' : ''}. `
-              : `${skippedCount} skipped - `}
-            <button onClick={() => setShowSkipped(v => !v)} className="text-muted hover:text-foreground underline underline-offset-2 decoration-border-subtle transition-colors">
-              {showSkipped ? 'Hide them' : 'Show them'}
-            </button>
-          </p>
-        )}
-
         {/* Job list */}
         {loading && (
           <div className="space-y-4">
@@ -906,16 +921,6 @@ export default function DigestPage() {
         )}
         {!loading && active.map(job => <JobCard key={job.id} job={job} onToggleApplied={toggleApplied} currentProfileVersion={currentProfileVersion} onOpen={openDetail} isNew={isNewSince(job.scored_at, prevSeenAt)} onToggleSkip={toggleSkip} />)}
 
-        {/* Applied section */}
-        {applied.length > 0 && (
-          <div>
-            <button onClick={() => setShowApplied(v => !v)} className="text-sm text-muted hover:text-foreground py-2 underline underline-offset-2 decoration-border-subtle transition-colors">
-              {showApplied ? `Hide ${applied.length} applied` : `Show ${applied.length} applied`}
-            </button>
-            {showApplied && applied.map(job => <JobCard key={job.id} job={job} onToggleApplied={toggleApplied} currentProfileVersion={currentProfileVersion} onOpen={openDetail} isNew={isNewSince(job.scored_at, prevSeenAt)} />)}
-          </div>
-        )}
-
         {/* Closed section */}
         {closedJobs.length > 0 && (
           <div className="pt-4 border-t border-border">
@@ -925,6 +930,7 @@ export default function DigestPage() {
             </div>
           </div>
         )}
+        </>}
       </div>
 
       {/* Job detail slide-over. The job is re-read from list state so

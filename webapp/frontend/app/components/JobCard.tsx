@@ -26,6 +26,16 @@ export type Job = {
   closed_at?: string
   outside_filters?: boolean
   skipped?: boolean
+  first_seen?: string | null
+}
+
+// "Oct 12" (adds the year when it isn't this year). '' for a missing/bad date.
+export function shortDate(iso?: string | null): string {
+  if (!iso) return ''
+  const d = new Date(iso)
+  if (isNaN(d.getTime())) return ''
+  const sameYear = d.getFullYear() === new Date().getFullYear()
+  return d.toLocaleDateString(undefined, sameYear ? { month: 'short', day: 'numeric' } : { month: 'short', day: 'numeric', year: 'numeric' })
 }
 
 export function timeAgo(iso: string): string {
@@ -94,6 +104,10 @@ export function JobCard({ job, onToggleApplied, currentProfileVersion, onOpen, i
           <span className="text-subtle" aria-hidden="true">·</span>
           <span className="text-muted">{job.location}</span>
           <span className="text-subtle" aria-hidden="true">·</span>
+          {shortDate(job.first_seen) && <>
+            <span className="text-subtle font-mono text-xs" title="When this posting was first collected">first seen {shortDate(job.first_seen)}</span>
+            <span className="text-subtle" aria-hidden="true">·</span>
+          </>}
           <span className="text-subtle font-mono text-xs">scored {timeAgo(job.scored_at)}</span>
         </div>
         {job.reasoning && <p className="text-sm italic leading-relaxed text-foreground/80 mt-2.5 line-clamp-2 border-l-2 border-accent/40 pl-3">"{job.reasoning}"</p>}
