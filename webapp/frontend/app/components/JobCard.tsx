@@ -32,7 +32,8 @@ export type Job = {
 // "Oct 12" (adds the year when it isn't this year). '' for a missing/bad date.
 export function shortDate(iso?: string | null): string {
   if (!iso) return ''
-  const d = new Date(iso)
+  // A bare YYYY-MM-DD is parsed as UTC midnight (the day before, west of UTC) - read it as local.
+  const d = /^\d{4}-\d{2}-\d{2}$/.test(iso) ? new Date(`${iso}T00:00`) : new Date(iso)
   if (isNaN(d.getTime())) return ''
   const sameYear = d.getFullYear() === new Date().getFullYear()
   return d.toLocaleDateString(undefined, sameYear ? { month: 'short', day: 'numeric' } : { month: 'short', day: 'numeric', year: 'numeric' })
