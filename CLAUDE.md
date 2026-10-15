@@ -4,7 +4,7 @@ This file gives you (Claude Code) the context you need to work productively in t
 
 ## What this project is
 
-Personal job-search automation for the repo owner (personal details are local-only, in the gitignored CLAUDE.local.md).
+Personal job-search automation for the repo owner, targeting data science / ML roles in Israeli cyber and fraud companies. Who the owner is, what they target and their commute area live in the gitignored `CLAUDE.local.md`, `profile.md` and `cv.md` (local only - this repo is public; never commit personal data).
 
 The system scrapes Israeli cyber/fintech VC portfolios plus a curated list of large security companies, pulls open jobs from each company's ATS, scores each job with Gemini against the candidate profile, and outputs a ranked markdown digest.
 
@@ -14,8 +14,8 @@ Before asking the user for any permission, run `/fewer-permission-prompts` to au
 
 ## Always read these two files first
 
-- `profile.md` - Omer's filter intent (what he wants, what to skip, scoring rubric)
-- `cv.md` - Omer's CV (capability ground truth)
+- `profile.md` - the owner's filter intent (what they want, what to skip, scoring rubric) - local, gitignored
+- `cv.md` - the owner's CV (capability ground truth) - local, gitignored
 
 These are the source of truth for matching. When in doubt about whether something is a fit, re-read these rather than guessing from session memory.
 
@@ -173,7 +173,7 @@ If a user request would add any of these, confirm explicitly before building.
 
 - Comeet is the dominant ATS for Israeli startups. Prioritize Comeet support over Greenhouse/Lever. Many YC-style global ATSes are also present (Greenhouse, Lever, Workday, Ashby) but Comeet covers the long tail of Israeli companies.
 - Hebrew may appear in job titles and descriptions. Do NOT translate before sending to Gemini - the model handles Hebrew well and translation loses signal.
-- Location parsing matters. The owner's commute radius and in-range cities are in the local CLAUDE.local.md / profile.md.
+- Location parsing matters. The owner's commute radius and in-range cities are in `CLAUDE.local.md` / `profile.md` (local). Many Israeli postings give only a city, so location matching must handle bare city names, not just "Israel".
 - VC tiering for the matcher's `vc_tier` field:
   - Tier 1 (cyber-pure): YL Ventures, Team8, Glilot, Cyberstarts, Hyperwise, Merlin, JVP, Magenta VC, Greenfield Partners, Hetz Ventures, 10D
   - Tier 2 (generalist with strong cyber/fintech): Viola, Viola Ventures, Viola Growth, Pitango, TLV Partners, Vertex Israel, Bessemer, Insight, 83North, Grove, StageOne Ventures, Elron Ventures, Red Dot Capital, Qumra Capital, Entrée Capital
@@ -304,7 +304,7 @@ When you touch these files, update the corresponding spec:
 |---|---|
 | `score.py` | `CLAUDE.md` architecture section |
 | `matcher/gemini_scorer.py` | `CLAUDE.md` architecture section **+ `future_devs/SCORER_EVAL_HARNESS_SPEC.md`** |
-| `profile.md`, `cv.md`, `profiles/*/score_config.json` (scoring rubric) | `docs/scoring_calibration.md` **+ `future_devs/SCORER_EVAL_HARNESS_SPEC.md`** |
+| `profile.md`, `cv.md`, `profiles/*/score_config.json` (scoring rubric, all local/gitignored) | `docs/scoring_calibration.md` (local) **+ `future_devs/SCORER_EVAL_HARNESS_SPEC.md`** |
 | `evals/*` | `future_devs/SCORER_EVAL_HARNESS_SPEC.md` |
 | `collect_jobs.py` | `CLAUDE.md` architecture section |
 | `refresh_companies.py` | `CLAUDE.md` architecture section |

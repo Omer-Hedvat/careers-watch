@@ -31,3 +31,12 @@ Thumbs.db
 
 # Scorer eval private data (personal labels, sheets, baseline - repo is public)
 evals/private/
+
+# Personal data - never commit (repo is public). Kept locally only.
+/cv.md
+/profile.md
+/*.pdf
+/profiles/
+/docs/scoring_calibration.md
+/GEMINI_BRIEF.md
+CLAUDE.local.md
