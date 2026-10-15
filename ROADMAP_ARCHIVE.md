@@ -202,6 +202,7 @@ Wrapped features only. Active work lives in `ROADMAP.md`.
 | Feature | Spec | Effort | Status |
 |---|---|---|---|
 | In-app job detail view — slide-over with full reasoning, flags + glossary, full JD (persisted at score time, migration 006) | `future_devs/archive/WEBAPP_JOB_DETAIL_VIEW_SPEC.md` | M | `wrapped` |
+| Skip button on Positions + Digest — per-user `hidden_jobs` list; skipped jobs hidden on both pages and never scored | `future_devs/archive/WEBAPP_HIDE_DISMISS_JOBS_SPEC.md` | S | `wrapped` |
 
 ---
 

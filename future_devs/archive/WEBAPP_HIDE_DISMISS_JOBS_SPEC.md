@@ -1,7 +1,7 @@
 | Field | Value |
 |---|---|
 | **Phase** | P7 |
-| **Status** | `completed` |
+| **Status** | `wrapped` |
 | **Effort** | S |
 | **Epic** | WEBAPP_JOBSEEKER_WORKFLOW |
 | **Depends on** | — |
