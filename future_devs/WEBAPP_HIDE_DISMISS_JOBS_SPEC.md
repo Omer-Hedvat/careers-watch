@@ -6,27 +6,57 @@
 | **Epic** | WEBAPP_JOBSEEKER_WORKFLOW |
 | **Depends on** | — |
 | **Blocks** | — |
-| **Touches** | `webapp/backend/routers/jobs.py`, `webapp/frontend/app/digest/page.tsx`, `webapp/supabase/migrations/` (if a new column is needed) |
+| **Touches** | `webapp/supabase/migrations/013_hidden_jobs.sql` (new), `webapp/backend/routers/jobs.py`, `webapp/backend/routers/scoring.py`, `webapp/backend/routers/user.py`, `webapp/backend/tests/test_hidden_jobs.py` (new), `webapp/frontend/app/(app)/positions/page.tsx`, `webapp/frontend/app/(app)/digest/page.tsx`, `webapp/frontend/app/components/` (Skip button) |
+| **Night-ready** | no - needs migration 013 pasted into Supabase by Omer |
 
 ## Overview
 
-Irrelevant jobs keep showing; there's no "not interested" to remove noise from the active list.
+Irrelevant jobs keep showing on both Positions and the Digest, and there's no
+way to say "not interested". Omer asked (2026-10-15) for a **Skip** button on
+positions. A skipped job is hidden on both pages, remembered per user, and
+never sent to Gemini again, which also saves scoring quota.
 
 ## Behaviour
 
-- A "Not interested / Hide" action per card removes the job from the active list and remembers the choice per user. Persist via a `hidden` bool on `scored_jobs`, or a reserved status value. Coordinate with WEBAPP_APPLICATION_TRACKER to avoid adding a duplicate column for the same "out of the active list" concept - agree on one representation.
-- A "Show N hidden" toggle lets the user review hidden jobs and unhide them (mirroring the existing applied collapse section).
+- **One representation for both pages.** Positions is the shared catalog with no
+  per-user row, so a column on `scored_jobs` can't cover it. Instead, use a per-user
+  overlay keyed by URL: `hidden_jobs(user_id uuid references users(id) on delete cascade,
+  apply_url text, hidden_at timestamptz default now(), primary key (user_id, apply_url))`.
+  The same key works on Positions (catalog rows) and the Digest (`scored_jobs.apply_url`).
+  It needs no new column on `scored_jobs`, so it doesn't conflict with
+  WEBAPP_APPLICATION_TRACKER.
+- **Endpoints** (`routers/jobs.py`): `POST /jobs/skip` `{apply_url}` (idempotent upsert),
+  `DELETE /jobs/skip` `{apply_url}` (unskip). `GET /jobs/` and `GET /jobs/positions`
+  mark rows with `skipped: true` (flag, don't drop), the same pattern as `outside_filters`.
+  The backend reads the user's `hidden_jobs` set once per call.
+- **Scoring** (`routers/scoring.py` `_new_pending`): skipped URLs are excluded, in the
+  same place as already-scored URLs.
+- **UI:**
+  - A **Skip** button on the Positions row or detail panel and on the Digest card or
+    detail panel. It is optimistic: the row disappears at once, and on error it
+    reappears with a toast.
+  - The Digest and Positions hide skipped rows by default and show a
+    "N skipped - Show them" line, mirroring the "hidden by your saved filters" line.
+    In that view each row offers **Unskip**.
+  - Applied jobs can't be skipped: the button isn't shown when `applied` is set.
+- **Delete account:** cascades through the FK. **Export data:** includes `hidden_jobs`.
+- Hyphens, not em-dashes, in all UI copy.
 
 ## Files to Touch
 
-- `webapp/backend/routers/jobs.py` — endpoint to set/clear hidden; exclude hidden from the default active list
-- `webapp/frontend/app/digest/page.tsx` — Hide action per card, "Show N hidden" toggle, unhide control
-- `webapp/supabase/migrations/` — `hidden` bool column (only if not represented as a status value per the coordination note)
+- `webapp/supabase/migrations/013_hidden_jobs.sql` - table above. RLS on, with no policies (only the service role reads it).
+- `webapp/backend/routers/jobs.py` - skip and unskip endpoints, plus the `skipped` flag on both list endpoints.
+- `webapp/backend/routers/scoring.py` - exclude skipped URLs in `_new_pending`.
+- `webapp/backend/routers/user.py` - add `hidden_jobs` to the data export.
+- `webapp/backend/tests/test_hidden_jobs.py` - new.
+- `webapp/frontend/app/(app)/positions/page.tsx`, `webapp/frontend/app/(app)/digest/page.tsx` - Skip and Unskip actions, the "N skipped" line.
+- `webapp/frontend/app/components/` - shared Skip button if both pages use it.
 
 ## How to QA
 
-1. Hiding a job removes it from the active list and the choice persists across reload.
-2. Hidden jobs are reviewable via the "Show N hidden" toggle and can be unhidden.
-3. No duplicate column conflicts with WEBAPP_APPLICATION_TRACKER.
-4. `uv run python3 -m pytest tests/ -v` passes.
-5. `uv run python score.py --dry-run` passes.
+1. Backend tests: skip is idempotent, unskip removes the row, list endpoints set `skipped`, and `_new_pending` excludes skipped URLs.
+2. `cd webapp/backend && uv run python -c "import main"`, plus the frontend build with dummy env (exit 0).
+3. `uv run python3 -m pytest tests/ -v` and `uv run python score.py --dry-run` pass.
+4. Live (after Omer applies 013): Skip a job on Positions. It disappears, stays gone after a reload, and is also hidden on the Digest if it was scored.
+5. Live: "N skipped - Show them" lists it, and Unskip brings it back on both pages.
+6. Live: a Score now run doesn't score a skipped job, which shows in the run's total.
