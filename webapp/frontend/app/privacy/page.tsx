@@ -21,9 +21,10 @@ export default function PrivacyPage() {
           <section>
             <h2 className="text-foreground font-semibold text-base mb-2">What we store</h2>
             <p>
-              CareerWatch stores your email address (for authentication), your CV text or file
-              (if you upload one), and your Gemini API key (if you provide one). All data is
-              stored in Supabase with encryption at rest.
+              CareerWatch stores your email address (for authentication), your CV and profile
+              text, the original CV and profile files you upload (in private storage, so you can
+              open them again from Settings), and your Gemini API key (if you provide one). All
+              data is stored in Supabase with encryption at rest.
             </p>
           </section>
 
@@ -43,7 +44,7 @@ export default function PrivacyPage() {
             <p>
               Your data is retained as long as your account is active. You can delete your
               account at any time from the Settings page, which will permanently remove all
-              stored data including your CV and API key.
+              stored data including your CV, uploaded files and API key.
             </p>
           </section>
 

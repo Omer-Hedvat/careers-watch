@@ -1,4 +1,8 @@
 from fastapi import APIRouter, HTTPException, Header, Request
+import base64
+import binascii
+import re
+from pathlib import Path
 from pydantic import BaseModel
 from typing import List, Optional
 import os
@@ -103,6 +107,7 @@ def get_me(authorization: str = Header(...)):
     days_until_monday = (7 - today.weekday()) % 7 or 7
     row["run_limit_resets_on"] = (today + timedelta(days=days_until_monday)).isoformat()
     row["setup"] = setup
+    row.update(_file_meta(user_id))
     return row
 
 
@@ -229,6 +234,7 @@ def export_data(authorization: str = Header(...)):
 @router.delete("/account")
 def delete_account(authorization: str = Header(...)):
     user_id = require_user(authorization)
+    _remove_files([m["path"] for m in _stored_files(user_id).values()])
     supabase.table("users").delete().eq("id", user_id).execute()
     try:
         supabase.auth.admin.delete_user(user_id)
@@ -296,3 +302,98 @@ async def parse_cv(request: Request, authorization: str = Header(...)):
     except Exception:
         raise HTTPException(status_code=422, detail="Could not extract text - please paste manually")
     return {"text": text}
+
+
+# --- Kept upload files (Settings shows the original CV / profile as a file card) ---
+# Private Storage bucket (migration 012). Only this backend's service role reads or
+# writes it; the browser gets a short-lived signed URL. Scoring never reads these -
+# it uses the extracted text (cv_text / profile_md).
+FILES_BUCKET = "user-files"
+FILE_COLUMNS = {"cv": "cv_file", "profile": "profile_file"}
+MAX_FILE_BYTES = 10 * 1024 * 1024  # same cap as parsing
+SIGNED_URL_SECONDS = 300
+_PUBLIC_META = ("name", "size", "uploaded_at")
+
+
+def _stored_files(user_id: str) -> dict:
+    """{column: meta} for kept files. {} if migration 012 isn't applied yet."""
+    try:
+        res = supabase.table("users").select(",".join(FILE_COLUMNS.values())).eq("id", user_id).maybe_single().execute()
+        row = getattr(res, "data", None) or {}
+    except Exception:
+        return {}
+    return {col: meta for col, meta in row.items() if isinstance(meta, dict) and meta.get("path")}
+
+
+def _file_meta(user_id: str) -> dict:
+    """What /user/me exposes: name, size, date - never the storage path."""
+    return {col: {k: meta[k] for k in _PUBLIC_META if k in meta} for col, meta in _stored_files(user_id).items()}
+
+
+def _remove_files(paths: list[str]) -> None:
+    if not paths:
+        return
+    try:
+        supabase.storage.from_(FILES_BUCKET).remove(paths)
+    except Exception:
+        pass  # best-effort cleanup
+
+
+def _file_column(kind: str) -> str:
+    col = FILE_COLUMNS.get(kind)
+    if not col:
+        raise HTTPException(status_code=404, detail="Unknown file kind")
+    return col
+
+
+class FileUpload(BaseModel):
+    file_b64: str
+    name: str
+    mime_type: str = ""
+
+
+@router.post("/file/{kind}")
+def upload_file(kind: str, body: FileUpload, authorization: str = Header(...)):
+    user_id = require_user(authorization)
+    col = _file_column(kind)
+    try:
+        data = base64.b64decode(body.file_b64, validate=True)
+    except (binascii.Error, ValueError):
+        raise HTTPException(status_code=422, detail="File could not be read")
+    if not data:
+        raise HTTPException(status_code=422, detail="File is empty")
+    if len(data) > MAX_FILE_BYTES:
+        raise HTTPException(status_code=413, detail="File must be under 10 MB")
+    name = re.sub(r"[^\w.\- ()]", "_", Path(body.name).name).strip()[:120] or kind
+    ext = Path(name).suffix.lower()
+    if ext not in _TEXT_EXTENSIONS and ext not in _DOC_EXT_TO_MIME:
+        raise HTTPException(status_code=422, detail="Unsupported file type")
+    path = f"{user_id}/{kind}{ext}"
+    mime = _DOC_EXT_TO_MIME.get(ext) or "text/plain; charset=utf-8"
+    previous = _stored_files(user_id).get(col)
+    try:
+        supabase.storage.from_(FILES_BUCKET).upload(path, data, {"content-type": mime, "upsert": "true"})
+        meta = {"path": path, "name": name, "size": len(data), "mime": mime,
+                "uploaded_at": datetime.now(timezone.utc).isoformat()}
+        supabase.table("users").update({col: meta}).eq("id", user_id).execute()
+    except Exception:
+        raise HTTPException(status_code=503, detail="Couldn't keep the file right now - your text was still saved")
+    if previous and previous["path"] != path:
+        _remove_files([previous["path"]])  # e.g. cv.pdf replaced by cv.docx
+    return {k: meta[k] for k in _PUBLIC_META}
+
+
+@router.get("/file/{kind}")
+def file_link(kind: str, authorization: str = Header(...)):
+    user_id = require_user(authorization)
+    meta = _stored_files(user_id).get(_file_column(kind))
+    if not meta:
+        raise HTTPException(status_code=404, detail="No file kept")
+    try:
+        res = supabase.storage.from_(FILES_BUCKET).create_signed_url(meta["path"], SIGNED_URL_SECONDS)
+    except Exception:
+        raise HTTPException(status_code=503, detail="Couldn't open the file right now")
+    url = res.get("signedURL") or res.get("signedUrl") if isinstance(res, dict) else None
+    if not url:
+        raise HTTPException(status_code=503, detail="Couldn't open the file right now")
+    return {"url": url, "name": meta.get("name")}

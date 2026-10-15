@@ -66,11 +66,7 @@ export async function extractUploadText(
   }
   // Document - extract server-side.
   if (file.size > MAX_DOC_BYTES) throw new Error('File must be under 10 MB')
-  const buf = await file.arrayBuffer()
-  const bytes = new Uint8Array(buf)
-  let binary = ''
-  for (let i = 0; i < bytes.length; i++) binary += String.fromCharCode(bytes[i])
-  const b64 = btoa(binary)
+  const b64 = await toBase64(file)
   const res = await fetch(`${apiUrl}/user/parse-cv`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
@@ -79,4 +75,52 @@ export async function extractUploadText(
   const data = await res.json()
   if (!res.ok) throw new Error(data.detail ?? 'Extraction failed')
   return data.text
+}
+
+async function toBase64(file: File): Promise<string> {
+  const bytes = new Uint8Array(await file.arrayBuffer())
+  let binary = ''
+  for (let i = 0; i < bytes.length; i++) binary += String.fromCharCode(bytes[i])
+  return btoa(binary)
+}
+
+// The original file kept for Settings' file card (name/size/date only - never a path).
+export type StoredFile = { name: string; size?: number; uploaded_at?: string }
+export type StoredKind = 'cv' | 'profile'
+
+// Keep the original upload so Settings can show it. Scoring still uses the extracted
+// text, so callers treat a failure here as non-fatal.
+export async function storeUploadedFile(file: File, kind: StoredKind, token: string, apiUrl: string): Promise<StoredFile> {
+  if (file.size > MAX_DOC_BYTES) throw new Error('File must be under 10 MB')
+  const res = await fetch(`${apiUrl}/user/file/${kind}`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+    body: JSON.stringify({ file_b64: await toBase64(file), name: file.name, mime_type: file.type || '' }),
+  })
+  const data = await res.json().catch(() => ({}))
+  if (!res.ok) throw new Error(data.detail ?? 'Could not keep the file')
+  return data as StoredFile
+}
+
+// Open a kept file in a new tab via a short-lived signed link. The tab is opened
+// before the await so popup blockers treat it as part of the click.
+export async function openStoredFile(kind: StoredKind, token: string, apiUrl: string): Promise<void> {
+  const win = window.open('', '_blank')
+  try {
+    const res = await fetch(`${apiUrl}/user/file/${kind}`, { headers: { Authorization: `Bearer ${token}` } })
+    const data = await res.json().catch(() => ({}))
+    if (!res.ok || !data.url) throw new Error(data.detail ?? 'Could not open the file')
+    if (win) win.location.href = data.url
+    else window.location.href = data.url
+  } catch (err) {
+    win?.close()
+    throw err
+  }
+}
+
+export function formatBytes(n?: number): string {
+  if (!n && n !== 0) return ''
+  if (n < 1024) return `${n} B`
+  if (n < 1024 * 1024) return `${Math.round(n / 1024)} KB`
+  return `${(n / (1024 * 1024)).toFixed(1)} MB`
 }

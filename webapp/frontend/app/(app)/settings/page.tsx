@@ -2,10 +2,10 @@
 
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { AlertTriangle, Check, ChevronDown, ChevronRight } from 'lucide-react'
+import { AlertTriangle, Check, ChevronDown, ChevronRight, ExternalLink, FileText } from 'lucide-react'
 import { supabase } from '@/lib/supabaseClient'
 import { clearSwrCache } from '@/lib/swrCache'
-import { ACCEPT_ATTR, extractUploadText } from '@/lib/uploadFormats'
+import { ACCEPT_ATTR, extractUploadText, formatBytes, openStoredFile, storeUploadedFile, type StoredFile, type StoredKind } from '@/lib/uploadFormats'
 
 type Tab = 'profile' | 'cv' | 'filters' | 'apikey' | 'account'
 
@@ -31,6 +31,36 @@ function FilePickButton({ label, onFile, className }: { label: string; onFile: (
         onChange={e => { const f = e.target.files?.[0]; if (f) onFile(f); e.target.value = '' }}
       />
     </label>
+  )
+}
+
+function asStoredFile(v: unknown): StoredFile | null {
+  return v && typeof v === 'object' && typeof (v as StoredFile).name === 'string' ? v as StoredFile : null
+}
+
+// The original file the user uploaded, shown instead of a wall of extracted text.
+function StoredFileCard({ file, onOpen }: { file: StoredFile; onOpen: () => void }) {
+  const details = [formatBytes(file.size), fmtDate(file.uploaded_at) && `uploaded ${fmtDate(file.uploaded_at)}`].filter(Boolean).join(' · ')
+  return (
+    <button type="button" onClick={onOpen} title="Open the file you uploaded"
+      className="group w-full flex items-center gap-3 text-left bg-surface border border-border rounded-xl px-4 py-3 hover:border-accent/50 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent">
+      <FileText className="w-5 h-5 text-accent shrink-0" aria-hidden="true" />
+      <span className="min-w-0 flex-1">
+        <span className="block text-sm text-foreground truncate group-hover:underline underline-offset-2">{file.name}</span>
+        {details && <span className="block text-xs text-subtle font-mono">{details}</span>}
+      </span>
+      <ExternalLink className="w-4 h-4 text-muted shrink-0" aria-hidden="true" />
+    </button>
+  )
+}
+
+// The free-plan backend sleeps when idle; until /user/me answers the tabs would
+// otherwise look empty, which reads as "nothing saved".
+function WakingUp({ what }: { what: string }) {
+  return (
+    <div role="status" className="w-full bg-surface border border-dashed border-border rounded-xl p-6 text-sm text-subtle">
+      Loading your saved {what}... If the site was idle for a while, the server is waking up - this can take up to a minute.
+    </div>
   )
 }
 
@@ -178,6 +208,10 @@ export default function SettingsPage() {
   const [showPrompt, setShowPrompt] = useState(false)
   const [copiedPrompt, setCopiedPrompt] = useState(false)
   const [mdUploadError, setMdUploadError] = useState('')
+  const [profileFile, setProfileFile] = useState<StoredFile | null>(null)
+  const [cvFile, setCvFile] = useState<StoredFile | null>(null)
+  const [showProfileText, setShowProfileText] = useState(false)
+  const [showCvText, setShowCvText] = useState(false)
 
   // CV tab
   const [cvText, setCvText] = useState('')
@@ -273,6 +307,8 @@ export default function SettingsPage() {
     setCvUpdatedAt(typeof d.cv_updated_at === 'string' ? d.cv_updated_at : null)
     setHasApiKey(d.has_api_key === true)
     setApiKeyLast4(typeof d.api_key_last4 === 'string' ? d.api_key_last4 : null)
+    setProfileFile(asStoredFile(d.profile_file))
+    setCvFile(asStoredFile(d.cv_file))
     setMeState('ok')
   }
 
@@ -329,8 +365,37 @@ export default function SettingsPage() {
       const token = await getToken()
       const text = await extractUploadText(file, token, process.env.NEXT_PUBLIC_API_URL!)
       setProfileMd(text)
+      const r = await api('/user/profile', { method: 'PATCH', body: JSON.stringify({ profile_md: text }) })
+      if (!r.ok) { flash('Profile parsed - click Save profile to store it'); return }
+      const d = await r.json()
+      setProfileVersion(d.profile_version ?? (profileVersion + 1))
+      setProfileUpdatedAt(d.profile_updated_at ?? null)
+      setSavedProfileMd(text)
+      await keepFile(file, 'profile', token)
     } catch (err: unknown) {
       setMdUploadError(err instanceof Error ? err.message : 'Could not read file')
+    }
+  }
+
+  // Keep the original upload for the file card. The text is already saved, so a
+  // failure here only means no card.
+  async function keepFile(file: File, kind: StoredKind, token: string) {
+    const label = kind === 'cv' ? 'CV' : 'Profile'
+    try {
+      const meta = await storeUploadedFile(file, kind, token, process.env.NEXT_PUBLIC_API_URL!)
+      if (kind === 'cv') setCvFile(meta)
+      else setProfileFile(meta)
+      flash(`${label} uploaded and saved`)
+    } catch (err: unknown) {
+      flash(`${label} text saved, but the file itself wasn't kept${err instanceof Error ? ` (${err.message})` : ''}`)
+    }
+  }
+
+  async function openFile(kind: StoredKind) {
+    try {
+      await openStoredFile(kind, await getToken(), process.env.NEXT_PUBLIC_API_URL!)
+    } catch (err: unknown) {
+      flash(err instanceof Error ? err.message : 'Could not open the file')
     }
   }
 
@@ -368,7 +433,7 @@ export default function SettingsPage() {
         const saved = await saveRes.json()
         setCvUpdatedAt(saved.cv_updated_at ?? null)
         setSavedCvText(text)
-        flash('CV uploaded and saved')
+        await keepFile(file, 'cv', token)
       } else {
         flash('CV parsed - click Save CV to store it')
       }
@@ -518,6 +583,17 @@ export default function SettingsPage() {
               </div>
               {mdUploadError && <p className="text-sm text-danger mt-1">{mdUploadError}</p>}
             </div>
+            {meState === 'ok' && profileFile && (
+              <div className="space-y-1.5">
+                <StoredFileCard file={profileFile} onOpen={() => openFile('profile')} />
+                <p className="text-xs text-subtle">
+                  Scoring reads the text taken from this file.{' '}
+                  <button type="button" onClick={() => setShowProfileText(v => !v)} className="text-accent hover:text-accent-hover underline transition-colors">
+                    {showProfileText ? 'Hide text' : 'View text'}
+                  </button>
+                </p>
+              </div>
+            )}
 
             {/* Path B: Generate with AI */}
             <button type="button" aria-expanded={showPrompt} onClick={() => setShowPrompt(v => !v)} className={`${secondaryBtn} inline-flex items-center gap-1.5`}>
@@ -544,11 +620,16 @@ export default function SettingsPage() {
               </div>
             )}
 
-            {/* Profile editor */}
-            <textarea value={profileMd} onChange={e => setProfileMd(e.target.value)} rows={20}
-              placeholder="Paste your profile.md here..."
-              className="w-full bg-surface text-foreground p-4 rounded-xl border border-border font-mono text-sm placeholder:text-subtle resize-none transition-colors focus:outline-none focus:border-accent" />
-            <button onClick={saveProfile} disabled={saving} className={primaryBtn}>Save profile</button>
+            {/* Profile editor - behind "View text" when the original file is kept */}
+            {meState === 'loading' ? <WakingUp what="profile" />
+              : (!profileFile || showProfileText || showPrompt) && (
+                <>
+                  <textarea value={profileMd} onChange={e => setProfileMd(e.target.value)} rows={20}
+                    placeholder="Paste your profile.md here..."
+                    className="w-full bg-surface text-foreground p-4 rounded-xl border border-border font-mono text-sm placeholder:text-subtle resize-none transition-colors focus:outline-none focus:border-accent" />
+                  <button onClick={saveProfile} disabled={saving} className={primaryBtn}>Save profile</button>
+                </>
+              )}
           </div>
         )}
 
@@ -572,18 +653,31 @@ export default function SettingsPage() {
                 </span>
               </div>
             </div>
+            {meState === 'ok' && cvFile && (
+              <div className="space-y-1.5">
+                <StoredFileCard file={cvFile} onOpen={() => openFile('cv')} />
+                <p className="text-xs text-subtle">
+                  Scoring reads the text taken from this file.{' '}
+                  <button type="button" onClick={() => setShowCvText(v => !v)} className="text-accent hover:text-accent-hover underline transition-colors">
+                    {showCvText ? 'Hide text' : 'View text'}
+                  </button>
+                </p>
+              </div>
+            )}
+            {pdfLoading && <p className="text-sm text-muted">Extracting text...</p>}
+            {pdfError && <p className="text-sm text-danger">{pdfError}</p>}
+            {meState === 'loading' ? <WakingUp what="CV" /> : (!cvFile || showCvText) && (<>
             {cvText && (
               <div className="flex items-center justify-between text-xs text-subtle font-mono">
                 <span>{cvText.length.toLocaleString()} chars · {cvWordCount.toLocaleString()} words</span>
                 <button onClick={downloadCvText} className="text-accent hover:text-accent-hover underline transition-colors">Download as .txt</button>
               </div>
             )}
-            {pdfLoading && <p className="text-sm text-muted">Extracting text...</p>}
-            {pdfError && <p className="text-sm text-danger">{pdfError}</p>}
             <textarea value={cvText} onChange={e => setCvText(e.target.value)} rows={18}
               placeholder="Or paste your CV text here..."
               className="w-full bg-surface text-foreground p-4 rounded-xl border border-border text-sm placeholder:text-subtle resize-none transition-colors focus:outline-none focus:border-accent" />
             <button onClick={saveCv} disabled={saving} className={primaryBtn}>Save CV</button>
+            </>)}
           </div>
         )}
 

@@ -1,9 +1,9 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Check, ChevronDown, ChevronRight } from 'lucide-react'
 import { supabase } from '@/lib/supabaseClient'
-import { ACCEPT_ATTR, extractUploadText } from '@/lib/uploadFormats'
+import { ACCEPT_ATTR, extractUploadText, storeUploadedFile, type StoredKind } from '@/lib/uploadFormats'
 import { ThemeToggle } from '@/app/components/ThemeToggle'
 
 const EXAMPLE_PROFILE = `# Candidate Profile
@@ -334,6 +334,19 @@ export default function OnboardingPage() {
     setStep(next)
   }
 
+  // Uploaded originals, kept for Settings' file card once their text is saved (the
+  // users row may not exist before then). Best-effort: the text is what scoring uses.
+  const uploadedFiles = useRef<Partial<Record<StoredKind, File>>>({})
+  async function keepUploaded(kind: StoredKind) {
+    const file = uploadedFiles.current[kind]
+    if (!file) return
+    try {
+      const { data: { session } } = await supabase.auth.getSession()
+      await storeUploadedFile(file, kind, session?.access_token ?? '', process.env.NEXT_PUBLIC_API_URL!)
+      delete uploadedFiles.current[kind]
+    } catch { /* non-fatal - Settings just shows the text */ }
+  }
+
   async function patch(path: string, body: unknown) {
     const r = await authedFetch(path, { method: 'PATCH', body: JSON.stringify(body) })
     if (!r.ok) throw new Error(`HTTP ${r.status}`)
@@ -341,13 +354,13 @@ export default function OnboardingPage() {
 
   function saveProfile() {
     return saveAndGo(2, profileMd.trim() && profileMd !== savedProfileMd
-      ? async () => { await patch('/user/profile', { profile_md: profileMd }); setSavedProfileMd(profileMd); return { profile: true } }
+      ? async () => { await patch('/user/profile', { profile_md: profileMd }); setSavedProfileMd(profileMd); await keepUploaded('profile'); return { profile: true } }
       : undefined)
   }
 
   function saveCv() {
     return saveAndGo(3, cvText.trim() && cvText !== savedCvText
-      ? async () => { await patch('/user/cv', { cv_text: cvText }); setSavedCvText(cvText); return { cv: true } }
+      ? async () => { await patch('/user/cv', { cv_text: cvText }); setSavedCvText(cvText); await keepUploaded('cv'); return { cv: true } }
       : undefined)
   }
 
@@ -418,6 +431,7 @@ export default function OnboardingPage() {
       const token = session?.access_token ?? ''
       const text = await extractUploadText(file, token, process.env.NEXT_PUBLIC_API_URL!)
       setProfileMd(text)
+      uploadedFiles.current.profile = file
     } catch (err: unknown) {
       setMdUploadError(err instanceof Error ? err.message : 'Could not read file')
     }
@@ -649,6 +663,7 @@ export default function OnboardingPage() {
                     const token = session?.access_token ?? ''
                     const text = await extractUploadText(file, token, process.env.NEXT_PUBLIC_API_URL!)
                     setCvText(text)
+                    uploadedFiles.current.cv = file
                   } catch (err: unknown) {
                     setPdfError(err instanceof Error ? err.message : 'Could not extract text - paste it below instead.')
                   } finally {
