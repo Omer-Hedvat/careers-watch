@@ -20,6 +20,63 @@ def _get_user(authorization: str) -> str:
     return require_user(authorization)
 
 
+def hidden_urls(user_id: str) -> set[str]:
+    """apply_urls this user skipped. Empty set if migration 013 isn't applied yet
+    (or the read fails) - the pages then just show everything."""
+    urls: set[str] = set()
+    start, page = 0, 1000
+    try:
+        while True:
+            chunk = (
+                supabase.table("hidden_jobs").select("apply_url").eq("user_id", user_id)
+                .order("apply_url").range(start, start + page - 1).execute().data
+            ) or []
+            urls.update(r["apply_url"] for r in chunk)
+            if len(chunk) < page:
+                return urls
+            start += page
+    except Exception:
+        return set()
+
+
+class SkipRequest(BaseModel):
+    apply_url: str
+
+
+_SKIP_UNAVAILABLE = "Skip isn't available yet - the hidden_jobs table is missing (migration 013)"
+
+
+def _skip_url(body: SkipRequest) -> str:
+    url = body.apply_url.strip()
+    if not url:
+        raise HTTPException(status_code=400, detail="apply_url is required")
+    return url
+
+
+@router.post("/skip")
+def skip_job(body: SkipRequest, authorization: str = Header(...)):
+    user_id = _get_user(authorization)
+    url = _skip_url(body)
+    try:
+        supabase.table("hidden_jobs").upsert(
+            {"user_id": user_id, "apply_url": url}, on_conflict="user_id,apply_url"
+        ).execute()
+    except Exception:
+        raise HTTPException(status_code=503, detail=_SKIP_UNAVAILABLE)
+    return {"skipped": True}
+
+
+@router.delete("/skip")
+def unskip_job(body: SkipRequest, authorization: str = Header(...)):
+    user_id = _get_user(authorization)
+    url = _skip_url(body)
+    try:
+        supabase.table("hidden_jobs").delete().eq("user_id", user_id).eq("apply_url", url).execute()
+    except Exception:
+        raise HTTPException(status_code=503, detail=_SKIP_UNAVAILABLE)
+    return {"skipped": False}
+
+
 @router.get("/companies")
 def list_companies(authorization: str = Header(...)):
     _get_user(authorization)
@@ -56,7 +113,8 @@ def list_positions(authorization: str = Header(...)):
     # all users - so a brand-new user with no profile or scoring still sees the
     # full market. This deliberately does NOT read the per-user scored_jobs
     # table (that backs the personalized Digest); scores stay on the Digest.
-    _get_user(authorization)  # require a signed-in session, but do not scope by user
+    # Only the per-user Skip list is read - flagged, not dropped (like outside_filters).
+    user_id = _get_user(authorization)  # require a signed-in session, but do not scope the catalog by user
     # PostgREST returns at most 1000 rows per request; the catalog is ~10k, so
     # page through in 1000-row windows until a short page signals the end.
     PAGE = 1000
@@ -76,6 +134,7 @@ def list_positions(authorization: str = Header(...)):
         if len(chunk) < PAGE:
             break
         start += PAGE
+    hidden = hidden_urls(user_id)
     return [
         {
             "company": r.get("company", ""),
@@ -84,6 +143,7 @@ def list_positions(authorization: str = Header(...)):
             "apply_url": r.get("apply_url", ""),
             "score": None,   # catalog is unscored; ranking lives on the Digest
             "status": "open",
+            "skipped": r.get("apply_url", "") in hidden,
         }
         for r in rows
     ]
@@ -109,8 +169,10 @@ def list_jobs(authorization: str = Header(...)):
     # Flag (not drop) rows outside the saved Settings filters: the Digest hides
     # them by default, e.g. jobs scored before a location filter was set.
     cfg = load_filters(user_id)
+    hidden = hidden_urls(user_id)
     for r in rows:
         r["outside_filters"] = not passes_filters(r, cfg)
+        r["skipped"] = r.get("apply_url", "") in hidden
     return rows
 
 

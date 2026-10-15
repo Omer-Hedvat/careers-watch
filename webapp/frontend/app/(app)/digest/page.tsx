@@ -9,6 +9,7 @@ import { flagInfo } from '@/lib/flags'
 import GettingStartedChecklist from '@/app/components/GettingStartedChecklist'
 import { DetailPanel } from '@/app/components/DetailPanel'
 import { type Job, timeAgo, ScoreBadge, JobCard } from '@/app/components/JobCard'
+import { saveSkip } from '@/lib/skip'
 
 // Friendly "resets Monday" wording. If the backend gives us an ISO reset date,
 // append it (e.g. "resets Monday, Jun 22"); otherwise fall back to bare copy.
@@ -343,7 +344,7 @@ function ClosedJobCard({ job }: { job: Job }) {
 // SWR cache for the /jobs list. Bump JOBS_CACHE_VERSION when the Job row shape
 // changes. 4 days = the longest gap between collection runs (Thu -> Mon), so an
 // older cache certainly predates the latest collection and is not worth painting.
-const JOBS_CACHE_VERSION = 1
+const JOBS_CACHE_VERSION = 2
 const JOBS_CACHE_MAX_AGE_MS = 4 * 24 * 60 * 60 * 1000
 
 export default function DigestPage() {
@@ -382,6 +383,7 @@ export default function DigestPage() {
   const [viewLoaded, setViewLoaded] = useState(false)
   const [showApplied, setShowApplied] = useState(false)
   const [showOutside, setShowOutside] = useState(false)
+  const [showSkipped, setShowSkipped] = useState(false)
   // PREVIOUS last_seen_at (ms), captured once per page visit before it is
   // stamped to now. null = first visit / storage blocked: no banner, no badges.
   const [prevSeenAt, setPrevSeenAt] = useState<number | null>(null)
@@ -656,6 +658,18 @@ export default function DigestPage() {
     setJobs(prev => prev.map(j => j.id === job.id ? { ...j, applied: !j.applied } : j))
   }
 
+  // Optimistic: flip at once, roll back with a message if the save fails.
+  async function toggleSkip(job: Job) {
+    const skip = !job.skipped
+    const flip = (v: boolean) => setJobs(prev => prev.map(j => j.apply_url === job.apply_url ? { ...j, skipped: v } : j))
+    flip(skip)
+    if (skip && detailJobId === job.id) setDetailJobId(null)
+    if (!(await saveSkip(job.apply_url, skip))) {
+      flip(!skip)
+      setScoreMsg(skip ? 'Could not skip this job - try again' : 'Could not unskip this job - try again')
+    }
+  }
+
   function matchesMultiFilter(value: string, filter: string): boolean {
     if (!filter.trim()) return true
     const terms = filter.split(';').map(t => t.trim()).filter(Boolean)
@@ -672,7 +686,10 @@ export default function DigestPage() {
   // Jobs outside the saved Settings filters (e.g. scored before a location filter
   // was set) stay hidden unless asked for. Applied ones always show.
   const hiddenByFilters = filtered.filter(j => j.outside_filters && !j.applied).length
-  const visible = showOutside ? filtered : filtered.filter(j => !j.outside_filters || j.applied)
+  const inFilters = showOutside ? filtered : filtered.filter(j => !j.outside_filters || j.applied)
+  // Skipped ("not interested") jobs hide the same way; applied ones always show.
+  const skippedCount = inFilters.filter(j => j.skipped && !j.applied).length
+  const visible = showSkipped ? inFilters : inFilters.filter(j => !j.skipped || j.applied)
 
   // Below-5 scores fall outside every band (bandFor would lump them into 5-6).
   const tierCounts = SCORE_BANDS.map(b => ({
@@ -686,7 +703,7 @@ export default function DigestPage() {
   const applied = openJobs.filter(j => j.applied)
   // /jobs returns every score, so honour the min-score slider (not the text
   // filters) to keep the count meaningful when "show only new" is applied.
-  const newCount = jobs.filter(j => j.score >= minScore && j.status !== 'closed' && (showOutside || !j.outside_filters) && isNewSince(j.scored_at, prevSeenAt)).length
+  const newCount = jobs.filter(j => j.score >= minScore && j.status !== 'closed' && (showOutside || !j.outside_filters) && (showSkipped || !j.skipped || j.applied) && isNewSince(j.scored_at, prevSeenAt)).length
 
   function resetFilters() {
     setMinScore(5)
@@ -862,6 +879,17 @@ export default function DigestPage() {
           </p>
         )}
 
+        {skippedCount > 0 && (
+          <p className="text-sm text-subtle">
+            {showSkipped
+              ? `Showing ${skippedCount} skipped job${skippedCount !== 1 ? 's' : ''}. `
+              : `${skippedCount} skipped - `}
+            <button onClick={() => setShowSkipped(v => !v)} className="text-muted hover:text-foreground underline underline-offset-2 decoration-border-subtle transition-colors">
+              {showSkipped ? 'Hide them' : 'Show them'}
+            </button>
+          </p>
+        )}
+
         {/* Job list */}
         {loading && (
           <div className="space-y-4">
@@ -876,7 +904,7 @@ export default function DigestPage() {
             onResetFilters={resetFilters}
           />
         )}
-        {!loading && active.map(job => <JobCard key={job.id} job={job} onToggleApplied={toggleApplied} currentProfileVersion={currentProfileVersion} onOpen={openDetail} isNew={isNewSince(job.scored_at, prevSeenAt)} />)}
+        {!loading && active.map(job => <JobCard key={job.id} job={job} onToggleApplied={toggleApplied} currentProfileVersion={currentProfileVersion} onOpen={openDetail} isNew={isNewSince(job.scored_at, prevSeenAt)} onToggleSkip={toggleSkip} />)}
 
         {/* Applied section */}
         {applied.length > 0 && (

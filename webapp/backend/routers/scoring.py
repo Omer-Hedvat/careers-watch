@@ -13,6 +13,7 @@ from auth import require_user
 from db.positions import fetch_positions
 from db.supabase_client import supabase
 from db.filters import load_filters, passes_filters
+from routers.jobs import hidden_urls
 
 router = APIRouter(prefix="/score", tags=["scoring"])
 
@@ -137,11 +138,11 @@ def _reset_if_new_week(user: dict) -> dict:
 
 
 def _new_pending(user_id: str, all_jobs: list[dict]) -> list[dict]:
-    """Catalog jobs this user hasn't scored yet that pass their filters."""
+    """Catalog jobs this user hasn't scored or skipped yet that pass their filters."""
     cfg = load_filters(user_id)
-    scored_urls = _scored_urls(user_id)
+    done = _scored_urls(user_id) | hidden_urls(user_id)
     return [j for j in all_jobs
-            if j.get("apply_url", "") not in scored_urls and passes_filters(j, cfg)]
+            if j.get("apply_url", "") not in done and passes_filters(j, cfg)]
 
 
 @router.get("/status")

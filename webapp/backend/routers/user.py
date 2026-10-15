@@ -228,7 +228,11 @@ def export_data(authorization: str = Header(...)):
     from fastapi.responses import JSONResponse
     user_id = require_user(authorization)
     jobs = supabase.table("scored_jobs").select("*").eq("user_id", user_id).execute().data
-    return JSONResponse(content=jobs, headers={"Content-Disposition": "attachment; filename=careerwatch_export.json"})
+    try:
+        hidden = supabase.table("hidden_jobs").select("apply_url,hidden_at").eq("user_id", user_id).execute().data
+    except Exception:
+        hidden = []  # migration 013 not applied yet
+    return JSONResponse(content={"scored_jobs": jobs, "hidden_jobs": hidden}, headers={"Content-Disposition": "attachment; filename=careerwatch_export.json"})
 
 
 @router.delete("/account")

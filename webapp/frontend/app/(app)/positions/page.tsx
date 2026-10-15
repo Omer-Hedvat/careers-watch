@@ -6,11 +6,13 @@ import { supabase } from '@/lib/supabaseClient'
 import { readCache, writeCache } from '@/lib/swrCache'
 import { useCountUp } from '@/hooks/useCountUp'
 import { DetailPanel } from '@/app/components/DetailPanel'
+import { SkipButton } from '@/app/components/SkipButton'
+import { saveSkip } from '@/lib/skip'
 
 const PAGE_SIZE = 50
 // SWR cache for the /jobs/positions list - bump the version when Position changes.
 // 4 days = the longest gap between collection runs (Thu -> Mon).
-const POSITIONS_CACHE_VERSION = 1
+const POSITIONS_CACHE_VERSION = 2
 const POSITIONS_CACHE_MAX_AGE_MS = 4 * 24 * 60 * 60 * 1000
 
 type Position = {
@@ -20,6 +22,7 @@ type Position = {
   apply_url: string
   score: number | null
   status: string | null
+  skipped?: boolean
 }
 
 function PositionRowSkeleton() {
@@ -104,7 +107,12 @@ export default function PositionsPage() {
   const [search, setSearch] = useState('')
   const [page, setPage] = useState(0)
   const [detailPosition, setDetailPosition] = useState<Position | null>(null)
-  const animatedTotal = useCountUp(loading ? 0 : positions.length)
+  const [showSkipped, setShowSkipped] = useState(false)
+  const [skipError, setSkipError] = useState('')
+  // Skipped ("not interested") rows stay hidden unless asked for.
+  const listed = useMemo(() => showSkipped ? positions : positions.filter(p => !p.skipped), [positions, showSkipped])
+  const skippedCount = positions.length - positions.filter(p => !p.skipped).length
+  const animatedTotal = useCountUp(loading ? 0 : listed.length)
 
   async function load() {
     try {
@@ -136,6 +144,18 @@ export default function PositionsPage() {
 
   useEffect(() => { load() }, [])
 
+  // Optimistic: flip at once, roll back with a message if the save fails.
+  async function toggleSkip(p: Position) {
+    const skip = !p.skipped
+    const flip = (v: boolean) => setPositions(prev => prev.map(x => x.apply_url === p.apply_url ? { ...x, skipped: v } : x))
+    setSkipError('')
+    flip(skip)
+    if (!(await saveSkip(p.apply_url, skip))) {
+      flip(!skip)
+      setSkipError(skip ? 'Could not skip this position - try again' : 'Could not unskip this position - try again')
+    }
+  }
+
   function retryRefresh() {
     setCacheState('updating')
     load()
@@ -143,11 +163,11 @@ export default function PositionsPage() {
 
   const filtered = useMemo(() => {
     const q = search.trim().toLowerCase()
-    if (!q) return positions
-    return positions.filter(
+    if (!q) return listed
+    return listed.filter(
       p => p.company.toLowerCase().includes(q) || p.title.toLowerCase().includes(q)
     )
-  }, [positions, search])
+  }, [listed, search])
 
   const totalPages = Math.ceil(filtered.length / PAGE_SIZE)
   const page_ = Math.min(page, Math.max(0, totalPages - 1))
@@ -175,6 +195,9 @@ export default function PositionsPage() {
           {cacheState === 'updating' && (
             <span className="text-xs text-subtle" aria-live="polite">Updating...</span>
           )}
+          {skipError && (
+            <span className="text-xs text-danger" role="alert">{skipError}</span>
+          )}
           {cacheState === 'failed' && (
             <span className="text-xs text-subtle" aria-live="polite">
               Couldn&apos;t refresh - showing saved list.{' '}
@@ -188,6 +211,17 @@ export default function PositionsPage() {
             className="px-3 py-1.5 bg-surface-raised rounded-lg border border-subtle text-sm focus:outline-none focus:border-accent transition-colors w-52"
           />
         </div>
+
+        {!loading && skippedCount > 0 && (
+          <p className="text-sm text-subtle">
+            {showSkipped
+              ? `Showing ${skippedCount} skipped position${skippedCount !== 1 ? 's' : ''}. `
+              : `${skippedCount} skipped - `}
+            <button onClick={() => { setShowSkipped(v => !v); setPage(0) }} className="text-muted hover:text-foreground underline underline-offset-2 decoration-border-subtle transition-colors">
+              {showSkipped ? 'Hide them' : 'Show them'}
+            </button>
+          </p>
+        )}
 
         {loading && (
           <div className="space-y-1.5">
@@ -236,14 +270,16 @@ export default function PositionsPage() {
               )
             }
             return (
-              <button
-                key={`${p.company}-${p.title}-${i}`}
-                type="button"
-                onClick={() => setDetailPosition(p)}
-                className="w-full flex items-start gap-3 bg-surface border border-border rounded-xl px-5 py-3 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent hover:bg-surface-raised hover:border-accent/25 cursor-pointer"
-              >
-                {rowBody}
-              </button>
+              <div key={`${p.company}-${p.title}-${i}`} className={`flex items-center gap-1 ${p.skipped ? 'opacity-60' : ''}`}>
+                <button
+                  type="button"
+                  onClick={() => setDetailPosition(p)}
+                  className="flex-1 min-w-0 flex items-start gap-3 bg-surface border border-border rounded-xl px-5 py-3 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent hover:bg-surface-raised hover:border-accent/25 cursor-pointer"
+                >
+                  {rowBody}
+                </button>
+                {p.apply_url && <SkipButton skipped={p.skipped} onClick={() => toggleSkip(p)} className="shrink-0" />}
+              </div>
             )
           })}
         </div>

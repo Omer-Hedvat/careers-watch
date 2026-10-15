@@ -8,6 +8,7 @@
 import { useState } from 'react'
 import { FLAG_GLOSSARY, flagInfo } from '@/lib/flags'
 import { bandFor } from '@/lib/scoreBands'
+import { SkipButton } from '@/app/components/SkipButton'
 
 export type Job = {
   id: string
@@ -24,6 +25,7 @@ export type Job = {
   status?: 'open' | 'closed'
   closed_at?: string
   outside_filters?: boolean
+  skipped?: boolean
 }
 
 export function timeAgo(iso: string): string {
@@ -69,7 +71,7 @@ export function FlagGlossary() {
   )
 }
 
-export function JobCard({ job, onToggleApplied, currentProfileVersion, onOpen, isNew }: { job: Job; onToggleApplied: (j: Job) => void; currentProfileVersion: number; onOpen?: (j: Job) => void; isNew?: boolean }) {
+export function JobCard({ job, onToggleApplied, currentProfileVersion, onOpen, isNew, onToggleSkip }: { job: Job; onToggleApplied: (j: Job) => void; currentProfileVersion: number; onOpen?: (j: Job) => void; isNew?: boolean; onToggleSkip?: (j: Job) => void }) {
   const staleProfile = job.profile_version !== undefined && job.profile_version < currentProfileVersion
   return (
     <div
@@ -122,6 +124,9 @@ export function JobCard({ job, onToggleApplied, currentProfileVersion, onOpen, i
               className="px-3.5 py-1.5 text-muted hover:text-foreground text-sm rounded-lg transition-colors underline underline-offset-2 decoration-border-subtle">
               Details
             </button>
+          )}
+          {onToggleSkip && !job.applied && (
+            <SkipButton skipped={job.skipped} onClick={() => onToggleSkip(job)} className="ml-auto" />
           )}
         </div>
       </div>
