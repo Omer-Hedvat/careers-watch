@@ -375,9 +375,13 @@ def upload_file(kind: str, body: FileUpload, authorization: str = Header(...)):
         supabase.storage.from_(FILES_BUCKET).upload(path, data, {"content-type": mime, "upsert": "true"})
         meta = {"path": path, "name": name, "size": len(data), "mime": mime,
                 "uploaded_at": datetime.now(timezone.utc).isoformat()}
-        supabase.table("users").update({col: meta}).eq("id", user_id).execute()
+        res = supabase.table("users").update({col: meta}).eq("id", user_id).execute()
     except Exception:
         raise HTTPException(status_code=503, detail="Couldn't keep the file right now - your text was still saved")
+    if not getattr(res, "data", None):
+        # No users row yet: nothing would point at the object, so don't leave it behind.
+        _remove_files([path])
+        raise HTTPException(status_code=409, detail="Save your text first, then upload the file")
     if previous and previous["path"] != path:
         _remove_files([previous["path"]])  # e.g. cv.pdf replaced by cv.docx
     return {k: meta[k] for k in _PUBLIC_META}

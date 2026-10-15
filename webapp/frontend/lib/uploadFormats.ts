@@ -106,6 +106,7 @@ export async function storeUploadedFile(file: File, kind: StoredKind, token: str
 // before the await so popup blockers treat it as part of the click.
 export async function openStoredFile(kind: StoredKind, token: string, apiUrl: string): Promise<void> {
   const win = window.open('', '_blank')
+  if (win) win.opener = null // the file tab serves user content - no handle back to this tab
   try {
     const res = await fetch(`${apiUrl}/user/file/${kind}`, { headers: { Authorization: `Bearer ${token}` } })
     const data = await res.json().catch(() => ({}))

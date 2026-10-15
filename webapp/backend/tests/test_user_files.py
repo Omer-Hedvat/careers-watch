@@ -40,8 +40,8 @@ class _Bucket:
 class _Users:
     """users table: select returns `row`; update merges into it; select may raise."""
 
-    def __init__(self, row, select_fails=False):
-        self.row, self.select_fails, self._op = row, select_fails, None
+    def __init__(self, row, select_fails=False, exists=True):
+        self.row, self.select_fails, self.exists, self._op = row, select_fails, exists, None
 
     def select(self, *a):
         self._op = "select"
@@ -62,11 +62,13 @@ class _Users:
     def execute(self):
         if self._op == "select" and self.select_fails:
             raise RuntimeError('column users.cv_file does not exist')
+        if self._op == "update" and not self.exists:
+            return types.SimpleNamespace(data=[])
         return types.SimpleNamespace(data=self.row)
 
 
-def _setup(monkeypatch, row=None, fail=False, select_fails=False):
-    users, bucket = _Users(row or {}, select_fails), _Bucket(fail)
+def _setup(monkeypatch, row=None, fail=False, select_fails=False, exists=True):
+    users, bucket = _Users(row or {}, select_fails, exists), _Bucket(fail)
     sb = types.SimpleNamespace(table=lambda n: users,
                                storage=types.SimpleNamespace(from_=lambda b: bucket))
     monkeypatch.setattr(user, "supabase", sb)
@@ -137,3 +139,11 @@ def test_delete_account_removes_kept_files(monkeypatch):
     monkeypatch.setattr(user.supabase, "auth", types.SimpleNamespace(admin=types.SimpleNamespace(delete_user=lambda uid: None)), raising=False)
     user.delete_account(authorization="Bearer good")
     assert sorted(bucket.removed) == ["user-1/cv.pdf", "user-1/profile.md"]
+
+
+def test_upload_without_users_row_is_409_and_leaves_no_object(monkeypatch):
+    _, bucket = _setup(monkeypatch, exists=False)
+    with pytest.raises(HTTPException) as e:
+        _upload()
+    assert e.value.status_code == 409
+    assert bucket.removed == ["user-1/cv.docx"]
