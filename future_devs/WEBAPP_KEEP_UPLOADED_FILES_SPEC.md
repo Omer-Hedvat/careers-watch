@@ -32,7 +32,7 @@ the tabs look empty - indistinguishable from "nothing saved".
 - Delete account also removes the user's stored files. Max file size 10 MB (same as parsing).
 - Free plan: Supabase Storage includes 1 GB; a few CVs/profiles are a few MB.
 - Profile tab (and onboarding step 1) open with a short human explainer of what the profile
-  is and how scoring uses it (copy by Fable), and the copyable AI prompt now has the user
+  is and how scoring uses it (copy by Fable; no CV-vs-profile precedence claim, the scorer has none), and the copyable AI prompt now has the user
   attach their CV: the assistant infers what the CV answers, asks only the rest, and outputs
   profile.md with the eight exact headings the scorer and the completeness check expect.
   Both texts live in `webapp/frontend/lib/profileCopy.ts`.

@@ -4,11 +4,11 @@
 // match checkProfileCompleteness in onboarding and what the scorer expects.
 
 export const PROFILE_EXPLAINER = [
-  'Your CV says what you have done. Your profile says what you want: target titles in priority order, the domains you care about, how far you can commute, what should raise or lower a score, and your dealbreakers. When jobs are scored, Gemini reads both files next to each posting and returns a 0-10 score, and if the two disagree, the profile wins.',
+  'Your CV says what you have done. Your profile says what you want: target titles in priority order, the domains you care about, how far you can commute, what should raise or lower a score, and your dealbreakers. When jobs are scored, Gemini reads both next to each posting and returns a 0-10 score, so the profile has to be specific.',
   'Specific beats vague: name the roles and the nuances the scorer could get wrong, like whether military leadership counts as management. To create one, upload a file, or copy the prompt below into any AI assistant and attach your CV.',
 ]
 
-export const PROFILE_PROMPT = `You are helping me write profile.md, a Markdown file that a job-scoring AI reads next to my CV to score job postings from 0 to 10. My CV is attached (or pasted below this prompt). The CV says what I have done; profile.md says what I want and how to judge fit. When the two disagree about whether a job is desirable, profile.md wins - so it has to be specific.
+export const PROFILE_PROMPT = `You are helping me write profile.md, a Markdown file that a job-scoring AI reads next to my CV to score job postings from 0 to 10. My CV is attached (or pasted below this prompt). The CV says what I have done; profile.md says what I want and how to judge fit, so it has to be specific.
 
 Step 1 - Read my CV. Work out what it already answers: current title, years of experience, specialization, domains, location.
 
@@ -42,4 +42,4 @@ Rules for the file:
 - Scoring rubric: one sub-list each for 9-10, 7-8, 5-6 and 0-2, with 2-4 bullets per band naming specific role types and signals from my answers.
 - Keep it under about 900 words. Plain hyphens, no emojis, no tables.
 
-How the scores are shown to me, so you can calibrate the bands: 9-10 "reach out today", 7-8 "strong, worth a look", 5-6 "adjacent", below 5 not shown at all.`
+How the scores are shown to me, so you can calibrate the bands: 9-10 "reach out today", 7-8 "strong, worth a look", 5-6 "adjacent", below 5 hidden by default.`
