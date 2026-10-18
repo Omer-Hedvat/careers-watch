@@ -278,6 +278,7 @@ export default function OnboardingPage() {
           }
         }
       } catch { /* backend unreachable - start fresh, never block */ }
+      setFiltersLoadFailed(filtersUnloaded.current)
       setSetup(s)
       const firstIncomplete = STEP_KEYS.findIndex(k => !s[k]) + 1
       setStep(requested >= 1 && requested <= 4 ? requested : firstIncomplete || 4)
@@ -313,6 +314,7 @@ export default function OnboardingPage() {
   // Uploaded originals, kept for Settings' file card once their text is saved (the
   // users row may not exist before then). Best-effort: the text is what scoring uses.
   const filtersUnloaded = useRef(false)
+  const [filtersLoadFailed, setFiltersLoadFailed] = useState(false) // mirrors the ref for the banner
   const uploadedFiles = useRef<Partial<Record<StoredKind, File>>>({})
   async function keepUploaded(kind: StoredKind) {
     const file = uploadedFiles.current[kind]
@@ -720,6 +722,11 @@ export default function OnboardingPage() {
               <h2 className="font-display text-3xl">Set your filters</h2>
               <p className="text-sm text-subtle mt-1">Filters drop the obvious misses before scoring, so your quota and your attention go to jobs that could actually fit.</p>
             </div>
+            {filtersLoadFailed && (
+              <div role="alert" className="text-sm text-warning bg-warning/10 border border-warning/30 rounded-lg p-3">
+                Couldn&apos;t load your saved filters - they are still saved. Changes here won&apos;t be saved; edit them in Settings - Filters.
+              </div>
+            )}
 
             <FilterPanel
               locationInput={locationInput}

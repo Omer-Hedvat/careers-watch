@@ -28,4 +28,4 @@ same hole: if saved filters failed to load, finishing the wizard saved its defau
 Settings: `filtersState` (loading/ok/error). The tab shows the waking-up box while loading,
 an error with Retry on failure ("they are still saved"), and the form only when loaded;
 Save is disabled and guarded unless loaded. Onboarding: if saved filters exist but failed to
-load, the final step skips the filters PATCH instead of saving defaults over them.
+load, the final step skips the filters PATCH instead of saving defaults over them, and the filters step says so (review: career-night).
