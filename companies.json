@@ -464,7 +464,7 @@
     "category": "cyber",
     "location_filter": "israel",
     "discovered_at": "2026-05-04T18:54:33.370404+00:00",
-    "last_verified_at": "2026-10-11T11:54:55.557330+00:00",
+    "last_verified_at": "2026-10-18T10:12:21.233208+00:00",
     "last_jobs_pulled_at": "2026-10-15T12:14:39.451828+00:00",
     "consecutive_failures": 0
   },
@@ -627,7 +627,7 @@
     "category": "cyber",
     "location_filter": "israel",
     "discovered_at": "2026-05-04T18:54:33.370404+00:00",
-    "last_verified_at": "2026-10-11T11:54:55.557330+00:00",
+    "last_verified_at": "2026-10-18T10:12:21.233208+00:00",
     "last_jobs_pulled_at": "2026-10-15T12:15:07.297234+00:00",
     "consecutive_failures": 0
   },
@@ -753,7 +753,7 @@
     "category": "fintech",
     "location_filter": "israel",
     "discovered_at": "2026-05-04T18:54:33.370404+00:00",
-    "last_verified_at": "2026-10-11T11:54:55.557330+00:00",
+    "last_verified_at": "2026-10-18T10:12:21.233208+00:00",
     "last_jobs_pulled_at": "2026-10-15T12:15:09.522368+00:00",
     "consecutive_failures": 0
   },
@@ -771,7 +771,7 @@
     "category": "fintech",
     "location_filter": "israel",
     "discovered_at": "2026-05-04T18:54:33.370404+00:00",
-    "last_verified_at": "2026-10-11T11:54:55.557330+00:00",
+    "last_verified_at": "2026-10-18T10:12:21.233208+00:00",
     "last_jobs_pulled_at": "2026-10-15T12:15:09.592292+00:00",
     "consecutive_failures": 0
   },
@@ -903,7 +903,7 @@
   },
   {
     "name": "BAND",
-    "website": "https://snap.licdn.com",
+    "website": "https://www.band.ai",
     "source_vc": "Team8",
     "vc_tier": 1,
     "careers_url": null,
@@ -919,7 +919,7 @@
   },
   {
     "name": "FlowRx",
-    "website": "https://www.comeet.co",
+    "website": "https://www.flowrx.ai",
     "source_vc": "Team8",
     "vc_tier": 1,
     "careers_url": null,
@@ -937,7 +937,7 @@
   },
   {
     "name": "Dimer Health",
-    "website": "https://scripts.clarity.ms",
+    "website": "https://www.dimerhealth.com",
     "source_vc": "Team8",
     "vc_tier": 1,
     "careers_url": null,
@@ -1015,7 +1015,7 @@
   },
   {
     "name": "Solid",
-    "website": "https://scripts.clarity.ms",
+    "website": "https://www.getsolid.ai",
     "source_vc": "Team8",
     "vc_tier": 1,
     "careers_url": null,
@@ -1850,7 +1850,7 @@
       "token": "96B41ED041ED12D654C3388241ED12D654C3"
     },
     "discovered_at": "2026-05-04T22:13:14.592767+00:00",
-    "last_verified_at": "2026-09-13T10:57:42.514604+00:00",
+    "last_verified_at": "2026-10-18T10:12:21.233208+00:00",
     "last_jobs_pulled_at": "2026-10-15T12:15:35.778982+00:00",
     "consecutive_failures": 0,
     "category": "cyber",
@@ -2123,7 +2123,7 @@
       "token": "94440DC0944094401BCC12882510"
     },
     "discovered_at": "2026-05-04T22:13:39.140529+00:00",
-    "last_verified_at": "2026-10-11T11:54:55.557330+00:00",
+    "last_verified_at": "2026-10-18T10:12:21.233208+00:00",
     "last_jobs_pulled_at": "2026-10-15T12:15:38.414999+00:00",
     "consecutive_failures": 0,
     "ats_source": "gemini-2.5-pro",
@@ -3181,7 +3181,7 @@
       "token": "37.009"
     },
     "discovered_at": "2026-05-04T22:15:11.920308+00:00",
-    "last_verified_at": "2026-10-11T11:54:55.557330+00:00",
+    "last_verified_at": "2026-10-18T10:12:21.233208+00:00",
     "last_jobs_pulled_at": "2026-10-15T12:16:08.913287+00:00",
     "consecutive_failures": 0,
     "category": "general",
@@ -3200,7 +3200,7 @@
       "token": "B6.00F"
     },
     "discovered_at": "2026-05-04T22:15:12.743648+00:00",
-    "last_verified_at": "2026-10-11T11:54:55.557330+00:00",
+    "last_verified_at": "2026-10-18T10:12:21.233208+00:00",
     "last_jobs_pulled_at": "2026-10-15T12:16:09.181454+00:00",
     "consecutive_failures": 0,
     "category": "general",
@@ -3504,7 +3504,7 @@
       "token": "8A.00C"
     },
     "discovered_at": "2026-05-04T22:15:31.314789+00:00",
-    "last_verified_at": "2026-10-11T11:54:55.557330+00:00",
+    "last_verified_at": "2026-10-18T10:12:21.233208+00:00",
     "last_jobs_pulled_at": "2026-10-15T12:16:15.291927+00:00",
     "consecutive_failures": 0,
     "category": "general",
@@ -4001,7 +4001,7 @@
       "token": "72.006"
     },
     "discovered_at": "2026-05-04T22:17:14.176324+00:00",
-    "last_verified_at": "2026-10-11T11:54:55.557330+00:00",
+    "last_verified_at": "2026-10-18T10:12:21.233208+00:00",
     "last_jobs_pulled_at": "2026-10-15T12:16:24.060316+00:00",
     "consecutive_failures": 0,
     "ats_source": "gemini-2.5-pro",
@@ -4039,7 +4039,7 @@
       "board_token": "appsflyer"
     },
     "discovered_at": "2026-05-04T22:17:16.871044+00:00",
-    "last_verified_at": "2026-10-11T11:54:55.557330+00:00",
+    "last_verified_at": "2026-10-18T10:12:21.233208+00:00",
     "last_jobs_pulled_at": "2026-10-15T12:16:24.163437+00:00",
     "consecutive_failures": 0,
     "category": "general",
@@ -5255,7 +5255,7 @@
       "token": "954414C02550414C4AA01BFC12A81BFC2550"
     },
     "discovered_at": "2026-05-04T22:19:38.506974+00:00",
-    "last_verified_at": "2026-10-11T11:54:55.557330+00:00",
+    "last_verified_at": "2026-10-18T10:12:21.233208+00:00",
     "last_jobs_pulled_at": "2026-10-15T12:16:28.820173+00:00",
     "consecutive_failures": 0,
     "skip_discovery": true,
@@ -5325,7 +5325,7 @@
       "token": "B1A4DB64DB62C6863EA2C684DB6B1A58D02C68"
     },
     "discovered_at": "2026-05-04T22:20:41.425159+00:00",
-    "last_verified_at": "2026-10-11T11:54:55.557330+00:00",
+    "last_verified_at": "2026-10-18T10:12:21.233208+00:00",
     "last_jobs_pulled_at": "2026-10-15T12:16:29.674013+00:00",
     "consecutive_failures": 0,
     "ats_source": "gemini-2.5-pro",
@@ -5570,7 +5570,7 @@
       "token": "9103660519012202D5024401B3091024403660"
     },
     "discovered_at": "2026-05-04T22:20:45.737333+00:00",
-    "last_verified_at": "2026-10-11T11:54:55.557330+00:00",
+    "last_verified_at": "2026-10-18T10:12:21.233208+00:00",
     "last_jobs_pulled_at": "2026-10-15T12:16:31.835891+00:00",
     "consecutive_failures": 0,
     "careers_url_source": "gemini-2.5-pro",
@@ -9598,7 +9598,7 @@
       "token": "99343059931CB999339721CB9264C1CB9993"
     },
     "discovered_at": "2026-05-04T22:27:12.611224+00:00",
-    "last_verified_at": "2026-10-11T11:54:55.557330+00:00",
+    "last_verified_at": "2026-10-18T10:12:21.233208+00:00",
     "last_jobs_pulled_at": "2026-10-15T12:16:50.719954+00:00",
     "consecutive_failures": 0,
     "ats_source": "gemini-2.5-pro",
@@ -11894,7 +11894,7 @@
     "category": "cyber",
     "location_filter": "israel",
     "discovered_at": "2026-05-04T22:31:35.530163+00:00",
-    "last_verified_at": "2026-10-11T11:54:55.557330+00:00",
+    "last_verified_at": "2026-10-18T10:12:21.233208+00:00",
     "last_jobs_pulled_at": "2026-10-15T12:17:00.460708+00:00",
     "consecutive_failures": 0
   },
@@ -31877,7 +31877,7 @@
     "category": "fintech",
     "location_filter": "israel",
     "discovered_at": "2026-05-07T11:24:33.472448+00:00",
-    "last_verified_at": "2026-10-11T11:54:55.557330+00:00",
+    "last_verified_at": "2026-10-18T10:12:21.233208+00:00",
     "last_jobs_pulled_at": "2026-10-15T12:18:28.383542+00:00",
     "consecutive_failures": 0
   },
@@ -32044,7 +32044,7 @@
     "category": "general",
     "location_filter": "israel",
     "discovered_at": "2026-05-07T11:24:33.472448+00:00",
-    "last_verified_at": "2026-10-11T11:54:55.557330+00:00",
+    "last_verified_at": "2026-10-18T10:12:21.233208+00:00",
     "last_jobs_pulled_at": "2026-10-15T12:18:32.047364+00:00",
     "consecutive_failures": 0
   },
@@ -32450,7 +32450,7 @@
     "category": "general",
     "location_filter": "israel",
     "discovered_at": "2026-05-17T11:32:14.759406+00:00",
-    "last_verified_at": "2026-10-11T11:54:55.557330+00:00",
+    "last_verified_at": "2026-10-18T10:12:21.233208+00:00",
     "last_jobs_pulled_at": "2026-10-15T12:19:23.142259+00:00",
     "consecutive_failures": 0
   },
@@ -32574,7 +32574,7 @@
     "category": "general",
     "location_filter": "israel",
     "discovered_at": "2026-05-17T11:32:14.759406+00:00",
-    "last_verified_at": "2026-10-11T11:54:55.557330+00:00",
+    "last_verified_at": "2026-10-18T10:12:21.233208+00:00",
     "last_jobs_pulled_at": null,
     "consecutive_failures": 0
   },
@@ -32606,7 +32606,7 @@
       "token": "6342538634037D42B6C129C18D0129CC68"
     },
     "discovered_at": "2026-05-17T11:54:39.783582+00:00",
-    "last_verified_at": "2026-10-11T11:54:55.557330+00:00",
+    "last_verified_at": "2026-10-18T10:12:21.233208+00:00",
     "last_jobs_pulled_at": "2026-10-15T12:19:26.085635+00:00",
     "consecutive_failures": 0,
     "category": "general",
@@ -34189,7 +34189,7 @@
     "ats": "other",
     "ats_params": {},
     "discovered_at": "2026-05-24T08:20:29.979365+00:00",
-    "last_verified_at": "2026-10-11T11:54:55.557330+00:00",
+    "last_verified_at": "2026-10-18T10:12:21.233208+00:00",
     "last_jobs_pulled_at": null,
     "consecutive_failures": 0,
     "skip_discovery": true,
@@ -37430,7 +37430,7 @@
       "token": "7C42E981F101F10365C174C2E98F88F880"
     },
     "discovered_at": "2026-06-14T09:08:50.748930+00:00",
-    "last_verified_at": "2026-10-11T11:54:55.557330+00:00",
+    "last_verified_at": "2026-10-18T10:12:21.233208+00:00",
     "last_jobs_pulled_at": "2026-10-15T12:19:41.549131+00:00",
     "consecutive_failures": 0,
     "category": "cyber",
@@ -38452,7 +38452,7 @@
     "ats": "other",
     "ats_params": {},
     "discovered_at": "2026-06-14T09:11:22.403436+00:00",
-    "last_verified_at": "2026-10-11T11:54:55.557330+00:00",
+    "last_verified_at": "2026-10-18T10:12:21.233208+00:00",
     "last_jobs_pulled_at": null,
     "consecutive_failures": 0,
     "category": "cyber",
@@ -38533,7 +38533,7 @@
     "ats": "other",
     "ats_params": {},
     "discovered_at": "2026-06-14T09:11:24.278118+00:00",
-    "last_verified_at": "2026-10-11T11:54:55.557330+00:00",
+    "last_verified_at": "2026-10-18T10:12:21.233208+00:00",
     "last_jobs_pulled_at": null,
     "consecutive_failures": 0,
     "category": "cyber",
@@ -39308,7 +39308,7 @@
       "org_name": "matia"
     },
     "discovered_at": "2026-06-14T09:12:16.662624+00:00",
-    "last_verified_at": "2026-10-11T11:54:55.557330+00:00",
+    "last_verified_at": "2026-10-18T10:12:21.233208+00:00",
     "last_jobs_pulled_at": "2026-10-15T12:19:45.542411+00:00",
     "consecutive_failures": 0,
     "category": "general",
@@ -45103,7 +45103,7 @@
       "board_host": "careers.viola-group.com"
     },
     "discovered_at": "2026-07-05T08:37:48.202220+00:00",
-    "last_verified_at": "2026-09-13T10:43:17.803685+00:00",
+    "last_verified_at": "2026-10-18T10:01:05.317850+00:00",
     "last_jobs_pulled_at": "2026-10-15T12:27:28.469230+00:00",
     "consecutive_failures": 0
   },
@@ -45215,7 +45215,7 @@
   },
   {
     "name": "Encore",
-    "website": "https://js.hs-banner.com",
+    "website": "https://www.comeet.co",
     "source_vc": "Team8",
     "vc_tier": 1,
     "careers_url": null,
@@ -45296,11 +45296,11 @@
     "website": "https://atoms.co",
     "source_vc": "Abstract Ventures",
     "vc_tier": 3,
-    "careers_url": "https://atoms.co/careers",
+    "careers_url": "https://atoms.co/openroles",
     "ats": "unknown",
     "ats_params": {},
     "discovered_at": "2026-08-09T06:42:25.551947+00:00",
-    "last_verified_at": "2026-09-13T10:54:33.074404+00:00",
+    "last_verified_at": "2026-10-18T10:08:46.127810+00:00",
     "last_jobs_pulled_at": null,
     "consecutive_failures": 0
   },
@@ -45313,7 +45313,7 @@
     "ats": "unknown",
     "ats_params": {},
     "discovered_at": "2026-08-09T06:42:27.257183+00:00",
-    "last_verified_at": "2026-09-13T10:54:35.769938+00:00",
+    "last_verified_at": "2026-10-18T10:08:49.400097+00:00",
     "last_jobs_pulled_at": null,
     "consecutive_failures": 0
   },
@@ -45328,7 +45328,7 @@
       "org_name": "volta"
     },
     "discovered_at": "2026-08-09T06:42:27.544327+00:00",
-    "last_verified_at": "2026-09-13T10:54:36.021480+00:00",
+    "last_verified_at": "2026-10-18T10:08:50.269280+00:00",
     "last_jobs_pulled_at": "2026-10-15T12:27:28.810980+00:00",
     "consecutive_failures": 0
   },
@@ -45341,7 +45341,7 @@
     "ats": "unknown",
     "ats_params": {},
     "discovered_at": "2026-08-09T06:43:43.897184+00:00",
-    "last_verified_at": "2026-09-13T10:55:51.246934+00:00",
+    "last_verified_at": "2026-10-18T10:10:15.570952+00:00",
     "last_jobs_pulled_at": null,
     "consecutive_failures": 0
   },
@@ -46215,7 +46215,7 @@
     "ats": "unknown",
     "ats_params": {},
     "discovered_at": "2026-09-13T10:44:46.075095+00:00",
-    "last_verified_at": "2026-09-13T10:44:46.075103+00:00",
+    "last_verified_at": "2026-10-18T10:02:50.960500+00:00",
     "last_jobs_pulled_at": null,
     "consecutive_failures": 0
   },
@@ -46228,7 +46228,7 @@
     "ats": "unknown",
     "ats_params": {},
     "discovered_at": "2026-09-13T10:44:46.839255+00:00",
-    "last_verified_at": "2026-09-13T10:44:46.839265+00:00",
+    "last_verified_at": "2026-10-18T10:02:52.767029+00:00",
     "last_jobs_pulled_at": null,
     "consecutive_failures": 0
   },
@@ -46241,7 +46241,7 @@
     "ats": "unknown",
     "ats_params": {},
     "discovered_at": "2026-09-13T10:45:02.859851+00:00",
-    "last_verified_at": "2026-09-13T10:45:02.859863+00:00",
+    "last_verified_at": "2026-10-18T10:03:09.546115+00:00",
     "last_jobs_pulled_at": null,
     "consecutive_failures": 0
   },
@@ -46254,7 +46254,7 @@
     "ats": "unknown",
     "ats_params": {},
     "discovered_at": "2026-09-13T10:45:02.869369+00:00",
-    "last_verified_at": "2026-09-13T10:45:02.869377+00:00",
+    "last_verified_at": "2026-10-18T10:03:09.551762+00:00",
     "last_jobs_pulled_at": null,
     "consecutive_failures": 0
   },
@@ -46269,7 +46269,7 @@
       "org_name": "cognition"
     },
     "discovered_at": "2026-09-13T10:54:33.415739+00:00",
-    "last_verified_at": "2026-09-13T10:54:33.415748+00:00",
+    "last_verified_at": "2026-10-18T10:12:21.128948+00:00",
     "last_jobs_pulled_at": "2026-10-15T12:27:32.099128+00:00",
     "consecutive_failures": 0
   },
@@ -46284,7 +46284,7 @@
       "org_name": "gimlet"
     },
     "discovered_at": "2026-09-13T10:54:33.729225+00:00",
-    "last_verified_at": "2026-09-13T10:54:33.729232+00:00",
+    "last_verified_at": "2026-10-18T10:08:46.695142+00:00",
     "last_jobs_pulled_at": "2026-10-15T12:27:32.218215+00:00",
     "consecutive_failures": 0
   },
@@ -46299,7 +46299,7 @@
       "org_name": "Lightfield"
     },
     "discovered_at": "2026-09-13T10:54:34.166381+00:00",
-    "last_verified_at": "2026-09-13T10:54:34.166389+00:00",
+    "last_verified_at": "2026-10-18T10:08:47.388276+00:00",
     "last_jobs_pulled_at": "2026-10-15T12:27:32.306476+00:00",
     "consecutive_failures": 0
   },
@@ -46312,7 +46312,7 @@
     "ats": "unknown",
     "ats_params": {},
     "discovered_at": "2026-09-13T10:57:09.553888+00:00",
-    "last_verified_at": "2026-09-13T10:57:09.553898+00:00",
+    "last_verified_at": "2026-10-18T10:11:40.834932+00:00",
     "last_jobs_pulled_at": null,
     "consecutive_failures": 0
   },
@@ -46325,7 +46325,7 @@
     "ats": "unknown",
     "ats_params": {},
     "discovered_at": "2026-09-13T10:57:10.021021+00:00",
-    "last_verified_at": "2026-09-13T10:57:10.021026+00:00",
+    "last_verified_at": "2026-10-18T10:11:40.475267+00:00",
     "last_jobs_pulled_at": null,
     "consecutive_failures": 0
   },
@@ -46338,7 +46338,7 @@
     "ats": "unknown",
     "ats_params": {},
     "discovered_at": "2026-09-13T10:57:41.747479+00:00",
-    "last_verified_at": "2026-09-13T10:57:41.747487+00:00",
+    "last_verified_at": "2026-10-18T10:12:18.987306+00:00",
     "last_jobs_pulled_at": null,
     "consecutive_failures": 0
   },
@@ -46656,6 +46656,47 @@
     "ats_params": {},
     "discovered_at": "2026-10-11T11:51:20.470451+00:00",
     "last_verified_at": "2026-10-11T11:51:20.470459+00:00",
+    "last_jobs_pulled_at": null,
+    "consecutive_failures": 0
+  },
+  {
+    "name": "Ariga",
+    "website": "https://ariga.io",
+    "source_vc": "TLV Partners",
+    "vc_tier": 2,
+    "careers_url": "https://ariga.io#careers",
+    "ats": "unknown",
+    "ats_params": {},
+    "discovered_at": "2026-10-18T10:02:54.385854+00:00",
+    "last_verified_at": "2026-10-18T10:02:54.385868+00:00",
+    "last_jobs_pulled_at": null,
+    "consecutive_failures": 0
+  },
+  {
+    "name": "Mesh Payments",
+    "website": "https://meshpayments.com",
+    "source_vc": "TLV Partners",
+    "vc_tier": 2,
+    "careers_url": "https://meshpayments.com/careers/",
+    "ats": "unknown",
+    "ats_params": {},
+    "discovered_at": "2026-10-18T10:02:55.127153+00:00",
+    "last_verified_at": "2026-10-18T10:02:55.127168+00:00",
+    "last_jobs_pulled_at": null,
+    "consecutive_failures": 0
+  },
+  {
+    "name": "TypeSafe AI",
+    "website": "http://typesafe.ai",
+    "source_vc": "a16z",
+    "vc_tier": 2,
+    "careers_url": "https://jobs.ashbyhq.com/typesafe-ai?utm_source=QLrx0vq4BW",
+    "ats": "ashby",
+    "ats_params": {
+      "org_name": "typesafe-ai"
+    },
+    "discovered_at": "2026-10-18T10:08:49.956048+00:00",
+    "last_verified_at": "2026-10-18T10:08:49.956057+00:00",
     "last_jobs_pulled_at": null,
     "consecutive_failures": 0
   }
