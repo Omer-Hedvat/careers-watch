@@ -186,6 +186,9 @@ export default function SettingsPage() {
   const [cvFile, setCvFile] = useState<StoredFile | null>(null)
   const [showProfileText, setShowProfileText] = useState(false)
   const [showCvText, setShowCvText] = useState(false)
+  // Filters render (and can be saved) only once loaded: empty fields while the
+  // server wakes looked like "my filters are gone", and Save would wipe them.
+  const [filtersState, setFiltersState] = useState<'loading' | 'ok' | 'error'>('loading')
 
   // CV tab
   const [cvText, setCvText] = useState('')
@@ -291,13 +294,7 @@ export default function SettingsPage() {
     const hashTab = window.location.hash.replace('#', '') as Tab
     if (['profile', 'cv', 'filters', 'apikey', 'account'].includes(hashTab)) setActiveTab(hashTab)
     loadMe()
-    api('/user/filters').then(r => r.json()).then(d => {
-      setLocationInput((d.location_terms ?? []).join(', '))
-      setSkipTitles(d.skip_title_terms ?? [])
-      setKeepTitles(d.keep_title_terms ?? [])
-      setSkipCompanies(d.skip_companies ?? [])
-      setSkipIndustries(d.skip_industries ?? [])
-    })
+    loadFilters()
     supabase.auth.getUser().then(({ data: { user } }) => {
       if (!user) return
       const meta = user.user_metadata ?? {}
@@ -418,7 +415,25 @@ export default function SettingsPage() {
     }
   }
 
+  async function loadFilters() {
+    setFiltersState('loading')
+    try {
+      const r = await api('/user/filters')
+      if (!r.ok) throw new Error(`HTTP ${r.status}`)
+      const d = await r.json()
+      setLocationInput((d.location_terms ?? []).join(', '))
+      setSkipTitles(d.skip_title_terms ?? [])
+      setKeepTitles(d.keep_title_terms ?? [])
+      setSkipCompanies(d.skip_companies ?? [])
+      setSkipIndustries(d.skip_industries ?? [])
+      setFiltersState('ok')
+    } catch {
+      setFiltersState('error')
+    }
+  }
+
   async function saveFilters() {
+    if (filtersState !== 'ok') return // never overwrite saved filters with unloaded empty fields
     setSaving(true)
     const r = await api('/user/filters', {
       method: 'PATCH',
@@ -659,7 +674,14 @@ export default function SettingsPage() {
         )}
 
         {/* Filters tab */}
-        {activeTab === 'filters' && (
+        {activeTab === 'filters' && filtersState === 'loading' && <WakingUp what="filters" />}
+        {activeTab === 'filters' && filtersState === 'error' && (
+          <div role="alert" className="w-full bg-surface border border-border rounded-xl p-6 text-sm text-danger">
+            Couldn&apos;t load your saved filters - they are still saved, nothing was changed.{' '}
+            <button type="button" onClick={loadFilters} className="text-accent hover:text-accent-hover underline transition-colors">Retry</button>
+          </div>
+        )}
+        {activeTab === 'filters' && filtersState === 'ok' && (
           <div className="space-y-4">
             {/* Active filters summary */}
             <div className="text-xs text-subtle font-mono bg-surface border border-border px-3 py-2 rounded-lg">
@@ -683,7 +705,7 @@ export default function SettingsPage() {
               preview={filterPreview}
               previewLoading={filterPreviewLoading}
             />
-            <button onClick={saveFilters} disabled={saving} className={primaryBtn}>Save filters</button>
+            <button onClick={saveFilters} disabled={saving || filtersState !== 'ok'} className={primaryBtn}>Save filters</button>
           </div>
         )}
 

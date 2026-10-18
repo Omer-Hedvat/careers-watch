@@ -262,6 +262,7 @@ export default function OnboardingPage() {
           if (typeof d.cv_text === 'string') { setCvText(d.cv_text); setSavedCvText(d.cv_text) }
         }
         if (s.filters_seen) {
+          filtersUnloaded.current = true // until they actually load
           const fr = await authedFetch('/user/filters')
           const f = fr.ok ? await fr.json() : null
           if (f && f.user_id) {
@@ -273,6 +274,7 @@ export default function OnboardingPage() {
               skip_industries: f.skip_industries ?? [],
             })
             setLocationInput((f.location_terms ?? []).join(', '))
+            filtersUnloaded.current = false
           }
         }
       } catch { /* backend unreachable - start fresh, never block */ }
@@ -310,6 +312,7 @@ export default function OnboardingPage() {
 
   // Uploaded originals, kept for Settings' file card once their text is saved (the
   // users row may not exist before then). Best-effort: the text is what scoring uses.
+  const filtersUnloaded = useRef(false)
   const uploadedFiles = useRef<Partial<Record<StoredKind, File>>>({})
   async function keepUploaded(kind: StoredKind) {
     const file = uploadedFiles.current[kind]
@@ -428,11 +431,15 @@ export default function OnboardingPage() {
       if (!token) throw new Error('Not authenticated')
 
       // Profile, CV and key were already saved step by step; only filters remain.
-      const r = await authedFetch('/user/filters', {
-        method: 'PATCH',
-        body: JSON.stringify({ ...filters, location_terms: locationInput.split(/[,;]/).map(t => t.trim()).filter(Boolean) }),
-      })
-      if (!r.ok) throw new Error('Could not save your filters')
+      // Saved filters that failed to load are left alone - the form would hold
+      // defaults, and saving them would wipe the real ones.
+      if (!filtersUnloaded.current) {
+        const r = await authedFetch('/user/filters', {
+          method: 'PATCH',
+          body: JSON.stringify({ ...filters, location_terms: locationInput.split(/[,;]/).map(t => t.trim()).filter(Boolean) }),
+        })
+        if (!r.ok) throw new Error('Could not save your filters')
+      }
       setSetup(s => ({ ...s, filters_seen: true }))
 
       // Trigger the first scan and wait for the result so we can show a count

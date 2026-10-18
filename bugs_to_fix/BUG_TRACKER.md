@@ -4,5 +4,6 @@ Active bugs only. Wrapped bugs live in `ARCHIVE.md`.
 
 | Slug | Title | Status | Severity | Depends on | Blocks | Files Changed |
 |---|---|---|---|---|---|---|
+| [BUG_WEBAPP_FILTERS_LOOK_EMPTY_WHILE_LOADING](BUG_WEBAPP_FILTERS_LOOK_EMPTY_WHILE_LOADING.md) | Settings Filters look empty while loading, and Save can wipe saved filters | 🟢 Completed | P1 | — | — | webapp/frontend settings + onboarding |
 | [BUG_WEBAPP_FILTERS_NEVER_SAVED](BUG_WEBAPP_FILTERS_NEVER_SAVED.md) | Settings filters are never saved (Save failed, empty on reload) | 🟢 Completed | P1 | — | — | webapp/backend/routers/user.py |
 | [BUG_POSITIONS_DETAIL_DUP_LINK](BUG_POSITIONS_DETAIL_DUP_LINK.md) | Positions detail panel shows "Go to posting" twice (button + redundant inline link) | 🟢 Completed | P3 | — | — | — |
